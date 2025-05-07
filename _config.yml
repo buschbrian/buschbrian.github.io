@@ -61,10 +61,7 @@ author:
   name   : "Brian Busch"
   avatar : "/assets/images/bio-photo.jpg"
   bio    : "Spatial Analyst + GIS + Cartography"
-  # links:
-    #- label: "Website"
-     # icon: "fas fa-fw fa-link"
-     # url: "https://"
+  links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/@brianjbusch"
