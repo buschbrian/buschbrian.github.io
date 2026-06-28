@@ -434,3 +434,136 @@ p {
     flex-direction: column;
   }
 }
+.project-card-featured {
+  border-color: color-mix(in srgb, var(--accent-2) 58%, var(--line));
+}
+
+.project-action {
+  margin-top: 18px;
+}
+
+.project-action a,
+.note-item a {
+  color: var(--accent);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.project-action a:hover,
+.project-action a:focus-visible,
+.note-item a:hover,
+.note-item a:focus-visible {
+  text-decoration: underline;
+}
+
+.post-page {
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: clamp(48px, 8vw, 88px) clamp(18px, 5vw, 64px);
+}
+
+.post-article {
+  display: grid;
+  gap: 28px;
+}
+
+.post-header {
+  max-width: 900px;
+}
+
+.post-header h1 {
+  font-size: clamp(2.7rem, 7vw, 5.7rem);
+  line-height: 0.96;
+  margin-bottom: 18px;
+}
+
+.post-deck {
+  color: var(--muted);
+  font-size: clamp(1.08rem, 2vw, 1.32rem);
+  max-width: 760px;
+}
+
+.post-meta-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 26px;
+}
+
+.post-meta-grid div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.post-meta-grid span {
+  color: var(--accent-2);
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.post-meta-grid strong {
+  display: block;
+  line-height: 1.2;
+  margin-top: 5px;
+}
+
+.post-hero-image {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 0;
+  overflow: hidden;
+}
+
+.post-hero-image img {
+  width: 100%;
+}
+
+.post-hero-image figcaption {
+  color: var(--muted);
+  font-size: 0.88rem;
+  padding: 12px 16px 16px;
+}
+
+.post-content {
+  max-width: 780px;
+}
+
+.post-content h2 {
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.1;
+  margin: 34px 0 10px;
+}
+
+.post-content p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.source-note {
+  border-top: 1px solid var(--line);
+  margin-top: 34px;
+  padding-top: 18px;
+}
+
+.source-note a {
+  color: var(--accent);
+  font-weight: 850;
+}
+
+@media (max-width: 900px) {
+  .post-meta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .post-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
