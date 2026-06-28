@@ -1,7 +1,125 @@
----
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
----
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cartography, GIS projects, spatial analysis, and short notes from Brian Busch.">
+    <meta name="theme-color" content="#f3efe5">
+    <title>Brian Busch | Cartography and GIS Projects</title>
+    <link rel="stylesheet" href="/assets/css/site.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Brian Busch home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Brian Busch</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu>
+        <a href="/projects/">Projects</a>
+        <a href="/notes/">Notes</a>
+        <a href="/about/">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Cartography | GIS | Spatial Analysis</p>
+          <h1 id="hero-title">Maps, project work, and cartography notes.</h1>
+          <p>
+            A simple portfolio for selected maps, GIS projects, and short notes
+            about design choices, data, and methods.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="/projects/">View projects</a>
+            <a class="button secondary" href="/notes/">Read notes</a>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img src="/assets/images/uttimeandspace111224.png" alt="Cartographic project image with layered geographic information.">
+        </figure>
+      </section>
+
+      <section class="section" aria-labelledby="selected-title">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2 id="selected-title">Cartography and GIS projects.</h2>
+          <p>Recent maps and spatial projects, collected in one straightforward portfolio.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <a class="project-image" href="/projects/#utah-time-and-space">
+              <img src="/assets/images/uttimeandspace111224.png" alt="Utah Time and Space cartographic layout.">
+            </a>
+            <div class="project-body">
+              <p class="project-meta">Cartography | 2024</p>
+              <h3><a href="/projects/#utah-time-and-space">Utah Time and Space</a></h3>
+              <p>A cartographic project exploring place, distance, and visual structure across Utah.</p>
+              <div class="tag-row"><span>Layout</span><span>Cartography</span><span>Utah</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <a class="project-image" href="/projects/#utah-population-hexagons">
+              <img src="/assets/images/utpophexagon110424.jpg" alt="Hexagon map visualization of Utah population.">
+            </a>
+            <div class="project-body">
+              <p class="project-meta">Spatial Analysis | 2024</p>
+              <h3><a href="/projects/#utah-population-hexagons">Utah Population Hexagons</a></h3>
+              <p>A hexagon-based population visualization focused on density, hierarchy, and regional comparison.</p>
+              <div class="tag-row"><span>Hexagons</span><span>Population</span><span>Thematic map</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <a class="project-image" href="/projects/#raster-terrain-study">
+              <img src="/assets/images/raster1110624v2.png" alt="Raster terrain and analysis map.">
+            </a>
+            <div class="project-body">
+              <p class="project-meta">GIS Project | 2024</p>
+              <h3><a href="/projects/#raster-terrain-study">Raster Terrain Study</a></h3>
+              <p>A raster-based mapping study using terrain texture, color, and analytical layers.</p>
+              <div class="tag-row"><span>Raster</span><span>Terrain</span><span>Analysis</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section quiet" aria-labelledby="notes-title">
+        <div class="section-heading">
+          <p class="eyebrow">Notes</p>
+          <h2 id="notes-title">Short cartography notes.</h2>
+          <p>Small posts for map design choices, revisions, data sources, and methods.</p>
+        </div>
+        <div class="note-list">
+          <article class="note-item">
+            <p class="note-date">June 2026</p>
+            <h3>Choosing a muted terrain palette</h3>
+            <p>A note on keeping terrain readable while leaving enough contrast for labels, boundaries, and routes.</p>
+          </article>
+          <article class="note-item">
+            <p class="note-date">May 2026</p>
+            <h3>When to simplify linework</h3>
+            <p>Generalized geometry often makes a clearer map than overly exact source data.</p>
+          </article>
+          <article class="note-item">
+            <p class="note-date">April 2026</p>
+            <h3>Label hierarchy before decoration</h3>
+            <p>A small checklist for type size, feature priority, halos, and labels that support the map.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Brian Busch | GISP | Cartography and GIS</p>
+      <a href="https://github.com/buschbrian" target="_blank" rel="noreferrer">GitHub</a>
+    </footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
