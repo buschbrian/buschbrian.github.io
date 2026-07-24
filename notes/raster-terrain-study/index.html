@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An Imhof-inspired hillshade of Utah's terrain, built for Day 6 (Raster) of the 2024 30 Day Map Challenge using Esri's Terrain Service.">
+    <meta name="theme-color" content="#f3efe5">
+    <title>Raster Terrain Study | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/raster-terrain-study/">
+    <meta property="og:title" content="Raster Terrain Study | Brian Busch, GISP">
+    <meta property="og:description" content="An Imhof-inspired hillshade of Utah's terrain, built for Day 6 (Raster) of the 2024 30 Day Map Challenge using Esri's Terrain Service.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/raster1110624v2.jpg">
+    <meta property="og:image:width" content="1545">
+    <meta property="og:image:height" content="2000">
+    <meta property="article:author" content="Brian Busch">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/assets/css/site.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Brian Busch home"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch</span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge &mdash; Day 6: Raster | 2024</p>
+          <h1>Raster Terrain Study</h1>
+          <p class="post-deck">
+            A hand-tuned hillshade of Utah in the style of Eduard Imhof &mdash;
+            built entirely from a single continuous elevation surface, no
+            vector data involved.
+          </p>
+          <div class="post-meta-grid" aria-label="Map details">
+            <div><span>Challenge</span><strong>Day 6 of 30 &mdash; Raster</strong></div>
+            <div><span>Style reference</span><strong>Eduard Imhof, via John Nelson</strong></div>
+            <div><span>Data source</span><strong>Esri Terrain Service / Living Atlas</strong></div>
+            <div><span>Tools</span><strong>ArcGIS Pro</strong></div>
+          </div>
+        </header>
+
+        <figure class="post-hero-image">
+          <img src="/assets/images/raster1110624v2.jpg" alt="Raster terrain and analysis map." width="1545" height="2000">
+          <figcaption>Raster Terrain Study. An Imhof-style hillshade of Utah built on Esri's Terrain Service.</figcaption>
+        </figure>
+
+        <div class="post-content">
+          <p>
+            The Day 6 theme was simply "raster" &mdash; an open invitation to
+            work with continuous surface data instead of discrete points,
+            lines, or polygons. Elevation was the obvious candidate, and the
+            obvious style to reach for was Eduard Imhof's: relief shading that
+            reads as hand-painted terrain rather than a mechanical hillshade.
+          </p>
+
+          <h2>The Imhof style</h2>
+          <p>
+            Classic Imhof shading pairs hypsometric tinting (color keyed to
+            elevation) with directional shading tuned by hand rather than a
+            single flat light-and-azimuth calculation, so ridgelines and
+            valleys read with more depth than a default hillshade gives you.
+            It's a technique built for paper maps in the 1960s that still
+            looks better than most default GIS renderers on a screen.
+          </p>
+
+          <h2>Building it in ArcGIS Pro</h2>
+          <p>
+            The elevation surface came straight from Esri's Terrain Service in
+            Living Atlas &mdash; no local DEM to manage. The symbology follows
+            John Nelson's published modern take on the Imhof technique, tuning
+            color ramp and light angle against Utah's terrain until the Wasatch
+            Range, the Basin and Range country, and the Colorado Plateau each
+            held their own texture instead of collapsing into flat gray.
+          </p>
+
+          <h2>Why raster, not vector</h2>
+          <p>
+            Vector data is the right tool when features are genuinely discrete
+            &mdash; parcels, roads, boundaries. Terrain isn't: elevation is
+            continuous everywhere, and a raster surface is what lets shading
+            pick up every ridge and drainage without simplifying them into
+            lines first. That's exactly the case the Day 6 theme was built to
+            highlight.
+          </p>
+
+          <p class="source-note">
+            Originally created for Day 6 (&ldquo;Raster&rdquo;) of the 2024
+            #30DayMapChallenge, styled after Eduard Imhof's technique as
+            adapted by John Nelson, using Esri's Living Atlas Terrain Service.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | GIS, Spatial Data &amp; Cartography</p><a href="/notes/">Back to notes</a></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
