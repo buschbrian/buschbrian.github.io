@@ -353,6 +353,15 @@ p {
   grid-template-columns: minmax(260px, 0.46fr) minmax(0, 1fr);
 }
 
+.project-feature-link {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.project-stack-heading {
+  margin: 12px 0 -4px;
+  max-width: 760px;
+}
+
 .prose {
   max-width: 760px;
 }

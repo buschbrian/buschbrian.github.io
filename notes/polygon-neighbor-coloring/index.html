@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A Python (ArcPy) script that automatically assigns unique colors to neighboring polygons using a graph-coloring approach.">
+    <meta name="theme-color" content="#f3efe5">
+    <title>Polygon Neighbor Coloring | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/polygon-neighbor-coloring/">
+    <meta property="og:title" content="Polygon Neighbor Coloring | Brian Busch, GISP">
+    <meta property="og:description" content="A Python (ArcPy) script that automatically assigns unique colors to neighboring polygons using a graph-coloring approach.">
+    <meta property="article:author" content="Brian Busch">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/assets/css/site.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Brian Busch home"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch</span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">Open Source | Python &amp; ArcPy</p>
+          <h1>Polygon Neighbor Coloring</h1>
+          <p class="post-deck">
+            A small ArcPy script that solves a genuine cartographic annoyance:
+            making sure no two touching polygons ever end up sharing a color.
+          </p>
+          <div class="post-meta-grid" aria-label="Project details">
+            <div><span>Language</span><strong>Python (ArcPy)</strong></div>
+            <div><span>Approach</span><strong>Graph coloring</strong></div>
+            <div><span>Use cases</span><strong>Parcels, districts, boundaries</strong></div>
+            <div><span>Source</span><strong>GitHub</strong></div>
+          </div>
+        </header>
+
+        <div class="post-content">
+          <p>
+            Any parcel map, election-district map, or school-boundary map runs
+            into the same small design problem eventually: two adjacent
+            polygons end up the same color, and the boundary between them
+            disappears. Doing this by hand for anything beyond a handful of
+            features gets tedious fast &mdash; so after running Esri's
+            Polygon Neighbors tool in ArcGIS Pro, the natural next step was to
+            automate the coloring decision itself.
+          </p>
+
+          <h2>How it works</h2>
+          <p>
+            The script reads the adjacency table produced by Polygon
+            Neighbors, then sorts polygons by neighbor count so the
+            highest-connectivity features get assigned first &mdash; a
+            standard graph-coloring trick that makes the whole assignment
+            more efficient. Each polygon gets a Color ID from 1&ndash;10,
+            chosen so that no two polygons sharing an edge ever get the same
+            value, and the script adds a <code>Color_ID</code> field to the
+            feature class and populates it automatically.
+          </p>
+
+          <h2>Where it's useful</h2>
+          <p>
+            Anywhere adjacency actually matters for legibility: parcel and
+            zoning maps, election districts, school attendance boundaries, or
+            any polygon dataset where a shared-color edge would read as a
+            missing boundary rather than a design choice.
+          </p>
+
+          <p class="source-note">
+            View the script on
+            <a href="https://github.com/buschbrian/colorID.py" target="_blank" rel="noreferrer">GitHub &mdash; buschbrian/colorID.py</a>.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | GIS, Spatial Data &amp; Cartography</p><a href="/notes/">Back to notes</a></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
