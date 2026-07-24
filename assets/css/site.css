@@ -386,6 +386,11 @@ p {
   text-decoration: none;
 }
 
+.footer-links {
+  display: flex;
+  gap: 18px;
+}
+
 @media (max-width: 940px) {
   .site-header {
     grid-template-columns: auto auto;
