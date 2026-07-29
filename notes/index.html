@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Short notes on GIS systems, data pipelines, and cartography from Brian Busch, GISP.">
-    <meta name="theme-color" content="#f3efe5">
+    <meta name="theme-color" content="#FBFAF7">
     <title>Notes | Brian Busch, GISP</title>
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
     <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
@@ -19,6 +19,9 @@
     <meta property="og:image:width" content="2200">
     <meta property="og:image:height" content="1467">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/site.css">
   </head>
   <body>
@@ -28,33 +31,39 @@
       <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/about/">About</a></nav>
     </header>
 
-    <main class="page">
+    <main class="page notes-page">
       <section class="page-heading">
         <p class="eyebrow">Notes</p>
         <h1>Notes</h1>
-        <p>Short reminders about map design, data pipelines, and project decisions.</p>
+        <p>Writeups on the projects, map design decisions, and data methods behind the work.</p>
       </section>
 
-      <div class="note-list note-list-page">
+      <div class="note-list">
         <article class="note-item"><p class="note-date">2025 Esri UC</p><h2><a href="/notes/future-land-use-millcreek/">Future Land Use - Millcreek, Utah</a></h2><p>A finalist map-gallery post about turning a General Plan vision into a public-facing cartographic product.</p></article>
         <article class="note-item"><p class="note-date">GIS Policy Work</p><h2><a href="/notes/wui-boundary-mapping/">WUI Boundary Mapping</a></h2><p>Helping other Utah local governments implement HB 48 and HB 41 Wildland-Urban Interface boundary mapping.</p></article>
         <article class="note-item"><p class="note-date">Millcreek, UT</p><h2><a href="/notes/alcohol-spacing-regulations/">Alcohol Spacing Regulations</a></h2><p>A zoning map and public web app for Millcreek's alcohol establishment spacing requirements.</p></article>
         <article class="note-item"><p class="note-date">Open Source</p><h2><a href="/notes/polygon-neighbor-coloring/">Polygon Neighbor Coloring</a></h2><p>An ArcPy script that assigns unique colors to neighboring polygons using graph coloring.</p></article>
-        <article class="note-item"><p class="note-date">June 2026</p><h2>Choosing a muted terrain palette</h2><p>A note on keeping terrain readable while leaving enough contrast for labels, boundaries, and routes.</p></article>
-        <article class="note-item"><p class="note-date">May 2026</p><h2>When to simplify linework</h2><p>Generalized geometry often makes a clearer map than overly exact source data.</p></article>
-        <article class="note-item"><p class="note-date">April 2026</p><h2>Label hierarchy before decoration</h2><p>A small checklist for type size, feature priority, halos, and labels that support the map.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 1</p><h2><a href="/notes/utah-dark-sky-points/">Utah Dark-Sky Points</a></h2><p>Utah's International Dark-Sky Parks, mapped as points.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 2</p><h2><a href="/notes/utah-scenic-byways/">Utah Scenic Byways</a></h2><p>All 27 of Utah's Scenic Byways, individually symbolized.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 3</p><h2><a href="/notes/utah-federal-land-ownership/">Utah Federal Land Ownership</a></h2><p>Federal land ownership across Utah in Esri's Firefly style.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 4</p><h2><a href="/notes/utah-population-hexagons/">Utah Population Hexagons</a></h2><p>Census 2020 population aggregated to a 50-square-mile hexagon grid across the state.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 5</p><h2><a href="/notes/utah-old-spanish-trail/">Old Spanish Trail</a></h2><p>The Utah segment of the Old Spanish National Historic Trail.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 6</p><h2><a href="/notes/raster-terrain-study/">Raster Terrain Study</a></h2><p>An Imhof-style hillshade of Utah built on Esri's Terrain Service.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 7</p><h2><a href="/notes/utah-vintage-atlas/">Vintage Atlas Style</a></h2><p>Utah's urban areas and rivers in an 1854-inspired atlas look.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 8</p><h2><a href="/notes/utah-localities-hdx/">Utah Localities via HDX</a></h2><p>Utah's populated places, built from a global humanitarian dataset.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 9</p><h2><a href="/notes/utah-ai-fictional-map/">AI-Generated Fictional Map</a></h2><p>A ChatGPT-generated map, kept for what it gets wrong.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 10</p><h2><a href="/notes/utah-counties-pen-paper/">Utah Counties, Pen &amp; Paper</a></h2><p>Utah's counties and county seats in a hand-drawn style.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 11</p><h2><a href="/notes/utah-avalanche-paths/">Avalanche Paths</a></h2><p>A 3D map of avalanche activity in Little Cottonwood Canyon.</p></article>
-        <article class="note-item"><p class="note-date">30 Day Map Challenge, Day 12</p><h2><a href="/notes/utah-time-and-space/">Utah Time and Space</a></h2><p>Mule deer migration corridors and stopover habitats across the Paunsaugunt Plateau herd range.</p></article>
+      </div>
+
+      <div class="section-heading">
+        <p class="eyebrow">30 Day Map Challenge, 2024</p>
+        <h2>Selected maps from the 2024 30 Day Map Challenge</h2>
+        <p>Twelve Utah-focused maps, each answering one of the challenge's daily themes.</p>
+      </div>
+
+      <div class="note-list">
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Points</p><h2><a href="/notes/utah-dark-sky-points/">Utah Dark-Sky Points</a></h2><p>Utah's International Dark-Sky Parks, mapped as points.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Line Features</p><h2><a href="/notes/utah-scenic-byways/">Utah Scenic Byways</a></h2><p>All 27 of Utah's Scenic Byways, individually symbolized.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Polygons</p><h2><a href="/notes/utah-federal-land-ownership/">Utah Federal Land Ownership</a></h2><p>Federal land ownership across Utah in Esri's Firefly style.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Hexagons</p><h2><a href="/notes/utah-population-hexagons/">Utah Population Hexagons</a></h2><p>Census 2020 population aggregated to a 50-square-mile hexagon grid across the state.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; A Journey</p><h2><a href="/notes/utah-old-spanish-trail/">Old Spanish Trail</a></h2><p>The Utah segment of the Old Spanish National Historic Trail.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Raster</p><h2><a href="/notes/raster-terrain-study/">Raster Terrain Study</a></h2><p>An Imhof-style hillshade of Utah built on Esri's Terrain Service.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Vintage Style</p><h2><a href="/notes/utah-vintage-atlas/">Vintage Atlas Style</a></h2><p>Utah's urban areas and rivers in an 1854-inspired atlas look.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Humanitarian Data Exchange</p><h2><a href="/notes/utah-localities-hdx/">Utah Localities via HDX</a></h2><p>Utah's populated places, built from a global humanitarian dataset.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; AI</p><h2><a href="/notes/utah-ai-fictional-map/">AI-Generated Fictional Map</a></h2><p>A ChatGPT-generated map, kept for what it gets wrong.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Pen &amp; Paper</p><h2><a href="/notes/utah-counties-pen-paper/">Utah Counties, Pen &amp; Paper</a></h2><p>Utah's counties and county seats in a hand-drawn style.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Arctic</p><h2><a href="/notes/utah-avalanche-paths/">Avalanche Paths</a></h2><p>A 3D map of avalanche activity in Little Cottonwood Canyon.</p></article>
+        <article class="note-item"><p class="note-date">30 Day Map Challenge 2024 &mdash; Time and Space</p><h2><a href="/notes/utah-time-and-space/">Utah Time and Space</a></h2><p>Mule deer migration corridors and stopover habitats across the Paunsaugunt Plateau herd range.</p></article>
       </div>
     </main>
 
