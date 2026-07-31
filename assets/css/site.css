@@ -280,6 +280,12 @@ footer.wrap { padding-left: var(--pad); padding-right: var(--pad); }
 .site-footer a, footer a { color: var(--muted); }
 .site-footer a:hover, footer a:hover { color: var(--rust); }
 
+.footer-right { display: flex; align-items: center; gap: 18px; }
+.social-links { display: flex; align-items: center; gap: 12px; }
+.social-links a { color: var(--muted); display: inline-flex; }
+.social-links a:hover { color: var(--rust); }
+.social-links svg { width: 16px; height: 16px; display: block; }
+
 @media (max-width: 860px) {
   .project-feature { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .project-feature-image { order: -1; }
