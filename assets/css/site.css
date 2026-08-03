@@ -270,6 +270,8 @@ footer.wrap { padding-left: var(--pad); padding-right: var(--pad); }
 /* --- post gallery (slide decks) --- */
 .post-gallery { margin: clamp(32px, 5vw, 52px) 0; }
 .post-gallery-intro { max-width: var(--measure); margin: 0 0 clamp(20px, 3vw, 28px); }
+.post-gallery-intro h2 { font-size: clamp(1.4rem, 2.4vw, 1.75rem); line-height: 1.25; margin: 0 0 12px; }
+.post-gallery-intro p { margin: 0; font-size: 1.03rem; line-height: 1.7; color: var(--body); text-wrap: pretty; }
 .post-gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 20px); }
 .post-gallery figure { margin: 0; }
 .post-gallery img {
