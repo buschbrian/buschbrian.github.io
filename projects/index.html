@@ -42,13 +42,14 @@
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Brian Busch home"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch</span></a>
+      <a class="brand" href="/" aria-label="Brian Busch home"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
       <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
       <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a aria-current="page" href="/projects/">Projects</a><a href="/about/">About</a></nav>
     </header>
 
-    <main class="page">
+    <main id="main" class="page">
       <section class="page-heading">
         <p class="eyebrow">Selected work</p>
         <h1>Projects</h1>
@@ -74,7 +75,7 @@
             <h2>Future Land Use - Millcreek, Utah</h2>
             <p>A General Plan future land use map for Millcreek, Utah, recognized as an Esri User Conference Virtual Map Gallery finalist.</p>
             <div class="tag-row"><span>Planning</span><span>Land use</span><span>Public map</span><span>Finalist</span></div>
-            <p class="project-action"><a href="/notes/future-land-use-millcreek/">Read the post</a></p>
+            <p class="project-action"><a href="/notes/future-land-use-millcreek/">Read the post</a> &middot; <a href="https://www.esri.com/en-us/about/events/uc/agenda/virtual-map-gallery#/event/67ad126d8e0786445a1513c0/submission-detail/39374" target="_blank" rel="noreferrer">View in the Esri Map Gallery</a></p>
           </div>
         </article>
 
@@ -94,9 +95,9 @@
           <div>
             <p class="project-meta">Personal Project | 2026</p>
             <h2>Utah Reservoir Dashboard</h2>
-            <p>A live dashboard tracking drought conditions across 28 Utah reservoirs, built on the ArcGIS Maps SDK for JS while comparing Python/GeoPandas against the ArcGIS API for Python &mdash; deployed on its own GitHub Pages site.</p>
-            <div class="tag-row"><span>ArcGIS Maps SDK for JS</span><span>Python</span><span>Live dashboard</span></div>
-            <p class="project-action"><a href="https://buschbrian.github.io/utah-reservoir-dashboard/" target="_blank" rel="noreferrer">View the live dashboard</a></p>
+            <p>A live dashboard tracking drought across 28 Utah reservoirs, built on the ArcGIS Maps SDK for JS and rebuilt in MapLibre GL JS as an open-source parity test &mdash; data refreshed daily from the Bureau of Reclamation RISE API via GitHub Actions.</p>
+            <div class="tag-row"><span>ArcGIS Maps SDK for JS</span><span>MapLibre GL</span><span>Live dashboard</span></div>
+            <p class="project-action"><a href="/notes/utah-reservoir-dashboard/">Read the post</a> &middot; <a href="https://buschbrian.github.io/utah-reservoir-dashboard/" target="_blank" rel="noreferrer">View the live dashboard</a></p>
           </div>
         </article>
 
@@ -156,10 +157,10 @@
         </a>
 
         <a class="map-card" id="utah-federal-land-ownership" href="/notes/utah-federal-land-ownership/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-federal-land-ownership-480.webp 480w, /assets/images/r/utah-federal-land-ownership-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-federal-land-ownership.jpg" alt="Polygon map of federal land ownership across Utah." width="800" height="1035" loading="lazy"></picture>
+          <picture><source type="image/webp" srcset="/assets/images/r/utah-federal-land-ownership-480.webp 480w, /assets/images/r/utah-federal-land-ownership-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-federal-land-ownership.jpg" alt="Polygon map of government land ownership across Utah." width="800" height="1035" loading="lazy"></picture>
           <p class="project-meta">30 Day Map Challenge 2024 | Polygons</p>
-          <h3>Utah Federal Land Ownership</h3>
-          <p>Federal land ownership across Utah, styled in Esri's "Firefly" look and color-matched to SITLA's reference map.</p>
+          <h3>Utah Government Land Ownership</h3>
+          <p>Government land ownership across Utah &mdash; federal and state trust lands &mdash; styled in Esri's "Firefly" look and color-matched to SITLA's reference map.</p>
         </a>
 
         <a class="map-card" id="utah-population-hexagons" href="/notes/utah-population-hexagons/">
