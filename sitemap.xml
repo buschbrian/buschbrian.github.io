@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://buschbrian.github.io/projects/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -21,6 +21,12 @@
   <url>
     <loc>https://buschbrian.github.io/notes/future-land-use-millcreek/</loc>
     <lastmod>2026-08-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://buschbrian.github.io/notes/millcreek-redistricting/</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
