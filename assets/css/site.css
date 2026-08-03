@@ -163,6 +163,8 @@ dd { margin: 6px 0 0; font-size: 1.5rem; }
 .project-meta { margin: 0 0 14px; }
 .project-feature h2 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.18; margin: 0 0 12px; }
 .project-feature > div > p { margin: 0 0 16px; max-width: 54ch; text-wrap: pretty; }
+.project-feature { scroll-margin-top: 96px; }
+.wrap > section { scroll-margin-top: 96px; }
 .project-action { margin: 0 !important; font-size: .95rem; }
 .project-action a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
@@ -256,7 +258,6 @@ dd { margin: 6px 0 0; font-size: 1.5rem; }
   max-width: var(--wrap); margin: 0 auto;
   padding: 28px var(--pad) 48px; border-top: 1px solid var(--line);
 }
-footer.wrap { padding-left: var(--pad); padding-right: var(--pad); }
 .site-footer p, footer p { margin: 0; font-size: inherit; color: inherit; }
 .site-footer a, footer a { color: var(--muted); }
 .site-footer a:hover, footer a:hover { color: var(--rust); }
