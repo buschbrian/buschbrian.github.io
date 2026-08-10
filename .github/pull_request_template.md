@@ -12,5 +12,6 @@ Describe the result in one or two short sentences.
 - [ ] I confirmed all changed facts and source claims.
 - [ ] I checked all changed links and image paths.
 - [ ] `node --check assets/js/site.js` passes.
+- [ ] `npx --yes html-validate@11.6.2 "**/*.html"` passes.
 - [ ] `git diff --check` passes.
 - [ ] I tested keyboard use and responsive layouts when the interface changed.

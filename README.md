@@ -29,6 +29,7 @@ Run these commands:
 
 ```sh
 node --check assets/js/site.js
+npx --yes html-validate@11.6.2 "**/*.html"
 git diff --check
 ```
 
