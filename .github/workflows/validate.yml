@@ -1,0 +1,28 @@
+name: Validate site
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the repository
+        uses: actions/checkout@v6
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Check JavaScript syntax
+        run: node --check assets/js/site.js
+
+      - name: Check HTML
+        run: npx --yes html-validate@11.6.2 "**/*.html"
