@@ -2,15 +2,23 @@ const navToggle = document.querySelector("[data-nav-toggle]");
 const navMenu = document.querySelector("[data-nav-menu]");
 
 if (navToggle && navMenu) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = document.body.classList.toggle("nav-open");
+  const setNavOpen = isOpen => {
+    document.body.classList.toggle("nav-open", isOpen);
     navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+  };
+
+  navToggle.addEventListener("click", () => {
+    setNavOpen(!document.body.classList.contains("nav-open"));
   });
 
   navMenu.addEventListener("click", event => {
     if (!event.target.closest("a")) return;
-    document.body.classList.remove("nav-open");
-    navToggle.setAttribute("aria-expanded", "false");
+    setNavOpen(false);
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") setNavOpen(false);
   });
 }
 
