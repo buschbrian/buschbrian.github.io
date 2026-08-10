@@ -40,14 +40,14 @@ a:hover { color: var(--rust); }
 .skip-link:focus { left: 0; color: var(--paper); }
 
 /* --- type roles --- */
-.mono, .kicker, .eyebrow, .meta, .date, .project-meta,
-.site-nav a, .btn, .site-footer, footer {
+.mono, .kicker, .eyebrow, .meta, .project-meta,
+.site-nav a, .btn, .site-footer {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   letter-spacing: .07em;
   text-transform: uppercase;
 }
 .kicker, .eyebrow { font-size: 12.5px; font-weight: 500; color: var(--rust); margin: 0; }
-.meta, .date, .project-meta, .site-footer, footer { font-size: 11.5px; color: var(--muted); }
+.meta, .project-meta, .site-footer { font-size: 11.5px; color: var(--muted); }
 .serif, h1, h2, h3 { font-family: Newsreader, Georgia, serif; font-weight: 400; letter-spacing: -.01em; }
 p { line-height: 1.65; color: var(--body); }
 
@@ -193,7 +193,7 @@ dd { margin: 6px 0 0; font-size: 1.5rem; }
 }
 
 /* --- reading pages: narrower canvas, centred text column --- */
-.post-page, .about-page { max-width: 960px; }
+.about-page { max-width: 960px; }
 .post-page > .post-article > *,
 .about-page > .page-heading, .about-page > .prose {
   margin-inline: auto;
@@ -253,14 +253,14 @@ dd { margin: 6px 0 0; font-size: 1.5rem; }
 .not-found p { margin: 0 0 28px; }
 
 /* --- footer --- */
-.site-footer, footer {
+.site-footer {
   display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: baseline;
   max-width: var(--wrap); margin: 0 auto;
   padding: 28px var(--pad) 48px; border-top: 1px solid var(--line);
 }
-.site-footer p, footer p { margin: 0; font-size: inherit; color: inherit; }
-.site-footer a, footer a { color: var(--muted); }
-.site-footer a:hover, footer a:hover { color: var(--rust); }
+.site-footer p { margin: 0; font-size: inherit; color: inherit; }
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--rust); }
 
 .footer-right { display: flex; align-items: center; gap: 18px; }
 .social-links { display: flex; align-items: center; gap: 12px; }
