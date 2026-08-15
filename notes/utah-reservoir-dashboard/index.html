@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A typed ArcGIS dashboard for 54 reservoirs, with verified capacity, 12 months of history, drainage areas, and daily federal data.">
+    <meta name="description" content="A typed ArcGIS dashboard for 69 reservoirs, with verified capacity, 12 months of history, drainage areas, and daily federal data.">
     <meta name="theme-color" content="#FBFAF7">
     <title>Utah Reservoir Dashboard | Brian Busch, GISP</title>
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/utah-reservoir-dashboard/">
     <meta property="og:title" content="Utah Reservoir Dashboard | Brian Busch, GISP">
-    <meta property="og:description" content="A typed ArcGIS dashboard for 54 reservoirs, with verified capacity, 12 months of history, drainage areas, and daily federal data.">
+    <meta property="og:description" content="A typed ArcGIS dashboard for 69 reservoirs, with verified capacity, 12 months of history, drainage areas, and daily federal data.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/utah-reservoir-dashboard.jpg">
     <meta property="og:image:alt" content="Legacy ArcGIS view of the Utah Reservoir Dashboard, with reservoir storage shown as proportional circles.">
     <meta property="og:image:width" content="1400">
@@ -30,10 +30,10 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Utah Reservoir Dashboard",
-      "description": "A typed ArcGIS dashboard for 54 reservoirs, with verified capacity, 12 months of history, drainage areas, and daily federal data.",
+      "description": "A typed ArcGIS dashboard for 69 reservoirs, with verified capacity, 12 months of history, drainage areas, and daily federal data.",
       "image": "https://buschbrian.github.io/assets/images/utah-reservoir-dashboard.jpg",
       "datePublished": "2026-08-03",
-      "dateModified": "2026-08-13",
+      "dateModified": "2026-08-15",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://buschbrian.github.io/notes/utah-reservoir-dashboard/"
@@ -71,7 +71,7 @@
             capacity, 12 months of history, and two federal data sources.
           </p>
           <div class="post-meta-grid">
-            <div><span>Reservoirs</span><strong>54 across Utah-connected drainage areas</strong></div>
+            <div><span>Reservoirs</span><strong>69 across Utah-connected drainage areas</strong></div>
             <div><span>Data sources</span><strong>Reclamation RISE and NRCS AWDB</strong></div>
             <div><span>Refresh</span><strong>Daily via GitHub Actions</strong></div>
             <div><span>Application</span><strong>ArcGIS Maps SDK 5.1, Calcite 5, and TypeScript</strong></div>
@@ -86,9 +86,13 @@
         <div class="post-content">
           <p>
             Reservoir data is difficult to compare in a table. This dashboard
-            puts 54 reservoirs on one map and in one data workspace. The scope
-            follows drainage areas that connect to Utah. It includes relevant
+            puts 69 reservoirs on one map and in one data workspace. The scope
+            follows drainage areas that connect to Utah, and every published
+            drainage area now has tracked storage. It includes relevant
             sites outside the state and keeps the source record for each site.
+            Lake Powell stays in the source data but is excluded from the
+            default views by its stable source identifier, so one very large
+            reservoir does not dominate every total.
           </p>
 
           <h2>Capacity and history</h2>
@@ -107,13 +111,15 @@
             by that reservoir's full level, and a colored filled
             circle on top sized by current storage. The gap between ring and
             fill is a direct visual read of depletion. Both radii come from the
-            same square-root-scaled size domain. This scale fits Lake
-            Powell at millions of acre-feet and the smallest reservoirs at a
+            same square-root-scaled size domain. This scale fits the largest
+            reservoirs at millions of acre-feet and the smallest at a
             few thousand into one legible spread &mdash; and the fill is sized
             as a share of its own ring, so the ring-to-fill ratio always means
             percent depletion regardless of the reservoir's absolute size.
-            Fill color follows the same three-tier ramp the popup spells out in
-            words: red under 50%, orange 50&ndash;75%, green above 75%.
+            Fill color uses five equal 20-point bands on an accessible
+            red-to-blue scale. Low storage is red and high storage is blue,
+            and the same class table drives the renderer, the legend, the
+            filters, and the charts.
           </p>
 
           <h2>A pipeline that refreshes itself</h2>
@@ -137,10 +143,19 @@
           </p>
           <p>
             The map supports keyboard selection, storage and freshness filters,
-            a month slider, and shareable URL state. A separate ArcGIS Charts
+            a month slider, and shareable URL state. A sortable reservoir
+            table opens under the map and exports exactly the rows and order
+            on screen as a CSV file. A separate ArcGIS Charts
             workspace links summary values, charts, and an exact-value table.
             Six-digit drainage areas give the reservoir points geographic
             context and define the accepted scope.
+          </p>
+          <p>
+            The numbers are documented, not just displayed. A methods page
+            explains where each value comes from and how it is worked out. A
+            public data API page publishes stable JSON paths, complete field
+            definitions, and code examples, so the same validated data is
+            usable outside the dashboard.
           </p>
           <p>
             The repository now has strict TypeScript checks, unit tests, Python
@@ -153,6 +168,8 @@
             View the
             <a href="https://buschbrian.github.io/utah-reservoir-dashboard/modern.html" target="_blank" rel="noreferrer">live dashboard</a>,
             the <a href="https://buschbrian.github.io/utah-reservoir-dashboard/overview.html" target="_blank" rel="noreferrer">data workspace</a>,
+            the <a href="https://buschbrian.github.io/utah-reservoir-dashboard/methods.html" target="_blank" rel="noreferrer">methods page</a>,
+            the <a href="https://buschbrian.github.io/utah-reservoir-dashboard/data.html" target="_blank" rel="noreferrer">public data API</a>,
             the <a href="https://buschbrian.github.io/utah-reservoir-dashboard/maplibre/" target="_blank" rel="noreferrer">MapLibre GL version</a>,
             or the <a href="https://github.com/buschbrian/utah-reservoir-dashboard" target="_blank" rel="noreferrer">source on GitHub</a>.
             Data: <a href="https://data.usbr.gov/rise-api" target="_blank" rel="noreferrer">Bureau of Reclamation RISE</a>
