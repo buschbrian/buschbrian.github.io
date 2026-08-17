@@ -4,15 +4,15 @@ This file lists work that needs more facts or an owner decision. Do not change a
 
 ## Data and method
 
-- `notes/utah-dark-sky-points/index.html`: Add the source and park count. If no source is available, remove the claim about Utah's high concentration of parks.
-- `notes/utah-vintage-atlas/index.html`: Name the source for the urban-area and river data.
-- `notes/utah-scenic-byways/index.html`: Confirm the UDOT source for the byway data. Explain how the total distance was calculated.
 - Add a short method section to other map articles when reliable information is available.
+
+Resolved on 2026-08-15: the dark-sky note no longer claims a high concentration of parks. The vintage atlas note names the Esri Living Atlas as the data source. The scenic byways note states that the mileage total is the sum of the UDOT route lengths, calculated in ArcGIS Pro.
 
 ## Contact information
 
 - Decide whether to add a resume or curriculum vitae.
-- Decide whether to add a direct email address.
+
+Resolved on 2026-08-15: the About page shows a direct email address.
 
 ## Plain language
 
