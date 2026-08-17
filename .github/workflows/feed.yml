@@ -1,0 +1,45 @@
+name: Build the feed
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "notes/**/index.html"
+      - "scripts/build-feed.mjs"
+      - ".github/workflows/feed.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-the-feed
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the repository
+        uses: actions/checkout@v6
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Write the feed
+        run: node scripts/build-feed.mjs
+
+      - name: Commit the feed
+        run: |
+          if git diff --quiet -- feed.xml; then
+            echo "The feed did not change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed.xml
+          git commit -m "Update the feed"
+          git push

@@ -50,13 +50,18 @@ Work through the sections in order. Section 1 blocks the feed.
 The site records a publication date for two notes. It records no date for
 the other 18. A dated index and a correct feed both need these dates.
 
-- Give a publication date for each of the 18 notes without one.
-- Decide if the 12 challenge notes use the 2024 challenge day as the date.
-  The 2024 30 Day Map Challenge ran through November 2024. Day 1 was
-  November 1. The current note order matches days 1 to 12.
-- Decide if a note shows its date to the reader, or only in the feed.
+Decision on 2026-08-17: the owner will supply a list of real dates. Do not
+use the challenge day and do not use the first commit date.
+
+- Owner: give a publication date for each of the 18 notes without one.
+- Then: add each date to the note structured data, the notes index, and
+  the feed in one pass.
+- Then: decide if a note shows its date to the reader.
 
 ## 2. Professional work needs more depth
+
+Decision on 2026-08-17: work through all five professional notes, one note
+at a time.
 
 The two dashboard notes are 771 and 1,334 words. The professional notes
 are 242 to 528 words. Two of the shortest notes are the strongest
@@ -85,15 +90,20 @@ For each project below, record these five items:
 
 ## 3. Site purpose
 
-The site does not state what it is for. This decision sets the order of
-all other content work.
+Decision on 2026-08-17: the main job of the site is to get consulting
+work. The reader is a city director or an agency manager who must decide
+if this person can do the job.
 
-- State the main job of the site. Examples: to get a position, to get
-  consulting work, to record professional practice.
-- State the audience. A hiring manager, a city director, and a GIS peer
-  each need different pages.
-- Decide if the About page needs a resume or a curriculum vitae. The
-  earlier backlog entry marks this as resolved with an email address only.
+This changes what each project note must contain:
+
+- State the problem the organization had, in the first paragraph.
+- State the result, with a number when a number exists.
+- State your role, and what other people did.
+- Give a clear next step for a reader who wants to hire you.
+
+- Decide if the About page needs a rate, a service list, or a work
+  history. An email address alone gives a buyer very little.
+- Decide if the site needs a services page.
 
 ## 4. Terms a general reader does not know
 
@@ -119,9 +129,10 @@ Twelve notes run from 111 to 263 words. They read as captions.
 
 ## 6. Maintenance decisions
 
-- Decide how the feed stays current. The repository has no build step, so
-  a person must edit `feed.xml` for each new note. A GitHub Actions job
-  can write the file instead.
+- Resolved on 2026-08-17: GitHub Actions writes `feed.xml`. The workflow
+  is `.github/workflows/feed.yml` and the script is
+  `scripts/build-feed.mjs`. Do not edit `feed.xml` by hand. Add a new note
+  slug to the `ORDER` list in the script.
 - Decide if the notes index shows dates after section 1 is complete.
 - Decide if the earlier reservoir note stays public, or becomes a
   redirect to the current note.

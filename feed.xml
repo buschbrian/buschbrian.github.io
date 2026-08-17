@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  This feed is maintained by hand. The site has no build step.
-  When you add a note, add an item here and put the newest item first.
-  An item gets a pubDate only when the note records a publication date in
-  its structured data. See CONTENT-BACKLOG.md, "Publication dates".
+  GitHub Actions writes this file from the notes in /notes.
+  Do not edit it by hand. See scripts/build-feed.mjs.
+  An item gets a pubDate only when the note records a datePublished value
+  in its structured data.
 -->
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
