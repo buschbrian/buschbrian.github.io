@@ -36,3 +36,92 @@ Resolved on 2026-08-15: the About page shows a direct email address.
 - Consider smaller JPG fallback images for old browsers.
 - Keep the current responsive WebP files.
 - Measure the result before you replace an image.
+
+---
+
+# Owner input backlog
+
+Added on 2026-08-17. Each item needs information that only the owner has.
+No one can source these from the repository, the site, or a public record.
+Work through the sections in order. Section 1 blocks the feed.
+
+## 1. Publication dates
+
+The site records a publication date for two notes. It records no date for
+the other 18. A dated index and a correct feed both need these dates.
+
+- Give a publication date for each of the 18 notes without one.
+- Decide if the 12 challenge notes use the 2024 challenge day as the date.
+  The 2024 30 Day Map Challenge ran through November 2024. Day 1 was
+  November 1. The current note order matches days 1 to 12.
+- Decide if a note shows its date to the reader, or only in the feed.
+
+## 2. Professional work needs more depth
+
+The two dashboard notes are 771 and 1,334 words. The professional notes
+are 242 to 528 words. Two of the shortest notes are the strongest
+credentials on the site.
+
+For each project below, record these five items:
+
+1. Your role. State what you did and what other people did.
+2. The problem the organization had before the work.
+3. The method, in steps a general reader can follow.
+4. The result. Give a number when a number exists.
+5. The limit. State what the map or the analysis cannot show.
+
+- `sidewalk-trails-master-plan` (242 words). An Esri User Conference Map
+  Gallery finalist for 2026. The note does not say how the gap analysis
+  works, who adopted the plan, or what changed after adoption.
+- `future-land-use-millcreek` (297 words). An Esri User Conference Map
+  Gallery finalist for 2025. The note does not say how the General Plan
+  chapter became map categories, or who uses the map now.
+- `wui-boundary-mapping` (322 words). The note names HB 48 and HB 41. It
+  does not explain what the bills require, or what a city must deliver.
+- `alcohol-spacing-regulations` (250 words). The note does not give the
+  rule the buffers come from, or state who uses the web application.
+- `millcreek-redistricting` (528 words). The strongest professional note.
+  It still does not give the public turnout, or the adopted result.
+
+## 3. Site purpose
+
+The site does not state what it is for. This decision sets the order of
+all other content work.
+
+- State the main job of the site. Examples: to get a position, to get
+  consulting work, to record professional practice.
+- State the audience. A hiring manager, a city director, and a GIS peer
+  each need different pages.
+- Decide if the About page needs a resume or a curriculum vitae. The
+  earlier backlog entry marks this as resolved with an email address only.
+
+## 4. Terms a general reader does not know
+
+The language rules require an explanation for a GIS term on first use.
+These terms appear on the site with no explanation.
+
+- Wildland-Urban Interface
+- Hydrologic unit code, and drainage area
+- Snow water equivalent
+- Period of record, and seasonal percentile
+- Acre-foot
+- GISP, and what the certification requires
+
+## 5. The 30 Day Map Challenge group
+
+Twelve notes run from 111 to 263 words. They read as captions.
+
+- Decide if these notes stay short, or get the same method treatment.
+- Decide if the challenge group stays in the main navigation, or moves
+  to one combined article.
+- For each map, record the data source and the software. Some notes
+  already do this. Most do not.
+
+## 6. Maintenance decisions
+
+- Decide how the feed stays current. The repository has no build step, so
+  a person must edit `feed.xml` for each new note. A GitHub Actions job
+  can write the file instead.
+- Decide if the notes index shows dates after section 1 is complete.
+- Decide if the earlier reservoir note stays public, or becomes a
+  redirect to the current note.
