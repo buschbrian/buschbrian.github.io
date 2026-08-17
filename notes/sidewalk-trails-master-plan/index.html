@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Millcreek Sidewalk &amp; Trails Master Plan, an Esri User Conference Virtual Map Gallery finalist by Brian Busch.">
+    <meta name="description" content="How Millcreek turned a fragmented set of sidewalk and trail studies into one citywide map that a director can act on, with sidewalk data built from aerial imagery.">
     <meta name="theme-color" content="#FBFAF7">
     <title>Sidewalk and Trails Master Plan | Brian Busch, GISP</title>
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/sidewalk-trails-master-plan/">
     <meta property="og:title" content="Turning sidewalk gaps into a connected trail network | Brian Busch, GISP">
-    <meta property="og:description" content="Millcreek Sidewalk &amp; Trails Master Plan, an Esri User Conference Virtual Map Gallery finalist by Brian Busch.">
+    <meta property="og:description" content="How Millcreek turned a fragmented set of sidewalk and trail studies into one citywide map that a director can act on, with sidewalk data built from aerial imagery.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/sidewalk-trails-master-plan.jpg">
     <meta property="og:image:alt" content="Millcreek Sidewalk &amp; Trails Master Plan map showing designated centers, paths, and trails.">
     <meta property="og:image:width" content="2200">
@@ -30,7 +30,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Turning sidewalk gaps into a connected trail network",
-      "description": "Millcreek Sidewalk & Trails Master Plan, an Esri User Conference Virtual Map Gallery finalist by Brian Busch.",
+      "description": "How Millcreek turned a fragmented set of sidewalk and trail studies into one citywide map that a director can act on, with sidewalk data built from aerial imagery.",
       "image": "https://buschbrian.github.io/assets/images/sidewalk-trails-master-plan.jpg",
       "mainEntityOfPage": {
         "@type": "WebPage",
@@ -64,15 +64,15 @@
           <p class="eyebrow">Sidewalk &amp; Trails Master Plan, Millcreek | Esri UC Map Gallery Finalist 2026</p>
           <h1>Turning sidewalk gaps into a connected trail network</h1>
           <p class="post-deck">
-            A citywide map of designated centers, paths, and trails for Millcreek's
-            Sidewalk &amp; Trails Master Plan, recognized as a finalist in Esri's
-            2026 Virtual Map Gallery.
+            Millcreek's sidewalk and trail plans were spread across the city
+            General Plan and older Salt Lake County studies. This work brought
+            that material into one citywide map that a director can act on.
           </p>
           <div class="post-meta-grid">
-            <div><span>Award</span><strong>Finalist, Envisioning the Future</strong></div>
-            <div><span>Authors</span><strong>Brian Busch; Aubrey Larsen (Landmark Design); Fred Lutze, PE</strong></div>
+            <div><span>My role</span><strong>GIS data and cartography</strong></div>
             <div><span>Organization</span><strong>City of Millcreek</strong></div>
-            <div><span>Gallery</span><strong>2026 Esri User Conference</strong></div>
+            <div><span>Status</span><strong>Plan in rewrite, not yet adopted</strong></div>
+            <div><span>Award</span><strong>Finalist, Envisioning the Future, 2026 Esri User Conference</strong></div>
           </div>
         </header>
 
@@ -83,52 +83,122 @@
 
         <div class="post-content">
           <p>
-            The Millcreek Sidewalk &amp; Trails Master Plan &mdash; Designated
-            Centers, Paths &amp; Trails presents a high-level snapshot of the
-            city's vision for a more connected, walkable, and bike-friendly
-            community. The map illustrates how shared-use paths, enhanced urban
-            paths, existing and proposed trails, waterways, trailheads, parks,
-            pedestrian districts, and village centers come together to form a
-            connected mobility network across Millcreek.
+            Millcreek became a city in 2016. Salt Lake County had already
+            studied parts of its sidewalk and trail network before that. The
+            city General Plan added more. A later study collected the material
+            into an appendix of about sixty maps. The appendix was complete and
+            it was accurate. It was not ready for a decision. A director could
+            not look at it and see where the city intends to build.
+          </p>
+          <p>
+            This work replaced that appendix with one citywide map. The map
+            shows where the Public Works and Planning departments intend to
+            build. It connects parks, schools, and the denser parts of the city.
           </p>
 
-          <h2>Designated centers and gateways</h2>
+          <h2>Three kinds of path</h2>
           <p>
-            The design highlights three key gateway and activity areas: City
-            Center, Meadowbrook, and the Southern Gateway. Each area is
-            supported by corridor improvements that strengthen pedestrian
-            access, neighborhood connectivity, and local identity.
+            The map separates three kinds of path, because each one costs a
+            different amount and serves a different trip.
+          </p>
+          <ul>
+            <li>
+              A shared-use path carries people who walk and people who ride
+              bicycles. It is separate from the road.
+            </li>
+            <li>
+              An enhanced urban path sits between a sidewalk and a shared-use
+              path. It is wider than a standard sidewalk. It adds a planted
+              park strip and a bicycle lane.
+            </li>
+            <li>
+              A trail is an unpaved or natural-surface route.
+            </li>
+          </ul>
+          <p>
+            The map also shows waterways, trailheads, parks, pedestrian
+            districts, and village centers. It marks three activity areas: City
+            Center, Meadowbrook, and the Southern Gateway.
           </p>
 
-          <h2>Paths and trail typology</h2>
+          <h2>The data behind the map</h2>
           <p>
-            By pairing a detailed citywide trail map with center-specific
-            renderings and path typology diagrams, this submission communicates
-            both the broader network vision and the human-scale improvements
-            that will shape Millcreek's streets and centers &mdash; shared-use
-            paths, enhanced urban paths, waterway trails, and general trails,
-            each responding to a different context.
+            A gap analysis needs to know where sidewalks already exist.
+            Millcreek keeps a sidewalk centerline dataset for this. A
+            centerline is a line drawn along the middle of a feature. The city
+            built the dataset from earlier shapefiles and from aerial imagery.
+            Machine learning models read the imagery and find the sidewalks.
+            This method covers a whole city for much less than a field survey
+            costs.
+          </p>
+          <p>
+            The prior studies each measured gaps a different way. This work
+            rebuilt those formulas as one method. Every part of the city is now
+            measured the same way, so a reader can compare one area against
+            another.
           </p>
 
-          <h2>Looking ahead</h2>
+          <h2>Who did the work</h2>
           <p>
-            Beyond the current network, the plan flags creek and canal trail
-            opportunities and future east bench trail connections, including
-            completion of the Bonneville Shoreline Trail through Millcreek.
+            I built the GIS data and the cartography. Aubrey Larsen of Landmark
+            Design did the graphic design and the illustration. Fred Lutze, PE,
+            set the direction and reviewed the work throughout. The City of
+            Millcreek owns the plan.
+          </p>
+
+          <h2>Where the plan stands</h2>
+          <p>
+            The plan came from a grant. In April 2023 the Millcreek Council
+            accepted a Transportation and Land Use Connection grant from the
+            Wasatch Front Regional Council. The council contributed $219,845
+            and the city matched $70,155, for a project budget of $290,000.
+            That grant paid for the planning study and closed in June 2025.
+          </p>
+          <p>
+            The city produced this map after that. The Planning department and
+            Landmark Design used about $10,000 of existing budget for the
+            cartography and the design. The plan is in a rewrite now, and this
+            map is part of it. The city has not adopted the new plan yet.
+          </p>
+
+          <h2>The Bonneville Shoreline Trail</h2>
+          <p>
+            One target on the map is the Bonneville Shoreline Trail. The planned
+            trail runs about 280 miles along the Wasatch Front, from the Idaho
+            border to Nephi. About 170 miles exist today, in sections that do
+            not yet connect. The Millcreek segment is short, and it sits in one
+            of the most populated parts of the route.
+          </p>
+          <p>
+            Part of the route crossed the Mount Olympus Wilderness, which the
+            US Forest Service manages. Federal law does not permit bicycles in a
+            designated wilderness area. In December 2022 Congress passed the
+            Bonneville Shoreline Trail Advancement Act. The act moved about 326
+            acres out of wilderness at about 20 places near neighborhoods. It
+            added the same amount of land in Mill Creek Canyon to the Mount
+            Olympus Wilderness. That change makes the Millcreek connection
+            possible.
+          </p>
+
+          <h2>What the map cannot show</h2>
+          <p>
+            The map shows intent. It does not show a schedule or a budget. A
+            line on the map does not mean that the city has funded that segment
+            or set a date for it. Condition is also outside the map. A sidewalk
+            can exist and still fail an accessibility standard.
           </p>
 
           <h2>Recognition</h2>
           <p>
-            Esri listed the submission as a finalist in the <em>Envisioning the
-            Future</em> award category for the 2026 User Conference Virtual Map
-            Gallery. The map was built with Aubrey Larsen (Landmark Design) and
-            Fred Lutze, PE, as part of Millcreek's effort to better understand
-            sidewalk gaps, trail priorities, and future connections throughout
-            the city.
+            Esri selected the map as a finalist in the Envisioning the Future
+            category of the 2026 User Conference Virtual Map Gallery.
           </p>
 
           <p class="source-note">
-            Source: <a href="https://mapgallery.esri.com/submission-detail/42174" target="_blank" rel="noreferrer">Esri User Conference Virtual Map Gallery submission</a>.
+            Sources: Millcreek Resolution 23-14, April 10, 2023, for the grant
+            amounts. The Bonneville Shoreline Trail Advancement Act, December
+            2022, for the wilderness boundary change. Trail mileage from
+            published reports of trail status in 2025.
           </p>
         </div>
       </article>
