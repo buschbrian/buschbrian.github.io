@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A live Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.">
+    <meta name="description" content="A Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.">
     <meta name="theme-color" content="#FBFAF7">
     <title>One drought dashboard, two WebGL renderers | Brian Busch, GISP</title>
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -14,9 +14,9 @@
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/utah-reservoir-dashboard/">
     <meta property="og:title" content="One drought dashboard, two WebGL renderers | Brian Busch, GISP">
-    <meta property="og:description" content="A live Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.">
+    <meta property="og:description" content="A Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/utah-reservoir-dashboard.jpg">
-    <meta property="og:image:alt" content="Utah Reservoir Drought Dashboard, a live map of current storage vs. period-of-record max across Utah reservoirs.">
+    <meta property="og:image:alt" content="Utah Reservoir Drought Dashboard, a map of current storage vs. period-of-record max across Utah reservoirs.">
     <meta property="og:image:width" content="1400">
     <meta property="og:image:height" content="1000">
     <meta property="article:author" content="Brian Busch">
@@ -30,7 +30,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "One drought dashboard, two WebGL renderers",
-      "description": "A live Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.",
+      "description": "A Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.",
       "image": "https://buschbrian.github.io/assets/images/utah-reservoir-dashboard.jpg",
       "datePublished": "2026-08-03",
       "dateModified": "2026-08-17",
@@ -66,7 +66,7 @@
           <p class="eyebrow">Personal Project | ArcGIS Maps SDK for JS &amp; MapLibre GL | 2026</p>
           <h1>One drought dashboard, two WebGL renderers</h1>
           <p class="post-deck">
-            A live map of Utah's reservoir storage during a multi-year drought
+            A map of Utah's reservoir storage during a multi-year drought
             &mdash; built first on the ArcGIS Maps SDK for JavaScript, then
             rebuilt with open-source MapLibre GL JS to see how close a
             no-cost stack could get to it.
@@ -74,13 +74,13 @@
           <div class="post-meta-grid">
             <div><span>Reservoirs</span><strong>28, Bureau of Reclamation</strong></div>
             <div><span>Data source</span><strong>Reclamation RISE API, 2015&ndash;present</strong></div>
-            <div><span>Refresh</span><strong>Daily via GitHub Actions</strong></div>
+            <div><span>Refresh</span><strong>Daily via GitHub Actions, now retired</strong></div>
             <div><span>Renderers</span><strong>ArcGIS Maps SDK for JS &amp; MapLibre GL JS</strong></div>
           </div>
         </header>
 
         <figure class="post-hero-image">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-reservoir-dashboard-480.webp 480w, /assets/images/r/utah-reservoir-dashboard-960.webp 960w, /assets/images/r/utah-reservoir-dashboard-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/utah-reservoir-dashboard.jpg" alt="Utah Reservoir Drought Dashboard, a live map of current storage vs. period-of-record max across Utah reservoirs." width="1400" height="1000" fetchpriority="high"></picture>
+          <picture><source type="image/webp" srcset="/assets/images/r/utah-reservoir-dashboard-480.webp 480w, /assets/images/r/utah-reservoir-dashboard-960.webp 960w, /assets/images/r/utah-reservoir-dashboard-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/utah-reservoir-dashboard.jpg" alt="Utah Reservoir Drought Dashboard, a map of current storage vs. period-of-record max across Utah reservoirs." width="1400" height="1000" fetchpriority="high"></picture>
           <figcaption>The dashboard: current storage against each reservoir's period-of-record max, across 28 Bureau of Reclamation reservoirs. (ArcGIS Maps SDK for JS)</figcaption>
         </figure>
 
@@ -97,11 +97,11 @@
           <p>
             Utah has spent years in drought, and the numbers that describe it
             &mdash; acre-feet of storage, percent of capacity &mdash; are hard
-            to feel from a table. This dashboard puts current storage for 28
-            Bureau of Reclamation-monitored Utah reservoirs on one live map,
+            to feel from a table. This dashboard put current storage for 28
+            Bureau of Reclamation-monitored Utah reservoirs on one map,
             each one drawn so that how depleted it is reads as a shape, not
-            just a color. It's a personal project built with no framework and
-            no build step, and it doubles as a deliberate side-by-side of a
+            just a color. It was a personal project built with no framework and
+            no build step, and it doubled as a deliberate side-by-side of a
             commercial mapping SDK against a fully open-source one.
           </p>
 
@@ -135,31 +135,31 @@
             words: red under 50%, orange 50&ndash;75%, green above 75%.
           </p>
 
-          <h2>A pipeline that refreshes itself</h2>
+          <h2>A pipeline that refreshed itself</h2>
           <p>
-            The map is static; the data behind it is not. A Python script
-            (pandas, NumPy, and the RISE API) re-pulls each reservoir's full
-            daily storage series from 2015 to yesterday, recomputes both drought
-            metrics, and writes a single <code>reservoirs.json</code>. A GitHub
-            Actions workflow runs it every morning at 6&nbsp;a.m. Mountain, so
-            the dashboard stays current with no server to maintain. RISE data
+            The map was static; the data behind it was not. A Python script
+            (pandas, NumPy, and the RISE API) re-pulled each reservoir's full
+            daily storage series from 2015 to yesterday, recomputed both drought
+            metrics, and wrote a single <code>reservoirs.json</code>. A GitHub
+            Actions workflow ran it every morning at 6&nbsp;a.m. Mountain, so
+            the dashboard stayed current with no server to maintain. RISE data
             is provisional per Reclamation's own disclaimer, and the app
-            surfaces that caveat &mdash; in the title panel and in every popup
+            surfaced that caveat &mdash; in the title panel and in every popup
             &mdash; rather than presenting the most recent days as settled.
           </p>
 
           <h2>Built twice: Esri vs. MapLibre</h2>
           <p>
-            The first build uses the ArcGIS Maps SDK for JavaScript, loaded
+            The first build used the ArcGIS Maps SDK for JavaScript, loaded
             straight from Esri's CDN with plain script tags &mdash; no npm, no
-            webpack. Two <code>FeatureLayer</code>s carry the symbology, driven
-            by Arcade <code>valueExpression</code>s, and the popup is a
-            declarative <code>PopupTemplate</code> that turns the raw percentage
+            webpack. Two <code>FeatureLayer</code>s carried the symbology, driven
+            by Arcade <code>valueExpression</code>s, and the popup was a
+            declarative <code>PopupTemplate</code> that turned the raw percentage
             into a plain-language status line and the acre-foot gap to the
             historical peak.
           </p>
           <p>
-            The second build rebuilds that exact dashboard in MapLibre GL JS on
+            The second build rebuilt that exact dashboard in MapLibre GL JS on
             CARTO's free Positron vector basemap &mdash; same data, same
             dual-circle symbology, same popup wording. The point was a fair
             comparison: both are WebGL vector renderers, so this replaced an
@@ -187,7 +187,7 @@
           <p class="source-note">
             View the
             <a href="https://buschbrian.github.io/utah-reservoir-dashboard/" target="_blank" rel="noreferrer">live dashboard</a>,
-            the <a href="https://buschbrian.github.io/utah-reservoir-dashboard/maplibre/" target="_blank" rel="noreferrer">MapLibre GL version</a>,
+            the retired <a href="https://buschbrian.github.io/utah-reservoir-dashboard/maplibre/" target="_blank" rel="noreferrer">MapLibre GL comparison build</a>,
             or the <a href="https://github.com/buschbrian/utah-reservoir-dashboard" target="_blank" rel="noreferrer">source on GitHub</a>.
             Data: <a href="https://data.usbr.gov/rise-api" target="_blank" rel="noreferrer">Bureau of Reclamation RISE</a>.
           </p>
