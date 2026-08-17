@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This feed is maintained by hand. The site has no build step.
+  When you add a note, add an item here and put the newest item first.
+  An item gets a pubDate only when the note records a publication date in
+  its structured data. See CONTENT-BACKLOG.md, "Publication dates".
+-->
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes by Brian Busch</title>
+    <link>https://buschbrian.github.io/notes/</link>
+    <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Aug 2026 00:00:00 -0600</lastBuildDate>
+    <item>
+      <title>One place to see Utah's water</title>
+      <link>https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</guid>
+      <description>How a job-interview map became the Utah Water Dashboard: reservoir storage, snowpack, and drought in one ArcGIS 5.1 application, rebuilt with AI agents under written guardrails.</description>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>One drought dashboard, two WebGL renderers</title>
+      <link>https://buschbrian.github.io/notes/utah-reservoir-dashboard/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-reservoir-dashboard/</guid>
+      <description>A Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.</description>
+      <pubDate>Mon, 03 Aug 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Turning sidewalk gaps into a connected trail network</title>
+      <link>https://buschbrian.github.io/notes/sidewalk-trails-master-plan/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/sidewalk-trails-master-plan/</guid>
+      <description>Millcreek Sidewalk &amp; Trails Master Plan, an Esri User Conference Virtual Map Gallery finalist by Brian Busch.</description>
+    </item>
+    <item>
+      <title>Turning a General Plan into a public map</title>
+      <link>https://buschbrian.github.io/notes/future-land-use-millcreek/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/future-land-use-millcreek/</guid>
+      <description>Future Land Use - Millcreek, Utah, an Esri User Conference Virtual Map Gallery finalist by Brian Busch.</description>
+    </item>
+    <item>
+      <title>Millcreek Redistricting</title>
+      <link>https://buschbrian.github.io/notes/millcreek-redistricting/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/millcreek-redistricting/</guid>
+      <description>How Millcreek combined ArcGIS Pro analysis and a public StoryMap/Survey123 feedback loop to redraw its City Council districts after the 2020 Census.</description>
+    </item>
+    <item>
+      <title>WUI Boundary Mapping</title>
+      <link>https://buschbrian.github.io/notes/wui-boundary-mapping/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/wui-boundary-mapping/</guid>
+      <description>Wildland-Urban Interface (WUI) boundary mapping for Utah local governments, covering HB 48 and HB 41 compliance workflows.</description>
+    </item>
+    <item>
+      <title>Alcohol Spacing Regulations</title>
+      <link>https://buschbrian.github.io/notes/alcohol-spacing-regulations/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/alcohol-spacing-regulations/</guid>
+      <description>A map and interactive web app visualizing alcohol-establishment spacing regulations across Millcreek, Utah.</description>
+    </item>
+    <item>
+      <title>Keeping neighboring polygons apart</title>
+      <link>https://buschbrian.github.io/notes/polygon-neighbor-coloring/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/polygon-neighbor-coloring/</guid>
+      <description>A Python (ArcPy) script that automatically assigns unique colors to neighboring polygons using a graph-coloring approach.</description>
+    </item>
+    <item>
+      <title>Utah Dark-Sky Points</title>
+      <link>https://buschbrian.github.io/notes/utah-dark-sky-points/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-dark-sky-points/</guid>
+      <description>Utah's International Dark-Sky Parks mapped as points, for the 2024 30 Day Map Challenge.</description>
+    </item>
+    <item>
+      <title>Utah Scenic Byways</title>
+      <link>https://buschbrian.github.io/notes/utah-scenic-byways/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-scenic-byways/</guid>
+      <description>All 27 of Utah's Scenic Byways, 1,893.84 miles of roadway symbolized as line features, for the 2024 30 Day Map Challenge.</description>
+    </item>
+    <item>
+      <title>Utah Government Land Ownership</title>
+      <link>https://buschbrian.github.io/notes/utah-federal-land-ownership/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-federal-land-ownership/</guid>
+      <description>Government land ownership across Utah — federal agencies and state trust lands — styled in Esri's Firefly look, for the 2024 30 Day Map Challenge.</description>
+    </item>
+    <item>
+      <title>Utah Population Hexagons</title>
+      <link>https://buschbrian.github.io/notes/utah-population-hexagons/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-population-hexagons/</guid>
+      <description>Utah Population Density: A Hexagonal Perspective — a Hexagons-themed 30 Day Map Challenge map aggregating Census 2020 population to a 50-square-mile hexagon grid.</description>
+    </item>
+    <item>
+      <title>Old Spanish Trail</title>
+      <link>https://buschbrian.github.io/notes/utah-old-spanish-trail/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-old-spanish-trail/</guid>
+      <description>The Utah segment of the Old Spanish National Historic Trail, mapped for the A Journey theme of the 2024 30 Day Map Challenge.</description>
+    </item>
+    <item>
+      <title>Shading terrain the Imhof way</title>
+      <link>https://buschbrian.github.io/notes/raster-terrain-study/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/raster-terrain-study/</guid>
+      <description>An Imhof-inspired hillshade of Utah's terrain, built for the Raster theme of the 2024 30 Day Map Challenge using Esri's Terrain Service.</description>
+    </item>
+    <item>
+      <title>Vintage Atlas Style</title>
+      <link>https://buschbrian.github.io/notes/utah-vintage-atlas/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-vintage-atlas/</guid>
+      <description>Utah's urban areas and rivers in a vintage cartographic style inspired by the 1854 David Rumsey Map Collection, for the 2024 30 Day Map Challenge.</description>
+    </item>
+    <item>
+      <title>Utah Localities via HDX</title>
+      <link>https://buschbrian.github.io/notes/utah-localities-hdx/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-localities-hdx/</guid>
+      <description>Utah's populated places mapped from a single humanitarian dataset, for the Humanitarian Data Exchange theme of the 2024 30 Day Map Challenge.</description>
+    </item>
+    <item>
+      <title>AI-Generated Fictional Map</title>
+      <link>https://buschbrian.github.io/notes/utah-ai-fictional-map/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-ai-fictional-map/</guid>
+      <description>A ChatGPT-generated fictional map of Utah water resources, for the AI theme of the 2024 30 Day Map Challenge — kept for what it gets wrong.</description>
+    </item>
+    <item>
+      <title>Utah Counties, Pen &amp; Paper</title>
+      <link>https://buschbrian.github.io/notes/utah-counties-pen-paper/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-counties-pen-paper/</guid>
+      <description>Utah's counties and county seats in a hand-drawn pen-and-paper style, for the 2024 30 Day Map Challenge.</description>
+    </item>
+    <item>
+      <title>Avalanche Paths</title>
+      <link>https://buschbrian.github.io/notes/utah-avalanche-paths/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-avalanche-paths/</guid>
+      <description>A 3D map of avalanche paths in Little Cottonwood Canyon, styled for an Arctic aesthetic, for the 2024 30 Day Map Challenge.</description>
+    </item>
+    <item>
+      <title>Utah Time and Space</title>
+      <link>https://buschbrian.github.io/notes/utah-time-and-space/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-time-and-space/</guid>
+      <description>Mule deer migration pathways across Utah's Paunsaugunt Plateau, mapped for the Time and Space theme of the 2024 30 Day Map Challenge.</description>
+    </item>
+  </channel>
+</rss>
