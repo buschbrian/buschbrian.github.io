@@ -42,6 +42,7 @@ Resolved on 2026-08-15: the About page shows a direct email address.
 # Owner input backlog
 
 Added on 2026-08-17. Each item needs information that only the owner has.
+The questions that unblock these items are in `docs/interview-questions.md`.
 No one can source these from the repository, the site, or a public record.
 Work through the sections in order. Section 1 blocks the feed.
 
@@ -136,3 +137,28 @@ Twelve notes run from 111 to 263 words. They read as captions.
 - Decide if the notes index shows dates after section 1 is complete.
 - Decide if the earlier reservoir note stays public, or becomes a
   redirect to the current note.
+
+## 7. The school bus service area analysis
+
+Added on 2026-08-17. This project is not on the site. It corrected a
+school district service area analysis. The original measurement ran to a
+building corner with no door. The corrected measurement used the nearest
+open access point, about 75 feet south. The distance moved across the
+rule limit, and a group of students got transportation.
+
+The project shows rule knowledge, an audit of another analysis, and a
+measurable result. It fits the consulting purpose of the site better than
+any note now published.
+
+- Owner: answer section 7.1 of `docs/interview-questions.md` first. That
+  section decides if the work can be published at all.
+- Do not publish any figure, map, or document until the owner confirms
+  who owns the work and what the public record already contains.
+- Decide the form: a method note with no names, or a named case study.
+- Decide the words for the residents before any draft.
+
+## 8. Work that cannot be published
+
+- List the projects that hold client or internal business information.
+- Decide one pattern for them. A method note with no client data, or a
+  private case study sent on request.
