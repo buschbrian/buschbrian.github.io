@@ -233,6 +233,26 @@ dd { margin: 6px 0 0; font-size: 1.5rem; }
   font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .88em;
   background: var(--wash); border: 1px solid var(--line); border-radius: 2px; padding: 1px 5px;
 }
+.post-content table {
+  width: 100%; border-collapse: collapse; margin: 0 0 18px;
+  font-size: .95rem; line-height: 1.5;
+}
+.post-content caption {
+  text-align: left; color: var(--muted); font-size: .9rem;
+  padding-bottom: 10px;
+}
+.post-content th, .post-content td {
+  text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line);
+}
+.post-content thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10.5px;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--body); font-weight: 500;
+}
+.post-content td:last-child, .post-content th:last-child {
+  text-align: right; padding-right: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums;
+}
+
 .source-note {
   margin-top: clamp(32px, 4vw, 44px) !important; padding-top: 20px;
   border-top: 1px solid var(--line); font-size: .9rem !important; color: var(--muted);
