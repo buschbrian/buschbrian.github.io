@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How a job-interview map became the Utah Water Dashboard: reservoir storage, snowpack, and drought in one ArcGIS 5.1 application, rebuilt with AI agents under written guardrails.">
+    <meta name="theme-color" content="#FBFAF7">
+    <title>One place to see Utah's water | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/">
+    <meta property="og:title" content="One place to see Utah's water | Brian Busch, GISP">
+    <meta property="og:description" content="How a job-interview map became the Utah Water Dashboard: reservoir storage, snowpack, and drought in one ArcGIS 5.1 application, rebuilt with AI agents under written guardrails.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/utah-water-dashboard-map.jpg">
+    <meta property="og:image:alt" content="The Utah Water Dashboard storage map. Circles show each reservoir. Circle size shows capacity and circle color shows percent full.">
+    <meta property="og:image:width" content="1405">
+    <meta property="og:image:height" content="840">
+    <meta property="article:author" content="Brian Busch">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "One place to see Utah's water",
+      "description": "How a job-interview map became the Utah Water Dashboard: reservoir storage, snowpack, and drought in one ArcGIS 5.1 application, rebuilt with AI agents under written guardrails.",
+      "image": "https://buschbrian.github.io/assets/images/utah-water-dashboard-map.jpg",
+      "datePublished": "2026-08-17",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/"
+      },
+      "author": {
+        "@id": "https://buschbrian.github.io/#brian"
+      },
+      "publisher": {
+        "@id": "https://buschbrian.github.io/#brian"
+      },
+      "isPartOf": {
+        "@type": "CollectionPage",
+        "@id": "https://buschbrian.github.io/projects/",
+        "name": "Projects"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Brian Busch home"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a aria-current="page" href="/projects/">Projects</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">Personal Project | ArcGIS Maps SDK for JavaScript 5.1 | 2026</p>
+          <h1>One place to see Utah's water</h1>
+          <p class="post-deck">
+            Reservoir storage, mountain snow, and drought are published by
+            different federal agencies in different applications. This project
+            puts all three in one map, and rebuilds the map with AI agents that
+            work under written rules.
+          </p>
+          <div class="post-meta-grid">
+            <div><span>Reservoirs</span><strong>69, from two agencies</strong></div>
+            <div><span>Snow sites</span><strong>217, measured each day</strong></div>
+            <div><span>Refresh</span><strong>Each morning, GitHub Actions</strong></div>
+            <div><span>Stack</span><strong>ArcGIS Maps SDK for JavaScript 5.1</strong></div>
+          </div>
+        </header>
+
+        <figure class="post-hero-image">
+          <picture><source type="image/webp" srcset="/assets/images/r/utah-water-dashboard-map-480.webp 480w, /assets/images/r/utah-water-dashboard-map-960.webp 960w, /assets/images/r/utah-water-dashboard-map-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/utah-water-dashboard-map.jpg" alt="The storage map with Flaming Gorge selected. A side panel shows the percent full, the stored volume, and the change over one year." width="1405" height="840" fetchpriority="high"></picture>
+          <figcaption>Select a reservoir to see its complete record. Circle size shows how much water the reservoir holds when full. Circle color shows how full it is now.</figcaption>
+        </figure>
+
+        <div class="post-content">
+          <h2>The problem: no combined source</h2>
+          <p>
+            Utah's water numbers are public. They are also separated. The
+            Bureau of Reclamation publishes reservoir storage. The Natural
+            Resources Conservation Service publishes mountain snow. The U.S.
+            Drought Monitor publishes a weekly drought map. Each agency has its
+            own application, and each application is missing something I want.
+            None of them let you filter across all three.
+          </p>
+          <p>
+            In winter, most of us see one image. A static PDF of Utah snowpack
+            goes through the social media feed about once a week. It shows six
+            levels of detail. That is the whole picture for many skiers and
+            many voters. I wanted to ask better questions than that image can
+            answer.
+          </p>
+
+          <h2>How it started</h2>
+          <p>
+            The first version was a job-interview exercise. I built a map on the
+            ArcGIS Maps SDK for JavaScript 4.34 for a web developer position
+            with the State of Utah. I kept working on it after the interview. I
+            got it to a reasonable place with no AI help.
+          </p>
+          <p>
+            Then I looked at where that work had actually stopped. The map was
+            good. The scope was small, the vocabulary was inconsistent, and
+            every new feature took longer than the last. So I made two
+            decisions at the same time. I would move the whole application to
+            the ArcGIS Maps SDK for JavaScript 5.1. And I would run the
+            rebuild with a full agentic AI harness instead of one prompt at a
+            time.
+          </p>
+
+          <h2>Agents, with guardrails</h2>
+          <p>
+            An agentic AI harness is a set of instructions that tells an AI
+            coding agent how to work, not only what to build. The skills for
+            this project come from
+            <a href="https://skills.addy.ie" target="_blank" rel="noreferrer">skills.addy.ie</a>.
+            They encode senior software engineering practice as structured
+            skills with verification gates. Write the specification first. Plan
+            before you build. Prove the change with a test. Do not mark work
+            complete until the exit criteria pass.
+          </p>
+          <p>
+            The value is the limits, not the speed. The skills stop an agent
+            from doing too much in one step. Every change still goes through
+            human review before it reaches the published site.
+          </p>
+
+          <h2>A geographic rule, written down</h2>
+          <p>
+            The old version tracked 28 reservoirs. The new version needed a
+            rule, not a list. A hydrologic unit code, or HUC, is the federal
+            numbering system for drainage areas. The dashboard now includes
+            every drainage area that touches Utah in HUC regions 14, 15, and
+            16. Those are the Upper Colorado, the Lower Colorado, and the Great
+            Basin.
+          </p>
+          <p>
+            One area qualified on geometry and failed on hydrology. Drainage
+            area 170402, the Upper Snake, clips Utah's northern edge. Its water
+            drains north-west to the Snake River, then the Columbia, then the
+            Pacific. It is not part of the same water system as the rest of the
+            map. The project excludes it, and a test fails if a later change
+            adds it back without a new decision record.
+          </p>
+
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-water-dashboard-filter-480.webp 480w, /assets/images/r/utah-water-dashboard-filter-960.webp 960w, /assets/images/r/utah-water-dashboard-filter-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/utah-water-dashboard-filter.jpg" alt="The storage map filtered to the Jordan drainage area. Reservoirs in that area keep their color. All other reservoirs are gray." width="1405" height="840" loading="lazy"></picture>
+            <figcaption>Filtered to one drainage area. The other reservoirs stay on the map in gray, so you keep the geography while you narrow the question.</figcaption>
+          </figure>
+
+          <h2>What the dashboard shows</h2>
+          <p>
+            The storage map is the primary view. It shows 69 reservoirs, 29
+            measured by the Bureau of Reclamation and 40 by the Natural
+            Resources Conservation Service. Lake Powell is large enough to hide
+            local conditions in a combined total, so the default view excludes
+            it. You can add it back at any time.
+          </p>
+          <p>
+            You can filter by drainage area, by percent-full class, or by
+            reporting status. Filtered reservoirs stay on the map in gray. A
+            month slider compares the last twelve months. Every view has its
+            own address, so you can send a colleague the exact thing you are
+            looking at.
+          </p>
+
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-water-dashboard-table-480.webp 480w, /assets/images/r/utah-water-dashboard-table-960.webp 960w, /assets/images/r/utah-water-dashboard-table-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/utah-water-dashboard-table.jpg" alt="The reservoir table below the map. It lists each reservoir with percent full, stored volume, full level, and drainage area, next to a bar chart of the same values." width="1405" height="840" loading="lazy"></picture>
+            <figcaption>The table gives exact values for the same filtered set. The download gives you those rows, in the order on screen, as a CSV file.</figcaption>
+          </figure>
+
+          <p>
+            A map cannot answer every question. The storage charts page uses
+            ArcGIS charts components for six charts that compare reservoirs
+            against each other and against normal. The search box, the drainage
+            filter, and the reporting filter change all six charts, the summary
+            values, and the table at the same time.
+          </p>
+
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-water-dashboard-charts-480.webp 480w, /assets/images/r/utah-water-dashboard-charts-960.webp 960w, /assets/images/r/utah-water-dashboard-charts-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/utah-water-dashboard-charts.jpg" alt="Two bar charts on the storage charts page. One ranks the largest reservoirs by percent full. The other shows combined conditions for each drainage area." width="1405" height="840" loading="lazy"></picture>
+            <figcaption>Six cross-filtered charts. One set of controls drives the charts, the summary strip, and the table together.</figcaption>
+          </figure>
+
+          <p>
+            Snow that falls on the mountains melts into the reservoirs, so this
+            winter's snow is next summer's storage. The snowpack page shows
+            snow water equivalent, which is the depth of water the snow would
+            make if it melted. It reads 217 measurement sites and opens on the
+            day the season held the most snow, because that is the day the rest
+            of the year is judged against.
+          </p>
+
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-water-dashboard-snow-480.webp 480w, /assets/images/r/utah-water-dashboard-snow-960.webp 960w, /assets/images/r/utah-water-dashboard-snow-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/utah-water-dashboard-snow.jpg" alt="The snowpack map. Each drainage area is colored by its mean percent of normal. Each measurement site is a point on the same color scale." width="1405" height="840" loading="lazy"></picture>
+            <figcaption>Snow by drainage area and by site, on one color scale. A slider moves through the season, day by day.</figcaption>
+          </figure>
+
+          <p>
+            The drought page reads the weekly U.S. Drought Monitor by drainage
+            area, and shows it next to the water banked in that area. The two
+            can disagree. A full reservoir in a dry drainage area means the
+            region is drawing on saved water.
+          </p>
+
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-water-dashboard-drought-480.webp 480w, /assets/images/r/utah-water-dashboard-drought-960.webp 960w, /assets/images/r/utah-water-dashboard-drought-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/utah-water-dashboard-drought.jpg" alt="The weekly drought map in the U.S. Drought Monitor colors, with the fourteen drainage area boundaries drawn on top in white." width="1405" height="840" loading="lazy"></picture>
+            <figcaption>The Drought Monitor map for the week of August 11, 2026. Drought does not stop at a drainage area boundary, so the wider pattern is drawn too.</figcaption>
+          </figure>
+
+          <h2>The pipeline behind it</h2>
+          <p>
+            The site is static. The data is not. Python scripts use pandas,
+            NumPy, and the ArcGIS API for Python to read each agency service,
+            validate the values, and write one JSON file for each subject. A
+            GitHub Actions workflow runs the refresh each morning. That commit
+            is the deployment.
+          </p>
+          <p>
+            The pipeline keeps the last good record when a source does not
+            answer, and marks the reading as late instead of showing a gap. A
+            broadly failed run does not replace the published file. Capacity
+            comes from the National Inventory of Dams, so the full level for
+            each reservoir is traceable to a named source.
+          </p>
+
+          <h2>Decisions instead of preferences</h2>
+          <p>
+            The repository holds 46 architecture decision records. Each one
+            states a problem, the options, the decision, and the consequences.
+            They cover the geographic rule, the color ramp, the label order,
+            the basemap, and the vocabulary.
+          </p>
+          <p>
+            Three rules do most of the work. Color breaks live in one table, and
+            a test asserts that the map, the legend, the charts, and the filters
+            all read from it. Visible text follows a Simplified Technical
+            English word list, which is also why the site says "acre-feet" and
+            "late data" instead of shorter internal terms. Accessibility is a
+            build gate, checked with axe-core, so a change that breaks keyboard
+            use or contrast fails before it publishes.
+          </p>
+
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-water-dashboard-mobile-480.webp 480w, /assets/images/r/utah-water-dashboard-mobile-725.webp 725w" sizes="(max-width: 640px) 100vw, 360px"><img src="/assets/images/utah-water-dashboard-mobile.jpg" alt="The storage map at phone width. The map fills the screen and the controls move into a sheet at the bottom." width="725" height="1568" loading="lazy"></picture>
+            <figcaption>One responsive application. At phone width the panels become sheets, and no page loses a feature.</figcaption>
+          </figure>
+
+          <h2>What the agents did badly</h2>
+          <p>
+            Agentic development worked well for typed code, tests, data
+            validation, and documentation. It worked poorly for anything an
+            agent cannot measure.
+          </p>
+          <p>
+            Almost every remaining problem was visual. Labels collided at one
+            zoom level and not another. A symbol read as one class on screen
+            and a different class in a screenshot. A legend order looked
+            arbitrary. An agent can confirm that a color value matches a table.
+            It cannot see that two labels overlap, or that a map feels wrong.
+            Those problems came back to a person every time. The project wiki
+            records them, because they are the honest limit of this method for
+            GIS applications today.
+          </p>
+
+          <h2>Open data, and a warning</h2>
+          <p>
+            The same checked JSON files the dashboard reads are published as a
+            public data API, with field definitions and examples. A methods page
+            names every source, every identifier, and the rule used to work out
+            each value. Nothing on the site is modeled, predicted, or smoothed.
+          </p>
+          <p>
+            This is a personal open-source project. It is not an official
+            product, and no agency endorses it. Where the site and an agency
+            disagree, the agency is right.
+          </p>
+
+          <p class="source-note">
+            View the
+            <a href="https://buschbrian.github.io/utah-reservoir-dashboard/" target="_blank" rel="noreferrer">live dashboard</a>,
+            the <a href="https://buschbrian.github.io/utah-reservoir-dashboard/methods.html" target="_blank" rel="noreferrer">methods and sources</a>,
+            the <a href="https://buschbrian.github.io/utah-reservoir-dashboard/data.html" target="_blank" rel="noreferrer">public data API</a>,
+            or the <a href="https://github.com/buschbrian/utah-reservoir-dashboard" target="_blank" rel="noreferrer">source on GitHub</a>.
+            Agent skills: <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noreferrer">addyosmani/agent-skills</a>.
+            Data: Bureau of Reclamation, Natural Resources Conservation Service, and the
+            <a href="https://droughtmonitor.unl.edu/" target="_blank" rel="noreferrer">U.S. Drought Monitor</a>.
+            An earlier note describes the
+            <a href="/notes/utah-reservoir-dashboard/">first version and its MapLibre GL JS comparison</a>.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | GIS, Spatial Data &amp; Cartography</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></nav><a href="/projects/#utah-reservoir-dashboard">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
