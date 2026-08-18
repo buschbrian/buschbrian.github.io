@@ -353,6 +353,30 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 .prose a { color: var(--cosmic); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .prose ul { display: grid; gap: 12px; margin: 0 0 24px; }
 .prose li { padding-left: 22px; position: relative; line-height: 1.6; color: var(--body); }
+/* prose tables reuse the post-content treatment */
+.prose table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: var(--fs-body); line-height: 1.45; }
+.prose caption { text-align: left; color: var(--muted); font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: var(--track-label); font-weight: 500; padding-bottom: 14px; }
+.prose th, .prose td { text-align: left; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose thead th { font-size: var(--fs-caption); line-height: 1.4; text-transform: uppercase; letter-spacing: var(--track-label); color: var(--muted); font-weight: 500; }
+.prose h3 { font-size: var(--fs-subheading); line-height: 1.25; font-weight: 400; letter-spacing: var(--track-heading); margin: clamp(28px, 3vw, 36px) 0 6px; }
+.prose h3 + .meta { margin: 0 0 12px; }
+.prose .meta { color: var(--muted); }
+
+/* progressive disclosure for the long course list; no script needed */
+.prose details { margin: 0 0 24px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 4px 0; }
+.prose summary {
+  cursor: pointer; padding: 16px 0; list-style: none;
+  font-size: var(--fs-caption); text-transform: uppercase;
+  letter-spacing: var(--track-label); font-weight: 500; color: var(--cosmic);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.prose summary::-webkit-details-marker { display: none; }
+.prose summary::after { content: "+"; font-size: 18px; line-height: 1; letter-spacing: 0; }
+.prose details[open] summary::after { content: "\2013"; }
+.prose summary:hover { color: var(--indigo); }
+.prose summary:focus-visible { outline: 2px solid var(--cosmic); outline-offset: 3px; }
+.prose details > *:last-child { margin-bottom: 20px; }
+
 .prose li::before { content: ""; position: absolute; left: 0; top: .72em; width: 10px; height: 1px; background: var(--cerulean); }
 
 /* --- 404 --- */

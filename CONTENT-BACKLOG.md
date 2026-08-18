@@ -91,9 +91,18 @@ For each project below, record these five items:
 
 ## 3. Site purpose
 
-Decision on 2026-08-17: the main job of the site is to get consulting
-work. The reader is a city director or an agency manager who must decide
-if this person can do the job.
+Decision on 2026-08-17, refined the same day: the site has two jobs.
+
+1. Get consulting work and side work. The reader is a city director or an
+   agency manager who must decide if this person can do the job.
+2. Give the owner a place to post and blog.
+
+The two jobs do not conflict. Job 1 sets the standard for a project note.
+Job 2 keeps the bar low enough to publish often. A short note is fine.
+
+Resolved on 2026-08-17: the Involvement page is live at `/involvement/`.
+It answers the work-history question below. Source material was the vault
+note `03 Areas/Career/GitHub Portfolio - Professional Involvement (Draft)`.
 
 This changes what each project note must contain:
 
@@ -102,8 +111,8 @@ This changes what each project note must contain:
 - State your role, and what other people did.
 - Give a clear next step for a reader who wants to hire you.
 
-- Decide if the About page needs a rate, a service list, or a work
-  history. An email address alone gives a buyer very little.
+- Decide if the About page needs a rate or a service list. The work
+  history question is answered by `/involvement/`.
 - Decide if the site needs a services page.
 
 ## 4. Terms a general reader does not know
