@@ -21,6 +21,32 @@ This repository does not claim full ASD-STE100 conformance. Full conformance req
 11. Do not use slang, idioms, or decorative jargon.
 12. Do not join independent ideas with an em dash.
 
+## Voice and stance
+
+Added on 2026-08-17 at the owner's direction. The owner works as a
+collaborator and a member of a community. He does not own or force. Write
+every public sentence that way.
+
+1. Do not write that the owner owns a system, a board asset, or a program.
+   Use "manage", "help maintain", "help define", "contribute", or
+   "helped host".
+2. Name the other people and organizations in the work. Give their role.
+3. Do not compare the owner favorably against other people.
+4. Use a solo verb like "I built" only for solo personal work. Most
+   municipal work is shared.
+5. Prefer joining and contributing verbs. Do not use "led the charge",
+   "drove adoption", or "forced alignment".
+
+Example. Do not use this:
+
+> As Technology Coordinator I own the UGEM Hub. I also own the member
+> database.
+
+Use this:
+
+> As Technology Coordinator I manage the UGEM Hub. I also help maintain the
+> member database.
+
 ## Technical terms
 
 Technical nouns can include product names, standards, job titles, place names, and GIS terms. Examples include ArcGIS Online, MapLibre GL JS, GISP, GNSS, and Wildland-Urban Interface.
