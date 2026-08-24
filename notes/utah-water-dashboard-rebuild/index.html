@@ -34,7 +34,7 @@
       "description": "How a job-interview map became the Western Water Dashboard: reservoir storage, snowpack, and drought for eleven western states in one ArcGIS 5.1 application, rebuilt with AI agents under written rules.",
       "image": "https://buschbrian.github.io/assets/images/western-water-dashboard-map.jpg",
       "datePublished": "2026-08-17",
-      "dateModified": "2026-08-20",
+      "dateModified": "2026-08-24",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/"
@@ -73,7 +73,7 @@
             the map with AI agents that work under written rules.
           </p>
           <div class="post-meta-grid">
-            <div><span>Reservoirs</span><strong>198, from two agencies</strong></div>
+            <div><span>Reservoirs</span><strong>382, from five sources</strong></div>
             <div><span>Snow sites</span><strong>637, measured each day</strong></div>
             <div><span>Drainage areas</span><strong>75, in eleven states</strong></div>
             <div><span>Refresh</span><strong>Each morning, GitHub Actions</strong></div>
@@ -81,16 +81,18 @@
         </header>
 
         <figure class="post-hero-image">
-          <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-map-480.webp 480w, /assets/images/r/western-water-dashboard-map-960.webp 960w, /assets/images/r/western-water-dashboard-map-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-map.jpg" alt="The storage map covering eleven western states. A side panel gives the combined storage, the reservoir count, and the key to the circles." width="1400" height="840" fetchpriority="high"></picture>
-          <figcaption>The storage map, from the Canadian border to Mexico. The panel adds up the 196 reservoirs the map opens with. Circle size shows how much water a reservoir holds when full. Circle color shows how full it is now. The outlines are the 75 drainage areas.</figcaption>
+          <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-map-480.webp 480w, /assets/images/r/western-water-dashboard-map-960.webp 960w, /assets/images/r/western-water-dashboard-map-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-map.jpg" alt="The storage map covering eleven western states. A side panel gives the combined storage and the reservoir count. A key on the map explains the circles." width="1400" height="840" fetchpriority="high"></picture>
+          <figcaption>The storage map. The panel adds up the 382 reservoirs the map opens with. Circle size shows how much water a reservoir holds when full. Circle color shows how full it is now. The outlines are the 75 drainage areas.</figcaption>
         </figure>
 
         <div class="post-content">
           <p class="source-note">
-            Update, August 20, 2026. The project started as a Utah dashboard.
+            Update, August 24, 2026. The project started as a Utah dashboard.
             It now covers eleven western states, and it is called the Western
-            Water Dashboard. The address changed with the name. The text and the
-            screenshots on this page are from August 20, 2026.
+            Water Dashboard. The address changed with the name. The counts on
+            this page are the ones the site published on August 24, 2026. The
+            roster grows as reservoirs pass review, so the live figure is
+            higher than a screenshot taken before that date.
           </p>
 
           <h2>The problem: no combined source</h2>
@@ -178,27 +180,31 @@
           </p>
 
           <figure class="post-hero-image">
-            <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-detail-480.webp 480w, /assets/images/r/western-water-dashboard-detail-960.webp 960w, /assets/images/r/western-water-dashboard-detail-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-detail.jpg" alt="American Falls Reservoir selected on the storage map. One side panel gives the combined storage. The other gives the percent full, the stored volume, the normal for the week, and the change over one year." width="1400" height="840" loading="lazy"></picture>
-            <figcaption>American Falls Reservoir, in the Upper Snake, at 11.1 percent of its full level. Select any reservoir for its complete record and the drainage area it drains to.</figcaption>
+            <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-detail-480.webp 480w, /assets/images/r/western-water-dashboard-detail-960.webp 960w, /assets/images/r/western-water-dashboard-detail-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-detail.jpg" alt="American Falls Reservoir selected on the storage map. One side panel gives the combined storage. The other gives the percent full, the stored volume, the normal for the week, the change over one year, and the reservoirs and snow sites upstream of it." width="1400" height="840" loading="lazy"></picture>
+            <figcaption>American Falls Reservoir, in the Upper Snake, at 9.9 percent of its full level. Select any reservoir for its record, the drainage area it sits in, and what drains into it.</figcaption>
           </figure>
 
           <h2>What the dashboard shows</h2>
           <p>
-            The storage map is the primary view. The site publishes 198
-            reservoirs, 30 measured by the Bureau of Reclamation and 168 by the
-            Natural Resources Conservation Service. The map opens on 196 of
-            them, because Lake Powell and Lake Mead start excluded. They sit in
-            40 of the 75 drainage areas. The other 35 hold no reservoir on the roster yet. To admit a
-            reservoir, I must trace a full level to a named source and review
-            it. That work is separate from drawing the ground, so the map draws
-            areas that hold nothing.
+            The storage map is the primary view. The site publishes 382
+            reservoirs, and five agencies measure them. The Natural Resources
+            Conservation Service reads 168. The California Department of Water
+            Resources reads 142. The Bureau of Reclamation reads 55, the
+            Colorado Division of Water Resources 10, and the U.S. Geological
+            Survey 7.
+            Those reservoirs sit in 54 of the 75 drainage areas. The other 21
+            hold no reservoir on the roster yet. To admit a reservoir, I must
+            trace a full level to a named source and review it. That work is
+            separate from drawing the ground, so the map draws areas that hold
+            nothing.
           </p>
           <p>
             Two reservoirs get their own controls. Lake Powell and Lake Mead
             are each large enough to hide every other reservoir in a combined
-            total, so the default view excludes both. You can add either one
-            back at any time. A total with them and a total without them are
-            both true, and they are not the same measurement.
+            total. The map now opens with both of them switched on, and the
+            summary says so in words before it gives you a number. You can
+            remove either one at any time. A total with them and a total
+            without them are both true. They are not the same measurement.
           </p>
           <p>
             You can filter by state, by subregion, by drainage area, by county,
@@ -220,7 +226,7 @@
 
           <figure class="post-hero-image">
             <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-table-480.webp 480w, /assets/images/r/western-water-dashboard-table-960.webp 960w, /assets/images/r/western-water-dashboard-table-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-table.jpg" alt="The reservoir table below the map. It lists each reservoir with percent full, stored volume, full level, and drainage area, next to a bar chart of the same values." width="1400" height="840" loading="lazy"></picture>
-            <figcaption>All 196 reservoirs the map opens with, in a sortable table. The download gives you those rows, in the order on screen, as a CSV file.</figcaption>
+            <figcaption>All 382 reservoirs, in a sortable table under the map. The download gives you those rows, in the order on screen, as a CSV file.</figcaption>
           </figure>
 
           <p>
@@ -232,11 +238,6 @@
             same time.
           </p>
 
-          <figure class="post-hero-image">
-            <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-charts-480.webp 480w, /assets/images/r/western-water-dashboard-charts-960.webp 960w, /assets/images/r/western-water-dashboard-charts-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-charts.jpg" alt="Two bar charts on the storage charts page. One ranks the largest reservoirs by percent full. The other shows combined conditions for each drainage area." width="1400" height="840" loading="lazy"></picture>
-            <figcaption>Six cross-filtered charts. One set of controls drives the charts, the summary strip, and the table together.</figcaption>
-          </figure>
-
           <p>
             Snow that falls on the mountains melts into the reservoirs, so this
             winter's snow is next summer's storage. The snowpack page shows
@@ -244,6 +245,24 @@
             make if it melted. It reads 637 measurement sites in eleven states
             and opens on the day the season held the most snow, because that is
             the day the rest of the year is judged against.
+          </p>
+          <p>
+            The season on this page never reached normal. Between November 12
+            and June 17 there were 218 days when the normal for the date held
+            more than an inch of water, which is the span where the comparison
+            means anything. The region did not reach 100 percent of normal on
+            any of them. The closest it came was January 8, 2026, at 78.4
+            percent. Outside that span the ratio is noise. In early October the
+            normal is a few thousandths of an inch, so one storm divides into
+            four figures and means nothing.
+          </p>
+          <p>
+            The day with the most water was March 13, and that day held only
+            60.7 percent of its own normal. A snowpack can hold its deepest
+            water of the year and still fall well short of what the date
+            usually holds. Those are two different questions, so the site
+            answers them separately. The map opens on the deepest day. The
+            summary reports the best day against normal beside it.
           </p>
           <p>
             The sites are not spread evenly. An automated snow site sits in 51
@@ -255,7 +274,7 @@
 
           <figure class="post-hero-image">
             <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-snow-480.webp 480w, /assets/images/r/western-water-dashboard-snow-960.webp 960w, /assets/images/r/western-water-dashboard-snow-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-snow.jpg" alt="The snowpack map on the season high point. Each drainage area is colored by its mean percent of normal. Each measurement site is a point on the same color scale." width="1400" height="840" loading="lazy"></picture>
-            <figcaption>The season high point, March 13, 2026, from 538 of the 637 sites. Snow by drainage area and by site, on one color scale. A slider moves through the season, day by day.</figcaption>
+            <figcaption>The season high point, March 13, 2026, from 549 of the 637 sites. Snow by drainage area and by site, on one color scale. A slider moves through the season, day by day.</figcaption>
           </figure>
 
           <p>
@@ -276,8 +295,83 @@
 
           <figure class="post-hero-image">
             <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-drought-480.webp 480w, /assets/images/r/western-water-dashboard-drought-960.webp 960w, /assets/images/r/western-water-dashboard-drought-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-drought.jpg" alt="The weekly drought map in the U.S. Drought Monitor colors, with the 75 drainage area boundaries drawn on top. Land the monitor does not measure is gray." width="1400" height="840" loading="lazy"></picture>
-            <figcaption>The Drought Monitor map for the week of August 11, 2026. Drought does not stop at a drainage area boundary, so the wider pattern is drawn too. The gray beyond the border is land the monitor does not measure.</figcaption>
+            <figcaption>The Drought Monitor map for the week of August 18, 2026. Drought does not stop at a drainage area boundary, so the wider pattern is drawn too. The gray beyond the border is land the monitor does not measure.</figcaption>
           </figure>
+
+          <p>
+            The drought map draws a second surface. It measures each drainage
+            area against the week before it, and colors how much of that area's
+            land moved into or out of severe drought. This is the one view on
+            the site that answers "what changed" instead of "what is". It uses
+            its own diverging colors, because the Drought Monitor palette
+            belongs to the Drought Monitor and a map that borrows it for
+            something else teaches a reader the wrong thing.
+          </p>
+          <p>
+            The comparison appears only when a second week exists to compare
+            against. A control that switches to a blank map tells a reader the
+            comparison is there and then shows them nothing.
+          </p>
+
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-drought-change-480.webp 480w, /assets/images/r/western-water-dashboard-drought-change-960.webp 960w, /assets/images/r/western-water-dashboard-drought-change-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-drought-change.jpg" alt="The drought change map. Each drainage area is colored on a pink to green scale for how much of its land moved into or out of severe drought since the week before." width="1400" height="840" loading="lazy"></picture>
+            <figcaption>The same week, measured against the one before it. Pink is drier and green is wetter. The Oregon Closed Basins lost the most ground. The Upper Snake and the Snake Headwaters gained the most.</figcaption>
+          </figure>
+
+          <h2>How to use it</h2>
+          <p>
+            Hover to scan. Click to investigate. Link to share. Those three
+            verbs cover most of the application. The middle one is a deliberate
+            break from the default behavior of the ArcGIS Maps SDK.
+          </p>
+          <p>
+            The first screen asks two questions. You pick a place, either one
+            of the eleven states or one of the five regions. Then you pick a
+            subject: the storage map, the storage charts, the snowpack page, or
+            the drought page. A shared link never lands on that screen. Someone
+            who opens your link is being shown a thing, and a dialog in front
+            of it is a worse version of the page you sent.
+          </p>
+          <p>
+            On the storage map, a pointer over a reservoir gives you a small
+            card with the top-level reading. A click opens the full detail
+            panel. Popups are switched off everywhere, on purpose. A popup
+            covers the map at the moment you want to compare one reservoir
+            against its neighbors, and it holds less than a panel can.
+          </p>
+          <p>
+            The panel gives the last twelve months as a chart and as a table.
+            It also gives the four things a reader needs before quoting a
+            number:
+          </p>
+          <ul>
+            <li>who measures the reservoir</li>
+            <li>how often the reading updates</li>
+            <li>the drainage area the reservoir sits in</li>
+            <li>the normal for that week, from 1991 through 2020</li>
+          </ul>
+          <p>
+            The panel answers one more question. It tells you what drains into
+            that reservoir. Lake Mead reports 76 published reservoirs and 150
+            snow-measuring sites upstream of it. Those sets come from the
+            Network-Linked Data Index, a U.S. Geological Survey service. It
+            follows the national stream network from a point back up every
+            branch that feeds it. That is the difference between reading one
+            reservoir and reading the system that fills it.
+          </p>
+          <p>
+            Then you can send it. Every view has its own address. A copy button
+            next to the summary gives you the link to the exact view on your
+            screen. Each reservoir also has a page of its own. A sorted table,
+            a filtered map, and a selected reservoir all survive being pasted
+            into an email.
+          </p>
+          <p>
+            The place travels with you between pages. Narrow the storage map to
+            one drainage area, then open the snowpack page, and the snowpack
+            page opens on the same ground. The three maps exist to be compared.
+            A reader who narrows one of them has not asked to widen the others.
+          </p>
 
           <h2>The pipeline behind it</h2>
           <p>
@@ -298,7 +392,14 @@
 
           <h2>Decisions instead of preferences</h2>
           <p>
-            The repository holds 68 architecture decision records. Each one
+            A <a href="/projects/western-water-dashboard-atlas/">system atlas</a>
+            draws all of this as one interactive diagram: the sources, the
+            pipeline, the payloads, and the pages a reader sees. It is a
+            snapshot, generated on one date and frozen. The live system is the
+            dashboard, not the drawing.
+          </p>
+          <p>
+            The repository holds 95 architecture decision records. Each one
             states a problem, the options, the decision, and the consequences.
             They cover the geographic rule, the color ramp, the label order,
             the basemap, and the vocabulary.
@@ -355,8 +456,18 @@
             the <a href="https://buschbrian.github.io/western-water-dashboard/data.html" target="_blank" rel="noreferrer">public data API</a>,
             or the <a href="https://github.com/buschbrian/western-water-dashboard" target="_blank" rel="noreferrer">source on GitHub</a>.
             Agent skills: <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noreferrer">addyosmani/agent-skills</a>.
-            Data: Bureau of Reclamation, Natural Resources Conservation Service, and the
+            Data sources. Reservoir storage: the Bureau of Reclamation, the
+            Natural Resources Conservation Service, the California Department
+            of Water Resources, the Colorado Division of Water Resources, and
+            the U.S. Geological Survey. Mountain snow: the Natural Resources
+            Conservation Service. Drought: the
             <a href="https://droughtmonitor.unl.edu/" target="_blank" rel="noreferrer">U.S. Drought Monitor</a>.
+            Full levels: the National Inventory of Dams, read from the U.S.
+            Army Corps of Engineers. Upstream tracing: the Network-Linked Data
+            Index, a U.S. Geological Survey service over the national stream
+            network. Every source, with its identifiers and its update rules,
+            is named on the
+            <a href="https://buschbrian.github.io/western-water-dashboard/methods.html" target="_blank" rel="noreferrer">methods page</a>.
             An earlier note describes the
             <a href="/notes/utah-reservoir-dashboard/">first version and its MapLibre GL JS comparison</a>.
             The project was called the Utah Water Dashboard until August 2026.
