@@ -13,6 +13,7 @@ const OUT = "feed.xml";
 // goes after these, in alphabetical order.
 const ORDER = [
   "utah-water-dashboard-rebuild",
+  "agentic-ai-lessons",
   "utah-reservoir-dashboard",
   "sidewalk-trails-master-plan",
   "future-land-use-millcreek",
