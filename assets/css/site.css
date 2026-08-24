@@ -317,6 +317,9 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 .post-content h2 { font-size: var(--fs-heading-sm); line-height: 1.2; font-weight: 300; letter-spacing: var(--track-heading); margin: clamp(40px, 5vw, 56px) 0 var(--gap-el); }
 .post-content p { margin: 0 0 20px; font-size: var(--fs-body); line-height: 1.7; text-wrap: pretty; }
 .post-content a { color: var(--cosmic); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.post-content ul { display: grid; gap: 12px; margin: 0 0 24px; }
+.post-content li { padding-left: 22px; position: relative; line-height: 1.6; color: var(--body); }
+.post-content li::before { content: ""; position: absolute; left: 0; top: .72em; width: 10px; height: 1px; background: var(--cerulean); }
 .post-content code {
   font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .88em;
   background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px;
