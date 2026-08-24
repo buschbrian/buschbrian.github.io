@@ -64,9 +64,9 @@ use the challenge day and do not use the first commit date.
 Decision on 2026-08-17: work through all five professional notes, one note
 at a time.
 
-The two dashboard notes are 771 and 1,334 words. The professional notes
-are 242 to 528 words. Two of the shortest notes are the strongest
-credentials on the site.
+The three personal-project notes now run to about 2,500 words at the
+longest. The professional notes are 242 to 528 words. Two of the shortest
+notes are the strongest credentials on the site.
 
 For each project below, record these five items:
 
@@ -143,6 +143,18 @@ Twelve notes run from 111 to 263 words. They read as captions.
   is `.github/workflows/feed.yml` and the script is
   `scripts/build-feed.mjs`. Do not edit `feed.xml` by hand. Add a new note
   slug to the `ORDER` list in the script.
+- Resolved on 2026-08-24: the Western Water Dashboard system atlas is
+  published at `/projects/western-water-dashboard-atlas/` as a dated,
+  frozen snapshot. It is generated in the dashboard repository, where it
+  is ignored by Git on purpose. Refresh it by hand with
+  `node scripts/publish-atlas.mjs`. Do not edit the published copy. The
+  page carries `noindex`, because a generated snapshot should not compete
+  in search with the note that explains it. Change that line if the page
+  should be indexed.
+- The atlas source `atlas/data.mjs` still exists only on one Mac. It is
+  ignored by Git in the dashboard repository and has no remote copy.
+  Decide where it is backed up. The published snapshot preserves the
+  output, not the source.
 - Decide if the notes index shows dates after section 1 is complete.
 - Decide if the earlier reservoir note stays public, or becomes a
   redirect to the current note.
