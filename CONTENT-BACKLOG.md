@@ -118,14 +118,22 @@ This changes what each project note must contain:
 ## 4. Terms a general reader does not know
 
 The language rules require an explanation for a GIS term on first use.
-These terms appear on the site with no explanation.
+These terms appeared on the site with no explanation.
 
-- Wildland-Urban Interface
-- Hydrologic unit code, and drainage area
-- Snow water equivalent
-- Period of record, and seasonal percentile
-- Acre-foot
-- GISP, and what the certification requires
+Resolved on 2026-08-26: every term on the list now has an explanation on
+first use, or no longer appears on the site.
+
+- Wildland-Urban Interface. The note `wui-boundary-mapping` now opens with
+  the definition. The Involvement page and the notes index already had it.
+- Hydrologic unit code, and drainage area. Both are explained in
+  `utah-water-dashboard-rebuild`.
+- Snow water equivalent. Explained in `utah-water-dashboard-rebuild`.
+- Seasonal percentile. Explained in `utah-reservoir-dashboard`. The term
+  "period of record" does not appear on the site.
+- Acre-foot. Now explained on first use in `utah-reservoir-dashboard`.
+- GISP. The About page now gives the full name, Certified GIS Professional,
+  on first use, and states what the certification requires. Source: the GIS
+  Certification Institute, `gisci.org`.
 
 ## 5. The 30 Day Map Challenge group
 
