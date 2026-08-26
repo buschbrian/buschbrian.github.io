@@ -48,8 +48,11 @@ Work through the sections in order. Section 1 blocks the feed.
 
 ## 1. Publication dates
 
-The site records a publication date for two notes. It records no date for
-the other 18. A dated index and a correct feed both need these dates.
+The site records a publication date for three notes:
+`utah-water-dashboard-rebuild`, `utah-reservoir-dashboard`, and
+`agentic-ai-lessons`. It records no date for the other 18. A dated index
+and a correct feed both need these dates. Checked again on 2026-08-26:
+`node scripts/build-feed.mjs` reports 21 items, 18 with no date.
 
 Decision on 2026-08-17: the owner will supply a list of real dates. Do not
 use the challenge day and do not use the first commit date.
