@@ -48,19 +48,43 @@ Work through the sections in order. Section 1 blocks the feed.
 
 ## 1. Publication dates
 
-The site records a publication date for three notes:
-`utah-water-dashboard-rebuild`, `utah-reservoir-dashboard`, and
-`agentic-ai-lessons`. It records no date for the other 18. A dated index
-and a correct feed both need these dates. Checked again on 2026-08-26:
-`node scripts/build-feed.mjs` reports 21 items, 18 with no date.
+Resolved on 2026-08-28 for 13 of the 18 notes. `node scripts/build-feed.mjs`
+now reports 21 items, 5 with no date.
 
-Decision on 2026-08-17: the owner will supply a list of real dates. Do not
-use the challenge day and do not use the first commit date.
+Decision on 2026-08-28: the owner overrode the 2026-08-17 rule against the
+challenge day. The twelve 2024 30 Day Map Challenge notes now carry the
+date of their challenge day. Day 1 is 2024-11-01 and day 12 is 2024-11-12.
+The theme named in each note gives the day number. Source for the theme
+list: `30daymapchallenge.com/2024/`.
 
-- Owner: give a publication date for each of the 18 notes without one.
-- Then: add each date to the note structured data, the notes index, and
-  the feed in one pass.
-- Then: decide if a note shows its date to the reader.
+Four of the twelve dates have a second, independent source that agrees:
+
+- `utah-population-hexagons`, 2024-11-04. A LinkedIn post and the original
+  file name `utpophexagon110424`.
+- `raster-terrain-study`, 2024-11-06. A LinkedIn post and the original file
+  name `raster1110624v2`.
+- `utah-old-spanish-trail`, 2024-11-05. A LinkedIn post.
+- `utah-time-and-space`, 2024-11-12. The original file name
+  `uttimeandspace111224`.
+
+One conflict, left as the challenge day: `utah-vintage-atlas` is day 7,
+2024-11-07, but the LinkedIn post went out on 2024-11-08. The map was one
+day late. Change the date to 2024-11-08 if the site records the day a map
+reached the public instead of the day of the challenge.
+
+`sidewalk-trails-master-plan` is 2026-08-07, from the LinkedIn post.
+
+Still open. These five notes have no date and no evidence in the
+repository. Only the owner can supply them:
+
+- `future-land-use-millcreek`. An Esri finalist for 2025.
+- `millcreek-redistricting`. The work was 2022.
+- `wui-boundary-mapping`. UGEM 2025 and UGIC 2026.
+- `alcohol-spacing-regulations`. The work was 2024.
+- `polygon-neighbor-coloring`. No year on the site.
+
+- Then: decide if a note shows its date to the reader. The date is in the
+  structured data and the feed. It is not yet on the page.
 
 ## 2. Professional work needs more depth
 
