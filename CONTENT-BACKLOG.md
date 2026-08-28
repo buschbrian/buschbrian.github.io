@@ -136,6 +136,18 @@ Two places still read 637, on purpose:
   inside generated data. Rebuild that page with `scripts/publish-atlas.mjs`
   instead of editing the HTML.
 
+Corrected the same day. The snow count is three different numbers, and the
+site must say which one it means:
+
+- `snow_sites.json`, field `site_count`: **639**. This is the roster of
+  sites the application knows about. Retrieved 2026-08-18.
+- `snowpack.json`, field `site_count`: **638** on 2026-08-27. This is the
+  daily payload. It moves as sites report or fail to report.
+- The atlas snapshot for 2026-08-23: 637 published and 2 missing.
+
+The site now states 639 and says "in the roster", because the roster is the
+stable number. Do not state a daily number in prose. It goes stale in a day.
+
 - These counts change when the roster changes. Check them against the JSON
   API before each release, or state them as approximate.
 
@@ -271,3 +283,34 @@ the home page all use one.
   you want published.
 - Then: decide the form for each. A project card, a note, or both.
 - Do not draft a note before the permission answer.
+
+## 10. The 2024 challenge run stopped at day 12
+
+Added on 2026-08-28. The site holds twelve maps from the 2024 30 Day Map
+Challenge, days 1 to 12. The owner did not finish the remaining eighteen
+days for a personal reason that the site does not need to state.
+
+Both index pages already say "Selected maps from the 2024 30 Day Map
+Challenge". That wording is accurate and it needs no explanation. A reader
+who is deciding whether to hire does not need a reason for an unfinished
+personal challenge.
+
+- Do not add a health reason or any other personal reason to the site.
+- Keep the word "Selected" on both index pages.
+- If the owner wants the run described, use one neutral sentence: the run
+  stopped after day 12.
+
+## 11. The atlas page cannot be fixed from this repository
+
+Added on 2026-08-28. `projects/western-water-dashboard-atlas/index.html`
+reports 637 snow sites. `scripts/publish-atlas.mjs` copies that number from
+`~/Developer/utah-reservoir-dashboard/.atlas/repository/atlas.html`, which
+also reports 637. Running the script again changes nothing.
+
+The number is also correct where it stands. The atlas describes the system
+on a stated date, 2026-08-23, when the payload published 637 sites and 2
+were missing.
+
+- Do not edit the generated HTML by hand.
+- Rebuild the atlas in the dashboard repository first, then run
+  `node scripts/publish-atlas.mjs` here.
