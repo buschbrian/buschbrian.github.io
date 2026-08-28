@@ -74,11 +74,14 @@ reached the public instead of the day of the challenge.
 
 `sidewalk-trails-master-plan` is 2026-08-07, from the LinkedIn post.
 
-Still open. These five notes have no date and no evidence in the
+Resolved on 2026-08-28: `millcreek-redistricting` is 2022-02-18. Source:
+the linked StoryMap "City Council Redistricting 2022" records that
+publication date.
+
+Still open. These four notes have no date and no evidence in the
 repository. Only the owner can supply them:
 
 - `future-land-use-millcreek`. An Esri finalist for 2025.
-- `millcreek-redistricting`. The work was 2022.
 - `wui-boundary-mapping`. UGEM 2025 and UGIC 2026.
 - `alcohol-spacing-regulations`. The work was 2024.
 - `polygon-neighbor-coloring`. No year on the site.
@@ -115,6 +118,26 @@ For each project below, record these five items:
   rule the buffers come from, or state who uses the web application.
 - `millcreek-redistricting` (528 words). The strongest professional note.
   It still does not give the public turnout, or the adopted result.
+
+## 2b. Fact drift in the water dashboard numbers
+
+Resolved on 2026-08-28: the snow site count moved from 637 to 639. The site
+now states 639 in the three places that describe the application today.
+Source: `buschbrian.github.io/western-water-dashboard/data/snow_sites.json`,
+field `site_count`, retrieved 2026-08-18. The reservoir count is 382 and did
+not change.
+
+Two places still read 637, on purpose:
+
+- The figure caption in `utah-water-dashboard-rebuild` reports a reading on
+  March 13, 2026, from 549 of the 637 sites. That is a past measurement. Do
+  not change it without the roster size on that date.
+- `projects/western-water-dashboard-atlas/index.html` holds the number
+  inside generated data. Rebuild that page with `scripts/publish-atlas.mjs`
+  instead of editing the HTML.
+
+- These counts change when the roster changes. Check them against the JSON
+  API before each release, or state them as approximate.
 
 ## 3. Site purpose
 
