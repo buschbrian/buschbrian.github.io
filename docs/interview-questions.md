@@ -215,8 +215,28 @@ for each. A general reader must understand it.
 
 ## 11. Publication dates
 
-The site records a publication date for two notes only.
+Mostly resolved on 2026-08-28. Seventeen of the twenty-one notes now have
+a date. Four do not.
 
-- Give the publication date for each of the other 18 notes.
-- If you do not know a date, say so. An approximate month is acceptable.
-- Say if a note should show its date to the reader.
+- Give the publication date for `future-land-use-millcreek`.
+- Give the publication date for `wui-boundary-mapping`.
+- Give the publication date for `alcohol-spacing-regulations`.
+- Give the publication date for `polygon-neighbor-coloring`.
+- An approximate month is acceptable. Say so if you do not know a date.
+- Say if a note must show its date to the reader.
+- `utah-vintage-atlas` uses its challenge day, 2024-11-07. The LinkedIn
+  post went out on 2024-11-08. Say which date the site records.
+
+## 12. Work on the record with no note on the site
+
+Five projects appear on the LinkedIn profile and nowhere on the site. They
+are listed in section 9 of `CONTENT-BACKLOG.md`. Answer these for each one
+you want published.
+
+- Can this work appear in public? Who must approve it?
+- Is any part of it internal to the city, or restricted?
+- What did the organization do before the work?
+- What did you personally do, and what did other people do?
+- What is the result? Give a number if a number exists.
+- Is there an image that can appear in public? Where is the file?
+- Is there a public link a reader can open?

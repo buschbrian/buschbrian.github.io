@@ -241,3 +241,33 @@ any note now published.
 - List the projects that hold client or internal business information.
 - Decide one pattern for them. A method note with no client data, or a
   private case study sent on request.
+
+## 9. Work on the record with no note on the site
+
+Added on 2026-08-28. A comparison of the LinkedIn profile against the
+`notes` directory found five pieces of work that the LinkedIn profile
+states, and the site does not describe anywhere. Four of the five are
+municipal work for the City of Millcreek.
+
+- The Nearmap imagery widget for ArcGIS Experience Builder. Written in
+  TypeScript against the Experience Builder SDK, developed code-first from
+  the public repository `github.com/buschbrian/ArcGIS-Experience-SDK`.
+  About 45,000 views each year. **Held on 2026-08-28 at the owner's
+  direction.** The owner will ask the City of Millcreek before this work
+  appears in public. Do not publish it until the owner confirms.
+- The citywide ADA ramp inventory. About 1,400 ramps and about 100
+  attribute fields, collected with ArcGIS Field Maps and Survey123.
+- The address review workflow in ArcGIS Experience Builder. It replaced a
+  county process that used email and a spreadsheet.
+- The Millcreek Hub site, `maps-millcrk.hub.arcgis.com`, public since
+  2019. It is the earliest dated result of the Millcreek GIS program.
+- The Capital Improvement Project application and StoryMap, 2021.
+
+Each item needs the same permission check as section 7 before a draft
+starts. Each also needs an image. The project cards on `/projects/` and
+the home page all use one.
+
+- Owner: answer section 12 of `docs/interview-questions.md` for each item
+  you want published.
+- Then: decide the form for each. A project card, a note, or both.
+- Do not draft a note before the permission answer.
