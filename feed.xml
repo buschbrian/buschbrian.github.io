@@ -39,6 +39,7 @@
       <link>https://buschbrian.github.io/notes/sidewalk-trails-master-plan/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/sidewalk-trails-master-plan/</guid>
       <description>How Millcreek turned a fragmented set of sidewalk and trail studies into one citywide map that a director can act on, with sidewalk data built from aerial imagery.</description>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Turning a General Plan into a public map</title>
@@ -51,6 +52,7 @@
       <link>https://buschbrian.github.io/notes/millcreek-redistricting/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/millcreek-redistricting/</guid>
       <description>How Millcreek combined ArcGIS Pro analysis and a public StoryMap/Survey123 feedback loop to redraw its City Council districts after the 2020 Census.</description>
+      <pubDate>Fri, 18 Feb 2022 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>WUI Boundary Mapping</title>
@@ -75,72 +77,84 @@
       <link>https://buschbrian.github.io/notes/utah-dark-sky-points/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-dark-sky-points/</guid>
       <description>Utah's International Dark-Sky Parks mapped as points, for the 2024 30 Day Map Challenge.</description>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Scenic Byways</title>
       <link>https://buschbrian.github.io/notes/utah-scenic-byways/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-scenic-byways/</guid>
       <description>All 27 of Utah's Scenic Byways, 1,893.84 miles of roadway symbolized as line features, for the 2024 30 Day Map Challenge.</description>
+      <pubDate>Sat, 02 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Government Land Ownership</title>
       <link>https://buschbrian.github.io/notes/utah-federal-land-ownership/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-federal-land-ownership/</guid>
       <description>Government land ownership across Utah — federal agencies and state trust lands — styled in Esri's Firefly look, for the 2024 30 Day Map Challenge.</description>
+      <pubDate>Sun, 03 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Population Hexagons</title>
       <link>https://buschbrian.github.io/notes/utah-population-hexagons/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-population-hexagons/</guid>
       <description>Utah Population Density: A Hexagonal Perspective — a Hexagons-themed 30 Day Map Challenge map aggregating Census 2020 population to a 50-square-mile hexagon grid.</description>
+      <pubDate>Mon, 04 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Old Spanish Trail</title>
       <link>https://buschbrian.github.io/notes/utah-old-spanish-trail/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-old-spanish-trail/</guid>
       <description>The Utah segment of the Old Spanish National Historic Trail, mapped for the A Journey theme of the 2024 30 Day Map Challenge.</description>
+      <pubDate>Tue, 05 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Shading terrain the Imhof way</title>
       <link>https://buschbrian.github.io/notes/raster-terrain-study/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/raster-terrain-study/</guid>
       <description>An Imhof-inspired hillshade of Utah's terrain, built for the Raster theme of the 2024 30 Day Map Challenge using Esri's Terrain Service.</description>
+      <pubDate>Wed, 06 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Vintage Atlas Style</title>
       <link>https://buschbrian.github.io/notes/utah-vintage-atlas/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-vintage-atlas/</guid>
       <description>Utah's urban areas and rivers in a vintage cartographic style inspired by the 1854 David Rumsey Map Collection, for the 2024 30 Day Map Challenge.</description>
+      <pubDate>Thu, 07 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Localities via HDX</title>
       <link>https://buschbrian.github.io/notes/utah-localities-hdx/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-localities-hdx/</guid>
       <description>Utah's populated places mapped from a single humanitarian dataset, for the Humanitarian Data Exchange theme of the 2024 30 Day Map Challenge.</description>
+      <pubDate>Fri, 08 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>AI-Generated Fictional Map</title>
       <link>https://buschbrian.github.io/notes/utah-ai-fictional-map/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-ai-fictional-map/</guid>
       <description>A ChatGPT-generated fictional map of Utah water resources, for the AI theme of the 2024 30 Day Map Challenge — kept for what it gets wrong.</description>
+      <pubDate>Sat, 09 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Counties, Pen &amp; Paper</title>
       <link>https://buschbrian.github.io/notes/utah-counties-pen-paper/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-counties-pen-paper/</guid>
       <description>Utah's counties and county seats in a hand-drawn pen-and-paper style, for the 2024 30 Day Map Challenge.</description>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Avalanche Paths</title>
       <link>https://buschbrian.github.io/notes/utah-avalanche-paths/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-avalanche-paths/</guid>
       <description>A 3D map of avalanche paths in Little Cottonwood Canyon, styled for an Arctic aesthetic, for the 2024 30 Day Map Challenge.</description>
+      <pubDate>Mon, 11 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Time and Space</title>
       <link>https://buschbrian.github.io/notes/utah-time-and-space/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-time-and-space/</guid>
       <description>Mule deer migration pathways across Utah's Paunsaugunt Plateau, mapped for the Time and Space theme of the 2024 30 Day Map Challenge.</description>
+      <pubDate>Tue, 12 Nov 2024 00:00:00 -0600</pubDate>
     </item>
   </channel>
 </rss>
