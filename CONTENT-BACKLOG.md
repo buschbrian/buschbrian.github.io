@@ -48,8 +48,8 @@ Work through the sections in order. Section 1 blocks the feed.
 
 ## 1. Publication dates
 
-Resolved on 2026-08-28 for 13 of the 18 notes. `node scripts/build-feed.mjs`
-now reports 21 items, 5 with no date.
+Resolved on 2026-08-28 for 14 of the 18 notes. `node scripts/build-feed.mjs`
+now reports 21 items, 4 with no date.
 
 Decision on 2026-08-28: the owner overrode the 2026-08-17 rule against the
 challenge day. The twelve 2024 30 Day Map Challenge notes now carry the
