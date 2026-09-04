@@ -34,7 +34,7 @@
       "description": "How a job-interview map became the Western Water Dashboard: reservoir storage, snowpack, and drought for eleven western states in one ArcGIS 5.1 application, rebuilt with AI agents under written rules.",
       "image": "https://buschbrian.github.io/assets/images/western-water-dashboard-map.jpg",
       "datePublished": "2026-08-17",
-      "dateModified": "2026-08-24",
+      "dateModified": "2026-09-03",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/"
@@ -73,7 +73,7 @@
             the map with AI agents that work under written rules.
           </p>
           <div class="post-meta-grid">
-            <div><span>Reservoirs</span><strong>382, from five sources</strong></div>
+            <div><span>Reservoirs</span><strong>404, from nine sources</strong></div>
             <div><span>Snow sites</span><strong>639 in the roster</strong></div>
             <div><span>Drainage areas</span><strong>75, in eleven states</strong></div>
             <div><span>Refresh</span><strong>Each morning, GitHub Actions</strong></div>
@@ -88,12 +88,14 @@
 
         <div class="post-content">
           <p class="source-note">
-            Update, August 24, 2026. The project started as a Utah dashboard.
-            It now covers eleven western states, and it is called the Western
-            Water Dashboard. The address changed with the name. The counts on
-            this page are the ones the site published on August 24, 2026. The
-            roster grows as reservoirs pass review, so the live figure is
-            higher than a screenshot taken before that date.
+            Update, September 3, 2026. The project started as a Utah
+            dashboard. It now covers eleven western states, and it is called
+            the Western Water Dashboard. The address changed with the name.
+            The counts in the text are the ones the site published on
+            September 3, 2026. The screenshots are from August 24, 2026, when
+            the roster held 382 reservoirs. The roster grows as reservoirs
+            pass review, so the live figure is higher than any figure on this
+            page.
           </p>
 
           <h2>The problem: no combined source</h2>
@@ -174,10 +176,10 @@
           </p>
           <p>
             A reader can choose how finely the ground is divided. Every map
-            offers 75 drainage areas or 44 larger subregions. Each subregion
-            holds whole drainage areas, so the choice splits nothing. Each
-            figure is measured again at the size you choose. It is not averaged
-            up from the smaller size.
+            offers 571 subbasins, 75 drainage areas, 44 larger subregions, or
+            the five regions. Each larger area holds whole smaller areas, so
+            the choice splits nothing. Each figure is measured again at the
+            size you choose. It is not averaged up from the smaller size.
           </p>
 
           <figure class="post-hero-image">
@@ -187,13 +189,15 @@
 
           <h2>What the dashboard shows</h2>
           <p>
-            The storage map is the primary view. The site publishes 382
-            reservoirs, and five agencies measure them. The Natural Resources
-            Conservation Service reads 168. The California Department of Water
-            Resources reads 142. The Bureau of Reclamation reads 55, the
-            Colorado Division of Water Resources 10, and the U.S. Geological
-            Survey 7.
-            Those reservoirs sit in 54 of the 75 drainage areas. The other 21
+            The storage map is the primary view. The site publishes 404
+            reservoirs, and nine agencies measure them. The Natural Resources
+            Conservation Service reads 167. The California Department of Water
+            Resources reads 147. The Bureau of Reclamation reads 55, the U.S.
+            Army Corps of Engineers 12, the Colorado Division of Water
+            Resources 10, and the U.S. Geological Survey 7. The Salt River
+            Project reads 4. Montana's Department of Natural Resources and
+            Conservation and the Central Arizona Project read one each.
+            Those reservoirs sit in 56 of the 75 drainage areas. The other 19
             hold no reservoir on the roster yet. To admit a reservoir, I must
             trace a full level to a named source and review it. That work is
             separate from drawing the ground, so the map draws areas that hold
@@ -243,7 +247,7 @@
             Snow that falls on the mountains melts into the reservoirs, so this
             winter's snow is next summer's storage. The snowpack page shows
             snow water equivalent, which is the depth of water the snow would
-            make if it melted. It reads 639 measurement sites in eleven states
+            make if it melted. It reads 637 measurement sites in eleven states
             and opens on the day the season held the most snow, because that is
             the day the rest of the year is judged against.
           </p>
@@ -283,7 +287,8 @@
             area, and shows it next to the water banked in that area. The two
             can disagree. A full reservoir in a dry drainage area means the
             region is drawing on saved water. The measurement covers all 75
-            drainage areas, and the 44 subregions as well.
+            drainage areas, and the 571 subbasins, the 44 subregions, and the
+            five regions as well.
           </p>
           <p>
             The Drought Monitor stops at the Canadian and Mexican borders. The
@@ -387,8 +392,9 @@
             answer, and marks the reading as late instead of showing a gap. A
             broadly failed run does not replace the published file. Capacity
             comes from the National Inventory of Dams, read from the U.S. Army
-            Corps of Engineers service that maintains it, so the full level for
-            each reservoir is traceable to a named source.
+            Corps of Engineers service that maintains it, and from the
+            reporting agency's own record where the inventory has no entry, so
+            the full level for each reservoir is traceable to a named source.
           </p>
 
           <h2>Decisions instead of preferences</h2>
@@ -400,7 +406,7 @@
             dashboard, not the drawing.
           </p>
           <p>
-            The repository holds 95 architecture decision records. Each one
+            The repository holds 106 architecture decision records. Each one
             states a problem, the options, the decision, and the consequences.
             They cover the geographic rule, the color ramp, the label order,
             the basemap, and the vocabulary.
@@ -459,9 +465,11 @@
             Agent skills: <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noreferrer">addyosmani/agent-skills</a>.
             Data sources. Reservoir storage: the Bureau of Reclamation, the
             Natural Resources Conservation Service, the California Department
-            of Water Resources, the Colorado Division of Water Resources, and
-            the U.S. Geological Survey. Mountain snow: the Natural Resources
-            Conservation Service. Drought: the
+            of Water Resources, the U.S. Army Corps of Engineers, the Colorado
+            Division of Water Resources, the U.S. Geological Survey, the Salt
+            River Project, Montana's Department of Natural Resources and
+            Conservation, and the Central Arizona Project. Mountain snow: the
+            Natural Resources Conservation Service. Drought: the
             <a href="https://droughtmonitor.unl.edu/" target="_blank" rel="noreferrer">U.S. Drought Monitor</a>.
             Full levels: the National Inventory of Dams, read from the U.S.
             Army Corps of Engineers. Upstream tracing: the Network-Linked Data
