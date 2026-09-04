@@ -70,7 +70,7 @@
       <title>Keeping neighboring polygons apart</title>
       <link>https://buschbrian.github.io/notes/polygon-neighbor-coloring/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/polygon-neighbor-coloring/</guid>
-      <description>A Python (ArcPy) script that automatically assigns unique colors to neighboring polygons using a graph-coloring approach.</description>
+      <description>A Python (ArcPy) script that gives a different color to each adjacent polygon.</description>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
@@ -90,14 +90,14 @@
       <title>Utah Government Land Ownership</title>
       <link>https://buschbrian.github.io/notes/utah-federal-land-ownership/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-federal-land-ownership/</guid>
-      <description>Government land ownership across Utah — federal agencies and state trust lands — styled in Esri's Firefly look, for the 2024 30 Day Map Challenge.</description>
+      <description>Government land ownership across Utah, federal agencies and state trust lands, styled in Esri's Firefly look, for the 2024 30 Day Map Challenge.</description>
       <pubDate>Sun, 03 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Population Hexagons</title>
       <link>https://buschbrian.github.io/notes/utah-population-hexagons/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-population-hexagons/</guid>
-      <description>Utah Population Density: A Hexagonal Perspective — a Hexagons-themed 30 Day Map Challenge map aggregating Census 2020 population to a 50-square-mile hexagon grid.</description>
+      <description>Utah Population Density: A Hexagonal Perspective. A 30 Day Map Challenge map that sums Census 2020 population into a 50-square-mile hexagon grid.</description>
       <pubDate>Mon, 04 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
@@ -132,7 +132,7 @@
       <title>AI-Generated Fictional Map</title>
       <link>https://buschbrian.github.io/notes/utah-ai-fictional-map/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-ai-fictional-map/</guid>
-      <description>A ChatGPT-generated fictional map of Utah water resources, for the AI theme of the 2024 30 Day Map Challenge — kept for what it gets wrong.</description>
+      <description>A ChatGPT-generated fictional map of Utah water resources, for the AI theme of the 2024 30 Day Map Challenge. Kept for what it gets wrong.</description>
       <pubDate>Sat, 09 Nov 2024 00:00:00 -0600</pubDate>
     </item>
     <item>
