@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A Python (ArcPy) script that automatically assigns unique colors to neighboring polygons using a graph-coloring approach.">
+    <meta name="description" content="A Python (ArcPy) script that gives a different color to each adjacent polygon.">
     <meta name="theme-color" content="#ffffff">
     <title>Keeping neighboring polygons apart | Brian Busch, GISP</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -19,7 +19,7 @@
     <meta property="og:image:width" content="2200">
     <meta property="og:image:height" content="1423">
     <meta property="og:title" content="Keeping neighboring polygons apart | Brian Busch, GISP">
-    <meta property="og:description" content="A Python (ArcPy) script that automatically assigns unique colors to neighboring polygons using a graph-coloring approach.">
+    <meta property="og:description" content="A Python (ArcPy) script that gives a different color to each adjacent polygon.">
     <meta property="article:author" content="Brian Busch">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://buschbrian.github.io/notes/polygon-neighbor-coloring/">
@@ -31,7 +31,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Keeping neighboring polygons apart",
-      "description": "A Python (ArcPy) script that automatically assigns unique colors to neighboring polygons using a graph-coloring approach.",
+      "description": "A Python (ArcPy) script that gives a different color to each adjacent polygon.",
       "image": "https://buschbrian.github.io/assets/images/polygon-neighbor-coloring.jpg",
       "mainEntityOfPage": {
         "@type": "WebPage",
@@ -65,8 +65,8 @@
           <p class="eyebrow">Open Source | Python &amp; ArcPy</p>
           <h1>Keeping neighboring polygons apart</h1>
           <p class="post-deck">
-            A small ArcPy script that solves a genuine cartographic annoyance:
-            making sure no two touching polygons ever end up sharing a color.
+            A small ArcPy script that makes sure no two touching polygons
+            share a color.
           </p>
           <div class="post-meta-grid">
             <div><span>Language</span><strong>Python (ArcPy)</strong></div>
@@ -78,43 +78,39 @@
 
         <figure class="post-hero-image">
           <picture><source type="image/webp" srcset="/assets/images/r/polygon-neighbor-coloring-480.webp 480w, /assets/images/r/polygon-neighbor-coloring-960.webp 960w, /assets/images/r/polygon-neighbor-coloring-1600.webp 1600w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/polygon-neighbor-coloring.jpg" alt="Granite School District elementary school boundaries overlaid with municipal boundaries, colored so no two neighboring polygons share a color." width="2200" height="1423"></picture>
-          <figcaption>GSD Elementary Schools 24/25, municipal boundaries overlay &mdash; colored with the graph-coloring script.</figcaption>
+          <figcaption>GSD Elementary Schools 24/25, municipal boundaries overlay, colored with the graph-coloring script.</figcaption>
         </figure>
 
         <div class="post-content">
           <p>
-            Any parcel map, election-district map, or school-boundary map runs
-            into the same small design problem eventually: two adjacent
-            polygons end up the same color, and the boundary between them
-            disappears. Doing this by hand for anything beyond a handful of
-            features gets tedious fast &mdash; so after running Esri's
-            Polygon Neighbors tool in ArcGIS Pro, the natural next step was to
-            automate the coloring decision itself.
+            Parcel maps, election-district maps, and school-boundary maps all
+            have the same small problem. Two adjacent polygons get the same
+            color, and the boundary between them disappears. Fixing that by
+            hand is slow for anything more than a few features. Esri's
+            Polygon Neighbors tool in ArcGIS Pro lists which polygons touch.
+            This script uses that list to make the color decision.
           </p>
 
           <h2>How it works</h2>
           <p>
-            The script reads the adjacency table produced by Polygon
-            Neighbors, then sorts polygons by neighbor count so the
-            highest-connectivity features get assigned first &mdash; a
-            standard graph-coloring trick that makes the whole assignment
-            more efficient. Each polygon gets a Color ID from 1&ndash;10,
-            chosen so that no two polygons sharing an edge ever get the same
-            value, and the script adds a <code>Color_ID</code> field to the
-            feature class and populates it automatically.
+            The script reads the adjacency table from Polygon Neighbors. It
+            sorts the polygons by neighbor count and assigns the polygons
+            with the most neighbors first. That is a standard graph-coloring
+            method. Each polygon gets a Color ID from 1 to 10, and no two
+            polygons that share an edge get the same value. The script adds a
+            <code>Color_ID</code> field to the feature class and fills it.
           </p>
 
           <h2>Where it's useful</h2>
           <p>
-            Anywhere adjacency actually matters for legibility: parcel and
-            zoning maps, election districts, school attendance boundaries, or
-            any polygon dataset where a shared-color edge would read as a
-            missing boundary rather than a design choice.
+            It helps on any map where a shared color would hide a boundary.
+            Examples include parcel and zoning maps, election districts, and
+            school attendance boundaries.
           </p>
 
           <p class="source-note">
             View the script on
-            <a href="https://github.com/buschbrian/colorID.py" target="_blank" rel="noreferrer">GitHub &mdash; buschbrian/colorID.py</a>.
+            <a href="https://github.com/buschbrian/colorID.py" target="_blank" rel="noreferrer">GitHub: buschbrian/colorID.py</a>.
           </p>
         </div>
       </article>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Utah Population Density: A Hexagonal Perspective — a Hexagons-themed 30 Day Map Challenge map aggregating Census 2020 population to a 50-square-mile hexagon grid.">
+    <meta name="description" content="Utah Population Density: A Hexagonal Perspective. A 30 Day Map Challenge map that sums Census 2020 population into a 50-square-mile hexagon grid.">
     <meta name="theme-color" content="#ffffff">
     <title>Utah Population Hexagons | Brian Busch, GISP</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/utah-population-hexagons/">
     <meta property="og:title" content="Utah Population Hexagons | Brian Busch, GISP">
-    <meta property="og:description" content="Utah Population Density: A Hexagonal Perspective — a Hexagons-themed 30 Day Map Challenge map aggregating Census 2020 population to a 50-square-mile hexagon grid.">
+    <meta property="og:description" content="Utah Population Density: A Hexagonal Perspective. A 30 Day Map Challenge map that sums Census 2020 population into a 50-square-mile hexagon grid.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/utpophexagon110424.jpg">
     <meta property="og:image:alt" content="Hexagon map visualization of Utah population.">
     <meta property="og:image:width" content="1545">
@@ -31,7 +31,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Utah Population Hexagons",
-      "description": "Utah Population Density: A Hexagonal Perspective \u2014 a Hexagons-themed 30 Day Map Challenge map aggregating Census 2020 population to a 50-square-mile hexagon grid.",
+      "description": "Utah Population Density: A Hexagonal Perspective. A 30 Day Map Challenge map that sums Census 2020 population into a 50-square-mile hexagon grid.",
       "image": "https://buschbrian.github.io/assets/images/utpophexagon110424.jpg",
       "datePublished": "2024-11-04",
       "dateModified": "2024-11-04",
@@ -67,9 +67,9 @@
           <p class="eyebrow">30 Day Map Challenge 2024 &mdash; Hexagons</p>
           <h1>Utah Population Hexagons</h1>
           <p class="post-deck">
-            "Utah Population Density: A Hexagonal Perspective" &mdash; binning Census
-            population into an even 50-square-mile grid so density reads the same
-            way in every corner of the state.
+            "Utah Population Density: A Hexagonal Perspective." Census
+            population summed into an even 50-square-mile grid, so density
+            reads the same way in every part of the state.
           </p>
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>30 Day Map Challenge 2024</strong></div>
@@ -87,40 +87,37 @@
 
         <div class="post-content">
           <p>
-            Administrative boundaries &mdash; counties, tracts, ZIP codes &mdash;
-            are convenient, but they're not built for fair comparison: they vary
-            wildly in size and shape, which distorts how density reads on a map.
-            A uniform hexagon grid sidesteps that. Every cell covers the same
-            area, so color and height differences are actually comparable from
-            Bear Lake to St. George.
+            Counties, tracts, and ZIP codes are convenient units, but they
+            vary a lot in size and shape. That distorts how density reads on
+            a map. A uniform hexagon grid avoids the problem. Every cell
+            covers the same area, so color and height differences compare
+            fairly from Bear Lake to St. George.
           </p>
 
           <h2>Building the grid</h2>
           <p>
-            Population counts from Census 2020 blocks were aggregated to a
-            statewide grid of roughly 50-square-mile hexagons using ArcGIS
-            Pro's Summarize Within tool, with the source blocks pulled from the
-            Utah Geospatial Resource Center (UGRC). Each hexagon's value is a
-            simple areal sum of the block population that falls inside it.
+            I summed Census 2020 block populations into a statewide grid of
+            hexagons of about 50 square miles each. I used the Summarize
+            Within tool in ArcGIS Pro. The block data comes from the Utah
+            Geospatial Resource Center (UGRC). Each hexagon's value is the
+            sum of the block population inside it.
           </p>
 
           <h2>Encoding density twice</h2>
           <p>
-            The map doubles up on encoding: a graduated color ramp gives a
-            quick statewide read, while 3D extrusion turns population into
-            physical height. The redundancy is deliberate &mdash; height makes
-            the outliers (Salt Lake City, West Valley City) genuinely stand up
-            off the page, without the color ramp having to stretch so far that
-            it flattens everywhere else.
+            The map encodes population two ways. A graduated color ramp
+            gives a quick statewide read. 3D extrusion turns population into
+            height. The height makes the outliers, such as Salt Lake City and
+            West Valley City, stand out without stretching the color ramp so
+            far that the rest of the state goes flat.
           </p>
 
           <h2>What it shows</h2>
           <p>
-            At a statewide scale, the hexagon grid lets dense urban centers
-            along the Wasatch Front stand out clearly without overshadowing
-            the smaller towns and rural counties around them &mdash; the kind
-            of side-by-side comparison that's harder to make honestly with
-            county-level choropleths alone.
+            At the statewide scale, the dense centers along the Wasatch Front
+            stand out without hiding the smaller towns and rural counties
+            around them. That comparison is harder to make with a
+            county-level choropleth map alone.
           </p>
 
           <p class="source-note">

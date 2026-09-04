@@ -67,10 +67,10 @@
           <p class="eyebrow">Personal Project | ArcGIS Maps SDK for JS &amp; MapLibre GL | 2026</p>
           <h1>One drought dashboard, two WebGL renderers</h1>
           <p class="post-deck">
-            A map of Utah's reservoir storage during a multi-year drought
-            &mdash; built first on the ArcGIS Maps SDK for JavaScript, then
-            rebuilt with open-source MapLibre GL JS to see how close a
-            no-cost stack could get to it.
+            A map of Utah's reservoir storage during a multi-year drought. I
+            built it first on the ArcGIS Maps SDK for JavaScript, then
+            rebuilt it with open-source MapLibre GL JS to see how close a
+            no-cost stack could get.
           </p>
           <div class="post-meta-grid">
             <div><span>Reservoirs</span><strong>28, Bureau of Reclamation</strong></div>
@@ -99,94 +99,91 @@
             <a href="/notes/utah-water-dashboard-rebuild/">One place to see the water in the West</a>.
           </p>
           <p>
-            Utah has spent years in drought, and the numbers that describe it
-            &mdash; acre-feet of storage, percent of capacity &mdash; are hard
-            to feel from a table. An acre-foot is enough water to cover one
-            acre one foot deep. This dashboard put current storage for 28
-            Bureau of Reclamation-monitored Utah reservoirs on one map,
-            each one drawn so that how depleted it is reads as a shape, not
-            just a color. It was a personal project built with no framework and
-            no build step, and it doubled as a deliberate side-by-side of a
-            commercial mapping SDK against a fully open-source one.
+            Utah has spent years in drought. The numbers that describe it,
+            acre-feet of storage and percent of capacity, are hard to read
+            from a table. An acre-foot is enough water to cover one acre one
+            foot deep. This dashboard put current storage for 28 Bureau of
+            Reclamation-monitored Utah reservoirs on one map. Each reservoir
+            is drawn so that its depletion reads as a shape as well as a
+            color. It was a personal project with no framework and no build
+            step. It also served as a side-by-side test of a commercial
+            mapping SDK against an open-source one.
           </p>
 
           <h2>Two ways to measure "low"</h2>
           <p>
-            Every reservoir carries two drought metrics, both recomputed from
-            the full record rather than read off a single reported number.
+            Every reservoir carries two drought metrics. Both are computed
+            from the full record instead of read from one reported number.
             <strong>Percent of period-of-record max</strong> compares today's
-            storage against the highest storage that reservoir has reached
-            since 2015 &mdash; a stand-in for physical capacity, not the real
-            thing, but a consistent one across reservoirs of wildly different
-            sizes. <strong>Seasonal percentile</strong> asks a different
-            question: where does today's level rank against every other year's
-            value within a seven-day window of the same calendar date? A
-            reservoir can sit low against its all-time high yet still be normal
-            for early August, and the two numbers together tell that apart.
+            storage with the highest storage that reservoir has reached since
+            2015. That is a stand-in for physical capacity, and it is
+            consistent across reservoirs of very different sizes.
+            <strong>Seasonal percentile</strong> ranks today's level against
+            every other year's value within a seven-day window of the same
+            calendar date. A reservoir can be low against its record high and
+            still be normal for early August. The two numbers together show
+            the difference.
           </p>
 
           <h2>Reading depletion as a shape</h2>
           <p>
-            Each reservoir renders as two circles: a gray outline ring sized
-            by that reservoir's period-of-record max, and a colored filled
-            circle on top sized by current storage. The gap between ring and
-            fill is a direct visual read of depletion. Both radii come from the
-            same square-root-scaled size domain &mdash; needed to fit Lake
-            Powell at millions of acre-feet and the smallest reservoirs at a
-            few thousand into one legible spread &mdash; and the fill is sized
-            as a share of its own ring, so the ring-to-fill ratio always means
-            true percent depletion regardless of the reservoir's absolute size.
-            Fill color follows the same three-tier ramp the popup spells out in
-            words: red under 50%, orange 50&ndash;75%, green above 75%.
+            Each reservoir renders as two circles. A gray outline ring is
+            sized by the reservoir's period-of-record max. A colored filled
+            circle on top is sized by current storage. The gap between the
+            ring and the fill shows depletion. Both radii use the same
+            square-root size scale, which fits Lake Powell at millions of
+            acre-feet and the smallest reservoirs at a few thousand into one
+            readable range. The fill is sized as a share of its own ring, so
+            the ring-to-fill ratio always means percent depletion, whatever
+            the reservoir's size. Fill color uses the same three-step ramp the
+            popup states in words: red under 50%, orange 50 to 75%, green
+            above 75%.
           </p>
 
           <h2>A pipeline that refreshed itself</h2>
           <p>
-            The map was static; the data behind it was not. A Python script
-            (pandas, NumPy, and the RISE API) re-pulled each reservoir's full
-            daily storage series from 2015 to yesterday, recomputed both drought
-            metrics, and wrote a single <code>reservoirs.json</code>. A GitHub
-            Actions workflow ran it every morning at 6&nbsp;a.m. Mountain, so
-            the dashboard stayed current with no server to maintain. RISE data
-            is provisional per Reclamation's own disclaimer, and the app
-            surfaced that caveat &mdash; in the title panel and in every popup
-            &mdash; rather than presenting the most recent days as settled.
+            The map was static. The data behind it was not. A Python script
+            (pandas, NumPy, and the RISE API) pulled each reservoir's full
+            daily storage series from 2015 to yesterday, computed both drought
+            metrics, and wrote one <code>reservoirs.json</code> file. A GitHub
+            Actions workflow ran the script every morning at 6&nbsp;a.m.
+            Mountain, so the dashboard stayed current with no server to
+            maintain. Reclamation marks RISE data as provisional. The app
+            stated that in the title panel and in every popup.
           </p>
 
           <h2>Built twice: Esri vs. MapLibre</h2>
           <p>
             The first build used the ArcGIS Maps SDK for JavaScript, loaded
-            straight from Esri's CDN with plain script tags &mdash; no npm, no
-            webpack. Two <code>FeatureLayer</code>s carried the symbology, driven
-            by Arcade <code>valueExpression</code>s, and the popup was a
-            declarative <code>PopupTemplate</code> that turned the raw percentage
-            into a plain-language status line and the acre-foot gap to the
+            from Esri's CDN with plain script tags. There was no npm and no
+            webpack. Two <code>FeatureLayer</code>s carried the symbology,
+            driven by Arcade <code>valueExpression</code>s. The popup was a
+            <code>PopupTemplate</code> that turned the raw percentage into a
+            plain-language status line and the acre-foot gap to the
             historical peak.
           </p>
           <p>
-            The second build rebuilt that exact dashboard in MapLibre GL JS on
-            CARTO's free Positron vector basemap &mdash; same data, same
-            dual-circle symbology, same popup wording. The point was a fair
-            comparison: both are WebGL vector renderers, so this replaced an
-            earlier Leaflet attempt, which wasn't a like-for-like test (Leaflet
-            paints raster tiles in the DOM). With both engines actually drawing
-            vector data on the GPU, the results came out functionally identical
-            &mdash; verified pixel-for-pixel against the same data, down to
-            Flaming Gorge agreeing exactly on 2,669,060 acre-feet current
+            The second build rebuilt the same dashboard in MapLibre GL JS on
+            CARTO's free Positron vector basemap. It used the same data, the
+            same dual-circle symbology, and the same popup wording. Both are
+            WebGL vector renderers, so the comparison is fair. It replaced an
+            earlier Leaflet attempt, which was not a like-for-like test
+            because Leaflet paints raster tiles in the DOM. With both engines
+            drawing vector data on the GPU, the results matched. Flaming
+            Gorge, for example, agreed exactly on 2,669,060 acre-feet current
             against a 3,557,090 record max.
           </p>
           <p>
-            The real difference is tooling depth, not capability. Esri's
+            The difference is in the tooling, not the rendering. Esri's
             <code>PopupTemplate</code> and Arcade expressions are declarative
-            and productive once you know them; MapLibre's popups are plain HTML
-            you assemble yourself, and its data-driven styling uses native
-            <code>interpolate</code>/<code>step</code>/<code>sqrt</code>
-            expressions in place of Arcade. For this specific dashboard,
-            MapLibre's one-shared-source, two-layer model was arguably the
-            simpler thing to reason about, since both circle layers already read
-            from a single authoritative feature set. The open-source stack got
-            all the way to parity here; what you trade away is the higher-level
-            conveniences, not the rendering.
+            and fast to work with once you know them. MapLibre's popups are
+            plain HTML you assemble yourself, and its data-driven styling
+            uses <code>interpolate</code>, <code>step</code>, and
+            <code>sqrt</code> expressions in place of Arcade. For this
+            dashboard, MapLibre's model of one shared source and two layers
+            was simpler to reason about, because both circle layers read from
+            one feature set. The open-source stack reached parity here. What
+            you give up is the higher-level conveniences.
           </p>
 
           <p class="source-note">

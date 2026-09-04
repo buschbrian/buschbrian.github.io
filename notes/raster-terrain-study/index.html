@@ -67,9 +67,8 @@
           <p class="eyebrow">30 Day Map Challenge 2024 &mdash; Raster</p>
           <h1>Shading terrain the Imhof way</h1>
           <p class="post-deck">
-            A hand-tuned hillshade of Utah in the style of Eduard Imhof &mdash;
-            built entirely from a single continuous elevation surface, no
-            vector data involved.
+            A hand-tuned hillshade of Utah in the style of Eduard Imhof. It
+            uses one continuous elevation surface and no vector data.
           </p>
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>30 Day Map Challenge 2024</strong></div>
@@ -87,41 +86,39 @@
 
         <div class="post-content">
           <p>
-            The "raster" theme was an open prompt &mdash; an open invitation to
-            work with continuous surface data instead of discrete points,
-            lines, or polygons. Elevation was the obvious candidate, and the
-            obvious style to reach for was Eduard Imhof's: relief shading that
-            reads as hand-painted terrain rather than a mechanical hillshade.
+            The "raster" theme asks for continuous surface data instead of
+            points, lines, or polygons. Elevation was the clear choice. For
+            the style I used Eduard Imhof's relief shading, which reads like
+            hand-painted terrain instead of a mechanical hillshade.
           </p>
 
           <h2>The Imhof style</h2>
           <p>
-            Classic Imhof shading pairs hypsometric tinting (color keyed to
-            elevation) with directional shading tuned by hand rather than a
-            single flat light-and-azimuth calculation, so ridgelines and
-            valleys read with more depth than a default hillshade gives you.
-            It's a technique built for paper maps in the 1960s that still
-            looks better than most default GIS renderers on a screen.
+            Imhof shading combines hypsometric tinting (color keyed to
+            elevation) with directional shading that is tuned by hand instead
+            of one flat light-angle calculation. Ridgelines and valleys get
+            more depth than a default hillshade gives them. The technique was
+            made for paper maps in the 1960s, and it still looks better on a
+            screen than most default GIS renderers.
           </p>
 
           <h2>Building it in ArcGIS Pro</h2>
           <p>
-            The elevation surface came straight from Esri's Terrain Service in
-            Living Atlas &mdash; no local DEM to manage. The symbology follows
-            John Nelson's published modern take on the Imhof technique, tuning
-            color ramp and light angle against Utah's terrain until the Wasatch
-            Range, the Basin and Range country, and the Colorado Plateau each
-            held their own texture instead of collapsing into flat gray.
+            The elevation surface comes from Esri's Terrain Service in Living
+            Atlas, so there was no local DEM to manage. The symbology follows
+            John Nelson's modern version of the Imhof technique. I adjusted
+            the color ramp and light angle against Utah's terrain until the
+            Wasatch Range, the Basin and Range country, and the Colorado
+            Plateau each kept their own texture instead of going flat gray.
           </p>
 
           <h2>Why raster, not vector</h2>
           <p>
-            Vector data is the right tool when features are genuinely discrete
-            &mdash; parcels, roads, boundaries. Terrain isn't: elevation is
-            continuous everywhere, and a raster surface is what lets shading
-            pick up every ridge and drainage without simplifying them into
-            lines first. That's exactly the case a raster-only prompt is built to
-            highlight.
+            Vector data is the right tool for discrete features such as
+            parcels, roads, and boundaries. Terrain is different. Elevation is
+            continuous everywhere, and a raster surface lets the shading pick
+            up every ridge and drainage without simplifying them into lines
+            first.
           </p>
 
           <p class="source-note">
