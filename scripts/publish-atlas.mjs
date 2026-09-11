@@ -98,6 +98,11 @@ for (const d of DIAGRAMS) {
 // These are faults in the generator, not in this site, and repairing 800 KB of
 // generated markup on every publish would be fragile. The rules are turned off
 // for this folder only. Every hand-written page keeps the full ruleset.
+//
+// The owner approved this exemption on 2026-09-11. The reason is the scope:
+// these files are a portfolio artifact, not application code, and nothing here
+// ships inside the dashboard. An exemption that reached the application would
+// need a different answer.
 const VALIDATE_CONFIG = {
   extends: ["html-validate:recommended", "html-validate:document"],
   rules: {

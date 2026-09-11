@@ -227,11 +227,15 @@ Twelve notes run from 111 to 263 words. They read as captions.
   `/projects/western-water-dashboard-atlas/` introduces them and the
   diagrams are served from `diagrams/`. Archify is MIT licensed and comes
   from <https://github.com/tt-a1i/archify>.
-- The generated diagrams fail six `html-validate` rules inside the Archify
-  viewer chrome, never inside a diagram. `scripts/publish-atlas.mjs` writes
-  a `.htmlvalidate.json` that turns those rules off for the `diagrams/`
-  folder only. Every hand-written page keeps the full ruleset. The list and
-  the reason are in the script.
+- Resolved on 2026-09-11: the generated diagrams fail six `html-validate`
+  rules inside the Archify viewer chrome, never inside a diagram. The owner
+  approved an exemption because the files are a portfolio artifact and no
+  part of them ships inside the dashboard application.
+  `scripts/publish-atlas.mjs` writes a `.htmlvalidate.json` that turns those
+  rules off for the `diagrams/` folder only. Every hand-written page keeps
+  the full ruleset. The rule list is in the script.
+- Do not reuse this exemption for application code or for a hand-written
+  page. The reason it holds is the scope, not the rules.
 - The atlas sources still exist only on one Mac. They are the three JSON
   files in `.atlas/archify/src/` in the dashboard repository, which is
   ignored by Git there and has no remote copy.
