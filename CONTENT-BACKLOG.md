@@ -132,9 +132,10 @@ Two places still read 637, on purpose:
 - The figure caption in `utah-water-dashboard-rebuild` reports a reading on
   March 13, 2026, from 549 of the 637 sites. That is a past measurement. Do
   not change it without the roster size on that date.
-- `projects/western-water-dashboard-atlas/index.html` holds the number
-  inside generated data. Rebuild that page with `scripts/publish-atlas.mjs`
-  instead of editing the HTML.
+- The atlas diagrams in
+  `projects/western-water-dashboard-atlas/diagrams/` hold the number inside
+  generated data. Rebuild them in the dashboard repository instead of
+  editing the HTML.
 
 Corrected the same day. The snow count is three different numbers, and the
 site must say which one it means:
@@ -221,8 +222,19 @@ Twelve notes run from 111 to 263 words. They read as captions.
   page carries `noindex`, because a generated snapshot should not compete
   in search with the note that explains it. Change that line if the page
   should be indexed.
-- The atlas source `atlas/data.mjs` still exists only on one Mac. It is
-  ignored by Git in the dashboard repository and has no remote copy.
+- Changed on 2026-09-11: the atlas is now three Archify diagrams instead of
+  one isometric scene. The landing page at
+  `/projects/western-water-dashboard-atlas/` introduces them and the
+  diagrams are served from `diagrams/`. Archify is MIT licensed and comes
+  from <https://github.com/tt-a1i/archify>.
+- The generated diagrams fail six `html-validate` rules inside the Archify
+  viewer chrome, never inside a diagram. `scripts/publish-atlas.mjs` writes
+  a `.htmlvalidate.json` that turns those rules off for the `diagrams/`
+  folder only. Every hand-written page keeps the full ruleset. The list and
+  the reason are in the script.
+- The atlas sources still exist only on one Mac. They are the three JSON
+  files in `.atlas/archify/src/` in the dashboard repository, which is
+  ignored by Git there and has no remote copy.
   Decide where it is backed up. The published snapshot preserves the
   output, not the source.
 - Decide if the notes index shows dates after section 1 is complete.
@@ -302,15 +314,16 @@ personal challenge.
 
 ## 11. The atlas page cannot be fixed from this repository
 
-Added on 2026-08-28. `projects/western-water-dashboard-atlas/index.html`
-reports 637 snow sites. `scripts/publish-atlas.mjs` copies that number from
-`~/Developer/utah-reservoir-dashboard/.atlas/repository/atlas.html`, which
-also reports 637. Running the script again changes nothing.
+Added on 2026-08-28. Rewritten on 2026-09-11 for the Archify atlas.
 
-The number is also correct where it stands. The atlas describes the system
-on a stated date, 2026-08-23, when the payload published 637 sites and 2
-were missing.
+Numbers such as the snow site count live inside the generated diagrams in
+`projects/western-water-dashboard-atlas/diagrams/`. This repository cannot
+correct them. Rebuild the diagrams in the dashboard repository first, then
+publish them here.
 
 - Do not edit the generated HTML by hand.
-- Rebuild the atlas in the dashboard repository first, then run
-  `node scripts/publish-atlas.mjs` here.
+- Rebuild with `node .atlas/archify/build.mjs` in the dashboard repository.
+- Publish with `node scripts/publish-atlas.mjs` here.
+- `scripts/publish-atlas.mjs` owns the landing page copy and the scoped
+  `html-validate` rules for the generated files. Edit the script, not the
+  page it writes.
