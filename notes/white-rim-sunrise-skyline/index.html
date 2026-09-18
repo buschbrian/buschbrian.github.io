@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Draft. A DEM-based method for predicting true sunrise behind a desert rim in ArcGIS Pro, checked against a known landmark before trusting the result.">
+    <meta name="theme-color" content="#ffffff">
+    <!-- This note is a work in progress. It carries no publication date and
+         should not appear in search results, Notes, or the feed until the
+         open items under "What is not verified yet" are resolved. This
+         follows the same pattern as the noindex Western Water Dashboard
+         atlas page. Remove this line, add the slug to scripts/build-feed.mjs,
+         and link it from notes/index.html when the page is ready. -->
+    <meta name="robots" content="noindex">
+    <title>Draft: Reading First Light Off a DEM | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/white-rim-sunrise-skyline/">
+    <link rel="alternate" type="application/rss+xml" title="Notes by Brian Busch" href="/feed.xml">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <style>
+      .draft-notice {
+        border: 1px solid var(--line); border-radius: var(--r); padding: var(--pad-card);
+        margin: 0 0 clamp(32px, 5vw, 48px); max-width: var(--measure);
+      }
+      .draft-notice .eyebrow { margin-bottom: 10px; }
+      .draft-notice p:last-child { margin: 0; font-size: var(--fs-body); line-height: 1.7; color: var(--body); }
+      .figure-pending-box {
+        border: 1px dashed var(--line); border-radius: var(--r); padding: var(--pad-card);
+        background: rgba(116, 136, 165, .06); display: grid; gap: 8px;
+      }
+      .figure-pending-tag {
+        margin: 0; font-size: var(--fs-caption); text-transform: uppercase;
+        letter-spacing: var(--track-label); color: var(--muted); font-weight: 500;
+      }
+      .figure-pending-alt { margin: 0; font-size: var(--fs-body); line-height: 1.6; color: var(--body); }
+      .open-items li { margin-bottom: 12px; }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Brian Busch home"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">GIS Method &mdash; Canyon Country Sunrise</p>
+          <h1>Reading First Light Off a DEM</h1>
+          <p class="post-deck">
+            A step-by-step ArcGIS Pro method for predicting true sunrise
+            behind a desert rim. The method gets checked against a known
+            landmark before the sunrise number is trusted.
+          </p>
+          <div class="post-meta-grid">
+            <div><span>Location</span><strong>White Rim Road, Canyonlands National Park, Utah</strong></div>
+            <div><span>Data</span><strong>USGS 3DEP, 10 m digital elevation model</strong></div>
+            <div><span>Tools</span><strong>ArcGIS Pro, 3D Analyst</strong></div>
+            <div><span>Status</span><strong>Draft, not yet verified end to end</strong></div>
+          </div>
+        </header>
+
+        <div class="draft-notice">
+          <p class="eyebrow">Draft &mdash; not linked from Notes or the feed</p>
+          <p>
+            This page is live early so the write-up and the figures can
+            develop in place. It carries a <code>noindex</code> tag and does
+            not appear in <a href="/notes/">Notes</a> or
+            <a href="/feed.xml">the feed</a>. Three inputs still need
+            confirmation; see &ldquo;What is not verified yet&rdquo; below.
+          </p>
+        </div>
+
+        <div class="post-content">
+          <p>
+            A digital elevation model, or DEM, is a raster surface of ground
+            height. This note uses one to answer a question a phone app
+            cannot: from a specific campsite on the White Rim Road in
+            Canyonlands National Park, does the sun rise between two distant
+            peaks, and when does direct light actually clear the near rim?
+          </p>
+
+          <h2>The question a flat horizon cannot answer</h2>
+          <p>
+            Every sunrise app assumes a flat horizon. In canyon country that
+            assumption is wrong by ten to forty minutes, because the real
+            horizon is a nearby rim, not an open plain. A hand calculation
+            against an assumed camp height put the near rim between two and
+            four degrees above flat, with a first-light guess around
+            6:50 a.m. Two different assumptions in that calculation, the
+            camp position and the camp elevation, later turned out to be
+            wrong. A terrain surface removes both guesses.
+          </p>
+
+          <h2>The data and the tool</h2>
+          <p>
+            The elevation data is a USGS 3DEP digital elevation model at
+            10-meter resolution, downloaded from The National Map and
+            covering the horizon out past the distant peaks in question. The
+            main tool is <strong>Skyline</strong>, in the 3D Analyst
+            extension of ArcGIS Pro. Skyline reads a DEM and an observer
+            point, then traces the terrain&rsquo;s horizon angle in every
+            compass direction, or azimuth, around that point. A second tool,
+            <strong>Skyline Graph</strong>, turns that horizon line into a
+            table of horizon angle by azimuth.
+          </p>
+
+          <h2>Method, in five steps</h2>
+          <ol>
+            <li>
+              Download the 10 m DEM and project it to a metric coordinate
+              system. Skyline needs elevation and ground distance in the
+              same units, and a DEM left in geographic degrees gives wrong
+              angles with no warning.
+            </li>
+            <li>
+              Place an observer point at the campsite, raised a small height
+              above the surface. Without that offset, the point can read as
+              sitting just below the terrain and gets silently dropped from
+              the run.
+            </li>
+            <li>
+              Run Skyline from that point, aimed at the sunrise sector, with
+              earth curvature and atmospheric refraction turned on. Over
+              tens of kilometers, curvature alone moves a distant peak by
+              hundreds of meters of apparent height.
+            </li>
+            <li>
+              Run Skyline Graph against the resulting horizon line to
+              produce a table of horizon angle by azimuth.
+            </li>
+            <li>
+              Read the horizon angle at the sunrise azimuth, 82.6&deg; for
+              this site and date, and convert it to a time delay using how
+              fast the sun climbs near the horizon at this latitude, about
+              11&deg; an hour.
+            </li>
+          </ol>
+
+          <h2>Checking the method before trusting the answer</h2>
+          <p>
+            A terrain method is only as good as its inputs, so the run gets
+            checked against a landmark with a known position before the
+            sunrise number is trusted. Candlestick Tower is a named rock
+            spire near the campsite with a documented position. Predicted by
+            hand, the tower sits at azimuth 76.03&deg; and rises 8.84&deg;
+            above flat. Skyline measured the same tower at azimuth
+            75.50&deg; and 8.62&deg;.
+          </p>
+          <p>
+            That is agreement to about half a degree of bearing and a fifth
+            of a degree of height. It shows the observer point, the map
+            projection, the elevation values, and the curvature settings are
+            all sound, agreement that close is not likely by chance. The
+            general pattern is reusable at any new site: pick one
+            obstruction whose position is already known, predict its angle,
+            and confirm the run reproduces it before reading the number the
+            trip actually needs.
+          </p>
+
+          <figure class="post-hero-image">
+            <div class="figure-pending-box">
+              <p class="figure-pending-tag">Figure pending &mdash; validation table</p>
+              <p class="figure-pending-alt">
+                Planned alt text: Table comparing the hand-predicted and
+                Skyline-measured azimuth and horizon angle for Candlestick
+                Tower, showing agreement to about half a degree.
+              </p>
+            </div>
+            <figcaption>
+              Candlestick Tower validation. Hand-predicted versus
+              Skyline-measured azimuth and horizon angle for a known
+              landmark, run before the sunrise number below.
+            </figcaption>
+          </figure>
+
+          <h2>The result</h2>
+          <p>
+            At the sunrise azimuth of 82.6&deg;, Skyline measured a horizon
+            angle of 4.99&deg;. Converted to time, that puts first direct
+            light around 7:18 a.m., about 28 minutes after the flat-horizon
+            sunrise. Across the sunrise sector the near rim stands roughly
+            2.6&deg; to 3.4&deg; above both distant peaks behind it. The sun
+            does not appear to rise between the two peaks from this camp;
+            the near rim is in the way first.
+          </p>
+
+          <figure class="post-hero-image">
+            <div class="figure-pending-box">
+              <p class="figure-pending-tag">Figure pending &mdash; Skyline graph</p>
+              <p class="figure-pending-alt">
+                Planned alt text: Skyline Graph chart of horizon angle
+                against compass azimuth across the sunrise sector, with the
+                82.6&deg; sunrise bearing marked.
+              </p>
+            </div>
+            <figcaption>
+              Horizon angle by azimuth across the sunrise sector, with the
+              82.6&deg; sunrise bearing marked.
+            </figcaption>
+          </figure>
+
+          <figure class="post-hero-image">
+            <div class="figure-pending-box">
+              <p class="figure-pending-tag">Figure pending &mdash; horizon over the DEM</p>
+              <p class="figure-pending-alt">
+                Planned alt text: The Skyline horizon polyline drawn over a
+                hillshaded rendering of the digital elevation model, showing
+                the near rim and the campsite.
+              </p>
+            </div>
+            <figcaption>
+              The horizon line Skyline traced, shown over the elevation
+              surface it was measured from.
+            </figcaption>
+          </figure>
+
+          <h2>What the morning actually did</h2>
+          <p>
+            The terrain answer is not the same as the photograph. On the
+            morning in question, monsoon cloud moved in overnight. Usable
+            light lasted about three minutes, starting near 6:55 a.m., then
+            cloud cover took over. The predicted 7:18 a.m. moment never
+            happened in clear sky. The terrain calculation held up; the
+            weather decided what the camera actually recorded.
+          </p>
+
+          <figure class="post-hero-image">
+            <div class="figure-pending-box">
+              <p class="figure-pending-tag">Figure pending &mdash; sunrise photograph</p>
+              <p class="figure-pending-alt">
+                Planned alt text: Sunrise photograph from the White Rim
+                campsite, taken during the brief clear window before cloud
+                cover moved in.
+              </p>
+            </div>
+            <figcaption>
+              The brief clear window on the morning of the trip, before
+              cloud cover moved in.
+            </figcaption>
+          </figure>
+
+          <h2>What is not verified yet</h2>
+          <p>
+            This page stays a draft because three items are still open.
+            Stating them here rather than leaving them out:
+          </p>
+          <ul class="open-items">
+            <li>
+              <strong>The DEM tile identifiers for this Skyline run are not
+              recorded.</strong> The tool ran against a downloaded 10 m
+              tile, but the exact tile name and download date for this
+              specific run were not written down at the time.
+            </li>
+            <li>
+              <strong>The observer latitude used in the Skyline run
+              disagrees with the latitude in the trip&rsquo;s GPS log by
+              about 21 meters.</strong> At the rim distances involved, that
+              gap barely moves the horizon angle, but the two records still
+              disagree, and neither has been checked against a coordinate
+              measured standing at the site.
+            </li>
+            <li>
+              <strong>The claim that the near rim hides the distant peaks
+              has not been checked against the camera frames.</strong> Any
+              frame shot between 6:20 and 7:00 a.m. that shows the eastern
+              skyline should show the rim standing above both peaks. That
+              check has not been run yet.
+            </li>
+          </ul>
+
+          <h2>Next: a second site</h2>
+          <p>
+            A trip to Island Park, Idaho, from September 19 to 21, 2026, is
+            planned as a second worked example of the same method. Running
+            the same five steps at a different site, with a different rim
+            and a different sunrise bearing, is the real test of whether
+            this method generalizes past one campsite.
+          </p>
+
+          <p class="source-note">
+            Draft note. Elevation data from the USGS 3D Elevation Program,
+            distributed through The National Map. Horizon angles computed
+            with the Skyline and Skyline Graph tools in ArcGIS Pro 3D
+            Analyst.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; Cartography</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></nav><a href="/notes/">Back to notes</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
