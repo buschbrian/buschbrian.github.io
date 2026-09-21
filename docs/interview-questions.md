@@ -33,8 +33,8 @@ Answer this set once for each project note.
 
 ## 2. Sidewalk and Trails Master Plan
 
-The note has 242 words. It is an Esri User Conference Map Gallery finalist
-for 2026. This is one of the two strongest credentials on the site.
+It is an Esri User Conference Map Gallery finalist for 2026. It did not win
+the category. The note states that the plan is not yet adopted.
 
 - How does the gap analysis work? Describe the steps.
 - What counts as a gap? Give the rule you used.
@@ -42,28 +42,26 @@ for 2026. This is one of the two strongest credentials on the site.
 - Did you collect field data? If yes, how?
 - How many miles of gap did you find?
 - How did you rank the gaps? Name the criteria and the weights.
-- Did the city council adopt the plan? Give the date.
+- Tell us when the city council adopts the plan.
 - Has the city built anything because of the plan? Name it.
 - What is the cost estimate in the plan, if there is one?
-- Why did the Esri judges select this map? Say what you think.
 
 ## 3. Future Land Use, Millcreek
 
-The note has 297 words. It is an Esri User Conference Map Gallery finalist
-for 2025.
+It is an Esri User Conference Map Gallery finalist for 2025. The note gives
+the adoption date, February 2019.
 
 - How did the General Plan text become map categories? Describe the step.
 - How many categories are there, and who decided them?
 - How did you handle a parcel that did not fit one category?
 - Who reviewed the draft map, and how many rounds did it take?
-- Did the council adopt the map? Give the date.
 - Who uses the map now? Planners, the public, or developers?
 - Does the map drive a zoning decision, or only guide one?
 - How does a resident find their own parcel on it?
 
 ## 4. WUI Boundary Mapping
 
-The note has 322 words. It names HB 48 and HB 41 with no explanation. This
+The note names HB 48 and HB 41. This
 note can sell work, because other cities have the same legal duty.
 
 - What do HB 48 and HB 41 require? State it in two sentences.
@@ -80,8 +78,6 @@ note can sell work, because other cities have the same legal duty.
 
 ## 5. Alcohol Spacing Regulations
 
-The note has 250 words.
-
 - Which statute or ordinance sets the 300-foot and 600-foot distances?
 - What does the rule measure between? Property line, door, or building?
 - Who uses the web application? Staff, applicants, or the public?
@@ -93,14 +89,14 @@ The note has 250 words.
 
 ## 6. Millcreek Redistricting
 
-The note has 528 words. It is the strongest professional note today.
+The note gives the adoption date, May 9, 2022.
 
 - How many public responses did the Survey123 form collect?
 - How many people visited the StoryMap?
 - How many draft district plans did you produce?
 - Which criteria did the council set? Population, compactness, or others?
 - What was the final population deviation between districts?
-- Which plan did the council adopt, and on what date?
+- Which plan did the council adopt?
 - Did any public comment change a boundary? Give one example.
 - What did the public engagement cost, in time or money?
 
@@ -200,16 +196,10 @@ The site sells consulting work and has no page that sells it.
 
 ## 10. GIS terms to define
 
-Each term is on a public page with no explanation. Give one plain sentence
-for each. A general reader must understand it.
+Resolved on 2026-08-26 for the terms now on the site. See section 4 of
+`CONTENT-BACKLOG.md`. Two terms remain for notes that are not yet written.
+Give one plain sentence for each.
 
-- Wildland-Urban Interface
-- Hydrologic unit code, and drainage area
-- Snow water equivalent
-- Period of record
-- Seasonal percentile
-- Acre-foot
-- GISP, and what the certification requires
 - Service area analysis
 - Gap analysis
 
@@ -223,7 +213,6 @@ a date. Four do not.
 - Give the publication date for `alcohol-spacing-regulations`.
 - Give the publication date for `polygon-neighbor-coloring`.
 - An approximate month is acceptable. Say so if you do not know a date.
-- Say if a note must show its date to the reader.
 - `utah-vintage-atlas` uses its challenge day, 2024-11-07. The LinkedIn
   post went out on 2024-11-08. Say which date the site records.
 
