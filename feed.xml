@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Aug 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>One place to see the water in the West</title>
       <link>https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</link>
@@ -28,11 +28,18 @@
       <pubDate>Mon, 24 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
-      <title>One drought dashboard, two WebGL renderers</title>
-      <link>https://buschbrian.github.io/notes/utah-reservoir-dashboard/</link>
-      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-reservoir-dashboard/</guid>
-      <description>A Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.</description>
-      <pubDate>Mon, 03 Aug 2026 00:00:00 -0600</pubDate>
+      <title>Millcreek Planning Map</title>
+      <link>https://buschbrian.github.io/notes/millcreek-planning-map/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/millcreek-planning-map/</guid>
+      <description>Millcreek's public planning and zoning map, rebuilt on the ArcGIS Maps SDK for JavaScript with Nearmap aerial imagery, shareable links, and a text alternative.</description>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Millcreek Property Lookup</title>
+      <link>https://buschbrian.github.io/notes/millcreek-property-lookup/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/millcreek-property-lookup/</guid>
+      <description>A text-only property report for Millcreek, Utah. Type an address to get zoning, flood hazard, district, and utility facts without a map or a mouse.</description>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Turning sidewalk gaps into a connected trail network</title>
@@ -71,6 +78,13 @@
       <link>https://buschbrian.github.io/notes/polygon-neighbor-coloring/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/polygon-neighbor-coloring/</guid>
       <description>A Python (ArcPy) script that gives a different color to each adjacent polygon.</description>
+    </item>
+    <item>
+      <title>One drought dashboard, two WebGL renderers</title>
+      <link>https://buschbrian.github.io/notes/utah-reservoir-dashboard/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-reservoir-dashboard/</guid>
+      <description>A Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.</description>
+      <pubDate>Mon, 03 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
