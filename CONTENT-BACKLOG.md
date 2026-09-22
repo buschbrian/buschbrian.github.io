@@ -8,6 +8,42 @@ This file lists work that needs more facts or an owner decision. Do not change a
 
 Resolved on 2026-08-15: the dark-sky note no longer claims a high concentration of parks. The vintage atlas note names the Esri Living Atlas as the data source. The scenic byways note states that the mileage total is the sum of the UDOT route lengths, calculated in ArcGIS Pro.
 
+## White Rim sunrise skyline note (draft)
+
+Added on 2026-09-18. `notes/white-rim-sunrise-skyline/` is a scaffolded draft.
+It carries `<meta name="robots" content="noindex">`, has no entry in
+`notes/index.html`, and `scripts/build-feed.mjs` now skips any note with that
+noindex line, so the page does not reach `feed.xml`. It is also not in
+`sitemap.xml`. Do not remove the noindex line, add the slug to
+`notes/index.html`, or add it to `sitemap.xml` until every item below is
+done.
+
+- Record the DEM tile identifier(s) and download date for the Skyline run
+  this note describes. The vault source note does not have them yet, even
+  though a similarly named tile appears in the related ArcGIS Pro procedure
+  note for a different run at the same general site. Confirm they are the
+  same tile before citing it here.
+- Reconcile the roughly 21-meter disagreement between the observer latitude
+  the Skyline run actually used and the latitude recorded in the trip's GPS
+  table. A coordinate measured on site (a Gaia pin from the trip) is the
+  tie-breaker; neither existing record has been checked against one.
+- Check the claim that the near rim hides the distant peaks against the
+  camera frames shot 6:20 to 7:00 a.m. on the trip. Any frame in that window
+  showing the eastern skyline should show the rim standing above both peaks.
+  Confirm before the claim stays worded as settled.
+- Replace all four placeholder figure blocks with real images once they are
+  exported from the ArcGIS Pro project: the Skyline graph with the 82.6°
+  bearing marked, the horizon polyline over the DEM, the Candlestick Tower
+  validation table, and one sunrise photograph. Add each image to
+  `assets/images/`, with responsive WebP variants in `assets/images/r/`,
+  following the pattern in the other note pages.
+- Decide whether the Island Park trip (2026-09-19 to 2026-09-21) becomes a
+  second worked example on this same page or a separate note, once that
+  data exists. The current draft only names it as planned.
+- Once the items above are resolved: remove the `noindex` meta tag, add a
+  card to `notes/index.html`, add the slug to the `ORDER` list in
+  `scripts/build-feed.mjs`, and add the URL to `sitemap.xml`.
+
 ## Contact information
 
 - Decide whether to add a resume or curriculum vitae.

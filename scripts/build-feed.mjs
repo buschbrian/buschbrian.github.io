@@ -79,6 +79,10 @@ function readNote(slug) {
   const file = join(NOTES_DIR, slug, "index.html");
   if (!existsSync(file)) return null;
   const source = readFileSync(file, "utf8");
+  // A note marked noindex is a draft. Leave it out of the feed until the
+  // noindex line is removed. See notes/white-rim-sunrise-skyline/index.html
+  // for the pattern.
+  if (/<meta name="robots" content="noindex">/.test(source)) return null;
   const title =
     match(source, /"headline":\s*"([^"]*)"/) ||
     match(source, /<h1>([^<]*)<\/h1>/);
