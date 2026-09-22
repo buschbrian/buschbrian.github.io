@@ -44,12 +44,12 @@ Resolved on 2026-08-15: the About page shows a direct email address.
 Added on 2026-08-17. Each item needs information that only the owner has.
 The questions that unblock these items are in `docs/interview-questions.md`.
 No one can source these from the repository, the site, or a public record.
-Work through the sections in order. Section 1 blocks the feed.
+Work through the sections in order.
 
 ## 1. Publication dates
 
-Resolved on 2026-08-28 for 14 of the 18 notes. `node scripts/build-feed.mjs`
-now reports 21 items, 4 with no date.
+Resolved on 2026-08-28 for 17 of the 21 notes. `node scripts/build-feed.mjs`
+reports 21 items, 4 with no date.
 
 Decision on 2026-08-28: the owner overrode the 2026-08-17 rule against the
 challenge day. The twelve 2024 30 Day Map Challenge notes now carry the
@@ -86,17 +86,17 @@ repository. Only the owner can supply them:
 - `alcohol-spacing-regulations`. The work was 2024.
 - `polygon-neighbor-coloring`. No year on the site.
 
-- Then: decide if a note shows its date to the reader. The date is in the
-  structured data and the feed. It is not yet on the page.
+Resolved: a note shows its date to the reader. Commit `4e31fa9` added a
+`<time>` element to each dated note and to the notes index cards.
 
 ## 2. Professional work needs more depth
 
 Decision on 2026-08-17: work through all five professional notes, one note
 at a time.
 
-The three personal-project notes now run to about 2,500 words at the
-longest. The professional notes are 242 to 528 words. Two of the shortest
-notes are the strongest credentials on the site.
+Word counts on 2026-09-21, from the page text without figures: sidewalk
+835, future land use 824, redistricting 622, WUI 356, alcohol 284. The two
+finalist notes are no longer short. WUI and alcohol spacing still are.
 
 For each project below, record these five items:
 
@@ -106,26 +106,29 @@ For each project below, record these five items:
 4. The result. Give a number when a number exists.
 5. The limit. State what the map or the analysis cannot show.
 
-- `sidewalk-trails-master-plan` (242 words). An Esri User Conference Map
-  Gallery finalist for 2026. The note does not say how the gap analysis
-  works, who adopted the plan, or what changed after adoption.
-- `future-land-use-millcreek` (297 words). An Esri User Conference Map
+- `sidewalk-trails-master-plan`. An Esri User Conference Map Gallery
+  finalist for 2026. It did not win the category. The note now explains
+  the gap analysis and states that the plan is not yet adopted.
+- `future-land-use-millcreek`. An Esri User Conference Map
   Gallery finalist for 2025. The note does not say how the General Plan
   chapter became map categories, or who uses the map now.
-- `wui-boundary-mapping` (322 words). The note names HB 48 and HB 41. It
+- `wui-boundary-mapping`. The note names HB 48 and HB 41. It
   does not explain what the bills require, or what a city must deliver.
-- `alcohol-spacing-regulations` (250 words). The note does not give the
+- `alcohol-spacing-regulations`. The note does not give the
   rule the buffers come from, or state who uses the web application.
-- `millcreek-redistricting` (528 words). The strongest professional note.
-  It still does not give the public turnout, or the adopted result.
+- `millcreek-redistricting`. The note gives the adoption date, May 9,
+  2022. It still does not give the public turnout.
 
 ## 2b. Fact drift in the water dashboard numbers
 
 Resolved on 2026-08-28: the snow site count moved from 637 to 639. The site
-now states 639 in the three places that describe the application today.
+now states 639 in the places that describe the application today:
+`projects/index.html` and the meta grid of `utah-water-dashboard-rebuild`.
 Source: `buschbrian.github.io/western-water-dashboard/data/snow_sites.json`,
-field `site_count`, retrieved 2026-08-18. The reservoir count is 382 and did
-not change.
+field `site_count`, retrieved 2026-08-18. The reservoir count changed from
+382 to 404 in commit `94186e4`, the September 3 data. Two figure captions in
+`utah-water-dashboard-rebuild` still say 382, because they describe the
+August 24 screenshots.
 
 Two places still read 637, on purpose:
 
@@ -241,7 +244,6 @@ Twelve notes run from 111 to 263 words. They read as captions.
   ignored by Git there and has no remote copy.
   Decide where it is backed up. The published snapshot preserves the
   output, not the source.
-- Decide if the notes index shows dates after section 1 is complete.
 - Decide if the earlier reservoir note stays public, or becomes a
   redirect to the current note.
 
@@ -331,3 +333,29 @@ publish them here.
 - `scripts/publish-atlas.mjs` owns the landing page copy and the scoped
   `html-validate` rules for the generated files. Edit the script, not the
   page it writes.
+
+## 12. Current role and the Hub write-ups
+
+Added on 2026-09-21 at the owner's direction.
+
+- The owner's current work is GIS applications for city planning, GIS
+  training for city staff, and large analysis projects. One example is a
+  tree inventory from a lidar canopy height model, checked against aerial
+  imagery. The tree inventory is a pilot. Say "pilot" until it runs at
+  scale. The home page, About page, and Involvement page now say this.
+- The site no longer says the owner started as an intern. The start year,
+  2019, and the Senior title from 2024 did not change.
+- The Nearmap imagery work is cleared for public mention. It moved from a
+  Node.js build on the Experience Builder SDK to the ArcGIS Maps SDK for
+  JavaScript, and it now runs in the browser. The Experience Builder widget
+  in section 9 is still on hold until the owner says otherwise.
+- The owner asked for a note on each of the two recent additions to the
+  Millcreek Hub site: the Lookup application and the new planning map.
+- The Western Water Dashboard is now the second featured card on the home
+  page and the share image for the home and About pages.
+- The owner designed and built both applications alone. Solo verbs are
+  correct for these two notes.
+- Viewer numbers. Neither note has usage figures yet. Get them from the
+  Azure analytics for the two applications, and get Nearmap imagery use
+  from the Nearmap API key dashboard. Then add a result line to each note.
+  The earlier Experience Builder map had about 45,000 views each year.
