@@ -341,7 +341,8 @@ Added on 2026-09-21 at the owner's direction.
 - The owner's current work is GIS applications for city planning, GIS
   training for city staff, and large analysis projects. One example is a
   tree inventory from a lidar canopy height model, checked against aerial
-  imagery. The home page, About page, and Involvement page now say this.
+  imagery. The tree inventory is a pilot. Say "pilot" until it runs at
+  scale. The home page, About page, and Involvement page now say this.
 - The site no longer says the owner started as an intern. The start year,
   2019, and the Senior title from 2024 did not change.
 - The Nearmap imagery work is cleared for public mention. It moved from a
@@ -352,3 +353,9 @@ Added on 2026-09-21 at the owner's direction.
   Millcreek Hub site: the Lookup application and the new planning map.
 - The Western Water Dashboard is now the second featured card on the home
   page and the share image for the home and About pages.
+- The owner designed and built both applications alone. Solo verbs are
+  correct for these two notes.
+- Viewer numbers. Neither note has usage figures yet. Get them from the
+  Azure analytics for the two applications, and get Nearmap imagery use
+  from the Nearmap API key dashboard. Then add a result line to each note.
+  The earlier Experience Builder map had about 45,000 views each year.
