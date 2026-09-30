@@ -1,6 +1,6 @@
 # Brian Busch Portfolio
 
-A static GitHub Pages site for Brian Busch's cartography and GIS work. The site uses plain HTML, CSS, and JavaScript. It has no build step. The only external resource is Google Fonts.
+A static GitHub Pages site for Brian Busch's cartography and GIS work. The site uses plain HTML, CSS, and JavaScript. It has no build step. It loads no external resources. The site serves its own copy of the Inter font from `assets/fonts/`.
 
 The live site is at <https://buschbrian.github.io/>.
 
