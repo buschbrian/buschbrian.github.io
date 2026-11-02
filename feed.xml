@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 02 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>One place to see the water in the West</title>
       <link>https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</link>
@@ -85,6 +85,27 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-reservoir-dashboard/</guid>
       <description>A Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.</description>
       <pubDate>Mon, 03 Aug 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Western Reservoir Storage</title>
+      <link>https://buschbrian.github.io/notes/western-reservoir-storage/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/western-reservoir-storage/</guid>
+      <description>Monthly storage at 405 western reservoirs, rendered with the dashboard’s ArcGIS map and native reservoir symbols.</description>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>How the West’s Reservoirs Connect</title>
+      <link>https://buschbrian.github.io/notes/western-reservoir-network/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/western-reservoir-network/</guid>
+      <description>An animated network of 400 western reservoirs, with 256 inferred reservoir links and 488 linked snow stations.</description>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>October Precipitation in the Four Corners</title>
+      <link>https://buschbrian.github.io/notes/four-corners-october-precipitation/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/four-corners-october-precipitation/</guid>
+      <description>October 2026 rain and snow at 111 Four Corners mountain stations, with a normal comparison using 58 long-record stations.</description>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>

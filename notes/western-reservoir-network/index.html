@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An animated network of 400 western reservoirs, with 256 inferred reservoir links and 488 linked snow stations.">
+    <meta name="theme-color" content="#ffffff">
+    <title>How the West’s Reservoirs Connect | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/western-reservoir-network/">
+    <meta property="og:title" content="How the West’s Reservoirs Connect | Brian Busch, GISP">
+    <meta property="og:description" content="An animated network of 400 western reservoirs, with 256 inferred reservoir links and 488 linked snow stations.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/western-reservoir-network.jpg">
+    <meta property="og:image:alt" content="ArcGIS map of 400 reservoirs with 256 inferred downstream links and links from 488 snow stations. A highlighted chain connects 12 reservoirs from Jackson Lake to Lake Celilo. Straight links do not follow river paths.">
+    <meta property="og:image:width" content="2160">
+    <meta property="og:image:height" content="2160">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-02T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/western-reservoir-network/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How the West’s Reservoirs Connect",
+  "description": "An animated network of 400 western reservoirs, with 256 inferred reservoir links and 488 linked snow stations.",
+  "image": "https://buschbrian.github.io/assets/images/western-reservoir-network.jpg",
+  "datePublished": "2026-11-02",
+  "dateModified": "2026-11-02",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/western-reservoir-network/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 2: Lines</p>
+          <h1>How the West’s Reservoirs Connect</h1>
+          <p class="post-deck">An inferred reservoir network, drawn over the dashboard’s ArcGIS map.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>30 Day Map Challenge 2026, Day 2: Lines</strong></div>
+            <div><span>Subject</span><strong>Reservoir networks</strong></div>
+            <div><span>Tools</span><strong>ArcGIS Maps SDK for JavaScript, Python, FFmpeg</strong></div>
+            <div><span>Published</span><strong><time datetime="2026-11-02">November 2, 2026</time></strong></div>
+          </div>
+        </header>
+
+        <figure class="post-hero-image post-map-animation">
+          <video controls loop muted playsinline preload="none" width="1080" height="1080"
+            poster="/assets/images/western-reservoir-network.jpg" aria-label="ArcGIS map of 400 reservoirs with 256 inferred downstream links and links from 488 snow stations. A highlighted chain connects 12 reservoirs from Jackson Lake to Lake Celilo. Straight links do not follow river paths." aria-describedby="map-caption">
+            <source src="/assets/video/western-reservoir-network.mp4" type="video/mp4">
+            <p><a href="/assets/images/western-reservoir-network.jpg">View the still map</a>.</p>
+          </video>
+          <figcaption id="map-caption">The animation highlights the longest chain. The links show connections within the dataset, rather than river paths.
+            <a href="/assets/images/western-reservoir-network.jpg">Open the full-size still</a>.
+            <a href="/assets/video/western-reservoir-network.gif" download>Download the GIF</a>.
+          </figcaption>
+        </figure>
+
+        <div class="post-content">
+          <p>The U.S. Geological Survey’s Network-Linked Data Index traces land that drains to each reservoir. I used those traces to infer connections among the reservoirs in the dataset.</p>
+          <p>For each reservoir, I selected the smallest downstream basin whose trace includes it. This identifies the next represented reservoir downstream. Reservoirs outside the dataset can sit between linked points.</p>
+          <p>SNOTEL is a mountain monitoring network run by the USDA Natural Resources Conservation Service. Each snow station links to the smallest traced reservoir basin that contains it.</p>
+          <p>The map has 256 reservoir links across 400 traced reservoirs. It has 44 connected groups with two or more reservoirs. It also links 488 snow stations.</p>
+          <p>I added the inferred links to the dashboard’s ArcGIS map for this figure. The animation highlights a chain of 12 reservoirs. It starts at Jackson Lake and ends at Lake Celilo on the Columbia River. The straight links do not follow river paths or show managed water transfers.</p>
+          <p>The Western Water Dashboard lists reservoirs upstream of a selected reservoir. It also links to a view of upstream snow stations. The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript.</p>
+          <h2>The longest chain</h2>
+          <ol class="reservoir-chain">
+            <li>Jackson Lake</li>
+            <li>Palisades Reservoir</li>
+            <li>American Falls Reservoir</li>
+            <li>Lake Walcott</li>
+            <li>Hells Canyon Reservoir</li>
+            <li>Lower Granite Lake</li>
+            <li>Lake Bryan</li>
+            <li>Lake Herbert G. West</li>
+            <li>Lake Sacajawea</li>
+            <li>Lake Wallula</li>
+            <li>Lake Umatilla</li>
+            <li>Lake Celilo</li>
+          </ol>
+          <h2>Sources and map services</h2>
+          <p>USGS Network-Linked Data Index traces and USDA Natural Resources Conservation Service SNOTEL stations. <a href="https://github.com/buschbrian/western-water-dashboard/blob/6c90fbecf7c73e10dd1479fe98dfa19898c3d36f/upstream_index.json">Read the source data</a>.</p>
+          <p>Esri provides the Oceans basemap and the ArcGIS Maps SDK for JavaScript. The map retains the basemap’s provider attribution.</p>
+          <p><a href="https://buschbrian.github.io/western-water-dashboard/reservoir.html?name=Lake%20Celilo">Open Lake Celilo’s upstream view</a>.</p>
+          <p class="source-note">The figures use fixed data snapshots. <a href="/assets/data/map-challenge-2026.json">Download the figure data</a>. <a href="/docs/map-challenge-2026.md">Read the methods and capture notes</a>.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/western-reservoir-network/">Day 2: Lines</a>
+            <a href="/notes/four-corners-october-precipitation/">Bonus: Precipitation</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
