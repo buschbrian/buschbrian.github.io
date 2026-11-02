@@ -25,6 +25,7 @@ const ORDER = [
   "utah-reservoir-dashboard",
   "western-reservoir-storage",
   "two-lakes-two-river-systems",
+  "water-in-polygons",
   "four-corners-october-precipitation",
   "utah-dark-sky-points",
   "utah-scenic-byways",

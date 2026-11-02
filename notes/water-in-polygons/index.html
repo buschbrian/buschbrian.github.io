@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Snow, precipitation, soil moisture and drought shown as western drainage areas, captured from the Western Water Dashboard.">
+    <meta name="theme-color" content="#ffffff">
+    <title>Water in Polygons | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/water-in-polygons/">
+    <meta property="og:title" content="Water in Polygons | Brian Busch, GISP">
+    <meta property="og:description" content="Snow, precipitation, soil moisture and drought shown as western drainage areas, captured from the Western Water Dashboard.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/water-in-polygons.jpg">
+    <meta property="og:image:alt" content="Drought polygons across the western United States for October 27, 2026. Twenty-one of 75 drainage basins contain extreme or exceptional drought. Nineteen basins have less land at severe drought or worse than one week earlier.">
+    <meta property="og:image:width" content="2160">
+    <meta property="og:image:height" content="2160">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-03T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/water-in-polygons/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Water in Polygons",
+  "description": "Snow, precipitation, soil moisture and drought shown as western drainage areas, captured from the Western Water Dashboard.",
+  "image": "https://buschbrian.github.io/assets/images/water-in-polygons.jpg",
+  "datePublished": "2026-11-03",
+  "dateModified": "2026-11-03",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/water-in-polygons/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 3: Polygons</p>
+          <h1>Water in Polygons</h1>
+          <p class="post-deck">The same western landscape, read through snow, precipitation, soil moisture and drought.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 3: Polygons</strong></div>
+            <div><span>Subject</span><strong>Western drainage areas</strong></div>
+            <div><span>Made with</span><strong>Scripted browser captures, Python, FFmpeg</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-03">November 3, 2026</time></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image post-map-animation">
+          <video controls loop muted playsinline preload="none" width="1080" height="1080" poster="/assets/images/water-in-polygons.jpg" aria-label="Five sections: nine dated snow maps from January to June 2026; one-, three- and seven-day precipitation; seven-day soil-moisture change; drought classes; and weekly drought change." aria-describedby="map-caption">
+            <source src="/assets/video/water-in-polygons.mp4" type="video/mp4">
+            <p><a href="/assets/images/water-in-polygons.jpg">View the drought still</a>.</p>
+          </video>
+          <figcaption id="map-caption">Poster frames from the published Western Water Dashboard. Each view keeps its own date, scale and missing values. <a href="/assets/video/water-in-polygons.mp4" download>Download the page video</a>. <a href="/assets/images/water-in-polygons.jpg">Open the drought still</a>.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>Polygons are the units of comparison</h2>
+          <p>A drainage area is land that drains toward a common outlet. These maps use six-digit hydrologic units, called HUC-6 basins. Their boundaries come from the U.S. Geological Survey Watershed Boundary Dataset.</p>
+          <p>The colors answer a different question in each scene. Snow compares mountain sites with their normal snow water. Precipitation shows recent gauge totals. Soil moisture shows a weekly change at sensors. Drought shows the U.S. Drought Monitor’s assessment of land conditions.</p>
+          <p>The observations cover different dates and station sets. They do not form a water budget or trace where one storm’s water went.</p>
+          <p><a href="https://buschbrian.github.io/western-water-dashboard/">Explore the Western Water Dashboard</a>.</p>
+          <h2>A snow season in nine observations</h2>
+          <p>The first scene steps from January 1 to June 17, 2026. Every map shows an observed day from the completed 2025–26 season. The color compares summed snow water at reporting sites with summed normal snow water at those sites.</p>
+          <p>Normal is the median for the same date in 1991–2020. Each basin needs enough reporting sites for a fair value. A hatched basin has too little normal snow to compare. Gray means no value.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/water-in-polygons-snow-480.webp 480w, /assets/images/r/water-in-polygons-snow-960.webp 960w, /assets/images/r/water-in-polygons-snow-1440.webp 1440w, /assets/images/r/water-in-polygons-snow-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/water-in-polygons-snow.jpg" alt="Snow water at mountain sites by drainage basin on March 13, 2026. Forty-eight of 49 basins have a comparable value, colored as a share of the normal snow water for the date." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>March 13, 2026. The map summarizes mountain measurement sites within each basin. <a href="/assets/images/water-in-polygons-snow.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <section class="storage-table-wrap" aria-label="Snow map observations" tabindex="0">
+            <table><caption>Of 49 reporting-network basins, those with a comparable snow value and those below the normal-snow floor.</caption>
+              <thead><tr><th scope="col">Observed date</th><th scope="col">Comparable</th><th scope="col">Too little normal snow</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">2026-01-01</th><td>48</td><td>0</td></tr>
+                <tr><th scope="row">2026-02-01</th><td>48</td><td>0</td></tr>
+                <tr><th scope="row">2026-03-01</th><td>48</td><td>0</td></tr>
+                <tr><th scope="row">2026-03-13</th><td>48</td><td>0</td></tr>
+                <tr><th scope="row">2026-04-01</th><td>46</td><td>2</td></tr>
+                <tr><th scope="row">2026-04-15</th><td>46</td><td>2</td></tr>
+                <tr><th scope="row">2026-05-01</th><td>43</td><td>5</td></tr>
+                <tr><th scope="row">2026-06-01</th><td>23</td><td>25</td></tr>
+                <tr><th scope="row">2026-06-17</th><td>10</td><td>38</td></tr>
+              </tbody>
+            </table>
+          </section>
+          <p>One basin has no usable value on each displayed day. By June 17, another 38 have too little normal snow to compare. Hatching cannot be read as zero snow.</p>
+          <h2>Precipitation adds up over days</h2>
+          <p>The second scene changes the window from one day to three days to seven days. All three windows end on November 1, 2026. The gauges measure rain and the water equivalent of caught snow.</p>
+          <p>A basin takes its color from the mean at stations with valid readings at both ends. A falling gauge total is excluded. These mountain stations do not measure every part of the land.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/water-in-polygons-rain-480.webp 480w, /assets/images/r/water-in-polygons-rain-960.webp 960w, /assets/images/r/water-in-polygons-rain-1440.webp 1440w, /assets/images/r/water-in-polygons-rain-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/water-in-polygons-rain.jpg" alt="Seven-day precipitation ending November 1, 2026, by western drainage basin. The matched-station mean is 1.6 inches across 623 stations." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>Seven-day precipitation. Brown is a smaller gauge total; blue is a larger total. The key is in inches. <a href="/assets/images/water-in-polygons-rain.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <table><caption>Mean precipitation at stations with readings at both ends of each window, ending November 1, 2026.</caption>
+            <thead><tr><th scope="col">Window</th><th scope="col">Mean</th><th scope="col">Stations</th></tr></thead><tbody>
+                <tr><th scope="row">1 day</th><td>0.7 in</td><td>620</td></tr>
+                <tr><th scope="row">3 days</th><td>1.1 in</td><td>621</td></tr>
+                <tr><th scope="row">7 days</th><td>1.6 in</td><td>623</td></tr>
+            </tbody>
+          </table>
+          <p>The station set changes with the window. These are three matched samples, rather than one fixed group of stations.</p>
+          <h2>Soil moisture changes over a week</h2>
+          <p>The third scene shows seven-day change in soil water, ending November 1, 2026. Thirty-four of 49 basins have a usable change. Three hundred stations contribute.</p>
+          <p>A station needs sensors at three depths: 2 inches or 4 inches, 8 inches, and 20 inches. The dashboard averages the three depths. Frozen readings are excluded. Basin fills show the mean change at reporting stations.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/water-in-polygons-soil-480.webp 480w, /assets/images/r/water-in-polygons-soil-960.webp 960w, /assets/images/r/water-in-polygons-soil-1440.webp 1440w, /assets/images/r/water-in-polygons-soil-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/water-in-polygons-soil.jpg" alt="Seven-day soil-moisture change ending November 1, 2026. Thirty-four of 49 basins have a usable value from 300 stations. Brown marks drier soil, blue marks wetter soil, and gray marks no usable change." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>The units are percentage points of soil water by volume. Gray areas stay missing. <a href="/assets/images/water-in-polygons-soil.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <h2>Drought has a shape</h2>
+          <p>The fourth scene shows the U.S. Drought Monitor map for October 27, 2026. Twenty-one of 75 basins contain extreme or exceptional drought. Ten basins have partial U.S. coverage.</p>
+          <p>The drought polygons cross basin boundaries. They describe an expert assessment that combines several kinds of evidence. The basin outlines identify the units used for the dashboard’s figures.</p>
+          <figure class="post-chart">
+            <section class="post-chart-scroll" aria-label="Drought class counts" tabindex="0">
+              <svg class="post-chart-svg" viewBox="0 0 560 265" role="img" aria-labelledby="drought-count-title drought-count-desc" xmlns="http://www.w3.org/2000/svg">
+                <title id="drought-count-title">Seventy-five basins, counted by their worst drought class</title>
+                <desc id="drought-count-desc">October 27, 2026. No drought: 3 basins. D0: 6. D1: 20. D2: 25. D3: 17. D4: 4. These counts describe basins, not shares of land.</desc>
+                <line x1="50" y1="212.0" x2="510" y2="212.0" stroke="#e3e6eb"/><text x="39" y="217.0" text-anchor="end" fill="#5d6265" font-size="14">0</text>
+                <line x1="50" y1="152.0" x2="510" y2="152.0" stroke="#e3e6eb"/><text x="39" y="157.0" text-anchor="end" fill="#5d6265" font-size="14">10</text>
+                <line x1="50" y1="92.0" x2="510" y2="92.0" stroke="#e3e6eb"/><text x="39" y="97.0" text-anchor="end" fill="#5d6265" font-size="14">20</text>
+                <line x1="50" y1="32.0" x2="510" y2="32.0" stroke="#e3e6eb"/><text x="39" y="37.0" text-anchor="end" fill="#5d6265" font-size="14">30</text>
+                <rect x="62" y="194.0" width="44" height="18.0" fill="#f4f2ec" stroke="#8a949c"><title>None: 3 basins</title></rect>
+                <text x="84" y="185.0" text-anchor="middle" fill="#252b52" font-size="16">3</text>
+                <text x="84" y="237" text-anchor="middle" fill="#5d6265" font-size="16">None</text>
+                <rect x="140" y="176.0" width="44" height="36.0" fill="#ffff00" stroke="#8a949c"><title>D0: 6 basins</title></rect>
+                <text x="162" y="167.0" text-anchor="middle" fill="#252b52" font-size="16">6</text>
+                <text x="162" y="237" text-anchor="middle" fill="#5d6265" font-size="16">D0</text>
+                <rect x="218" y="92.0" width="44" height="120.0" fill="#ffcc99" stroke="#8a949c"><title>D1: 20 basins</title></rect>
+                <text x="240" y="83.0" text-anchor="middle" fill="#252b52" font-size="16">20</text>
+                <text x="240" y="237" text-anchor="middle" fill="#5d6265" font-size="16">D1</text>
+                <rect x="296" y="62.0" width="44" height="150.0" fill="#ffaa00" stroke="#8a949c"><title>D2: 25 basins</title></rect>
+                <text x="318" y="53.0" text-anchor="middle" fill="#252b52" font-size="16">25</text>
+                <text x="318" y="237" text-anchor="middle" fill="#5d6265" font-size="16">D2</text>
+                <rect x="374" y="110.0" width="44" height="102.0" fill="#ff0000" stroke="#8a949c"><title>D3: 17 basins</title></rect>
+                <text x="396" y="101.0" text-anchor="middle" fill="#252b52" font-size="16">17</text>
+                <text x="396" y="237" text-anchor="middle" fill="#5d6265" font-size="16">D3</text>
+                <rect x="452" y="188.0" width="44" height="24.0" fill="#730000" stroke="#8a949c"><title>D4: 4 basins</title></rect>
+                <text x="474" y="179.0" text-anchor="middle" fill="#252b52" font-size="16">4</text>
+                <text x="474" y="237" text-anchor="middle" fill="#5d6265" font-size="16">D4</text>
+              </svg>
+            </section>
+            <figcaption>Each basin appears once, at the most severe class present. Basin sizes differ, so these bars do not show land-area shares.</figcaption>
+          </figure>
+          <table><caption>Worst class present in each basin, October 27, 2026.</caption><thead><tr><th scope="col">Class</th><th scope="col">Basins</th></tr></thead><tbody>
+                <tr><th scope="row">None</th><td>3</td></tr>
+                <tr><th scope="row">D0</th><td>6</td></tr>
+                <tr><th scope="row">D1</th><td>20</td></tr>
+                <tr><th scope="row">D2</th><td>25</td></tr>
+                <tr><th scope="row">D3</th><td>17</td></tr>
+                <tr><th scope="row">D4</th><td>4</td></tr>
+          </tbody></table>
+          <h2>What changed in one week</h2>
+          <p>The last map compares October 20 with October 27. Nineteen basins have less measured land at severe drought or worse, called D2 or worse. None have more. The other 56 did not change.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/water-in-polygons-change-480.webp 480w, /assets/images/r/water-in-polygons-change-960.webp 960w, /assets/images/r/water-in-polygons-change-1440.webp 1440w, /assets/images/r/water-in-polygons-change-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/water-in-polygons-change.jpg" alt="Weekly change in the share of each basin’s measured land at severe drought or worse, October 20 to 27, 2026. Nineteen basins improved, none worsened, and 56 did not change." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>Green marks a decrease in land at D2 or worse. Pink marks an increase. The scale uses percentage points of measured land. <a href="/assets/images/water-in-polygons-change.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <h2>Symbol guide</h2>
+          <ul>
+            <li>Polygon outlines mark HUC-6 drainage basins.</li>
+            <li>Snow and precipitation use the dashboard’s brown-to-blue classes. Their units and thresholds differ.</li>
+            <li>Soil moisture uses brown for drier, a pale neutral for steady, and blue for wetter.</li>
+            <li>Drought classes use the monitor’s yellow-to-maroon scale. D0 means abnormally dry; D1 through D4 are increasing drought severity.</li>
+            <li>Weekly drought change uses green for less land at D2 or worse and pink for more.</li>
+            <li>Gray and hatching retain the missing-value rules stated in each key.</li>
+          </ul>
+          <h2>How the video is made</h2>
+          <p>Chrome DevTools MCP controls the published dashboard. A temporary poster layout wraps its ArcGIS maps during capture. The script moves the snow date slider and the existing precipitation and drought controls.</p>
+          <p>Python and the shared motion kit assemble the captures. FFmpeg encodes a square video at 60 frames per second and a vertical Reel at 30. This page uses a square 30-frame-per-second cut without the end card.</p>
+          <p>The snow scene shows nine selected observations. Values switch with the observed map. Only the progress indicator and transitions ease. No numeric value is interpolated, and missing observations remain missing.</p>
+          <p>The video starts when the reader selects Play. The video has no audio. The tables, stills and captions describe its observations.</p>
+          <h2>Data and credit</h2>
+          <p>The USDA Natural Resources Conservation Service provides the snow, precipitation and soil measurements. The National Drought Mitigation Center, USDA and NOAA produce the U.S. Drought Monitor. USGS provides the Watershed Boundary Dataset. Esri provides the map SDK and basemap services; provider attribution remains in each capture.</p>
+          <p>Captures were checked on November 2, 2026. The snow view is the completed 2025–26 season. Precipitation and soil change end on November 1. The drought map is dated October 27.</p>
+          <ul>
+            <li><a href="https://buschbrian.github.io/western-water-dashboard/snow.html?season=2025-26&amp;state=all">Open the completed snow season</a>.</li>
+            <li><a href="https://buschbrian.github.io/western-water-dashboard/precipitation.html?state=all">Open precipitation</a>.</li>
+            <li><a href="https://buschbrian.github.io/western-water-dashboard/precipitation.html?state=all&amp;layer=soil">Open soil-moisture change</a>.</li>
+            <li><a href="https://buschbrian.github.io/western-water-dashboard/drought.html?state=all">Open drought and its weekly comparison</a>.</li>
+          </ul>
+          <p class="source-note"><a href="/assets/data/day-3-water-polygons.json">Read the verified figure values and source views</a>. <a href="/docs/map-challenge-2026.md">Read the challenge methods</a>.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/water-in-polygons/" aria-current="page">Day 3: Polygons</a>
+            <a href="/notes/four-corners-october-precipitation/">Bonus: Precipitation</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
