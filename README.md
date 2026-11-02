@@ -1,6 +1,6 @@
 # Brian Busch Portfolio
 
-A static GitHub Pages site for Brian Busch's cartography and GIS work. The site uses plain HTML, CSS, and JavaScript. It has no build step. It loads no external resources. The site serves its own copy of the Inter font from `assets/fonts/`.
+A static GitHub Pages site for Brian Busch's geospatial applications and GIS engineering work. The site uses plain HTML, CSS, and JavaScript. It has no build step. It loads no external resources. The site serves its own copy of the Inter font from `assets/fonts/`.
 
 The live site is at <https://buschbrian.github.io/>.
 
@@ -28,6 +28,9 @@ Each page is an `index.html` file in its own folder.
 - Western Water Dashboard system atlas: `projects/western-water-dashboard-atlas/`
 - Styles: `assets/css/site.css`
 - Behavior: `assets/js/site.js`
+- Map animations: `assets/video/`
+- Fixed figure data: `assets/data/map-challenge-2026.json`
+- 2026 map methods: `docs/map-challenge-2026.md`
 
 Responsive WebP images are in `assets/images/r/`. The original JPG files in `assets/images/` are the fallback images.
 

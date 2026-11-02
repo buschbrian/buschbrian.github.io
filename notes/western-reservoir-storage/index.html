@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Monthly storage at 405 western reservoirs, replayed over the Western Water Dashboard’s ArcGIS basemap.">
+    <meta name="theme-color" content="#ffffff">
+    <title>Western Reservoir Storage | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/western-reservoir-storage/">
+    <meta property="og:title" content="Western Reservoir Storage | Brian Busch, GISP">
+    <meta property="og:description" content="Monthly storage at 405 western reservoirs, replayed over the Western Water Dashboard’s ArcGIS basemap.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/western-reservoir-storage.jpg">
+    <meta property="og:image:alt" content="September 2026 storage at 405 western reservoirs over the dashboard’s ArcGIS basemap. Rings show capacity. Fills show monthly mean storage. Nine labels identify large reservoirs and large storage swings. The trend panel compares the three largest swings. Combined storage for 388 complete records is 48.4%.">
+    <meta property="og:image:width" content="2160">
+    <meta property="og:image:height" content="2160">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-01T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/western-reservoir-storage/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Western Reservoir Storage",
+  "description": "Monthly storage at 405 western reservoirs, replayed over the Western Water Dashboard’s ArcGIS basemap.",
+  "image": "https://buschbrian.github.io/assets/images/western-reservoir-storage.jpg",
+  "datePublished": "2026-11-01",
+  "dateModified": "2026-11-02",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/western-reservoir-storage/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 1: Points</p>
+          <h1>Western Reservoir Storage</h1>
+          <p class="post-deck">Monthly reservoir storage, replayed over the Western Water Dashboard’s ArcGIS basemap.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>30 Day Map Challenge 2026, Day 1: Points</strong></div>
+            <div><span>Subject</span><strong>Reservoir storage</strong></div>
+            <div><span>Tools</span><strong>Python, Matplotlib, FFmpeg, Esri Oceans basemap</strong></div>
+            <div><span>Published</span><strong><time datetime="2026-11-01">November 1, 2026</time></strong></div>
+          </div>
+        </header>
+
+        <figure class="post-hero-image post-map-animation">
+          <video controls loop muted playsinline preload="none" width="1080" height="1080"
+            poster="/assets/images/western-reservoir-storage.jpg" aria-label="Western reservoir storage from November 2025 through September 2026, with reservoir labels and trend charts." aria-describedby="map-caption">
+            <source src="/assets/video/western-reservoir-storage.mp4" type="video/mp4">
+            <p><a href="/assets/images/western-reservoir-storage.jpg">View the still map</a>.</p>
+          </video>
+          <figcaption id="map-caption">September 2026 monthly means. Labels identify large reservoirs and large storage swings. Gray trend lines show the full period. Teal lines follow the displayed month. The combined figure uses the same 388 reservoirs throughout the animation.
+            <a href="/assets/images/western-reservoir-storage.jpg">Open the full-size still</a>.
+            <a href="/assets/video/western-reservoir-storage.mp4" download>Download the video</a>.
+          </figcaption>
+        </figure>
+
+        <div class="post-content">
+          <p>This map shows 405 reservoirs in 11 western states from November 2025 through September 2026. Each point is one reservoir. Ring size shows capacity. The inner fill shows the share stored that month.</p>
+          <p>The basemap is Esri’s Oceans basemap, captured once from the Western Water Dashboard’s ArcGIS map. A Python script draws the reservoirs, labels and trend charts over it with Matplotlib. The symbols use the dashboard’s capacity rings and storage colors. FFmpeg encodes the animation at 60 frames per second.</p>
+          <p>I calculated combined storage for the 388 reservoirs with data for every month. I divided their total monthly mean storage by their total capacity. Combined storage rose from 52% in November to 60% in May. It fell to 48% in September. These are monthly averages.</p>
+          <p>Lake Mead averaged about 24% full in September. Lake Powell averaged about 20%. I stopped at September because only 292 reservoirs had reported October values.</p>
+          <p>The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript. Its reservoir data comes from nine providers. The animation uses the October 31 data snapshot to preserve the historical records.</p>
+          <h2>Where storage changed most</h2>
+          <p>I measure each storage swing from its lowest monthly mean to its highest. This measures a volume range, not total water movement. The comparison covers November 2025 through September 2026. An acre-foot covers one acre with one foot of water.</p>
+          <p>Lake Koocanusa has the largest swing: 2.67 million acre-feet. Franklin D. Roosevelt Lake follows at 2.49 million. Lake Mead follows at 2.00 million. These are the largest ranges among the 388 complete records.</p>
+          <p>The map labels the six largest reservoirs by capacity and the eight largest storage swings. Those groups overlap, giving nine labels. The trend panel follows the three largest swings. Each reservoir trend uses the same 0–100% scale.</p>
+          <figure class="storage-swings" aria-labelledby="swings-caption">
+            <figcaption id="swings-caption">Eight largest storage swings, ranked by volume. Bars span the lowest and highest monthly means. Dots show September.</figcaption>
+            <div class="swings-axis" aria-hidden="true"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span></div>
+            <p class="swings-unit">Volume stored, in millions of acre-feet</p>
+            <ol>
+              <li class="swing-1">
+                <div class="swing-heading"><span>Lake Koocanusa</span><span>2.67M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 2.48 to 5.16 million acre-feet. September: 5.08 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-2">
+                <div class="swing-heading"><span>Franklin D. Roosevelt Lake</span><span>2.49M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 6.42 to 8.91 million acre-feet. September: 8.45 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-3">
+                <div class="swing-heading"><span>Lake Mead</span><span>2.00M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 6.87 to 8.87 million acre-feet. September: 6.87 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-4">
+                <div class="swing-heading"><span>Lake Powell</span><span>1.61M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 5.12 to 6.73 million acre-feet. September: 5.12 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-5">
+                <div class="swing-heading"><span>Shasta Lake</span><span>1.59M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 2.53 to 4.12 million acre-feet. September: 2.53 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-6">
+                <div class="swing-heading"><span>Lake Oroville</span><span>1.58M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 1.79 to 3.36 million acre-feet. September: 1.80 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-7">
+                <div class="swing-heading"><span>Dworshak Reservoir</span><span>1.30M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 2.16 to 3.47 million acre-feet. September: 2.23 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-8">
+                <div class="swing-heading"><span>American Falls Reservoir</span><span>1.28M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 0.07 to 1.35 million acre-feet. September: 0.07 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+            </ol>
+          </figure>
+          <details class="storage-data">
+            <summary>View the storage swing values and months</summary>
+            <section class="storage-table-wrap" aria-label="Storage swing values" tabindex="0">
+              <table>
+                <caption>Monthly mean volumes and ranges, in millions of acre-feet.</caption>
+                <thead><tr><th scope="col">Reservoir</th><th scope="col">Lowest</th><th scope="col">Highest</th><th scope="col">Range</th></tr></thead>
+                <tbody>
+                <tr><th scope="row">Lake Koocanusa</th><td>2.48<br>Apr 2026</td><td>5.16<br>Aug 2026</td><td>2.67</td></tr>
+                <tr><th scope="row">Franklin D. Roosevelt Lake</th><td>6.42<br>Apr 2026</td><td>8.91<br>Jul 2026</td><td>2.49</td></tr>
+                <tr><th scope="row">Lake Mead</th><td>6.87<br>Sep 2026</td><td>8.87<br>Feb 2026</td><td>2.00</td></tr>
+                <tr><th scope="row">Lake Powell</th><td>5.12<br>Sep 2026</td><td>6.73<br>Nov 2025</td><td>1.61</td></tr>
+                <tr><th scope="row">Shasta Lake</th><td>2.53<br>Sep 2026</td><td>4.12<br>Apr 2026</td><td>1.59</td></tr>
+                <tr><th scope="row">Lake Oroville</th><td>1.79<br>Nov 2025</td><td>3.36<br>May 2026</td><td>1.58</td></tr>
+                <tr><th scope="row">Dworshak Reservoir</th><td>2.16<br>Nov 2025</td><td>3.47<br>Jun 2026</td><td>1.30</td></tr>
+                <tr><th scope="row">American Falls Reservoir</th><td>0.07<br>Sep 2026</td><td>1.35<br>Apr 2026</td><td>1.28</td></tr>
+                </tbody>
+              </table>
+            </section>
+          </details>
+          <h2>Monthly storage in the fixed sample</h2>
+          <figure class="post-chart">
+            <section class="post-chart-scroll" aria-label="Combined storage chart" tabindex="0">
+              <svg class="post-chart-svg" viewBox="0 0 560 300" role="img" aria-labelledby="chart-storage-t chart-storage-d" xmlns="http://www.w3.org/2000/svg">
+              <title id="chart-storage-t">Combined storage at 388 western reservoirs, November 2025 to September 2026</title><desc id="chart-storage-d">Monthly mean storage as a share of combined capacity. It rose from 51.6% in November to a peak of 60.1% in May, then fell to 48.4% in September.</desc>
+              <line x1="56" x2="440" y1="260.0" y2="260.0" stroke="#e3e6eb" stroke-width="1"/>
+              <text x="48" y="265.0" text-anchor="end" font-size="14" fill="#5b6472">40%</text>
+              <line x1="56" x2="440" y1="212.0" y2="212.0" stroke="#e3e6eb" stroke-width="1"/>
+              <text x="48" y="217.0" text-anchor="end" font-size="14" fill="#5b6472">45%</text>
+              <line x1="56" x2="440" y1="164.0" y2="164.0" stroke="#e3e6eb" stroke-width="1"/>
+              <text x="48" y="169.0" text-anchor="end" font-size="14" fill="#5b6472">50%</text>
+              <line x1="56" x2="440" y1="116.0" y2="116.0" stroke="#e3e6eb" stroke-width="1"/>
+              <text x="48" y="121.0" text-anchor="end" font-size="14" fill="#5b6472">55%</text>
+              <line x1="56" x2="440" y1="68.0" y2="68.0" stroke="#e3e6eb" stroke-width="1"/>
+              <text x="48" y="73.0" text-anchor="end" font-size="14" fill="#5b6472">60%</text>
+              <line x1="56" x2="440" y1="20.0" y2="20.0" stroke="#e3e6eb" stroke-width="1"/>
+              <text x="48" y="25.0" text-anchor="end" font-size="14" fill="#5b6472">65%</text>
+              <text x="56.0" y="284" text-anchor="middle" font-size="14" fill="#5b6472">Nov 2025</text>
+              <text x="171.2" y="284" text-anchor="middle" font-size="14" fill="#5b6472">Feb</text>
+              <text x="286.4" y="284" text-anchor="middle" font-size="14" fill="#5b6472">May</text>
+              <text x="440.0" y="284" text-anchor="middle" font-size="14" fill="#5b6472">Sep 2026</text>
+              <line x1="56" x2="440" y1="260" y2="260" stroke="#5b6472" stroke-width="1"/>
+              <path d="M56.0,148.4 L94.4,128.7 L132.8,109.8 L171.2,109.7 L209.6,94.0 L248.0,80.4 L286.4,67.1 L324.8,70.7 L363.2,105.8 L401.6,150.2 L440.0,179.0" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="56.0" cy="148.4" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="56.0" cy="148.4" r="10" fill="transparent"><title>November 2025: 51.6%</title></circle>
+              <circle cx="94.4" cy="128.7" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="94.4" cy="128.7" r="10" fill="transparent"><title>December 2025: 53.7%</title></circle>
+              <circle cx="132.8" cy="109.8" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="132.8" cy="109.8" r="10" fill="transparent"><title>January 2026: 55.6%</title></circle>
+              <circle cx="171.2" cy="109.7" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="171.2" cy="109.7" r="10" fill="transparent"><title>February 2026: 55.7%</title></circle>
+              <circle cx="209.6" cy="94.0" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="209.6" cy="94.0" r="10" fill="transparent"><title>March 2026: 57.3%</title></circle>
+              <circle cx="248.0" cy="80.4" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="248.0" cy="80.4" r="10" fill="transparent"><title>April 2026: 58.7%</title></circle>
+              <circle cx="286.4" cy="67.1" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="286.4" cy="67.1" r="10" fill="transparent"><title>May 2026: 60.1%</title></circle>
+              <circle cx="324.8" cy="70.7" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="324.8" cy="70.7" r="10" fill="transparent"><title>June 2026: 59.7%</title></circle>
+              <circle cx="363.2" cy="105.8" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="363.2" cy="105.8" r="10" fill="transparent"><title>July 2026: 56.1%</title></circle>
+              <circle cx="401.6" cy="150.2" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="401.6" cy="150.2" r="10" fill="transparent"><title>August 2026: 51.4%</title></circle>
+              <circle cx="440.0" cy="179.0" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="440.0" cy="179.0" r="10" fill="transparent"><title>September 2026: 48.4%</title></circle>
+              <text x="62.0" y="170.4" text-anchor="start" font-size="15" font-weight="500" fill="#22262e">51.6%</text>
+              <text x="286.4" y="55.1" text-anchor="middle" font-size="15" font-weight="500" fill="#22262e">60.1% in May</text>
+              <text x="450.0" y="184.0" text-anchor="start" font-size="15" font-weight="500" fill="#22262e">48.4% in Sep</text>
+              </svg>
+            </section>
+            <figcaption>Combined storage for the same 388 reservoirs in every month. Hover over a point to see its value. The table below lists every month.</figcaption>
+          </figure>
+          <table>
+            <caption>Monthly mean storage across the same 388 reservoirs, as a share of their combined capacity.</caption>
+            <thead><tr><th scope="col">Month</th><th scope="col">Combined storage</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">November 2025</th><td>51.6%</td></tr>
+              <tr><th scope="row">December 2025</th><td>53.7%</td></tr>
+              <tr><th scope="row">January 2026</th><td>55.6%</td></tr>
+              <tr><th scope="row">February 2026</th><td>55.7%</td></tr>
+              <tr><th scope="row">March 2026</th><td>57.3%</td></tr>
+              <tr><th scope="row">April 2026</th><td>58.7%</td></tr>
+              <tr><th scope="row">May 2026</th><td>60.1%</td></tr>
+              <tr><th scope="row">June 2026</th><td>59.7%</td></tr>
+              <tr><th scope="row">July 2026</th><td>56.1%</td></tr>
+              <tr><th scope="row">August 2026</th><td>51.4%</td></tr>
+              <tr><th scope="row">September 2026</th><td>48.4%</td></tr>
+            </tbody>
+          </table>
+          <h2>How many reservoirs were nearly full</h2>
+          <p>The combined figure hides how many reservoirs changed class. In May, 178 of the 388 reservoirs were at least 80% full. By September, 83 were. Over the same months, the number under 20% full rose from 26 to 92.</p>
+          <p>Together, the 388 reservoirs held 97.1 million acre-feet in May. They held 78.3 million acre-feet in September. That is a drop of 18.8 million acre-feet in four months.</p>
+          <table>
+            <caption>Number of the 388 complete reservoirs in each fill class, by monthly mean storage.</caption>
+            <thead><tr><th scope="col">Share stored</th><th scope="col">May 2026</th><th scope="col">September 2026</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">80% or more</th><td>178</td><td>83</td></tr>
+              <tr><th scope="row">60–80%</th><td>102</td><td>63</td></tr>
+              <tr><th scope="row">40–60%</th><td>55</td><td>65</td></tr>
+              <tr><th scope="row">20–40%</th><td>27</td><td>85</td></tr>
+              <tr><th scope="row">Under 20%</th><td>26</td><td>92</td></tr>
+            </tbody>
+          </table>
+          <h2>How to read the symbols</h2>
+          <ul>
+            <li>Each ring is one reservoir. Ring radius grows with the square root of capacity, so ring area follows capacity. Small reservoirs keep a minimum size so they stay visible.</li>
+            <li>The fill rises from the bottom of the ring, like water in a gauge. Its height shows the share of capacity stored that month.</li>
+            <li>The fill color repeats that share in five classes: under 20%, 20–40%, 40–60%, 60–80%, and 80% or more. Very small rings use a solid fill in the class color.</li>
+            <li>Labels show the share stored for the displayed month. Each label keeps the same position for the whole animation.</li>
+            <li>The sidebar shows the combined trend at the top. Below it, three small charts follow the reservoirs with the largest storage swings.</li>
+          </ul>
+          <h2>How the animation is made</h2>
+          <ol>
+            <li>A fixed snapshot of the dashboard’s reservoir data, from October 31, 2026, supplies monthly mean storage for each reservoir.</li>
+            <li>The basemap is one capture of the dashboard’s ArcGIS map, with Esri’s Oceans basemap, its attribution, and its scale bar.</li>
+            <li>A Python script projects each reservoir to Web Mercator, the projection of the basemap, and places it on the capture.</li>
+            <li>Matplotlib draws every frame at 2160 pixels. A label placement step tests candidate positions and avoids overlaps with other labels and rings.</li>
+            <li>FFmpeg encodes the frames as 1080-pixel H.264 video at 60 frames per second.</li>
+          </ol>
+          <p>Storage moves smoothly from one monthly mean to the next. Each change eases in and out, so every month holds briefly before the next one starts. The tables and labels show the observed monthly values, not the values between months.</p>
+          <h2>Data notes</h2>
+          <ul>
+            <li>These are monthly means. A reservoir can be higher or lower than its monthly mean on single days.</li>
+            <li>In 92 reservoir-months, the monthly mean is above the listed capacity. Listed capacities can differ from current operating limits. The map shows these months as full.</li>
+            <li>Green Peter reports −1,020 acre-feet for November 2025. A negative volume is not physically possible, so the reading is a provider or conversion error. The map shows it as under 20%. Its effect on the combined figure is less than 0.001 percentage points.</li>
+            <li>Seventeen reservoirs do not have all 11 monthly values. They stay on the map for the months they report, but the combined figure leaves them out. The 388 complete reservoirs hold 98% of the 405 reservoirs’ total capacity.</li>
+          </ul>
+          <h2>Sources and map services</h2>
+          <p>Reservoir readings from nine public providers, through the Western Water Dashboard. <a href="https://github.com/buschbrian/western-water-dashboard/blob/b5627547b0d7fb4daceffd4b5a7fc8cfe69a32d3/reservoirs.json">Read the source data</a>.</p>
+          <p>Esri provides the Oceans basemap and the ArcGIS Maps SDK for JavaScript. The map retains the basemap’s provider attribution.</p>
+          <p><a href="https://buschbrian.github.io/western-water-dashboard/?state=all">Open the reservoir map</a>.</p>
+          <p class="source-note">The figures use fixed data snapshots. <a href="/assets/data/map-challenge-2026.json">Download the figure data</a>. <a href="/docs/map-challenge-2026.md">Read the methods and capture notes</a>.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/four-corners-october-precipitation/">Bonus: Precipitation</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
