@@ -11,12 +11,36 @@ The dashboard's Atkinson Hyperlegible Next font and dark-theme colors frame the 
 The source map retains its geography, reservoir renderer, and geographic labels.
 The capture hides the application controls and drainage-area outlines to give the map more space.
 
+Each map starts with the projected station bounds, expanded by 16%.
+The SDK fits these bounds to the map frame.
+The taller map frame gives the western station pattern more space.
+Label positions stay fixed throughout each loop.
+Label placement avoids overlapping boxes and penalizes covered stations and leader lines.
+The capture checks station bounds, label text, label overlap, and sidebar height before each frame.
+
 Storage replays historical attributes through the dashboard's native reservoir renderer.
+Storage labels combine the six largest capacities and the eight largest storage swings.
+Capacity ranks use all 405 reservoirs. Swing ranks use the 388 complete records.
+The two groups give nine labels.
+Each swing is the highest monthly mean minus the lowest, measured in acre-feet.
+This is a volume range. It is not cumulative inflow, outflow, or a statistical outlier test.
+The period has 11 months, from November 2025 through September 2026.
+Koocanusa, Franklin D. Roosevelt Lake, and Mead have the largest ranges.
+Their ranges are 2.674558, 2.4871362, and 1.99857133 million acre-feet.
+The figure data includes the ranked values, observation months, and label selection.
+The storage sidebar shows the combined trend and these three reservoir trends.
+Reservoir trends share a 0–100% scale. The combined trend has a labeled 40–65% scale.
+Gray lines show the full period. Teal lines show observations through the displayed month.
+The article's range plot uses a shared 0–10 million acre-foot scale.
+Bars span monthly means. Dots show September storage.
 The network and monthly precipitation layers are overlays made for these figures.
 They are not production dashboard features.
 Network links show inferred surface drainage relationships between the represented reservoirs.
 They do not follow rivers or show managed water transfers.
 The network loop highlights a fixed chain. It does not show water travel time.
+The sidebar lists all 12 reservoirs and marks the current step.
+The precipitation sidebar compares the matched sample with its historical normal.
+Its station list and labels use the five largest October 31 totals, throughout the loop.
 
 ## Data snapshots
 

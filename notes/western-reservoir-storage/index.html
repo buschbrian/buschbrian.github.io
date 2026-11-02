@@ -17,7 +17,7 @@
     <meta property="og:title" content="Western Reservoir Storage | Brian Busch, GISP">
     <meta property="og:description" content="Monthly storage at 405 western reservoirs, rendered with the dashboard’s ArcGIS map and native reservoir symbols.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/western-reservoir-storage.jpg">
-    <meta property="og:image:alt" content="September 2026 storage at 405 western reservoirs on the dashboard’s ArcGIS map. Rings show capacity. Fills show monthly mean storage. Combined storage for 388 reservoirs with complete records is 48.4%.">
+    <meta property="og:image:alt" content="September 2026 storage at 405 western reservoirs on the dashboard’s ArcGIS map. Rings show capacity. Fills show monthly mean storage. Nine labels identify large reservoirs and large storage swings. The trend panel compares the three largest swings. Combined storage for 388 complete records is 48.4%.">
     <meta property="og:image:width" content="2160">
     <meta property="og:image:height" content="2160">
     <meta property="article:author" content="Brian Busch">
@@ -77,11 +77,11 @@
 
         <figure class="post-hero-image post-map-animation">
           <video controls loop muted playsinline preload="none" width="1080" height="1080"
-            poster="/assets/images/western-reservoir-storage.jpg" aria-label="September 2026 storage at 405 western reservoirs on the dashboard’s ArcGIS map. Rings show capacity. Fills show monthly mean storage. Combined storage for 388 reservoirs with complete records is 48.4%." aria-describedby="map-caption">
+            poster="/assets/images/western-reservoir-storage.jpg" aria-label="Western reservoir storage from November 2025 through September 2026, with reservoir labels and trend charts." aria-describedby="map-caption">
             <source src="/assets/video/western-reservoir-storage.mp4" type="video/mp4">
             <p><a href="/assets/images/western-reservoir-storage.jpg">View the still map</a>.</p>
           </video>
-          <figcaption id="map-caption">September 2026 monthly means. The combined figure uses the same 388 reservoirs throughout the animation.
+          <figcaption id="map-caption">September 2026 monthly means. Labels identify large reservoirs and large storage swings. Gray trend lines show the full period. Teal lines follow the displayed month. The combined figure uses the same 388 reservoirs throughout the animation.
             <a href="/assets/images/western-reservoir-storage.jpg">Open the full-size still</a>.
             <a href="/assets/video/western-reservoir-storage.gif" download>Download the GIF</a>.
           </figcaption>
@@ -93,6 +93,92 @@
           <p>I calculated combined storage for the 388 reservoirs with data for every month. I divided their total monthly mean storage by their total capacity. Combined storage rose from 52% in November to 60% in May. It fell to 48% in September. These are monthly averages.</p>
           <p>Lake Mead averaged about 24% full in September. Lake Powell averaged about 20%. I stopped at September because only 292 reservoirs had reported October values.</p>
           <p>The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript. Its reservoir data comes from nine providers. The animation uses the October 31 data snapshot to preserve the historical records.</p>
+          <h2>Where storage changed most</h2>
+          <p>I measure each storage swing from its lowest monthly mean to its highest. This measures a volume range, not total water movement. The comparison covers November 2025 through September 2026. An acre-foot covers one acre with one foot of water.</p>
+          <p>Lake Koocanusa has the largest swing: 2.67 million acre-feet. Franklin D. Roosevelt Lake follows at 2.49 million. Lake Mead follows at 2.00 million. These are the largest ranges among the 388 complete records.</p>
+          <p>The map labels the six largest reservoirs by capacity and the eight largest storage swings. Those groups overlap, giving nine labels. The trend panel follows the three largest swings. Each reservoir trend uses the same 0–100% scale.</p>
+          <figure class="storage-swings" aria-labelledby="swings-caption">
+            <figcaption id="swings-caption">Eight largest storage swings, ranked by volume. Bars span the lowest and highest monthly means. Dots show September.</figcaption>
+            <div class="swings-axis" aria-hidden="true"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span></div>
+            <p class="swings-unit">Volume stored, in millions of acre-feet</p>
+            <ol>
+              <li class="swing-1">
+                <div class="swing-heading"><span>Lake Koocanusa</span><span>2.67M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 2.48 to 5.16 million acre-feet. September: 5.08 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-2">
+                <div class="swing-heading"><span>Franklin D. Roosevelt Lake</span><span>2.49M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 6.42 to 8.91 million acre-feet. September: 8.45 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-3">
+                <div class="swing-heading"><span>Lake Mead</span><span>2.00M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 6.87 to 8.87 million acre-feet. September: 6.87 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-4">
+                <div class="swing-heading"><span>Lake Powell</span><span>1.61M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 5.12 to 6.73 million acre-feet. September: 5.12 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-5">
+                <div class="swing-heading"><span>Shasta Lake</span><span>1.59M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 2.53 to 4.12 million acre-feet. September: 2.53 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-6">
+                <div class="swing-heading"><span>Lake Oroville</span><span>1.58M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 1.79 to 3.36 million acre-feet. September: 1.80 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-7">
+                <div class="swing-heading"><span>Dworshak Reservoir</span><span>1.30M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 2.16 to 3.47 million acre-feet. September: 2.23 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+              <li class="swing-8">
+                <div class="swing-heading"><span>American Falls Reservoir</span><span>1.28M acre-feet</span></div>
+                <div class="swing-track" role="img" aria-label="Monthly means range from 0.07 to 1.35 million acre-feet. September: 0.07 million acre-feet.">
+                  <span class="swing-interval"></span>
+                  <span class="swing-september"></span>
+                </div>
+              </li>
+            </ol>
+          </figure>
+          <details class="storage-data">
+            <summary>View the storage swing values and months</summary>
+            <section class="storage-table-wrap" aria-label="Storage swing values" tabindex="0">
+              <table>
+                <caption>Monthly mean volumes and ranges, in millions of acre-feet.</caption>
+                <thead><tr><th scope="col">Reservoir</th><th scope="col">Lowest</th><th scope="col">Highest</th><th scope="col">Range</th></tr></thead>
+                <tbody>
+                <tr><th scope="row">Lake Koocanusa</th><td>2.48<br>Apr 2026</td><td>5.16<br>Aug 2026</td><td>2.67</td></tr>
+                <tr><th scope="row">Franklin D. Roosevelt Lake</th><td>6.42<br>Apr 2026</td><td>8.91<br>Jul 2026</td><td>2.49</td></tr>
+                <tr><th scope="row">Lake Mead</th><td>6.87<br>Sep 2026</td><td>8.87<br>Feb 2026</td><td>2.00</td></tr>
+                <tr><th scope="row">Lake Powell</th><td>5.12<br>Sep 2026</td><td>6.73<br>Nov 2025</td><td>1.61</td></tr>
+                <tr><th scope="row">Shasta Lake</th><td>2.53<br>Sep 2026</td><td>4.12<br>Apr 2026</td><td>1.59</td></tr>
+                <tr><th scope="row">Lake Oroville</th><td>1.79<br>Nov 2025</td><td>3.36<br>May 2026</td><td>1.58</td></tr>
+                <tr><th scope="row">Dworshak Reservoir</th><td>2.16<br>Nov 2025</td><td>3.47<br>Jun 2026</td><td>1.30</td></tr>
+                <tr><th scope="row">American Falls Reservoir</th><td>0.07<br>Sep 2026</td><td>1.35<br>Apr 2026</td><td>1.28</td></tr>
+                </tbody>
+              </table>
+            </section>
+          </details>
           <h2>Monthly storage in the fixed sample</h2>
           <table>
             <caption>Monthly mean storage across the same 388 reservoirs, as a share of their combined capacity.</caption>

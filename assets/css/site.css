@@ -366,6 +366,32 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
   text-align: right; padding-right: 0; font-variant-numeric: tabular-nums;
 }
 
+.storage-swings { margin: 28px 0; }
+.storage-swings figcaption { color: var(--muted); font-size: 14px; line-height: 1.5; margin-bottom: 20px; }
+.swings-axis { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.post-content .swings-unit { font-size: 12px; color: var(--muted); margin: 2px 0 18px; }
+.storage-swings ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 19px; }
+.post-content .storage-swings li { padding: 0; }
+.post-content .storage-swings li::before { content: none; }
+.swing-heading { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; line-height: 1.4; margin-bottom: 5px; }
+.swing-heading span:last-child { flex: 0 0 auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+.swing-track { position: relative; height: 24px; border-left: 1px solid var(--line-strong); border-right: 1px solid var(--line-strong); background: repeating-linear-gradient(to right, transparent 0, transparent calc(20% - 1px), var(--line) calc(20% - 1px), var(--line) 20%); }
+.swing-interval { left: var(--low); width: var(--range); position: absolute; top: 5px; height: 14px; border: 1px solid var(--cerulean-text); background: #cce7e9; }
+.swing-september { left: var(--september); position: absolute; top: 6px; width: 12px; height: 12px; border: 2px solid var(--white); border-radius: 50%; background: var(--cosmic); transform: translateX(-50%); }
+.swing-1 { --low: 24.83903%; --range: 26.74558%; --september: 50.76953%; }
+.swing-2 { --low: 64.24118%; --range: 24.87136%; --september: 84.53329%; }
+.swing-3 { --low: 68.71529%; --range: 19.98571%; --september: 68.71529%; }
+.swing-4 { --low: 51.18153%; --range: 16.12867%; --september: 51.18153%; }
+.swing-5 { --low: 25.29053%; --range: 15.87069%; --september: 25.29053%; }
+.swing-6 { --low: 17.85464%; --range: 15.76655%; --september: 17.95406%; }
+.swing-7 { --low: 21.64198%; --range: 13.01293%; --september: 22.27735%; }
+.swing-8 { --low: 0.72228%; --range: 12.81678%; --september: 0.72228%; }
+.storage-data { border-block: 1px solid var(--line); padding: 15px 0; }
+.storage-data summary { cursor: pointer; color: var(--cosmic); font-size: 14px; }
+.storage-table-wrap { overflow-x: auto; margin-top: 20px; }
+.storage-data table { min-width: 540px; }
+.storage-data caption, .storage-data thead th { text-transform: none; letter-spacing: normal; }
+
 .source-note {
   margin-top: clamp(32px, 4vw, 44px) !important; padding-top: 20px;
   border-top: 1px solid var(--line); font-size: var(--fs-caption) !important;
