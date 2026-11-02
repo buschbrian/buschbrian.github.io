@@ -531,3 +531,9 @@ body.lightbox-open { overflow: hidden; }
   dd { font-size: var(--fs-subheading); }
   .post-meta-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
 }
+
+/* Inline SVG charts in challenge notes */
+.post-chart { margin: clamp(24px, 4vw, 36px) 0; }
+.post-chart-scroll { overflow-x: auto; }
+.post-chart-svg { display: block; width: 100%; min-width: 480px; height: auto; font-family: inherit; }
+.post-chart figcaption { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.5; }

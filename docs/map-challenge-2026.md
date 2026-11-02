@@ -1,24 +1,24 @@
 # Water maps for the 2026 challenge
 
-These figures use the Western Water Dashboard's ArcGIS map, captured in Chrome on November 2, 2026.
+These figures replay data from the Western Water Dashboard.
+The Day 1 maps use Esri's Oceans basemap, captured once from the dashboard's ArcGIS map on November 2, 2026.
+A Python script draws every symbol, label, and chart over the basemap.
 No generated imagery is used. The public dashboard is unchanged.
 
 ## Rendering
 
-The figures use Esri's ArcGIS Maps SDK for JavaScript and the dashboard's Oceans basemap.
-Every frame keeps the native basemap attribution and the Esri credit.
-The dashboard's Atkinson Hyperlegible Next font and dark-theme colors frame the maps.
-The source map retains its geography, reservoir renderer, and geographic labels.
-The capture hides the application controls and drainage-area outlines to give the map more space.
+Python and Matplotlib draw each frame at 2160 pixels.
+FFmpeg scales the frames to 1080 pixels and encodes them at 60 frames per second.
+Values ease between monthly or daily observations. Labels, tables, and stills show observed values.
+The render scripts are kept outside this repository, with the challenge notes.
 
-Each map starts with the projected station bounds, expanded by 16%.
-The SDK fits these bounds to the map frame.
-The taller map frame gives the western station pattern more space.
-Label positions stay fixed throughout each loop.
-Label placement avoids overlapping boxes and penalizes covered stations and leader lines.
-The capture checks station bounds, label text, label overlap, and sidebar height before each frame.
+Chrome captured each Day 1 basemap once from the live dashboard, at twice its display size.
+Each capture keeps the native attribution, the Esri credit, and the scale bar.
+A Web Mercator transform places each reservoir and station on the captured image.
+The symbols follow the dashboard's capacity rings, storage colors, and precipitation colors.
+Label positions stay fixed throughout each scene.
+Label placement avoids overlapping boxes and penalizes covered points and crossed leader lines.
 
-Storage replays historical attributes through the dashboard's native reservoir renderer.
 Storage labels combine the six largest capacities and the eight largest storage swings.
 Capacity ranks use all 405 reservoirs. Swing ranks use the 388 complete records.
 The two groups give nine labels.
@@ -33,14 +33,20 @@ Reservoir trends share a 0–100% scale. The combined trend has a labeled 40–6
 Gray lines show the full period. Teal lines show observations through the displayed month.
 The article's range plot uses a shared 0–10 million acre-foot scale.
 Bars span monthly means. Dots show September storage.
-The network and monthly precipitation layers are overlays made for these figures.
-They are not production dashboard features.
-Network links show inferred surface drainage relationships between the represented reservoirs.
-They do not follow rivers or show managed water transfers.
-The network loop highlights a fixed chain. It does not show water travel time.
-The sidebar lists all 12 reservoirs and marks the current step.
+
 The precipitation sidebar compares the matched sample with its historical normal.
-Its station list and labels use the five largest October 31 totals, throughout the loop.
+Its station list and labels use the five largest October 31 totals, throughout the scene.
+A ripple marks each day that a station gains half an inch or more.
+
+The Day 2 figure has no basemap.
+Its first scene plots daily surface elevation for Lake Mead and Lake Powell.
+Dashed lines trace each 2026 low back to the last date the lake was that low.
+Its second scene draws the Colorado and Columbia reservoir systems as tree diagrams.
+Circle size shows capacity. The fill shows the share stored that month.
+Links show inferred surface drainage between the represented reservoirs.
+They do not follow rivers or show managed water transfers.
+The main stem of each tree follows the largest upstream capacity.
+The amber chain highlights the longest chain. It does not show water travel time.
 
 ## Data snapshots
 
@@ -52,6 +58,7 @@ It includes monthly reservoir storage, inferred links, station coordinates, dail
 - Precipitation history: [1991–2026 records](https://github.com/buschbrian/western-water-dashboard/blob/6c90fbecf7c73e10dd1479fe98dfa19898c3d36f/precipitation_history.json).
 - Station locations: [SNOTEL roster](https://github.com/buschbrian/western-water-dashboard/blob/6c90fbecf7c73e10dd1479fe98dfa19898c3d36f/snow_sites.json).
 - Network: [USGS Network-Linked Data Index traces](https://github.com/buschbrian/western-water-dashboard/blob/6c90fbecf7c73e10dd1479fe98dfa19898c3d36f/upstream_index.json), retrieved August 30, 2026.
+- Lake elevations: [Bureau of Reclamation daily records](https://github.com/buschbrian/western-water-dashboard/blob/6c90fbecf7c73e10dd1479fe98dfa19898c3d36f/elevation_history.json).
 
 Storage combines the same 388 reservoirs in every month, from November 2025 through September 2026.
 Each value divides summed monthly mean storage by summed capacity.
@@ -69,28 +76,24 @@ Missing daily readings remain missing.
 Monthly accumulation uses the dashboard's precipitation colors with labeled breaks at 0, 0.5, 1, 2, 4, and 8 inches.
 These breaks differ from the dashboard's short-window precipitation scale.
 
-## Capture and exports
+## Exports
 
-`scripts/capture-map-challenge.js` contains the browser capture function.
-It runs through Chrome DevTools MCP on the dashboard after the figure data is assigned to `window.captureData`.
-It checks the 405-reservoir roster before changing attributes in the isolated browser session.
-Its `storage`, `network`, and `rain` methods prepare one frame at a time.
-The live application and its data are never changed.
-
-Chrome captures the 1080-pixel square composition at twice its size.
 The portfolio keeps 2160-pixel JPG stills and responsive WebP images.
-FFmpeg encodes 1080-pixel H.264 videos at 30 frames per second, without audio.
-GIF exports use a shared palette and preserve discrete observations.
+Each Day 1 page video is one scene. The Day 2 video has both scenes.
+The page videos have no end card and no audio.
 
 Videos use native browser controls and start only when the reader selects Play.
 They have no autoplay attribute. The still poster remains visible before playback.
 Each note includes a text description and a table or list of the main results.
-The GIF is a download, so continuous motion does not start when the note opens.
+
+`scripts/capture-map-challenge.js` holds the browser capture function from the first version of these figures.
+That version replayed the data through the dashboard's own renderer in Chrome.
+The current videos do not use it.
 
 ## Provider credit
 
 Esri provides the basemap services and the ArcGIS Maps SDK for JavaScript.
-The native attribution lists the basemap's other providers within every image and frame.
+The native attribution lists the basemap's other providers within every Day 1 image and frame.
 Reservoir readings come from nine providers:
 
 - Bureau of Reclamation RISE
@@ -105,4 +108,5 @@ Reservoir readings come from nine providers:
 
 The USDA Natural Resources Conservation Service provides the SNOTEL precipitation measurements.
 The U.S. Geological Survey provides the Network-Linked Data Index traces.
+The Bureau of Reclamation provides the daily lake elevations.
 Mapbox sponsors the challenge, but these figures do not use Mapbox services.
