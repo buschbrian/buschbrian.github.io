@@ -67,6 +67,8 @@ The dashboard's October 31 latest-reading total was 48.3530%. Both September and
 Their observations and reservoir sets differ.
 
 Precipitation compares 58 long-record stations within the 111-station map.
+These 58 stations have stored records for every water year from 1991 through 2026.
+Five excluded stations have complete 1991–2020 records but a gap after 2020.
 Historical values are decoded by cumulative summation, then divided by ten to get inches.
 The comparison uses water years 1991–2020.
 For each station, the normal is interpolated between stored weekly medians.

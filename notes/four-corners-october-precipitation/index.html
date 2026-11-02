@@ -90,7 +90,7 @@
         <div class="post-content">
           <p>This map shows daily precipitation totals at 111 mountain weather stations. The stations are in Utah, Colorado, Arizona and New Mexico.</p>
           <p>SNOTEL is a mountain monitoring network run by the USDA Natural Resources Conservation Service. Each point represents one SNOTEL station. Point color and size show precipitation accumulated since October 1. The totals include rain and snow measured as water.</p>
-          <p>I used 58 stations with complete 1991–2020 records for the normal comparison. Their median total reached 6.9 inches by October 31. Their 1991–2020 median normal for that date was about 2.2 inches.</p>
+          <p>I used the 58 stations whose stored records cover every water year from 1991 through 2026 for the normal comparison. Their median total reached 6.9 inches by October 31. Their 1991–2020 median normal for that date was about 2.2 inches.</p>
           <p>The main wet periods were October 10–14, 21–22 and 30–31. These mountain measurements do not describe precipitation totals in nearby cities.</p>
           <p>The basemap is Esri’s Oceans basemap, captured once from the dashboard’s ArcGIS map. A Python script draws the monthly accumulation over it with Matplotlib. It uses the dashboard’s precipitation colors. A ripple marks each day that a station gains half an inch or more. Hollow markers show missing readings. On October 31, 110 of the 111 mapped stations reported.</p>
           <p>The data comes through the Western Water Dashboard. Its data pipeline is scheduled to refresh station readings each day. The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript.</p>
@@ -251,7 +251,7 @@
           <ul>
             <li>The water year starts on October 1. October totals are therefore also water-year totals.</li>
             <li>The normal comes from stored weekly medians for 1991–2020. The figure interpolates between weekly values for each date.</li>
-            <li>Only 58 of the 111 stations have complete records for that period. The comparison uses those 58 stations only.</li>
+            <li>The comparison uses the 58 stations whose stored records cover every water year from 1991 through 2026. The other 53 stations have a gap in that period. For five of them, the first gap comes after 2020.</li>
             <li>Mountain stations sit high in the watersheds. Their totals do not describe precipitation in nearby cities.</li>
           </ul>
           <h2>Sources and map services</h2>
