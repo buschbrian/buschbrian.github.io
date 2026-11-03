@@ -1,0 +1,567 @@
+{
+ "title": "Drought in 75 western basins",
+ "challenge": "30 Day Map Challenge 2026, Day 3: Polygons",
+ "map_date": "2026-10-27",
+ "release_date": "2026-10-29",
+ "source": {
+  "drought": "U.S. Drought Monitor, produced by the National Drought Mitigation Center, USDA and NOAA",
+  "basins": "USGS Watershed Boundary Dataset, HUC-6, retrieved 2026-08-18",
+  "measured_by": "https://github.com/buschbrian/western-water-dashboard/tree/f2a99037a3158ef538bbaab3cf76ed0f9d504d8f/data/drought",
+  "method": {
+   "version": "drought-coverage-3",
+   "sampling": "even-odd scanline over cell centres",
+   "grid_step_degrees": 0.002,
+   "weighting": "cosine of latitude",
+   "classes": "exclusive; at-least values are sums of disjoint classes",
+   "geometry": "the monitor's full-resolution weekly map from its archive"
+  }
+ },
+ "west_wide_weighting": "Each basin's share is weighted by its U.S. land area in EPSG:5070.",
+ "summary": {
+  "map_date": "2026-10-27",
+  "d3_or_worse_basins": 21,
+  "eased": 19,
+  "worse": 0,
+  "basins_half_or_more_d2": 15,
+  "west_d2_now": 23.3,
+  "west_d2_peak_2026": [
+   "2026-08-04",
+   46.6
+  ],
+  "west_d2_peak_decade": [
+   "2021-07-27",
+   88.3
+  ]
+ },
+ "callouts": {
+  "160202": 98.0,
+  "170502": 95.6
+ },
+ "basins": [
+  {
+   "huc6": "160202",
+   "name": "Jordan",
+   "d2_or_worse_pct": 98.0,
+   "d3_or_worse_pct": 18.7,
+   "d2_or_worse_pct_2026_10_20": 98.0
+  },
+  {
+   "huc6": "170502",
+   "name": "Middle Snake-Powder",
+   "d2_or_worse_pct": 95.6,
+   "d3_or_worse_pct": 25.1,
+   "d2_or_worse_pct_2026_10_20": 95.6
+  },
+  {
+   "huc6": "160203",
+   "name": "Great Salt Lake",
+   "d2_or_worse_pct": 88.5,
+   "d3_or_worse_pct": 21.0,
+   "d2_or_worse_pct_2026_10_20": 89.5
+  },
+  {
+   "huc6": "170702",
+   "name": "John Day",
+   "d2_or_worse_pct": 84.2,
+   "d3_or_worse_pct": 73.2,
+   "d2_or_worse_pct_2026_10_20": 84.2
+  },
+  {
+   "huc6": "170703",
+   "name": "Deschutes",
+   "d2_or_worse_pct": 82.5,
+   "d3_or_worse_pct": 52.1,
+   "d2_or_worse_pct_2026_10_20": 82.5
+  },
+  {
+   "huc6": "170601",
+   "name": "Lower Snake",
+   "d2_or_worse_pct": 82.4,
+   "d3_or_worse_pct": 10.2,
+   "d2_or_worse_pct_2026_10_20": 82.4
+  },
+  {
+   "huc6": "160300",
+   "name": "Escalante Desert-Sevier Lake",
+   "d2_or_worse_pct": 78.5,
+   "d3_or_worse_pct": 28.7,
+   "d2_or_worse_pct_2026_10_20": 79.6
+  },
+  {
+   "huc6": "160102",
+   "name": "Lower Bear",
+   "d2_or_worse_pct": 71.3,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 71.3
+  },
+  {
+   "huc6": "170103",
+   "name": "Spokane",
+   "d2_or_worse_pct": 70.6,
+   "d3_or_worse_pct": 13.3,
+   "d2_or_worse_pct_2026_10_20": 70.6
+  },
+  {
+   "huc6": "170402",
+   "name": "Upper Snake",
+   "d2_or_worse_pct": 68.9,
+   "d3_or_worse_pct": 29.0,
+   "d2_or_worse_pct_2026_10_20": 71.4
+  },
+  {
+   "huc6": "170501",
+   "name": "Middle Snake-Boise",
+   "d2_or_worse_pct": 65.9,
+   "d3_or_worse_pct": 36.1,
+   "d2_or_worse_pct_2026_10_20": 65.9
+  },
+  {
+   "huc6": "170900",
+   "name": "Willamette",
+   "d2_or_worse_pct": 60.8,
+   "d3_or_worse_pct": 21.8,
+   "d2_or_worse_pct_2026_10_20": 60.8
+  },
+  {
+   "huc6": "140100",
+   "name": "Colorado Headwaters",
+   "d2_or_worse_pct": 59.9,
+   "d3_or_worse_pct": 50.9,
+   "d2_or_worse_pct_2026_10_20": 85.6
+  },
+  {
+   "huc6": "171003",
+   "name": "Southern Oregon Coastal",
+   "d2_or_worse_pct": 53.2,
+   "d3_or_worse_pct": 0.1,
+   "d2_or_worse_pct_2026_10_20": 53.2
+  },
+  {
+   "huc6": "150801",
+   "name": "Rio Sonoyta",
+   "d2_or_worse_pct": 50.9,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 50.9
+  },
+  {
+   "huc6": "160401",
+   "name": "Humboldt",
+   "d2_or_worse_pct": 38.1,
+   "d3_or_worse_pct": 1.2,
+   "d2_or_worse_pct_2026_10_20": 95.6
+  },
+  {
+   "huc6": "140600",
+   "name": "Lower Green",
+   "d2_or_worse_pct": 35.8,
+   "d3_or_worse_pct": 4.4,
+   "d2_or_worse_pct_2026_10_20": 35.8
+  },
+  {
+   "huc6": "170701",
+   "name": "Middle Columbia",
+   "d2_or_worse_pct": 35.5,
+   "d3_or_worse_pct": 10.6,
+   "d2_or_worse_pct_2026_10_20": 35.5
+  },
+  {
+   "huc6": "140200",
+   "name": "Gunnison",
+   "d2_or_worse_pct": 32.0,
+   "d3_or_worse_pct": 10.2,
+   "d2_or_worse_pct_2026_10_20": 57.5
+  },
+  {
+   "huc6": "140401",
+   "name": "Upper Green",
+   "d2_or_worse_pct": 29.7,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 29.7
+  },
+  {
+   "huc6": "150701",
+   "name": "Lower Gila-Agua Fria",
+   "d2_or_worse_pct": 29.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 29.0
+  },
+  {
+   "huc6": "170200",
+   "name": "Upper Columbia",
+   "d2_or_worse_pct": 29.0,
+   "d3_or_worse_pct": 9.5,
+   "d2_or_worse_pct_2026_10_20": 29.0
+  },
+  {
+   "huc6": "171200",
+   "name": "Oregon Closed Basins",
+   "d2_or_worse_pct": 24.7,
+   "d3_or_worse_pct": 3.9,
+   "d2_or_worse_pct_2026_10_20": 24.7
+  },
+  {
+   "huc6": "170603",
+   "name": "Clearwater",
+   "d2_or_worse_pct": 21.9,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 21.9
+  },
+  {
+   "huc6": "140700",
+   "name": "Upper Colorado-Dirty Devil",
+   "d2_or_worse_pct": 20.3,
+   "d3_or_worse_pct": 8.7,
+   "d2_or_worse_pct_2026_10_20": 64.4
+  },
+  {
+   "huc6": "160402",
+   "name": "Black Rock Desert",
+   "d2_or_worse_pct": 18.3,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 22.7
+  },
+  {
+   "huc6": "140500",
+   "name": "White-Yampa",
+   "d2_or_worse_pct": 15.1,
+   "d3_or_worse_pct": 6.8,
+   "d2_or_worse_pct_2026_10_20": 15.2
+  },
+  {
+   "huc6": "171100",
+   "name": "Puget Sound",
+   "d2_or_worse_pct": 13.5,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 13.5
+  },
+  {
+   "huc6": "140802",
+   "name": "Lower San Juan",
+   "d2_or_worse_pct": 12.4,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 68.0
+  },
+  {
+   "huc6": "150503",
+   "name": "Santa Cruz",
+   "d2_or_worse_pct": 12.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 12.0
+  },
+  {
+   "huc6": "160201",
+   "name": "Weber",
+   "d2_or_worse_pct": 8.8,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 8.8
+  },
+  {
+   "huc6": "170401",
+   "name": "Snake Headwaters",
+   "d2_or_worse_pct": 8.7,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 12.1
+  },
+  {
+   "huc6": "170102",
+   "name": "Pend Oreille",
+   "d2_or_worse_pct": 8.1,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 8.1
+  },
+  {
+   "huc6": "150400",
+   "name": "Upper Gila",
+   "d2_or_worse_pct": 8.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 8.2
+  },
+  {
+   "huc6": "171002",
+   "name": "Northern Oregon Coastal",
+   "d2_or_worse_pct": 7.8,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 7.8
+  },
+  {
+   "huc6": "180102",
+   "name": "Klamath",
+   "d2_or_worse_pct": 7.7,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 7.7
+  },
+  {
+   "huc6": "170101",
+   "name": "Kootenai",
+   "d2_or_worse_pct": 6.6,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 6.6
+  },
+  {
+   "huc6": "160101",
+   "name": "Upper Bear",
+   "d2_or_worse_pct": 6.5,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 6.5
+  },
+  {
+   "huc6": "140300",
+   "name": "Upper Colorado-Dolores",
+   "d2_or_worse_pct": 6.3,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 14.5
+  },
+  {
+   "huc6": "150501",
+   "name": "Middle Gila",
+   "d2_or_worse_pct": 5.7,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 5.7
+  },
+  {
+   "huc6": "150702",
+   "name": "Lower Gila",
+   "d2_or_worse_pct": 4.9,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 4.9
+  },
+  {
+   "huc6": "150803",
+   "name": "Rio De Bavispe",
+   "d2_or_worse_pct": 3.4,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 3.4
+  },
+  {
+   "huc6": "140801",
+   "name": "Upper San Juan",
+   "d2_or_worse_pct": 2.5,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 32.7
+  },
+  {
+   "huc6": "160600",
+   "name": "Central Nevada Desert Basins",
+   "d2_or_worse_pct": 1.6,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 53.3
+  },
+  {
+   "huc6": "150601",
+   "name": "Salt",
+   "d2_or_worse_pct": 1.2,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 1.2
+  },
+  {
+   "huc6": "170602",
+   "name": "Salmon",
+   "d2_or_worse_pct": 1.2,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 1.2
+  },
+  {
+   "huc6": "140402",
+   "name": "Great Divide Closed Basin",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "150100",
+   "name": "Lower Colorado-Lake Mead",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 20.9
+  },
+  {
+   "huc6": "150200",
+   "name": "Little Colorado",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 9.9
+  },
+  {
+   "huc6": "150301",
+   "name": "Lower Colorado",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "150302",
+   "name": "Bill Williams",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "150502",
+   "name": "San Pedro-Willcox",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "150602",
+   "name": "Verde",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "150802",
+   "name": "Rio De La Concepcion",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "160501",
+   "name": "Truckee",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 6.6
+  },
+  {
+   "huc6": "160502",
+   "name": "Carson",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 2.9
+  },
+  {
+   "huc6": "160503",
+   "name": "Walker",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "170300",
+   "name": "Yakima",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "170800",
+   "name": "Lower Columbia",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "171001",
+   "name": "Washington Coastal",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180101",
+   "name": "Northern California Coastal",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180200",
+   "name": "Upper Sacramento",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180201",
+   "name": "Lower Sacramento",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180300",
+   "name": "Tulare-Buena Vista Lakes",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180400",
+   "name": "San Joaquin",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180500",
+   "name": "San Francisco Bay",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180600",
+   "name": "Central California Coastal",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180701",
+   "name": "Ventura-San Gabriel Coastal",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180702",
+   "name": "Santa Ana",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180703",
+   "name": "Laguna-San Diego Coastal",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180800",
+   "name": "North Lahontan",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180901",
+   "name": "Mono-Owens Lakes",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "180902",
+   "name": "Northern Mojave",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "181001",
+   "name": "Southern Mojave",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  },
+  {
+   "huc6": "181002",
+   "name": "Salton Sea",
+   "d2_or_worse_pct": 0.0,
+   "d3_or_worse_pct": 0.0,
+   "d2_or_worse_pct_2026_10_20": 0.0
+  }
+ ]
+}
