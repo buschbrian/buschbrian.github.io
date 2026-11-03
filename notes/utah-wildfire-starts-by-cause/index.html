@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="41,117 Utah wildfire records from 1992 to 2024, split into natural and human causes, mapped as dots, as kernel density, and as one combined surface.">
+    <meta name="theme-color" content="#ffffff">
+    <title>Utah Wildfire Starts by Cause | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/utah-wildfire-starts-by-cause/">
+    <meta property="og:title" content="Utah Wildfire Starts by Cause | Brian Busch, GISP">
+    <meta property="og:description" content="41,117 Utah wildfire records from 1992 to 2024, split into natural and human causes, mapped as dots, as kernel density, and as one combined surface.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/utah-wildfire-starts-by-cause.jpg">
+    <meta property="og:image:alt" content="Natural and human-caused wildfire density in Utah, 1992–2024, on a common scale over dark shaded relief. Natural starts spread across the plateaus and mountains. Human-caused starts follow the Wasatch Front, I-15 and towns. Each cause&#39;s densest tenth of the state holds 46% of starts from natural causes and 60% of human-caused starts.">
+    <meta property="og:image:width" content="2160">
+    <meta property="og:image:height" content="2160">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-04T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/utah-wildfire-starts-by-cause/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Utah Wildfire Starts by Cause",
+  "description": "41,117 Utah wildfire records from 1992 to 2024, split into natural and human causes, mapped as dots, as kernel density, and as one combined surface.",
+  "image": "https://buschbrian.github.io/assets/images/utah-wildfire-starts-by-cause.jpg",
+  "datePublished": "2026-11-04",
+  "dateModified": "2026-11-04",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/utah-wildfire-starts-by-cause/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 4: Clusters</p>
+          <h1>Utah Wildfire Starts by Cause</h1>
+          <p class="post-deck">Natural and human-caused wildfire starts in Utah, mapped apart and then together. Human-caused starts cluster more tightly.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 4: Clusters</strong></div>
+            <div><span>Subject</span><strong>Wildfire starts in Utah, 1992–2024</strong></div>
+            <div><span>Made with</span><strong>Python (GeoPandas, SciPy, Matplotlib), FFmpeg</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-04">November 4, 2026</time></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image post-map-animation">
+          <video controls loop muted playsinline preload="none" width="1080" height="1080" poster="/assets/images/utah-wildfire-starts-by-cause.jpg" aria-label="Three scenes. Utah wildfire starts appear as dots, natural causes on the left and human causes on the right. The dots then fade into kernel density surfaces on one scale. The last scene blends both surfaces on one map and outlines where both are dense." aria-describedby="map-caption">
+            <source src="/assets/video/utah-wildfire-starts-by-cause.mp4" type="video/mp4">
+            <p><a href="/assets/images/utah-wildfire-starts-by-cause.jpg">View the density still</a>.</p>
+          </video>
+          <figcaption id="map-caption"><a href="/assets/video/utah-wildfire-starts-by-cause.mp4" download>Download the page video</a>. <a href="/assets/images/utah-wildfire-starts-by-cause.jpg">Open the density still</a>.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>Every recorded start</h2>
+          <p>The Fire Program Analysis fire-occurrence database (FPA FOD) records wildfire starts across the United States. Its 7th edition covers 1992 to 2024. Inside Utah's boundary it holds 41,117 records.</p>
+          <p>Natural causes account for 54% of those records. People caused 38%. The other 8% have no cause recorded, so neither panel shows them. Across 75 western drainage basins, natural causes account for 32% of starts. Utah reverses the western pattern.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-wildfire-starts-by-cause-dots-480.webp 480w, /assets/images/r/utah-wildfire-starts-by-cause-dots-960.webp 960w, /assets/images/r/utah-wildfire-starts-by-cause-dots-1440.webp 1440w, /assets/images/r/utah-wildfire-starts-by-cause-dots-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/utah-wildfire-starts-by-cause-dots.jpg" alt="Utah wildfire records, 1992–2024, as one dot each, with natural causes in yellow and human causes in red. The two panels draw 37,882 records with assigned causes. Of all 41,117 records, 54% have natural causes, 38% human causes and 8% no assigned cause." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>One dot for each start with a known cause, 37,882 in all. <a href="/assets/images/utah-wildfire-starts-by-cause-dots.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <p>The database calls the first group Natural. That group is broader than lightning, so this page does not call it lightning.</p>
+          <h2>From dots to density</h2>
+          <p>Dots stack up where starts are common. A density surface shows the same pattern more clearly. Kernel density spreads each start over the land around it. Here each start spreads with a Gaussian kernel, 5 km wide, on a 1 km grid.</p>
+          <p>Both causes use one log scale, in starts per 1,000 km² per year. The colors compare directly across the two panels.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-wildfire-starts-by-cause-480.webp 480w, /assets/images/r/utah-wildfire-starts-by-cause-960.webp 960w, /assets/images/r/utah-wildfire-starts-by-cause-1440.webp 1440w, /assets/images/r/utah-wildfire-starts-by-cause-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/utah-wildfire-starts-by-cause.jpg" alt="Natural and human-caused wildfire density in Utah, 1992–2024, on a common scale over dark shaded relief. Natural starts spread across the plateaus and mountains. Human-caused starts follow the Wasatch Front, I-15 and towns. Each cause's densest tenth of the state holds 46% of starts from natural causes and 60% of human-caused starts." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>Density of natural and human-caused starts on one scale. <a href="/assets/images/utah-wildfire-starts-by-cause.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <p>Each cause has its own densest tenth of Utah's land. That tenth holds 60% of human-caused starts and 46% of natural starts. Human-caused starts follow the Wasatch Front, I-15 and towns. Natural starts spread over the plateaus and mountains.</p>
+          <h2>Where they meet</h2>
+          <p>The last scene blends both surfaces on one map. Yellow marks dense natural starts. Red marks dense human-caused starts. Pale peach marks land where both are dense.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/utah-wildfire-starts-by-cause-overlap-480.webp 480w, /assets/images/r/utah-wildfire-starts-by-cause-overlap-960.webp 960w, /assets/images/r/utah-wildfire-starts-by-cause-overlap-1440.webp 1440w, /assets/images/r/utah-wildfire-starts-by-cause-overlap-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/utah-wildfire-starts-by-cause-overlap.jpg" alt="Combined natural and human-caused density map of Utah. Yellow marks dense natural starts, red dense human-caused starts, and pale peach both. White outlines mark 633 km², 0.3% of Utah, where both reach 10 starts per 1,000 km² per year. A monthly chart shows a sharper July and August peak for natural starts." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>Both surfaces on one map, with the overlap outlined. <a href="/assets/images/utah-wildfire-starts-by-cause-overlap.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <p>Both surfaces reach 10 starts per 1,000 km² per year on 633 km², 0.3% of Utah. Natural starts alone reach it on 6.0% of the state. Human-caused starts alone reach it on 4.4%.</p>
+          <p>62% of natural starts land where human-caused starts are rare, under 3 per 1,000 km² per year. Natural starts also peak harder in summer. July and August hold 71% of natural starts and 41% of human-caused starts.</p>
+          <h2>Symbol guide</h2>
+          <ul>
+            <li>Yellow is natural causes. Red is human causes.</li>
+            <li>The density ramps run from dark at 3 starts per 1,000 km² per year to pale at 80 or more.</li>
+            <li>The two-way key on the combined map reads natural density across and human density up.</li>
+            <li>White outlines mark land where both surfaces reach 10 starts per 1,000 km² per year.</li>
+            <li>The basemap is shaded relief with lakes, highways and town labels.</li>
+          </ul>
+          <h2>Method</h2>
+          <ul>
+            <li>The fire records are FPA FOD, 7th edition, clipped to the UGRC Utah boundary.</li>
+            <li>The cause groups use the database's cause classification: natural, human, or missing.</li>
+            <li>The maps use an Albers equal-area projection centered on Utah, so areas compare fairly.</li>
+            <li>Density uses a Gaussian kernel with a 5 km bandwidth on a 1 km grid, divided by the 33 years of record.</li>
+            <li>Each cause's densest tenth is measured on its own surface. The two tenths are different areas.</li>
+            <li>The relief is a multi-direction hillshade from AWS Terrain Tiles at zoom 9.</li>
+          </ul>
+          <h2>Data notes</h2>
+          <ul>
+            <li>The 41,117 total is a spatial clip to Utah. The database's own state field gives 41,133.</li>
+            <li>Starts outside Utah are not in the data, so density near the state line reads low.</li>
+            <li>The maps count starts. They do not show acres burned or future fire risk.</li>
+          </ul>
+          <h2>Data and credit</h2>
+          <p>Karen C. Short compiles the FPA FOD for the USDA Forest Service Research Data Archive. UGRC provides the Utah boundary. The U.S. Census Bureau provides the town locations. The relief comes from AWS Terrain Tiles. The lakes and highways come from Natural Earth.</p>
+          <ul>
+            <li><a href="https://www.fs.usda.gov/rds/archive/catalog/RDS-2013-0009.7">Open the FPA FOD, 7th edition</a>.</li>
+          </ul>
+          <p class="source-note"><a href="/assets/data/day-4-wildfire.json">Read the figure values</a>.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/drought-in-western-basins/">Day 3: Polygons</a>
+            <a href="/notes/utah-wildfire-starts-by-cause/" aria-current="page">Day 4: Clusters</a>
+            <a href="/notes/four-corners-october-precipitation/">Bonus: Precipitation</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

@@ -26,6 +26,7 @@ const ORDER = [
   "western-reservoir-storage",
   "two-lakes-two-river-systems",
   "drought-in-western-basins",
+  "utah-wildfire-starts-by-cause",
   "four-corners-october-precipitation",
   "utah-dark-sky-points",
   "utah-scenic-byways",

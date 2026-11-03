@@ -1,0 +1,83 @@
+{
+ "source": "RDS-2013-0009.7",
+ "boundary_commit": "f2a99037a3158ef538bbaab3cf76ed0f9d504d8f",
+ "crs": "+proj=aea +lat_0=39.5 +lon_0=-111.5 +lat_1=37.5 +lat_2=41.5 +datum=NAD83 +units=m +no_defs",
+ "fires": 41117,
+ "years": [
+  1992,
+  2024
+ ],
+ "cause_share_pct": {
+  "Natural": 54.4,
+  "People": 37.7,
+  "Cause not recorded": 7.9
+ },
+ "west_natural_pct": 31.6,
+ "kde": {
+  "bandwidth_km": 5,
+  "cell_m": 1000,
+  "unit": "starts per 1,000 km2 per year",
+  "scale": {
+   "vmin": 3,
+   "vmax": 80,
+   "log": true
+  }
+ },
+ "by_cause": {
+  "Natural": {
+   "starts": 22377,
+   "july_august_pct": 70.5,
+   "acres": 3559698,
+   "kde_peak": 29.7,
+   "share_in_densest_tenth_pct": 46.2,
+   "month_pct": [
+    0.0,
+    0.0,
+    0.1,
+    0.4,
+    2.9,
+    12.2,
+    36.9,
+    33.6,
+    12.1,
+    1.5,
+    0.2,
+    0.0
+   ]
+  },
+  "People": {
+   "starts": 15505,
+   "july_august_pct": 40.5,
+   "acres": 1732228,
+   "kde_peak": 50.3,
+   "share_in_densest_tenth_pct": 60.4,
+   "month_pct": [
+    0.6,
+    1.0,
+    3.8,
+    6.2,
+    8.2,
+    20.3,
+    25.0,
+    15.5,
+    10.4,
+    6.5,
+    2.0,
+    0.5
+   ]
+  }
+ },
+ "overlap": {
+  "threshold": 10,
+  "both_km2": 633,
+  "natural_only_km2": 13177,
+  "people_only_km2": 9755,
+  "utah_km2": 219885,
+  "natural_where_people_rare": 62.0,
+  "starts_in_both_pct": {
+   "Natural": 1.7,
+   "People": 2.7
+  }
+ },
+ "note": "Natural is the FPA FOD NWCG_CAUSE_CLASSIFICATION value; it is broader than lightning. Densest tenth is measured on each cause's own surface. Overlap means both surfaces reach the threshold."
+}
