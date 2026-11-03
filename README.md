@@ -103,9 +103,10 @@ and 2026 Esri finalist maps, the current 30 Day Map Challenge, and Western
 Water Dashboard. Other work remains on Projects. Notes is a reading index
 for methods, experiments, and lessons.
 
-When posting a challenge map, update the homepage preview, day label, story
-link, and posted counts. Add its entry and day link on Projects, then its
-entry on Notes. The homepage uses a dated collection label so it remains
+When posting a challenge map, add its tile first in the homepage hero and
+make it the large tile. Mark its day in the month strip as posted, and update
+the posted counts. Add its entry and day link on Projects, then its entry on
+Notes. The homepage uses a dated collection label so it remains
 accurate after November.
 
 The image viewer loads the original image when opened. A `data-full`
