@@ -106,24 +106,60 @@
 <main class="wrap">
 
   <section id="top">
-    <div class="hero-text">
+    <div class="hero-intro">
       <p class="kicker">Brian Busch, GISP &middot; Salt Lake City, Utah</p>
-      <h1 class="serif">Public maps, and the data behind them.</h1>
-      <div class="cols">
-        <p>Senior GIS Analyst for the City of Millcreek. I build GIS applications for city planning with TypeScript and the ArcGIS Maps SDK for JavaScript. I train city staff to use GIS. I also work on analysis projects, such as a pilot tree inventory made from lidar.</p>
-        <dl>
-          <div><dt>Esri UC Map Gallery finalists</dt><dd>2025, 2026</dd></div>
-          <div><dt>GISP</dt><dd>2025</dd></div>
-          <div><dt>FAA Part 107 pilot</dt><dd>2022</dd></div>
-        </dl>
-      </div>
+      <h1><span>Hi, I&rsquo;m Brian.</span> <span>I make maps.</span></h1>
+      <p class="hero-lede">I&rsquo;m a GIS analyst for the City of Millcreek, Utah. I build web maps for city planning and help city staff use GIS. On my own time I map water, drought, and wild places across the West.</p>
+      <p class="hero-creds">GISP &middot; FAA Part 107 drone pilot &middot; Two Esri UC Map Gallery finalist maps, 2025 and 2026</p>
     </div>
-    <!-- Point this card at the newest published day of the challenge. -->
-    <a class="hero-map" href="/notes/drought-in-western-basins/">
-      <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-480.webp 480w, /assets/images/r/drought-in-western-basins-960.webp 960w, /assets/images/r/drought-in-western-basins-1440.webp 1440w" sizes="(max-width: 860px) 86vw, 440px"><img src="/assets/images/drought-in-western-basins.jpg" alt="Western drainage basins on October 27, 2026, colored by their share of land at D2 (severe drought) or worse. The Jordan basin in Utah is at 98% and Middle Snake-Powder at 96%. Across all 75 basins the share is 23%, down from 47% in August." width="2160" height="2160" fetchpriority="high"></picture>
-      <span class="kicker">Latest map</span>
-      <span class="hero-map-title">Drought in 75 western basins &rarr;</span>
-    </a>
+
+    <section class="challenge" aria-labelledby="challenge-title">
+      <div class="challenge-head">
+        <h2 id="challenge-title">This month I&rsquo;m making a map a day for the <a href="https://30daymapchallenge.com/" target="_blank" rel="noreferrer">30 Day Map Challenge</a>.</h2>
+        <p class="challenge-count"><strong>4</strong> of 30 posted</p>
+      </div>
+      <!-- Newest posted day first, up to five tiles. The first tile is the large one. -->
+      <div class="tiles">
+        <a class="tile tile-lead" href="/notes/utah-wildfire-starts-by-cause/"><picture><source type="image/webp" srcset="/assets/images/r/utah-wildfire-starts-by-cause-480.webp 480w, /assets/images/r/utah-wildfire-starts-by-cause-960.webp 960w" sizes="(max-width: 860px) 90vw, 420px"><img src="/assets/images/utah-wildfire-starts-by-cause.jpg" alt="Natural and human-caused wildfire density in Utah, 1992 to 2024. Human-caused starts follow the Wasatch Front and I-15." width="2160" height="2160" fetchpriority="high"></picture><span class="tile-caption"><span class="tile-day">Day 04 &middot; Clusters</span><span class="tile-title">People start fires where people are</span></span></a>
+        <a class="tile" href="/notes/drought-in-western-basins/"><picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-480.webp 480w" sizes="(max-width: 860px) 45vw, 200px"><img src="/assets/images/drought-in-western-basins.jpg" alt="" width="2160" height="2160"></picture><span class="tile-day">Day 03 &middot; Polygons</span><span class="visually-hidden">: Drought in 75 western basins</span></a>
+        <a class="tile" href="/notes/two-lakes-two-river-systems/"><picture><source type="image/webp" srcset="/assets/images/r/two-lakes-two-river-systems-480.webp 480w" sizes="(max-width: 860px) 45vw, 200px"><img src="/assets/images/two-lakes-two-river-systems.jpg" alt="" width="2160" height="2160"></picture><span class="tile-day">Day 02 &middot; Lines</span><span class="visually-hidden">: Two lakes, two river systems</span></a>
+        <a class="tile" href="/notes/western-reservoir-storage/"><picture><source type="image/webp" srcset="/assets/images/r/western-reservoir-storage-480.webp 480w" sizes="(max-width: 860px) 45vw, 200px"><img src="/assets/images/western-reservoir-storage.jpg" alt="" width="2160" height="2160"></picture><span class="tile-day">Day 01 &middot; Points</span><span class="visually-hidden">: Western reservoir storage</span></a>
+      </div>
+      <!-- When a day is posted, give its chip the is-posted form and update the count. -->
+      <ol class="month" aria-label="November 2026, day by day">
+          <li class="chip is-posted"><a href="/notes/western-reservoir-storage/" aria-label="Day 1, Points, posted">1</a></li>
+          <li class="chip is-posted"><a href="/notes/two-lakes-two-river-systems/" aria-label="Day 2, Lines, posted">2</a></li>
+          <li class="chip is-posted"><a href="/notes/drought-in-western-basins/" aria-label="Day 3, Polygons, posted">3</a></li>
+          <li class="chip is-posted"><a href="/notes/utah-wildfire-starts-by-cause/" aria-label="Day 4, Clusters, posted">4</a></li>
+          <li class="chip" title="Senses: Sight">5<span class="visually-hidden">, Senses: Sight, coming November 5</span></li>
+          <li class="chip" title="Vintage">6<span class="visually-hidden">, Vintage, coming November 6</span></li>
+          <li class="chip" title="10 minute map">7<span class="visually-hidden">, 10 minute map, coming November 7</span></li>
+          <li class="chip" title="Utopia">8<span class="visually-hidden">, Utopia, coming November 8</span></li>
+          <li class="chip" title="Urban-rural">9<span class="visually-hidden">, Urban-rural, coming November 9</span></li>
+          <li class="chip" title="Prompting only">10<span class="visually-hidden">, Prompting only, coming November 10</span></li>
+          <li class="chip" title="Senses: Sound">11<span class="visually-hidden">, Senses: Sound, coming November 11</span></li>
+          <li class="chip" title="Power">12<span class="visually-hidden">, Power, coming November 12</span></li>
+          <li class="chip" title="Interactions">13<span class="visually-hidden">, Interactions, coming November 13</span></li>
+          <li class="chip" title="Borgesian map">14<span class="visually-hidden">, Borgesian map, coming November 14</span></li>
+          <li class="chip" title="Inside out">15<span class="visually-hidden">, Inside out, coming November 15</span></li>
+          <li class="chip" title="Collaborative map">16<span class="visually-hidden">, Collaborative map, coming November 16</span></li>
+          <li class="chip" title="Light &amp; dark">17<span class="visually-hidden">, Light &amp; dark, coming November 17</span></li>
+          <li class="chip" title="NULL">18<span class="visually-hidden">, NULL, coming November 18</span></li>
+          <li class="chip" title="Senses: Smell">19<span class="visually-hidden">, Senses: Smell, coming November 19</span></li>
+          <li class="chip" title="Hexagons">20<span class="visually-hidden">, Hexagons, coming November 20</span></li>
+          <li class="chip" title="OpenStreetMap">21<span class="visually-hidden">, OpenStreetMap, coming November 21</span></li>
+          <li class="chip" title="Projections">22<span class="visually-hidden">, Projections, coming November 22</span></li>
+          <li class="chip" title="Senses: Taste">23<span class="visually-hidden">, Senses: Taste, coming November 23</span></li>
+          <li class="chip" title="Network">24<span class="visually-hidden">, Network, coming November 24</span></li>
+          <li class="chip" title="Is this a map?">25<span class="visually-hidden">, Is this a map?, coming November 25</span></li>
+          <li class="chip" title="Water">26<span class="visually-hidden">, Water, coming November 26</span></li>
+          <li class="chip" title="New tool">27<span class="visually-hidden">, New tool, coming November 27</span></li>
+          <li class="chip" title="Senses: Feeling">28<span class="visually-hidden">, Senses: Feeling, coming November 28</span></li>
+          <li class="chip" title="Raster">29<span class="visually-hidden">, Raster, coming November 29</span></li>
+          <li class="chip" title="Pen &amp; paper">30<span class="visually-hidden">, Pen &amp; paper, coming November 30</span></li>
+      </ol>
+      <p class="challenge-more"><a href="/projects/#map-challenge-2026">See every challenge map and how each was made</a></p>
+    </section>
   </section>
 
   <section id="work">
@@ -191,20 +227,14 @@
   <section id="about" class="cols">
     <div>
       <h2 class="kicker">About</h2>
-      <p class="serif lede">I spend most of my time on the data and the systems that keep a map correct.</p>
+      <p class="lede">I like maps that answer one clear question.</p>
     </div>
     <div>
-      <p>Earlier I set up a GNSS field program and an FAA Part 107 drone program. I built a citywide stormwater inventory for MS4 (stormwater permit) compliance. I helped move city staff off ArcMap in 2023 and helped put in place Millcreek's first Esri Enterprise Agreement. Now I build GIS applications for city planning, train city staff, and work on analysis projects.</p>
-      <ul class="facts">
-        <li>ArcGIS Online administration: ArcGIS Pro, ISO 19115-3 metadata, Esri licensing</li>
-        <li>Python / SQL pipelines: parcel, permitting, regulatory data</li>
-        <li>Planning applications on the ArcGIS Maps SDK for JavaScript, with Nearmap imagery</li>
-        <li>Lidar canopy height models for a pilot tree inventory, checked against aerial imagery</li>
-        <li>GIS training for city staff</li>
-        <li>GNSS/RTK survey &middot; FAA Part 107 &middot; digital and print cartography</li>
-      </ul>
+      <p>At Millcreek that means planning maps people can use, GIS training for city staff, and the data work that keeps city maps correct. Earlier I set up the city&rsquo;s GNSS field program and drone program, built its stormwater inventory, and helped move staff off ArcMap.</p>
+      <p>Away from work I&rsquo;m usually on a backroad, a trail, or somewhere dark with a camera.</p>
       <div class="btns">
-        <a class="btn btn-accent" href="https://buschbrian.github.io/western-water-dashboard/" target="_blank" rel="noreferrer">Western Water Dashboard</a>
+        <a class="btn btn-accent" href="/about/">More about me</a>
+        <a class="btn" href="https://buschbrian.github.io/western-water-dashboard/" target="_blank" rel="noreferrer">Western Water Dashboard</a>
       </div>
     </div>
   </section>
