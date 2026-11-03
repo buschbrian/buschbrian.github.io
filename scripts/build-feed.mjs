@@ -12,6 +12,7 @@ const OUT = "feed.xml";
 // The reading order of the notes index. A note that is not in this list
 // goes after these, in alphabetical order.
 const ORDER = [
+  "ugem-hub",
   "utah-water-dashboard-rebuild",
   "agentic-ai-lessons",
   "millcreek-planning-map",
