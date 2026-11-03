@@ -175,9 +175,8 @@ p { line-height: 1.6; color: var(--body); }
 .hero-creds { margin: 18px 0 0; font-size: 14px; line-height: 1.5; color: rgba(255, 255, 255, .62); }
 
 /* the challenge: newest maps as tiles, the whole month as a strip of days */
-#top { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
-#top h1 { max-width: none; font-size: clamp(2.3rem, 4.2vw, 3.6rem); }
-#top h1 span { display: block; }
+#top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+#top h1 { max-width: 20ch; font-size: clamp(2rem, 2.9vw, 2.6rem); line-height: 1.08; text-wrap: balance; }
 .challenge { min-width: 0; }
 .challenge-head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 20px; margin-bottom: 14px; }
 .challenge-head h2 { margin: 0; max-width: 34ch; font-size: clamp(1rem, 1.5vw, 1.15rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.005em; color: rgba(255, 255, 255, .9); }
@@ -222,7 +221,7 @@ p { line-height: 1.6; color: var(--body); }
 @media (prefers-reduced-motion: reduce) { .tile img { transition: none; } .tile:hover img { transform: none; } }
 @media (max-width: 960px) {
   #top { grid-template-columns: minmax(0, 1fr); }
-  #top h1 { font-size: clamp(2.2rem, 7vw, 3.6rem); }
+  #top h1 { max-width: 20ch; font-size: clamp(1.8rem, 6vw, 3rem); }
 }
 @media (max-width: 560px) {
   .tiles { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
@@ -274,6 +273,7 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 #about .kicker { margin-bottom: var(--gap-el); }
 @media (max-width: 720px) { #about .lede { margin-bottom: 20px; } }
 #about p { margin: 0 0 18px; max-width: 52ch; }
+#about p a { color: var(--cosmic); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .facts {
   display: grid; gap: 12px; margin-bottom: 28px;
   font-size: var(--fs-caption); line-height: 1.4;
