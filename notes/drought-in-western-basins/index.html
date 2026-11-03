@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The U.S. Drought Monitor's October 27, 2026 map across 75 western drainage basins, then ten years of weekly maps as each basin's share of land in severe drought or worse.">
+    <meta name="theme-color" content="#ffffff">
+    <title>Drought in 75 Western Basins | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/drought-in-western-basins/">
+    <meta property="og:title" content="Drought in 75 Western Basins | Brian Busch, GISP">
+    <meta property="og:description" content="The U.S. Drought Monitor's October 27, 2026 map across 75 western drainage basins, then ten years of weekly maps as each basin's share of land in severe drought or worse.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/drought-in-western-basins.jpg">
+    <meta property="og:image:alt" content="Western drainage basins on October 27, 2026, colored by their share of land at D2 or worse. The Jordan basin in Utah is at 98% and Middle Snake-Powder at 96%. Across all 75 basins the share is 23%, down from 47% in August.">
+    <meta property="og:image:width" content="2160">
+    <meta property="og:image:height" content="2160">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-03T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/drought-in-western-basins/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Drought in 75 Western Basins",
+  "description": "The U.S. Drought Monitor's October 27, 2026 map across 75 western drainage basins, then ten years of weekly maps as each basin's share of land in severe drought or worse.",
+  "image": "https://buschbrian.github.io/assets/images/drought-in-western-basins.jpg",
+  "datePublished": "2026-11-03",
+  "dateModified": "2026-11-03",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/drought-in-western-basins/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 3: Polygons</p>
+          <h1>Drought in 75 Western Basins</h1>
+          <p class="post-deck">The U.S. Drought Monitor draws its map by hand each week. Here its polygons meet the drainage basins of the West.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 3: Polygons</strong></div>
+            <div><span>Subject</span><strong>Drought in western drainage basins</strong></div>
+            <div><span>Made with</span><strong>Scripted: Python, GeoPandas, Matplotlib, FFmpeg</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-03">November 3, 2026</time></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image post-map-animation">
+          <video controls loop muted playsinline preload="none" width="1080" height="1080" poster="/assets/images/drought-in-western-basins.jpg" aria-label="Three scenes. The October 27, 2026 drought classes appear one at a time. Ten years of weekly maps then color each basin by its share of land at D2 or worse. The last scene holds on October 27 with the Jordan and Middle Snake-Powder basins labeled." aria-describedby="map-caption">
+            <source src="/assets/video/drought-in-western-basins.mp4" type="video/mp4">
+            <p><a href="/assets/images/drought-in-western-basins.jpg">View the October 27 still</a>.</p>
+          </video>
+          <figcaption id="map-caption">The page video has no audio and no end card. <a href="/assets/video/drought-in-western-basins.mp4" download>Download the page video</a>. <a href="/assets/images/drought-in-western-basins.jpg">Open the October 27 still</a>.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>The polygons are the data</h2>
+          <p>The U.S. Drought Monitor is a weekly map. Its authors draw the drought lines by hand. They combine many indicators with local reports. The classes go from D0, abnormally dry, to D4, exceptional drought.</p>
+          <p>The map here clips those polygons to 75 drainage basins. A drainage basin is land that drains toward a common outlet. These are six-digit hydrologic units, called HUC-6 basins, from the USGS Watershed Boundary Dataset.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-classes-480.webp 480w, /assets/images/r/drought-in-western-basins-classes-960.webp 960w, /assets/images/r/drought-in-western-basins-classes-1440.webp 1440w, /assets/images/r/drought-in-western-basins-classes-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/drought-in-western-basins-classes.jpg" alt="U.S. Drought Monitor classes for October 27, 2026, clipped to 75 western drainage basins. Extreme drought covers parts of central Oregon, southern Idaho and Utah. Twenty-one of 75 basins hold extreme or exceptional drought." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>October 27, 2026. Darker colors are more severe classes. <a href="/assets/images/drought-in-western-basins-classes.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <p>On October 27, 21 of the 75 basins held extreme or exceptional drought, D3 or D4.</p>
+          <h2>Ten years, basin by basin</h2>
+          <p>The second scene changes the measure. Each basin gets the share of its land at D2, severe drought, or worse. The scene replays every weekly map from November 2016 to October 2026.</p>
+          <p>A share of land is a fairer measure than the worst class present. One small patch of D4 does not make a large basin look exceptional.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-2021-480.webp 480w, /assets/images/r/drought-in-western-basins-2021-960.webp 960w, /assets/images/r/drought-in-western-basins-2021-1440.webp 1440w, /assets/images/r/drought-in-western-basins-2021-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/drought-in-western-basins-2021.jpg" alt="Western drainage basins on July 27, 2021, colored by their share of land at D2 or worse. Almost every basin is at 75% or more. Across all 75 basins the share is 88%." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>July 27, 2021, the highest week in this record. The small chart traces the West-wide share. <a href="/assets/images/drought-in-western-basins-2021.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <p>Across all 75 basins, the highest share in this record was 88%, on July 27, 2021. The West-wide share weights each basin by its U.S. land area.</p>
+          <h2>The fall eased it, mostly</h2>
+          <p>In 2026 the share reached 47% on August 4. By October 27 it was 23%.</p>
+          <p>From October 20 to October 27, 19 basins had less land at D2 or worse. None had more. The other 56 did not change.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-480.webp 480w, /assets/images/r/drought-in-western-basins-960.webp 960w, /assets/images/r/drought-in-western-basins-1440.webp 1440w, /assets/images/r/drought-in-western-basins-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/drought-in-western-basins.jpg" alt="Western drainage basins on October 27, 2026, colored by their share of land at D2 or worse. The Jordan basin in Utah is at 98% and Middle Snake-Powder at 96%. Across all 75 basins the share is 23%, down from 47% in August." width="2160" height="2160" loading="lazy"></picture>
+            <figcaption>October 27, 2026. <a href="/assets/images/drought-in-western-basins.jpg">Open the still</a>.</figcaption>
+          </figure>
+          <p>Some basins did not move much. The Jordan basin in Utah is at 98%. Middle Snake-Powder, on the Oregon and Idaho border, is at 96%. Fifteen basins are at 50% or more.</p>
+          <h2>Symbol guide</h2>
+          <ul>
+            <li>Thin outlines mark the HUC-6 basins. Basins that cross into Canada show only their U.S. land in color.</li>
+            <li>The first scene uses the Drought Monitor classes, from pale yellow for D0 to dark red for D4.</li>
+            <li>The other scenes use six classes for the share of land at D2 or worse, from none to 75% or more.</li>
+            <li>All maps use an equal-area projection, so basin sizes compare fairly.</li>
+          </ul>
+          <h2>How the video is made</h2>
+          <p>A Python script reads the drought data from a fixed commit of the Western Water Dashboard. GeoPandas clips the polygons and projects them. Matplotlib draws each frame at 2160 pixels. FFmpeg encodes the frames.</p>
+          <p>The script checks its own numbers against the dashboard before it draws. The type is Mona Sans, an open-source typeface from GitHub.</p>
+          <p>The posted video is square at 60 frames per second. This page uses a 30-frame-per-second cut without the end card. The video starts when the reader selects Play.</p>
+          <h2>Data and credit</h2>
+          <p>The National Drought Mitigation Center, USDA and NOAA produce the U.S. Drought Monitor. USGS provides the Watershed Boundary Dataset. The Western Water Dashboard measures the share of each basin in each class.</p>
+          <ul>
+            <li><a href="https://droughtmonitor.unl.edu/">Open the U.S. Drought Monitor</a>.</li>
+            <li><a href="https://buschbrian.github.io/western-water-dashboard/drought.html?state=all">Open drought on the Western Water Dashboard</a>.</li>
+          </ul>
+          <p class="source-note"><a href="/assets/data/day-3-drought.json">Read the figure values for each basin</a>. <a href="/docs/map-challenge-2026.md">Read the challenge methods</a>.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/drought-in-western-basins/" aria-current="page">Day 3: Polygons</a>
+            <a href="/notes/four-corners-october-precipitation/">Bonus: Precipitation</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

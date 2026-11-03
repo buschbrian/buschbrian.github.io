@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>One place to see the water in the West</title>
       <link>https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</link>
@@ -99,6 +99,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/two-lakes-two-river-systems/</guid>
       <description>Lake Mead and Lake Powell as daily elevation lines, then the Colorado and Columbia reservoir systems drawn as diagrams.</description>
       <pubDate>Mon, 02 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Drought in 75 Western Basins</title>
+      <link>https://buschbrian.github.io/notes/drought-in-western-basins/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/drought-in-western-basins/</guid>
+      <description>The U.S. Drought Monitor's October 27, 2026 map across 75 western drainage basins, then ten years of weekly maps as each basin's share of land in severe drought or worse.</description>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>October Precipitation in the Four Corners</title>

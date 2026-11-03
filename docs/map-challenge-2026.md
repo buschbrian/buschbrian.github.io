@@ -112,3 +112,33 @@ The USDA Natural Resources Conservation Service provides the SNOTEL precipitatio
 The U.S. Geological Survey provides the Network-Linked Data Index traces.
 The Bureau of Reclamation provides the daily lake elevations.
 Mapbox sponsors the challenge, but these figures do not use Mapbox services.
+
+## Day 3: drought in 75 western basins
+
+The Day 3 figure uses the U.S. Drought Monitor and the Western Water Dashboard's drought measurements.
+The inputs come from dashboard commit `f2a99037a3158ef538bbaab3cf76ed0f9d504d8f`.
+The basins are the 75 HUC-6 units in regions 14 through 18, from the USGS Watershed Boundary Dataset.
+Only U.S. land is colored. Ten basins cross into Canada or Mexico.
+
+The first scene clips the October 27, 2026 drought polygons to the basins.
+On that map, 21 basins contain D3 or D4.
+
+The second scene uses the dashboard's weekly history from November 1, 2016 to October 27, 2026.
+Each basin gets the share of its land at D2 or worse.
+The dashboard measures that share on a 0.002-degree grid weighted by the cosine of latitude.
+The West-wide share weights each basin by its U.S. land area in EPSG:5070.
+The highest week is July 27, 2021, at 88.3%.
+In 2026 the share reached 46.6% on August 4 and fell to 23.3% on October 27.
+Two weeks in February 2026 are missing from the monitor's archive. They stay missing.
+
+The third scene holds on October 27.
+From October 20, 19 basins have less land at D2 or worse, none have more, and 56 did not change.
+The Jordan basin is at 98.0% and Middle Snake-Powder is at 95.6%.
+
+The script stops if its counts differ from the dashboard.
+The per-basin values are in `assets/data/day-3-drought.json`.
+The render script, `day03_drought.py`, stays with the vault's challenge code.
+The type is Mona Sans, version 2.0.27, under the SIL Open Font License.
+The square post is 1080 × 1080 at 60 fps. The Reel is 1080 × 1920 at 30 fps.
+The page cut is square at 30 fps, without the end card.
+An earlier Day 3 draft used dashboard screenshots of four measurements. It was replaced before posting.
