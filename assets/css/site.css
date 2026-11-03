@@ -154,7 +154,7 @@ p { line-height: 1.6; color: var(--body); }
 .wrap > section { padding: clamp(50px, 7vw, 60px) 0; border-top: 0; }
 
 #top {
-  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(28px, 4vw, 56px); align-items: center;
   margin-top: 24px; padding: 36px clamp(20px, 4vw, 48px);
   border-radius: var(--r); color: var(--white);
@@ -179,20 +179,43 @@ p { line-height: 1.6; color: var(--body); }
 .hero-secondary:hover { color: var(--teal); }
 #top a:focus-visible { outline-color: var(--teal); }
 .hero-creds { margin: 24px 0 0; font-size: 13px; line-height: 1.7; color: #bdccdf; }
-.challenge { min-width: 0; width: 100%; max-width: 400px; justify-self: end; }
-.challenge-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 12px; }
-.challenge-head h2 { margin: 0; font-size: 13px; line-height: 1.5; font-weight: 400; letter-spacing: 0; color: #e0e8f2; }
-.challenge-count { margin: 0; font-size: 12px; color: var(--teal); font-variant-numeric: tabular-nums; }
-.challenge-feature { margin: 0; }
-.challenge-image { display: block; padding: 5px; border-radius: 16px; background: rgba(255, 255, 255, .16); }
-.challenge-image img { width: 100%; height: auto; border-radius: 11px; }
-.challenge-feature figcaption { margin-top: 16px; }
-.challenge-day { margin: 0 0 6px; font-size: 13px; color: #bdccdf; }
-.challenge-feature h3 { margin: 0 0 4px; font-size: 20px; line-height: 1.25; font-weight: 500; letter-spacing: -.02em; }
-.challenge-feature h3 a { color: var(--white); }
-.challenge-story, .challenge-more { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: var(--teal); text-decoration: underline; text-underline-offset: 4px; }
-.challenge-actions { display: flex; flex-wrap: wrap; gap: 0 24px; }
-.challenge-story:hover, .challenge-more:hover { color: var(--white); }
+.challenge { min-width: 0; }
+.challenge-head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 20px; margin-bottom: 14px; }
+.challenge-head h2 { margin: 0; max-width: 34ch; font-size: 17px; line-height: 1.4; font-weight: 500; letter-spacing: 0; color: #e0e8f2; }
+.challenge-head h2 a { color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }
+.challenge-count { flex: none; margin: 0; font-size: 13px; color: #bdccdf; font-variant-numeric: tabular-nums; }
+.challenge-count strong { color: var(--teal); font-weight: 600; }
+.tiles { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-auto-rows: 1fr; gap: 10px; }
+.tile { position: relative; display: block; aspect-ratio: 1; min-width: 0; overflow: hidden; border-radius: 12px; background: #0e1a42; color: var(--white); }
+.tile-lead { grid-row: span 2; }
+.tile picture, .tile img { display: block; width: 100%; height: 100%; }
+.tile img { object-fit: cover; transition: transform .3s ease; }
+.tile:hover img { transform: scale(1.04); }
+.tile:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.tile-day {
+  position: absolute; left: 8px; bottom: 8px; max-width: calc(100% - 16px); padding: 3px 7px; border-radius: 5px;
+  background: rgba(14, 26, 66, .86); color: var(--teal); font-size: 11px; line-height: 1.3; font-variant-numeric: tabular-nums;
+}
+.tile-caption {
+  position: absolute; inset: auto 0 0 0; padding: 48px 16px 16px;
+  background: linear-gradient(to top, rgba(14, 26, 66, .94) 0%, rgba(14, 26, 66, .78) 55%, rgba(14, 26, 66, 0) 100%);
+}
+.tile-caption .tile-day { position: static; display: inline-block; max-width: none; margin-bottom: 8px; padding: 0; background: none; font-size: 12px; }
+.tile-title { display: block; font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; line-height: 1.2; letter-spacing: -.02em; }
+.month { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 4px; }
+.chip {
+  display: grid; place-items: center; aspect-ratio: 1; min-width: 0; border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, .18); color: rgba(255, 255, 255, .5); font-size: 11px; font-variant-numeric: tabular-nums;
+}
+.chip a { display: grid; place-items: center; width: 100%; height: 100%; border-radius: inherit; color: inherit; }
+.chip.is-posted { border-color: var(--teal); background: var(--teal); color: #12204f; font-weight: 600; }
+.chip.is-posted a:hover { background: var(--white); }
+.chip.is-posted a:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.is-posted + .chip:not(.is-posted) { border: 1px dashed var(--teal); color: var(--teal); }
+.challenge-more { margin: 14px 0 0; font-size: 14px; }
+.challenge-more a { color: var(--teal); text-decoration: underline; text-underline-offset: 4px; }
+.challenge-more a:hover { color: var(--white); }
+@media (prefers-reduced-motion: reduce) { .tile img { transition: none; } .tile:hover img { transform: none; } }
 
 .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 36px; align-items: start; }
 .work-card { min-width: 0; }
@@ -212,7 +235,7 @@ p { line-height: 1.6; color: var(--body); }
   .hero-lede { font-size: 16px; }
   .hero-actions { gap: 8px 16px; }
   .hero-primary { gap: 12px; padding-left: 16px; }
-  .challenge-head h2 { font-size: 12px; }
+  .challenge-head h2 { font-size: 15px; }
 }
 @media (max-width: 720px) {
   #top { grid-template-columns: minmax(0, 1fr); margin-top: 20px; padding-block: 28px; gap: 28px; }
@@ -222,9 +245,14 @@ p { line-height: 1.6; color: var(--body); }
   .hero-creds { margin-top: 20px; font-size: 12px; }
   .hero-actions { gap: 8px 20px; }
   .hero-primary { gap: 12px; padding-left: 16px; font-size: 13px; }
-  .challenge { max-width: none; }
-  .challenge-head h2 { font-size: 12px; }
+  .challenge-head { flex-direction: column; }
+  .challenge-head h2 { font-size: 15px; }
   .work-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+}
+@media (max-width: 560px) {
+  .tiles { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+  .tile-lead { grid-column: span 2; grid-row: auto; }
+  .month { grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 3px; }
 }
 
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 60px); }
