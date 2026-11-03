@@ -54,126 +54,150 @@
       <section class="page-heading">
         <p class="eyebrow">Selected work</p>
         <h1>Projects</h1>
-        <p>Cartography, spatial analysis, and enterprise GIS/data project examples, plus selected maps from the 2024 30 Day Map Challenge below.</p>
+        <p>Explore the finalist maps, Western Water Dashboard, and the 30 Day Map Challenge. More applications and map studies follow.</p>
       </section>
 
-      <div class="project-stack">
-        <article class="project-feature" id="western-water-dashboard">
-          <a class="project-feature-image" href="https://buschbrian.github.io/western-water-dashboard/" target="_blank" rel="noreferrer"><picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-map-480.webp 480w, /assets/images/r/western-water-dashboard-map-960.webp 960w, /assets/images/r/western-water-dashboard-map-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/western-water-dashboard-map.jpg" alt="The Western Water Dashboard storage map, covering eleven western states, with the combined storage in a side panel." width="1400" height="840" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">Personal Project | 2026</p>
-            <h2>Western Water Dashboard</h2>
-            <p>Reservoir storage, mountain snow, and drought for eleven western states, in one ArcGIS Maps SDK for JavaScript 5.1 application. It covers 404 reservoirs, 639 snow measurement sites, and 75 drainage areas. A Python pipeline rebuilds the data each morning through GitHub Actions. Most of the code was written by AI agents under written rules, with human review on every change.</p>
-            <div class="tag-row"><span>ArcGIS Maps SDK for JS 5.1</span><span>ArcGIS charts</span><span>Python pipeline</span><span>Agentic AI</span></div>
-            <p class="project-action"><a href="/notes/utah-water-dashboard-rebuild/">Read the post</a> &middot; <a href="https://buschbrian.github.io/western-water-dashboard/" target="_blank" rel="noreferrer">View the live dashboard</a> &middot; <a href="/projects/western-water-dashboard-atlas/">See the system atlas</a> &middot; <a href="/notes/utah-reservoir-dashboard/">Read the earlier note</a></p>
-          </div>
-        </article>
-        <article class="project-feature" id="millcreek-planning-map">
-          <a class="project-feature-image" href="/notes/millcreek-planning-map/"><picture><source type="image/webp" srcset="/assets/images/r/millcreek-planning-map-480.webp 480w, /assets/images/r/millcreek-planning-map-960.webp 960w, /assets/images/r/millcreek-planning-map-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/millcreek-planning-map.jpg" alt="The Millcreek Planning Map with the layer list open beside a zoning map of the city." width="1400" height="840" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">City of Millcreek | 2026</p>
-            <h2>Millcreek Planning Map</h2>
-            <p>The public planning and zoning map, rebuilt on the ArcGIS Maps SDK for JavaScript with Nearmap imagery.</p>
-            <div class="tag-row"><span>ArcGIS Maps SDK for JS</span><span>Calcite</span><span>Nearmap</span><span>Planning</span></div>
-            <p class="project-action"><a href="/notes/millcreek-planning-map/">Read the post</a> &middot; <a href="https://planning.gis.millcreekut.gov/" target="_blank" rel="noreferrer">Use the live application</a></p>
-          </div>
-        </article>
+      <nav class="section-nav" aria-label="Project categories">
+        <a href="#featured-projects">Featured work</a><a href="#map-challenge-2026">2026 challenge</a><a href="#applications">Applications</a><a href="#maps-analysis">Maps and analysis</a><a href="#map-challenge-2024">2024 challenge</a>
+      </nav>
 
-        <article class="project-feature" id="millcreek-property-lookup">
-          <a class="project-feature-image" href="/notes/millcreek-property-lookup/"><picture><source type="image/webp" srcset="/assets/images/r/millcreek-property-lookup-480.webp 480w, /assets/images/r/millcreek-property-lookup-960.webp 960w, /assets/images/r/millcreek-property-lookup-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/millcreek-property-lookup.jpg" alt="The Millcreek Property Lookup page, with one search box for an address or a parcel number." width="1400" height="510" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">City of Millcreek | 2026</p>
-            <h2>Millcreek Property Lookup</h2>
-            <p>Zoning, hazard, and district facts for a property, as text. No map, mouse, or vision needed.</p>
-            <div class="tag-row"><span>Accessibility</span><span>WCAG 2.1 AA target</span><span>JavaScript</span><span>Planning</span></div>
-            <p class="project-action"><a href="/notes/millcreek-property-lookup/">Read the post</a> &middot; <a href="https://lookup.gis.millcreekut.gov/" target="_blank" rel="noreferrer">Use the live application</a></p>
-          </div>
-        </article>
+      <section class="project-group" id="featured-projects" aria-labelledby="featured-projects-title">
+        <div class="section-heading"><h2 id="featured-projects-title">Featured work</h2></div>
+        <div class="project-stack">
+          <article class="project-feature" id="sidewalk-trails-master-plan">
+            <a class="project-feature-image" href="/notes/sidewalk-trails-master-plan/"><picture><source type="image/webp" srcset="/assets/images/r/sidewalk-trails-master-plan-480.webp 480w, /assets/images/r/sidewalk-trails-master-plan-960.webp 960w, /assets/images/r/sidewalk-trails-master-plan-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/sidewalk-trails-master-plan.jpg" alt="Millcreek Sidewalk & Trails Master Plan map showing designated centers, paths, and trails." width="2200" height="1650" fetchpriority="high"></picture></a>
+            <div>
+              <p class="project-meta">Esri Finalist | 2026</p>
+              <h3>Sidewalk &amp; Trails Master Plan</h3>
+              <p>A citywide map of designated centers, paths, and trails for Millcreek, recognized as an Esri User Conference Virtual Map Gallery finalist.</p>
+              <div class="tag-row"><span>Planning</span><span>Sidewalks &amp; trails</span><span>Finalist</span></div>
+              <p class="project-action"><a href="/notes/sidewalk-trails-master-plan/">Read the post</a> &middot; <a href="https://mapgallery.esri.com/submission-detail/42174" target="_blank" rel="noreferrer">View in the Esri Map Gallery</a></p>
+            </div>
+          </article>
 
-        <article class="project-feature" id="ugem-hub">
-          <a class="project-feature-image" href="/notes/ugem-hub/"><picture><source type="image/webp" srcset="/assets/images/r/ugem-hub-480.webp 480w, /assets/images/r/ugem-hub-960.webp 960w, /assets/images/r/ugem-hub-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/ugem-hub.jpg" alt="The UGEM Hub home page. The title Utah Geospatial Emergency Management (UGEM) Hub sits over a hillshade of Mount Timpanogos, with a Join the Hub button and links to featured apps, the Hub sections, and upcoming events." width="1400" height="840" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">UGEM Coordinating Board | 2026</p>
-            <h2>UGEM Hub</h2>
-            <p>The emergency management GIS site for Utah. Placeholder pages became working guides, and every page and link was checked.</p>
-            <div class="tag-row"><span>ArcGIS Hub</span><span>Emergency management</span><span>Content review</span><span>Accessibility</span></div>
-            <p class="project-action"><a href="/notes/ugem-hub/">Read the post</a> &middot; <a href="https://ugem-utah-dps-hub.hub.arcgis.com/" target="_blank" rel="noreferrer">Visit the UGEM Hub</a></p>
-          </div>
-        </article>
+          <article class="project-feature" id="future-land-use-millcreek">
+            <a class="project-feature-image" href="/notes/future-land-use-millcreek/"><picture><source type="image/webp" srcset="/assets/images/r/future-land-use-millcreek-480.webp 480w, /assets/images/r/future-land-use-millcreek-960.webp 960w, /assets/images/r/future-land-use-millcreek-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/future-land-use-millcreek.jpg" alt="Future Land Use map for Millcreek, Utah." width="2200" height="1467" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">Esri Finalist | 2025</p>
+              <h3>Future Land Use - Millcreek, Utah</h3>
+              <p>A General Plan future land use map for Millcreek, Utah, recognized as an Esri User Conference Virtual Map Gallery finalist.</p>
+              <div class="tag-row"><span>Planning</span><span>Land use</span><span>Public map</span><span>Finalist</span></div>
+              <p class="project-action"><a href="/notes/future-land-use-millcreek/">Read the post</a> &middot; <a href="https://www.esri.com/en-us/about/events/uc/agenda/virtual-map-gallery#/event/67ad126d8e0786445a1513c0/submission-detail/39374" target="_blank" rel="noreferrer">View in the Esri Map Gallery</a></p>
+            </div>
+          </article>
 
-        <article class="project-feature" id="sidewalk-trails-master-plan">
-          <a class="project-feature-image" href="/notes/sidewalk-trails-master-plan/"><picture><source type="image/webp" srcset="/assets/images/r/sidewalk-trails-master-plan-480.webp 480w, /assets/images/r/sidewalk-trails-master-plan-960.webp 960w, /assets/images/r/sidewalk-trails-master-plan-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/sidewalk-trails-master-plan.jpg" alt="Millcreek Sidewalk & Trails Master Plan map showing designated centers, paths, and trails." width="2200" height="1650" fetchpriority="high"></picture></a>
-          <div>
-            <p class="project-meta">Esri Finalist | 2026</p>
-            <h2>Sidewalk &amp; Trails Master Plan</h2>
-            <p>A citywide map of designated centers, paths, and trails for Millcreek, recognized as an Esri User Conference Virtual Map Gallery finalist.</p>
-            <div class="tag-row"><span>Planning</span><span>Sidewalks &amp; trails</span><span>Finalist</span></div>
-            <p class="project-action"><a href="/notes/sidewalk-trails-master-plan/">Read the post</a> &middot; <a href="https://mapgallery.esri.com/submission-detail/42174" target="_blank" rel="noreferrer">View in the Esri Map Gallery</a></p>
-          </div>
-        </article>
+          <article class="project-feature" id="western-water-dashboard">
+            <a class="project-feature-image" href="https://buschbrian.github.io/western-water-dashboard/" target="_blank" rel="noreferrer"><picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-map-480.webp 480w, /assets/images/r/western-water-dashboard-map-960.webp 960w, /assets/images/r/western-water-dashboard-map-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/western-water-dashboard-map.jpg" alt="The Western Water Dashboard storage map, covering eleven western states, with the combined storage in a side panel." width="1400" height="840" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">Personal Project | 2026</p>
+              <h3>Western Water Dashboard</h3>
+              <p>Reservoir storage, mountain snow, and drought for eleven western states, in one ArcGIS Maps SDK for JavaScript 5.1 application. It covers 404 reservoirs, 639 snow measurement sites, and 75 drainage areas. A Python pipeline rebuilds the data each morning through GitHub Actions. Most of the code was written by AI agents under written rules, with human review on every change.</p>
+              <div class="tag-row"><span>ArcGIS Maps SDK for JS 5.1</span><span>ArcGIS charts</span><span>Python pipeline</span><span>Agentic AI</span></div>
+              <p class="project-action"><a href="/notes/utah-water-dashboard-rebuild/">Read the post</a> &middot; <a href="https://buschbrian.github.io/western-water-dashboard/" target="_blank" rel="noreferrer">View the live dashboard</a> &middot; <a href="/projects/western-water-dashboard-atlas/">See the system atlas</a> &middot; <a href="/notes/utah-reservoir-dashboard/">Read the earlier note</a></p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <p class="collection-callout"><a href="#map-challenge-2026">Explore the current 30 Day Map Challenge collection &rarr;</a></p>
 
-        <article class="project-feature" id="future-land-use-millcreek">
-          <a class="project-feature-image" href="/notes/future-land-use-millcreek/"><picture><source type="image/webp" srcset="/assets/images/r/future-land-use-millcreek-480.webp 480w, /assets/images/r/future-land-use-millcreek-960.webp 960w, /assets/images/r/future-land-use-millcreek-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/future-land-use-millcreek.jpg" alt="Future Land Use map for Millcreek, Utah." width="2200" height="1467" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">Esri Finalist | 2025</p>
-            <h2>Future Land Use - Millcreek, Utah</h2>
-            <p>A General Plan future land use map for Millcreek, Utah, recognized as an Esri User Conference Virtual Map Gallery finalist.</p>
-            <div class="tag-row"><span>Planning</span><span>Land use</span><span>Public map</span><span>Finalist</span></div>
-            <p class="project-action"><a href="/notes/future-land-use-millcreek/">Read the post</a> &middot; <a href="https://www.esri.com/en-us/about/events/uc/agenda/virtual-map-gallery#/event/67ad126d8e0786445a1513c0/submission-detail/39374" target="_blank" rel="noreferrer">View in the Esri Map Gallery</a></p>
-          </div>
-        </article>
+      <section class="project-group" id="applications" aria-labelledby="applications-title">
+        <div class="section-heading"><h2 id="applications-title">Applications</h2></div>
+        <div class="project-stack">
+          <article class="project-feature" id="millcreek-planning-map">
+            <a class="project-feature-image" href="/notes/millcreek-planning-map/"><picture><source type="image/webp" srcset="/assets/images/r/millcreek-planning-map-480.webp 480w, /assets/images/r/millcreek-planning-map-960.webp 960w, /assets/images/r/millcreek-planning-map-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/millcreek-planning-map.jpg" alt="The Millcreek Planning Map with the layer list open beside a zoning map of the city." width="1400" height="840" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">City of Millcreek | 2026</p>
+              <h3>Millcreek Planning Map</h3>
+              <p>The public planning and zoning map, rebuilt on the ArcGIS Maps SDK for JavaScript with Nearmap imagery.</p>
+              <div class="tag-row"><span>ArcGIS Maps SDK for JS</span><span>Calcite</span><span>Nearmap</span><span>Planning</span></div>
+              <p class="project-action"><a href="/notes/millcreek-planning-map/">Read the post</a> &middot; <a href="https://planning.gis.millcreekut.gov/" target="_blank" rel="noreferrer">Use the live application</a></p>
+            </div>
+          </article>
 
-        <article class="project-feature" id="millcreek-redistricting">
-          <a class="project-feature-image" href="/notes/millcreek-redistricting/"><picture><source type="image/webp" srcset="/assets/images/r/millcreek-redistricting-480.webp 480w, /assets/images/r/millcreek-redistricting-960.webp 960w, /assets/images/r/millcreek-redistricting-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/millcreek-redistricting.jpg" alt="Adopted Millcreek City Council district map in an embedded ArcGIS Experience Builder app, 2022." width="2200" height="1238" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">Millcreek, UT | City Council Redistricting | 2022</p>
-            <h2>Millcreek Redistricting</h2>
-            <p>The ArcGIS workflow for Millcreek's 2022 City Council redistricting: three public proposals, a StoryMap and Survey123 feedback process, and 177 resident responses. The adopted map reunited a split community.</p>
-            <div class="tag-row"><span>Redistricting</span><span>Public engagement</span><span>StoryMaps</span></div>
-            <p class="project-action"><a href="/notes/millcreek-redistricting/">Read the post</a></p>
-          </div>
-        </article>
+          <article class="project-feature" id="millcreek-property-lookup">
+            <a class="project-feature-image" href="/notes/millcreek-property-lookup/"><picture><source type="image/webp" srcset="/assets/images/r/millcreek-property-lookup-480.webp 480w, /assets/images/r/millcreek-property-lookup-960.webp 960w, /assets/images/r/millcreek-property-lookup-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/millcreek-property-lookup.jpg" alt="The Millcreek Property Lookup page, with one search box for an address or a parcel number." width="1400" height="510" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">City of Millcreek | 2026</p>
+              <h3>Millcreek Property Lookup</h3>
+              <p>Zoning, hazard, and district facts for a property, as text. No map, mouse, or vision needed.</p>
+              <div class="tag-row"><span>Accessibility</span><span>WCAG 2.1 AA target</span><span>JavaScript</span><span>Planning</span></div>
+              <p class="project-action"><a href="/notes/millcreek-property-lookup/">Read the post</a> &middot; <a href="https://lookup.gis.millcreekut.gov/" target="_blank" rel="noreferrer">Use the live application</a></p>
+            </div>
+          </article>
 
-        <article class="project-feature" id="wui-boundary-mapping">
-          <a class="project-feature-image" href="/notes/wui-boundary-mapping/"><picture><source type="image/webp" srcset="/assets/images/r/wui-boundary-mapping-480.webp 480w, /assets/images/r/wui-boundary-mapping-960.webp 960w, /assets/images/r/wui-boundary-mapping-1466.webp 1466w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/wui-boundary-mapping.jpg" alt="Millcreek Wildland-Urban Interface (WUI) boundary map, HB41 compliance update, 2026." width="1466" height="2200" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">GIS Policy Work | HB 48 &amp; HB 41 | UGEM 2025 &amp; UGIC 2026</p>
-            <h2>WUI Boundary Mapping</h2>
-            <p>A conference presentation that gives other Utah local governments a workflow for Wildland-Urban Interface boundary mapping under HB 48 and HB 41.</p>
-            <div class="tag-row"><span>WUI</span><span>Policy</span><span>Local government</span></div>
-            <p class="project-action"><a href="/notes/wui-boundary-mapping/">Read the post</a></p>
-          </div>
-        </article>
+          <article class="project-feature" id="ugem-hub">
+            <a class="project-feature-image" href="/notes/ugem-hub/"><picture><source type="image/webp" srcset="/assets/images/r/ugem-hub-480.webp 480w, /assets/images/r/ugem-hub-960.webp 960w, /assets/images/r/ugem-hub-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/ugem-hub.jpg" alt="The UGEM Hub home page. The title Utah Geospatial Emergency Management (UGEM) Hub sits over a hillshade of Mount Timpanogos, with a Join the Hub button and links to featured apps, the Hub sections, and upcoming events." width="1400" height="840" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">UGEM Coordinating Board | 2026</p>
+              <h3>UGEM Hub</h3>
+              <p>The emergency management GIS site for Utah. Placeholder pages became working guides, and every page and link was checked.</p>
+              <div class="tag-row"><span>ArcGIS Hub</span><span>Emergency management</span><span>Content review</span><span>Accessibility</span></div>
+              <p class="project-action"><a href="/notes/ugem-hub/">Read the post</a> &middot; <a href="https://ugem-utah-dps-hub.hub.arcgis.com/" target="_blank" rel="noreferrer">Visit the UGEM Hub</a></p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="project-group" id="maps-analysis" aria-labelledby="maps-analysis-title">
+        <div class="section-heading"><h2 id="maps-analysis-title">Maps and analysis</h2></div>
+        <div class="project-stack">
+          <article class="project-feature" id="millcreek-redistricting">
+            <a class="project-feature-image" href="/notes/millcreek-redistricting/"><picture><source type="image/webp" srcset="/assets/images/r/millcreek-redistricting-480.webp 480w, /assets/images/r/millcreek-redistricting-960.webp 960w, /assets/images/r/millcreek-redistricting-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/millcreek-redistricting.jpg" alt="Adopted Millcreek City Council district map in an embedded ArcGIS Experience Builder app, 2022." width="2200" height="1238" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">Millcreek, UT | City Council Redistricting | 2022</p>
+              <h3>Millcreek Redistricting</h3>
+              <p>The ArcGIS workflow for Millcreek's 2022 City Council redistricting: three public proposals, a StoryMap and Survey123 feedback process, and 177 resident responses. The adopted map reunited a split community.</p>
+              <div class="tag-row"><span>Redistricting</span><span>Public engagement</span><span>StoryMaps</span></div>
+              <p class="project-action"><a href="/notes/millcreek-redistricting/">Read the post</a></p>
+            </div>
+          </article>
 
-        <article class="project-feature" id="alcohol-spacing-regulations">
-          <a class="project-feature-image" href="/notes/alcohol-spacing-regulations/"><picture><source type="image/webp" srcset="/assets/images/r/alcohol-spacing-regulations-480.webp 480w, /assets/images/r/alcohol-spacing-regulations-960.webp 960w, /assets/images/r/alcohol-spacing-regulations-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/alcohol-spacing-regulations.jpg" alt="Millcreek, Utah alcohol establishment spacing map, showing 300-foot and 600-foot buffers around community centers, 2024." width="2200" height="1423" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">Millcreek, UT | Regulatory Mapping</p>
-            <h2>Alcohol Spacing Regulations</h2>
-            <p>A zoning map and public web app for Millcreek's alcohol establishment spacing requirements. A QR code on the printed map links to the app.</p>
-            <div class="tag-row"><span>Zoning</span><span>Web app</span><span>Public tool</span></div>
-            <p class="project-action"><a href="/notes/alcohol-spacing-regulations/">Read the post</a></p>
-          </div>
-        </article>
+          <article class="project-feature" id="wui-boundary-mapping">
+            <a class="project-feature-image" href="/notes/wui-boundary-mapping/"><picture><source type="image/webp" srcset="/assets/images/r/wui-boundary-mapping-480.webp 480w, /assets/images/r/wui-boundary-mapping-960.webp 960w, /assets/images/r/wui-boundary-mapping-1466.webp 1466w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/wui-boundary-mapping.jpg" alt="Millcreek Wildland-Urban Interface (WUI) boundary map, HB41 compliance update, 2026." width="1466" height="2200" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">GIS Policy Work | HB 48 &amp; HB 41 | UGEM 2025 &amp; UGIC 2026</p>
+              <h3>WUI Boundary Mapping</h3>
+              <p>A conference presentation that gives other Utah local governments a workflow for Wildland-Urban Interface boundary mapping under HB 48 and HB 41.</p>
+              <div class="tag-row"><span>WUI</span><span>Policy</span><span>Local government</span></div>
+              <p class="project-action"><a href="/notes/wui-boundary-mapping/">Read the post</a></p>
+            </div>
+          </article>
 
-        <article class="project-feature" id="polygon-neighbor-coloring">
-          <a class="project-feature-image" href="/notes/polygon-neighbor-coloring/"><picture><source type="image/webp" srcset="/assets/images/r/polygon-neighbor-coloring-480.webp 480w, /assets/images/r/polygon-neighbor-coloring-960.webp 960w, /assets/images/r/polygon-neighbor-coloring-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/polygon-neighbor-coloring.jpg" alt="Granite School District elementary school boundaries overlaid with municipal boundaries, colored so no two neighboring polygons share a color." width="2200" height="1423" loading="lazy"></picture></a>
-          <div>
-            <p class="project-meta">Open Source | Python &amp; ArcPy</p>
-            <h2>Polygon Neighbor Coloring</h2>
-            <p>An ArcPy script that gives a different color to each adjacent polygon. Built for parcel, district, and boundary maps.</p>
-            <div class="tag-row"><span>Python</span><span>ArcPy</span><span>Automation</span></div>
-            <p class="project-action"><a href="/notes/polygon-neighbor-coloring/">Read the post</a></p>
-          </div>
-        </article>
-      </div>
+          <article class="project-feature" id="alcohol-spacing-regulations">
+            <a class="project-feature-image" href="/notes/alcohol-spacing-regulations/"><picture><source type="image/webp" srcset="/assets/images/r/alcohol-spacing-regulations-480.webp 480w, /assets/images/r/alcohol-spacing-regulations-960.webp 960w, /assets/images/r/alcohol-spacing-regulations-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/alcohol-spacing-regulations.jpg" alt="Millcreek, Utah alcohol establishment spacing map, showing 300-foot and 600-foot buffers around community centers, 2024." width="2200" height="1423" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">Millcreek, UT | Regulatory Mapping</p>
+              <h3>Alcohol Spacing Regulations</h3>
+              <p>A zoning map and public web app for Millcreek's alcohol establishment spacing requirements. A QR code on the printed map links to the app.</p>
+              <div class="tag-row"><span>Zoning</span><span>Web app</span><span>Public tool</span></div>
+              <p class="project-action"><a href="/notes/alcohol-spacing-regulations/">Read the post</a></p>
+            </div>
+          </article>
 
+          <article class="project-feature" id="polygon-neighbor-coloring">
+            <a class="project-feature-image" href="/notes/polygon-neighbor-coloring/"><picture><source type="image/webp" srcset="/assets/images/r/polygon-neighbor-coloring-480.webp 480w, /assets/images/r/polygon-neighbor-coloring-960.webp 960w, /assets/images/r/polygon-neighbor-coloring-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 484px"><img src="/assets/images/polygon-neighbor-coloring.jpg" alt="Granite School District elementary school boundaries overlaid with municipal boundaries, colored so no two neighboring polygons share a color." width="2200" height="1423" loading="lazy"></picture></a>
+            <div>
+              <p class="project-meta">Open Source | Python &amp; ArcPy</p>
+              <h3>Polygon Neighbor Coloring</h3>
+              <p>An ArcPy script that gives a different color to each adjacent polygon. Built for parcel, district, and boundary maps.</p>
+              <div class="tag-row"><span>Python</span><span>ArcPy</span><span>Automation</span></div>
+              <p class="project-action"><a href="/notes/polygon-neighbor-coloring/">Read the post</a></p>
+            </div>
+          </article>
+        </div>
+      </section>
       <div class="section-heading project-stack-heading" id="map-challenge-2026">
         <p class="eyebrow">30 Day Map Challenge, 2026</p>
-        <h2>Water in the West</h2>
-        <p>Reservoirs, lake levels, precipitation, and drought, mapped from Western Water Dashboard observations.</p>
-        <p>The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript.</p>
+        <h2>30 Day Map Challenge</h2>
+        <p>Reservoirs, drought, river systems, wildfire starts, and precipitation. Open a map to read about its data and method.</p>
       </div>
+
+      <nav class="day-nav" aria-label="2026 challenge days">
+        <a href="#western-reservoir-storage">Day 1 <span>Points</span></a>
+        <a href="#two-lakes-two-river-systems">Day 2 <span>Lines</span></a>
+        <a href="#drought-in-western-basins">Day 3 <span>Polygons</span></a>
+        <a href="#utah-wildfire-starts-by-cause">Day 4 <span>Clusters</span></a>
+        <a href="#four-corners-october-precipitation">Bonus <span>Precipitation</span></a>
+      </nav>
 
       <div class="map-grid">
         <a class="map-card" id="western-reservoir-storage" href="/notes/western-reservoir-storage/">
@@ -217,7 +241,7 @@
         </a>
       </div>
 
-      <div class="section-heading project-stack-heading">
+      <div class="section-heading project-stack-heading" id="map-challenge-2024">
         <p class="eyebrow">30 Day Map Challenge, 2024</p>
         <h2>Selected maps from the 2024 30 Day Map Challenge</h2>
         <p>Twelve Utah maps from the 2024 challenge, each made for one of its daily themes. They range from simple point geometry to an AI experiment kept for what it gets wrong.</p>

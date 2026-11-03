@@ -34,264 +34,236 @@
       <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
     </header>
 
-    <main id="main" class="page">
+    <main id="main" class="page notes-page">
       <section class="page-heading">
         <p class="eyebrow">Writing</p>
         <h1>Notes</h1>
-        <p>Every note on this site, in one list. The notes record how each map or application was made, which data it uses, and what the method can and cannot show. You can also <a href="/feed.xml">subscribe with a feed reader</a>.</p>
+        <p>Methods, experiments, and lessons from making maps and applications. These notes explain the data and the limits of each method. You can also <a href="/feed.xml">subscribe with a feed reader</a>.</p>
       </section>
 
-      <div class="section-heading project-stack-heading">
-        <p class="eyebrow">Selected work</p>
-        <h2>Projects and applications</h2>
+      <nav class="section-nav" aria-label="Note subjects"><a href="#project-notes">Methods and lessons</a><a href="#map-challenge-2026">2026 challenge</a><a href="#map-challenge-2024">2024 challenge</a></nav>
+
+      <div class="section-heading project-stack-heading" id="project-notes">
+        <p class="eyebrow">Methods and lessons</p>
+        <h2>Building maps and applications</h2>
         <p>Professional GIS work for local government, and personal applications built with public data.</p>
       </div>
 
-      <div class="map-grid">
-        <a class="map-card" id="ugem-hub" href="/notes/ugem-hub/">
-          <picture><source type="image/webp" srcset="/assets/images/r/ugem-hub-480.webp 480w, /assets/images/r/ugem-hub-960.webp 960w, /assets/images/r/ugem-hub-1400.webp 1400w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/ugem-hub.jpg" alt="The UGEM Hub home page. The title Utah Geospatial Emergency Management (UGEM) Hub sits over a hillshade of Mount Timpanogos, with a Join the Hub button and links to featured apps, the Hub sections, and upcoming events." width="1400" height="840" loading="lazy"></picture>
+      <div class="note-list">
+        <article class="note-entry" id="ugem-hub">
           <p class="project-meta">Utah | Emergency management GIS</p>
-          <h3>UGEM Hub</h3>
+          <h3><a href="/notes/ugem-hub/">UGEM Hub</a></h3>
           <p>The emergency management GIS site for Utah. Placeholder pages became working guides, and every page and link was checked.</p>
           <p class="project-meta"><time datetime="2026-11-03">November 3, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-water-dashboard-rebuild" href="/notes/utah-water-dashboard-rebuild/">
-          <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-map-480.webp 480w, /assets/images/r/western-water-dashboard-map-960.webp 960w, /assets/images/r/western-water-dashboard-map-1400.webp 1400w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/western-water-dashboard-map.jpg" alt="The Western Water Dashboard storage map, covering eleven western states, with the combined storage in a side panel." width="1400" height="840" loading="lazy"></picture>
+        <article class="note-entry" id="utah-water-dashboard-rebuild">
           <p class="project-meta">Personal Project | 2026</p>
-          <h3>One place to see the water in the West</h3>
+          <h3><a href="/notes/utah-water-dashboard-rebuild/">One place to see the water in the West</a></h3>
           <p>Reservoir storage, mountain snow, and drought for eleven western states, in one ArcGIS application. AI agents did most of the work under written rules.</p>
           <p class="project-meta"><time datetime="2026-08-17">August 17, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="agentic-ai-lessons" href="/notes/agentic-ai-lessons/">
-          <picture><source type="image/webp" srcset="/assets/images/r/agentic-ai-baseline-480.webp 480w, /assets/images/r/agentic-ai-baseline-960.webp 960w, /assets/images/r/agentic-ai-baseline-1400.webp 1400w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/agentic-ai-baseline.jpg" alt="The Lake Powell detail panel on the Western Water Dashboard, showing the reservoir measured against the 1991 through 2020 normal." width="1400" height="840" loading="lazy"></picture>
+        <article class="note-entry" id="agentic-ai-lessons">
           <p class="project-meta">Personal Project | 2026</p>
-          <h3>No test goes red on a misleading name</h3>
+          <h3><a href="/notes/agentic-ai-lessons/">No test goes red on a misleading name</a></h3>
           <p>Four failures from building a GIS application with AI agents. The code was good. The bugs were about meaning, and the tests stayed green.</p>
           <p class="project-meta"><time datetime="2026-08-24">August 24, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="millcreek-planning-map" href="/notes/millcreek-planning-map/">
-          <picture><source type="image/webp" srcset="/assets/images/r/millcreek-planning-map-480.webp 480w, /assets/images/r/millcreek-planning-map-960.webp 960w, /assets/images/r/millcreek-planning-map-1400.webp 1400w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/millcreek-planning-map.jpg" alt="The Millcreek Planning Map with the layer list open beside a zoning map of the city." width="1400" height="840" loading="lazy"></picture>
+        <article class="note-entry" id="millcreek-planning-map">
           <p class="project-meta">Millcreek, Utah | Web GIS</p>
-          <h3>Millcreek Planning Map</h3>
+          <h3><a href="/notes/millcreek-planning-map/">Millcreek Planning Map</a></h3>
           <p>The public planning and zoning map, rebuilt on the ArcGIS Maps SDK for JavaScript with Nearmap imagery.</p>
           <p class="project-meta"><time datetime="2026-09-21">September 21, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="millcreek-property-lookup" href="/notes/millcreek-property-lookup/">
-          <picture><source type="image/webp" srcset="/assets/images/r/millcreek-property-lookup-480.webp 480w, /assets/images/r/millcreek-property-lookup-960.webp 960w, /assets/images/r/millcreek-property-lookup-1400.webp 1400w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/millcreek-property-lookup.jpg" alt="The Millcreek Property Lookup page, with one search box for an address or a parcel number." width="1400" height="510" loading="lazy"></picture>
+        <article class="note-entry" id="millcreek-property-lookup">
           <p class="project-meta">Millcreek, Utah | Accessible web GIS</p>
-          <h3>Millcreek Property Lookup</h3>
+          <h3><a href="/notes/millcreek-property-lookup/">Millcreek Property Lookup</a></h3>
           <p>Zoning, hazard, and district facts for a property, as text. No map, mouse, or vision needed.</p>
           <p class="project-meta"><time datetime="2026-09-21">September 21, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="sidewalk-trails-master-plan" href="/notes/sidewalk-trails-master-plan/">
-          <picture><source type="image/webp" srcset="/assets/images/r/sidewalk-trails-master-plan-480.webp 480w, /assets/images/r/sidewalk-trails-master-plan-960.webp 960w, /assets/images/r/sidewalk-trails-master-plan-1600.webp 1600w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/sidewalk-trails-master-plan.jpg" alt="Millcreek Sidewalk &amp; Trails Master Plan map showing designated centers, paths, and trails." width="2200" height="1650" loading="lazy"></picture>
+        <article class="note-entry" id="sidewalk-trails-master-plan">
           <p class="project-meta">Millcreek, Utah | Esri UC Map Gallery Finalist 2026</p>
-          <h3>Sidewalk &amp; Trails Master Plan</h3>
+          <h3><a href="/notes/sidewalk-trails-master-plan/">Sidewalk &amp; Trails Master Plan</a></h3>
           <p>A city-wide plan that turns sidewalk gaps into a connected trail network.</p>
           <p class="project-meta"><time datetime="2026-08-07">August 7, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="future-land-use-millcreek" href="/notes/future-land-use-millcreek/">
-          <picture><source type="image/webp" srcset="/assets/images/r/future-land-use-millcreek-480.webp 480w, /assets/images/r/future-land-use-millcreek-960.webp 960w, /assets/images/r/future-land-use-millcreek-1600.webp 1600w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/future-land-use-millcreek.jpg" alt="Future Land Use map for Millcreek, Utah." width="2200" height="1467" loading="lazy"></picture>
+        <article class="note-entry" id="future-land-use-millcreek">
           <p class="project-meta">Millcreek, Utah | Esri UC Map Gallery Finalist 2025</p>
-          <h3>Future Land Use, Millcreek</h3>
+          <h3><a href="/notes/future-land-use-millcreek/">Future Land Use, Millcreek</a></h3>
           <p>The General Plan land use chapter, made into a map the public can read.</p>
-        </a>
+        </article>
 
-        <a class="map-card" id="millcreek-redistricting" href="/notes/millcreek-redistricting/">
-          <picture><source type="image/webp" srcset="/assets/images/r/millcreek-redistricting-480.webp 480w, /assets/images/r/millcreek-redistricting-960.webp 960w, /assets/images/r/millcreek-redistricting-1600.webp 1600w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/millcreek-redistricting.jpg" alt="Adopted Millcreek City Council district map in an embedded ArcGIS Experience Builder app, 2022." width="2200" height="1238" loading="lazy"></picture>
+        <article class="note-entry" id="millcreek-redistricting">
           <p class="project-meta">Millcreek, Utah | 2020 Census</p>
-          <h3>Millcreek Redistricting</h3>
+          <h3><a href="/notes/millcreek-redistricting/">Millcreek Redistricting</a></h3>
           <p>ArcGIS Pro analysis and a public feedback loop, used to redraw the City Council districts.</p>
           <p class="project-meta"><time datetime="2022-02-18">February 18, 2022</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="wui-boundary-mapping" href="/notes/wui-boundary-mapping/">
-          <picture><source type="image/webp" srcset="/assets/images/r/wui-boundary-mapping-480.webp 480w, /assets/images/r/wui-boundary-mapping-960.webp 960w, /assets/images/r/wui-boundary-mapping-1466.webp 1466w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/wui-boundary-mapping.jpg" alt="Millcreek Wildland-Urban Interface (WUI) boundary map, HB41 compliance update, 2026." width="1466" height="2200" loading="lazy"></picture>
+        <article class="note-entry" id="wui-boundary-mapping">
           <p class="project-meta">GIS Policy Work | HB 48 &amp; HB 41</p>
-          <h3>WUI Boundary Mapping</h3>
+          <h3><a href="/notes/wui-boundary-mapping/">WUI Boundary Mapping</a></h3>
           <p>Wildland-Urban Interface boundaries for Utah local governments. The Wildland-Urban Interface is where houses meet wildland fuel.</p>
-        </a>
+        </article>
 
-        <a class="map-card" id="alcohol-spacing-regulations" href="/notes/alcohol-spacing-regulations/">
-          <picture><source type="image/webp" srcset="/assets/images/r/alcohol-spacing-regulations-480.webp 480w, /assets/images/r/alcohol-spacing-regulations-960.webp 960w, /assets/images/r/alcohol-spacing-regulations-1600.webp 1600w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/alcohol-spacing-regulations.jpg" alt="Millcreek, Utah alcohol establishment spacing map, showing 300-foot and 600-foot buffers around community centers, 2024." width="2200" height="1423" loading="lazy"></picture>
+        <article class="note-entry" id="alcohol-spacing-regulations">
           <p class="project-meta">Millcreek, Utah | Regulatory Mapping</p>
-          <h3>Alcohol Spacing Regulations</h3>
+          <h3><a href="/notes/alcohol-spacing-regulations/">Alcohol Spacing Regulations</a></h3>
           <p>A map and a web application that show where state spacing rules permit an alcohol license.</p>
-        </a>
+        </article>
 
-        <a class="map-card" id="polygon-neighbor-coloring" href="/notes/polygon-neighbor-coloring/">
-          <picture><source type="image/webp" srcset="/assets/images/r/polygon-neighbor-coloring-480.webp 480w, /assets/images/r/polygon-neighbor-coloring-960.webp 960w, /assets/images/r/polygon-neighbor-coloring-1600.webp 1600w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/polygon-neighbor-coloring.jpg" alt="Granite School District elementary school boundaries overlaid with municipal boundaries, colored so no two neighboring polygons share a color." width="2200" height="1423" loading="lazy"></picture>
+        <article class="note-entry" id="polygon-neighbor-coloring">
           <p class="project-meta">Open Source | Python &amp; ArcPy</p>
-          <h3>Keeping neighboring polygons apart</h3>
+          <h3><a href="/notes/polygon-neighbor-coloring/">Keeping neighboring polygons apart</a></h3>
           <p>A Python script that gives a different color to each adjacent polygon.</p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-reservoir-dashboard" href="/notes/utah-reservoir-dashboard/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-reservoir-dashboard-480.webp 480w, /assets/images/r/utah-reservoir-dashboard-960.webp 960w, /assets/images/r/utah-reservoir-dashboard-1400.webp 1400w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-reservoir-dashboard.jpg" alt="Utah Reservoir Drought Dashboard, a map of current storage vs. period-of-record max across Utah reservoirs." width="1400" height="1000" loading="lazy"></picture>
+        <article class="note-entry" id="utah-reservoir-dashboard">
           <p class="project-meta">Personal Project | 2026 | Earlier version</p>
-          <h3>One drought dashboard, two WebGL renderers</h3>
+          <h3><a href="/notes/utah-reservoir-dashboard/">One drought dashboard, two WebGL renderers</a></h3>
           <p>The first version of the water dashboard, built twice to compare a commercial renderer with an open-source one.</p>
           <p class="project-meta"><time datetime="2026-08-03">August 3, 2026</time></p>
-        </a>
+        </article>
       </div>
 
       <div class="section-heading project-stack-heading" id="map-challenge-2026">
         <p class="eyebrow">30 Day Map Challenge, 2026</p>
-        <h2>Water in the West</h2>
-        <p>Reservoirs, lake levels, precipitation, and drought, mapped from Western Water Dashboard observations.</p>
-        <p>The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript.</p>
+        <h2>30 Day Map Challenge</h2>
+        <p>The data and method behind each map in the 2026 challenge.</p>
       </div>
 
-      <div class="map-grid">
-        <a class="map-card" id="western-reservoir-storage" href="/notes/western-reservoir-storage/">
-          <picture><source type="image/webp" srcset="/assets/images/r/western-reservoir-storage-480.webp 480w, /assets/images/r/western-reservoir-storage-960.webp 960w, /assets/images/r/western-reservoir-storage-1440.webp 1440w, /assets/images/r/western-reservoir-storage-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/western-reservoir-storage.jpg" alt="September 2026 storage at 405 western reservoirs over the dashboard’s ArcGIS basemap. Rings show capacity. Fills show monthly mean storage. Combined storage for 388 reservoirs with complete records is 48.4%." width="2160" height="2160" loading="lazy"></picture>
+      <div class="note-list">
+        <article class="note-entry" id="western-reservoir-storage">
           <p class="project-meta">30 Day Map Challenge 2026 | Day 1: Points</p>
-          <h3>Western Reservoir Storage</h3>
+          <h3><a href="/notes/western-reservoir-storage/">Western Reservoir Storage</a></h3>
           <p>Monthly reservoir storage, replayed over the Western Water Dashboard’s ArcGIS basemap.</p>
           <p class="project-meta"><time datetime="2026-11-01">November 1, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="two-lakes-two-river-systems" href="/notes/two-lakes-two-river-systems/">
-          <picture><source type="image/webp" srcset="/assets/images/r/two-lakes-two-river-systems-480.webp 480w, /assets/images/r/two-lakes-two-river-systems-960.webp 960w, /assets/images/r/two-lakes-two-river-systems-1440.webp 1440w, /assets/images/r/two-lakes-two-river-systems-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/two-lakes-two-river-systems.jpg" alt="Daily surface elevation of Lake Mead since 1935 and Lake Powell since 1963. Both peaked in July 1983 and set new lows in fall 2026." width="2160" height="2160" loading="lazy"></picture>
+        <article class="note-entry" id="two-lakes-two-river-systems">
           <p class="project-meta">30 Day Map Challenge 2026 | Day 2: Lines</p>
-          <h3>Two Lakes, Two River Systems</h3>
+          <h3><a href="/notes/two-lakes-two-river-systems/">Two Lakes, Two River Systems</a></h3>
           <p>Two lakes as lines, then two river systems drawn as lines instead of maps.</p>
           <p class="project-meta"><time datetime="2026-11-02">November 2, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="drought-in-western-basins" href="/notes/drought-in-western-basins/">
-          <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-480.webp 480w, /assets/images/r/drought-in-western-basins-960.webp 960w, /assets/images/r/drought-in-western-basins-1440.webp 1440w, /assets/images/r/drought-in-western-basins-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/drought-in-western-basins.jpg" alt="Western drainage basins on October 27, 2026, colored by their share of land at D2 or worse. The Jordan basin in Utah is at 98% and Middle Snake-Powder at 96%. Across all 75 basins the share is 23%, down from 47% in August." width="2160" height="2160" loading="lazy"></picture>
+        <article class="note-entry" id="drought-in-western-basins">
           <p class="project-meta">30 Day Map Challenge 2026 | Day 3: Polygons</p>
-          <h3>Drought in 75 Western Basins</h3>
+          <h3><a href="/notes/drought-in-western-basins/">Drought in 75 Western Basins</a></h3>
           <p>The weekly drought map across western drainage basins, then ten years of drought, basin by basin.</p>
           <p class="project-meta"><time datetime="2026-11-03">November 3, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-wildfire-starts-by-cause" href="/notes/utah-wildfire-starts-by-cause/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-wildfire-starts-by-cause-480.webp 480w, /assets/images/r/utah-wildfire-starts-by-cause-960.webp 960w, /assets/images/r/utah-wildfire-starts-by-cause-1440.webp 1440w, /assets/images/r/utah-wildfire-starts-by-cause-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-wildfire-starts-by-cause.jpg" alt="Natural and human-caused wildfire density in Utah, 1992–2024, on a common scale over dark shaded relief. Natural starts spread across the plateaus and mountains. Human-caused starts follow the Wasatch Front, I-15 and towns. Each cause's densest tenth of the state holds 46% of starts from natural causes and 60% of human-caused starts." width="2160" height="2160" loading="lazy"></picture>
+        <article class="note-entry" id="utah-wildfire-starts-by-cause">
           <p class="project-meta">30 Day Map Challenge 2026 | Day 4: Clusters</p>
-          <h3>Utah Wildfire Starts by Cause</h3>
+          <h3><a href="/notes/utah-wildfire-starts-by-cause/">Utah Wildfire Starts by Cause</a></h3>
           <p>Natural and human-caused wildfire starts in Utah, as dots, as density, and on one combined map.</p>
           <p class="project-meta"><time datetime="2026-11-04">November 4, 2026</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="four-corners-october-precipitation" href="/notes/four-corners-october-precipitation/">
-          <picture><source type="image/webp" srcset="/assets/images/r/four-corners-october-precipitation-480.webp 480w, /assets/images/r/four-corners-october-precipitation-960.webp 960w, /assets/images/r/four-corners-october-precipitation-1440.webp 1440w, /assets/images/r/four-corners-october-precipitation-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/four-corners-october-precipitation.jpg" alt="October 2026 precipitation at 111 Four Corners mountain stations over an ArcGIS basemap. Colors show accumulated rain and snow as water. The median across 58 long-record stations reaches 6.9 inches, against a normal near 2.2 inches." width="2160" height="2160" loading="lazy"></picture>
+        <article class="note-entry" id="four-corners-october-precipitation">
           <p class="project-meta">30 Day Map Challenge 2026 | Bonus map</p>
-          <h3>October Precipitation in the Four Corners</h3>
+          <h3><a href="/notes/four-corners-october-precipitation/">October Precipitation in the Four Corners</a></h3>
           <p>Daily October precipitation at 111 mountain stations, drawn over the dashboard’s ArcGIS basemap.</p>
           <p class="project-meta"><time datetime="2026-11-02">November 2, 2026</time></p>
-        </a>
+        </article>
       </div>
 
-      <div class="section-heading project-stack-heading">
+      <div class="section-heading project-stack-heading" id="map-challenge-2024">
         <p class="eyebrow">30 Day Map Challenge, 2024</p>
         <h2>Selected maps from the 2024 30 Day Map Challenge</h2>
         <p>Twelve Utah maps, each made for one daily theme of the 2024 challenge.</p>
       </div>
 
-      <div class="map-grid">
-        <a class="map-card" id="utah-dark-sky-points" href="/notes/utah-dark-sky-points/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-dark-sky-points-480.webp 480w, /assets/images/r/utah-dark-sky-points-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-dark-sky-points.jpg" alt="Point map of Utah's International Dark-Sky Parks." width="800" height="1035" loading="lazy"></picture>
+      <div class="note-list">
+        <article class="note-entry" id="utah-dark-sky-points">
           <p class="project-meta">30 Day Map Challenge 2024 | Points</p>
-          <h3>Utah Dark-Sky Points</h3>
+          <h3><a href="/notes/utah-dark-sky-points/">Utah Dark-Sky Points</a></h3>
           <p>Utah's International Dark-Sky Parks, mapped as points to open the challenge.</p>
           <p class="project-meta"><time datetime="2024-11-01">November 1, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-scenic-byways" href="/notes/utah-scenic-byways/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-scenic-byways-480.webp 480w, /assets/images/r/utah-scenic-byways-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-scenic-byways.jpg" alt="Line map of Utah's 27 Scenic Byways." width="800" height="1035" loading="lazy"></picture>
+        <article class="note-entry" id="utah-scenic-byways">
           <p class="project-meta">30 Day Map Challenge 2024 | Line Features</p>
-          <h3>Utah Scenic Byways</h3>
+          <h3><a href="/notes/utah-scenic-byways/">Utah Scenic Byways</a></h3>
           <p>All 27 of Utah's Scenic Byways, 1,893.84 miles, individually symbolized with ArcPy.</p>
           <p class="project-meta"><time datetime="2024-11-02">November 2, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-federal-land-ownership" href="/notes/utah-federal-land-ownership/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-federal-land-ownership-480.webp 480w, /assets/images/r/utah-federal-land-ownership-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-federal-land-ownership.jpg" alt="Polygon map of government land ownership across Utah." width="800" height="1035" loading="lazy"></picture>
+        <article class="note-entry" id="utah-federal-land-ownership">
           <p class="project-meta">30 Day Map Challenge 2024 | Polygons</p>
-          <h3>Utah Government Land Ownership</h3>
+          <h3><a href="/notes/utah-federal-land-ownership/">Utah Government Land Ownership</a></h3>
           <p>Government land ownership across Utah, federal and state trust lands, in Esri's "Firefly" style and color-matched to SITLA's reference map.</p>
           <p class="project-meta"><time datetime="2024-11-03">November 3, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-population-hexagons" href="/notes/utah-population-hexagons/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utpophexagon110424-480.webp 480w, /assets/images/r/utpophexagon110424-960.webp 960w, /assets/images/r/utpophexagon110424-1545.webp 1545w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utpophexagon110424.jpg" alt="Hexagon map visualization of Utah population." width="1545" height="2000" loading="lazy"></picture>
+        <article class="note-entry" id="utah-population-hexagons">
           <p class="project-meta">30 Day Map Challenge 2024 | Hexagons</p>
-          <h3>Utah Population Hexagons</h3>
+          <h3><a href="/notes/utah-population-hexagons/">Utah Population Hexagons</a></h3>
           <p>Census 2020 population summed into a 50-square-mile hexagon grid, extruded and colored by density so every part of the state compares the same way.</p>
           <p class="project-meta"><time datetime="2024-11-04">November 4, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-old-spanish-trail" href="/notes/utah-old-spanish-trail/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-old-spanish-trail-480.webp 480w, /assets/images/r/utah-old-spanish-trail-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-old-spanish-trail.jpg" alt="Map of the Old Spanish National Historic Trail through Utah." width="800" height="617" loading="lazy"></picture>
+        <article class="note-entry" id="utah-old-spanish-trail">
           <p class="project-meta">30 Day Map Challenge 2024 | A Journey</p>
-          <h3>Old Spanish Trail</h3>
+          <h3><a href="/notes/utah-old-spanish-trail/">Old Spanish Trail</a></h3>
           <p>The Utah segment of the Old Spanish National Historic Trail, from historic site to historic site.</p>
           <p class="project-meta"><time datetime="2024-11-05">November 5, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="raster-terrain-study" href="/notes/raster-terrain-study/">
-          <picture><source type="image/webp" srcset="/assets/images/r/raster1110624v2-480.webp 480w, /assets/images/r/raster1110624v2-960.webp 960w, /assets/images/r/raster1110624v2-1545.webp 1545w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/raster1110624v2.jpg" alt="Raster terrain and analysis map." width="1545" height="2000" loading="lazy"></picture>
+        <article class="note-entry" id="raster-terrain-study">
           <p class="project-meta">30 Day Map Challenge 2024 | Raster</p>
-          <h3>Raster Terrain Study</h3>
+          <h3><a href="/notes/raster-terrain-study/">Raster Terrain Study</a></h3>
           <p>An Imhof-style hillshade of Utah built on Esri's Terrain Service, after John Nelson's modern version of classic relief shading.</p>
           <p class="project-meta"><time datetime="2024-11-06">November 6, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-vintage-atlas" href="/notes/utah-vintage-atlas/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-vintage-atlas-480.webp 480w, /assets/images/r/utah-vintage-atlas-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-vintage-atlas.jpg" alt="Vintage-style map of Utah's urban areas and rivers." width="800" height="1035" loading="lazy"></picture>
+        <article class="note-entry" id="utah-vintage-atlas">
           <p class="project-meta">30 Day Map Challenge 2024 | Vintage Style</p>
-          <h3>Vintage Atlas Style</h3>
+          <h3><a href="/notes/utah-vintage-atlas/">Vintage Atlas Style</a></h3>
           <p>Utah's urban areas and rivers, styled after an 1854 atlas via Esri's Physical Atlas style.</p>
           <p class="project-meta"><time datetime="2024-11-07">November 7, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-localities-hdx" href="/notes/utah-localities-hdx/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-localities-hdx-480.webp 480w, /assets/images/r/utah-localities-hdx-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-localities-hdx.jpg" alt="Map of Utah's populated places sourced from humanitarian data." width="800" height="1035" loading="lazy"></picture>
+        <article class="note-entry" id="utah-localities-hdx">
           <p class="project-meta">30 Day Map Challenge 2024 | Humanitarian Data Exchange</p>
-          <h3>Utah Localities via HDX</h3>
+          <h3><a href="/notes/utah-localities-hdx/">Utah Localities via HDX</a></h3>
           <p>Utah's populated places, built from a global humanitarian locality dataset.</p>
           <p class="project-meta"><time datetime="2024-11-08">November 8, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-ai-fictional-map" href="/notes/utah-ai-fictional-map/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-ai-fictional-map-480.webp 480w, /assets/images/r/utah-ai-fictional-map-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-ai-fictional-map.jpg" alt="AI-generated fictional map of Utah water resources." width="800" height="457" loading="lazy"></picture>
+        <article class="note-entry" id="utah-ai-fictional-map">
           <p class="project-meta">30 Day Map Challenge 2024 | AI</p>
-          <h3>AI-Generated Fictional Map</h3>
+          <h3><a href="/notes/utah-ai-fictional-map/">AI-Generated Fictional Map</a></h3>
           <p>A ChatGPT-generated "map" of fictional Utah water resources, kept for what it gets wrong.</p>
           <p class="project-meta"><time datetime="2024-11-09">November 9, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-counties-pen-paper" href="/notes/utah-counties-pen-paper/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-counties-pen-paper-480.webp 480w, /assets/images/r/utah-counties-pen-paper-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-counties-pen-paper.jpg" alt="Pen-and-paper style map of Utah counties and county seats." width="800" height="1035" loading="lazy"></picture>
+        <article class="note-entry" id="utah-counties-pen-paper">
           <p class="project-meta">30 Day Map Challenge 2024 | Pen &amp; Paper</p>
-          <h3>Utah Counties, Pen &amp; Paper</h3>
+          <h3><a href="/notes/utah-counties-pen-paper/">Utah Counties, Pen &amp; Paper</a></h3>
           <p>Utah's counties and county seats, styled to look hand-drawn.</p>
           <p class="project-meta"><time datetime="2024-11-10">November 10, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-avalanche-paths" href="/notes/utah-avalanche-paths/">
-          <picture><source type="image/webp" srcset="/assets/images/r/utah-avalanche-paths-480.webp 480w, /assets/images/r/utah-avalanche-paths-800.webp 800w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/utah-avalanche-paths.jpg" alt="3D map of avalanche paths in Little Cottonwood Canyon, Utah." width="800" height="618" loading="lazy"></picture>
+        <article class="note-entry" id="utah-avalanche-paths">
           <p class="project-meta">30 Day Map Challenge 2024 | Arctic</p>
-          <h3>Avalanche Paths</h3>
+          <h3><a href="/notes/utah-avalanche-paths/">Avalanche Paths</a></h3>
           <p>A 3D map of avalanche activity in Little Cottonwood Canyon, in cool Arctic colors.</p>
           <p class="project-meta"><time datetime="2024-11-11">November 11, 2024</time></p>
-        </a>
+        </article>
 
-        <a class="map-card" id="utah-time-and-space" href="/notes/utah-time-and-space/">
-          <picture><source type="image/webp" srcset="/assets/images/r/uttimeandspace111224-480.webp 480w, /assets/images/r/uttimeandspace111224-960.webp 960w, /assets/images/r/uttimeandspace111224-1545.webp 1545w" sizes="(max-width: 720px) 90vw, 345px"><img src="/assets/images/uttimeandspace111224.jpg" alt="Utah Time and Space cartographic layout." width="1545" height="2000" loading="lazy"></picture>
+        <article class="note-entry" id="utah-time-and-space">
           <p class="project-meta">30 Day Map Challenge 2024 | Time and Space</p>
-          <h3>Utah Time and Space</h3>
+          <h3><a href="/notes/utah-time-and-space/">Utah Time and Space</a></h3>
           <p>Mule deer migration corridors and stopover habitats across the Paunsaugunt Plateau.</p>
           <p class="project-meta"><time datetime="2024-11-12">November 12, 2024</time></p>
-        </a>
+        </article>
       </div>
     </main>
 

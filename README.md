@@ -95,3 +95,20 @@ GitHub Pages publishes the files from the root of the `master` branch. The `.noj
 ## Contribute
 
 Read `AGENTS.md` and `CONTRIBUTING.md` before you make a change.
+
+## Homepage selection
+
+On November 3, 2026, Brian selected four subjects for the homepage: the 2025
+and 2026 Esri finalist maps, the current 30 Day Map Challenge, and Western
+Water Dashboard. Other work remains on Projects. Notes is a reading index
+for methods, experiments, and lessons.
+
+When posting a challenge map, add its tile first in the homepage hero and
+make it the large tile. Mark its day in the month strip as posted, and update
+the posted counts. Add its entry and day link on Projects, then its entry on
+Notes. The homepage uses a dated collection label so it remains
+accurate after November.
+
+The image viewer loads the original image when opened. A `data-full`
+attribute can override that source. Links with `data-image-viewer` keep
+their original-image destination when JavaScript is unavailable.
