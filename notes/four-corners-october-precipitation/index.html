@@ -70,7 +70,7 @@
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>30 Day Map Challenge 2026, Bonus map</strong></div>
             <div><span>Subject</span><strong>Precipitation</strong></div>
-            <div><span>Tools</span><strong>Python, Matplotlib, FFmpeg, Esri Oceans basemap</strong></div>
+            <div><span>Made with</span><strong>Scripted in Python, Esri Oceans basemap</strong></div>
             <div><span>Published</span><strong><time datetime="2026-11-02">November 2, 2026</time></strong></div>
           </div>
         </header>
@@ -92,7 +92,7 @@
           <p>SNOTEL is a mountain monitoring network run by the USDA Natural Resources Conservation Service. Each point represents one SNOTEL station. Point color and size show precipitation accumulated since October 1. The totals include rain and snow measured as water.</p>
           <p>I used the 58 stations whose stored records cover every water year from 1991 through 2026 for the normal comparison. Their median total reached 6.9 inches by October 31. Their 1991–2020 median normal for that date was about 2.2 inches.</p>
           <p>The main wet periods were October 10–14, 21–22 and 30–31. These mountain measurements do not describe precipitation totals in nearby cities.</p>
-          <p>The basemap is Esri’s Oceans basemap, captured once from the dashboard’s ArcGIS map. A Python script draws the monthly accumulation over it with Matplotlib. It uses the dashboard’s precipitation colors. A ripple marks each day that a station gains half an inch or more. Hollow markers show missing readings. On October 31, 110 of the 111 mapped stations reported.</p>
+          <p>The basemap is Esri’s Oceans basemap, captured once from the dashboard’s ArcGIS map. The symbols use the dashboard’s precipitation colors. A ripple marks each day that a station gains half an inch or more. Hollow markers show missing readings. On October 31, 110 of the 111 mapped stations reported.</p>
           <p>The data comes through the Western Water Dashboard. Its data pipeline is scheduled to refresh station readings each day. The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript.</p>
           <p>This point map is a bonus entry. Day 3’s theme is Polygons.</p>
           <h2>The wettest stations</h2>
@@ -239,14 +239,13 @@
             <li>Hollow markers show missing readings. A missing day stays missing. The animation does not fill it from nearby days.</li>
             <li>The sidebar compares the median with the normal, then lists the five wettest stations by their October 31 totals.</li>
           </ul>
-          <h2>How the animation is made</h2>
-          <ol>
+          <h2>Method</h2>
+          <ul>
             <li>A fixed snapshot of the dashboard’s station data, from November 1, 2026, supplies the daily totals.</li>
             <li>The basemap is one capture of the dashboard’s ArcGIS map, zoomed to the Four Corners.</li>
-            <li>A Python script places each station on the capture and draws every frame with Matplotlib at 2160 pixels.</li>
-            <li>Each day lasts 0.3 seconds. Circle sizes ease from one daily total to the next.</li>
-            <li>FFmpeg encodes the frames as 1080-pixel H.264 video at 60 frames per second.</li>
-          </ol>
+            <li>Each station is projected to Web Mercator, the projection of the basemap, and placed on the capture.</li>
+            <li>Circle sizes change from one daily total to the next.</li>
+          </ul>
           <h2>Data notes</h2>
           <ul>
             <li>The water year starts on October 1. October totals are therefore also water-year totals.</li>
@@ -258,7 +257,7 @@
           <p>USDA Natural Resources Conservation Service SNOTEL readings and historical precipitation records. <a href="https://github.com/buschbrian/western-water-dashboard/blob/6c90fbecf7c73e10dd1479fe98dfa19898c3d36f/precipitation.json">Read the source data</a>.</p>
           <p>Esri provides the Oceans basemap and the ArcGIS Maps SDK for JavaScript. The map retains the basemap’s provider attribution.</p>
           <p><a href="https://buschbrian.github.io/western-water-dashboard/precipitation.html">Open the dashboard’s precipitation page</a>.</p>
-          <p class="source-note">The figures use fixed data snapshots. <a href="/assets/data/map-challenge-2026.json">Download the figure data</a>. <a href="/docs/map-challenge-2026.md">Read the methods and capture notes</a>.</p>
+          <p class="source-note">The figures use fixed data snapshots. <a href="/assets/data/map-challenge-2026.json">Download the figure data</a>.</p>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
             <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
             <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>

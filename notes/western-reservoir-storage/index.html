@@ -70,7 +70,7 @@
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>30 Day Map Challenge 2026, Day 1: Points</strong></div>
             <div><span>Subject</span><strong>Reservoir storage</strong></div>
-            <div><span>Tools</span><strong>Python, Matplotlib, FFmpeg, Esri Oceans basemap</strong></div>
+            <div><span>Made with</span><strong>Scripted in Python, Esri Oceans basemap</strong></div>
             <div><span>Published</span><strong><time datetime="2026-11-01">November 1, 2026</time></strong></div>
           </div>
         </header>
@@ -89,7 +89,7 @@
 
         <div class="post-content">
           <p>This map shows 405 reservoirs in 11 western states from November 2025 through September 2026. Each point is one reservoir. Ring size shows capacity. The inner fill shows the share stored that month.</p>
-          <p>The basemap is Esri’s Oceans basemap, captured once from the Western Water Dashboard’s ArcGIS map. A Python script draws the reservoirs, labels and trend charts over it with Matplotlib. The symbols use the dashboard’s capacity rings and storage colors. FFmpeg encodes the animation at 60 frames per second.</p>
+          <p>The basemap is Esri’s Oceans basemap, captured once from the Western Water Dashboard’s ArcGIS map. The symbols use the dashboard’s capacity rings and storage colors.</p>
           <p>I calculated combined storage for the 388 reservoirs with data for every month. I divided their total monthly mean storage by their total capacity. Combined storage rose from 52% in November to 60% in May. It fell to 48% in September. These are monthly averages.</p>
           <p>Lake Mead averaged about 24% full in September. Lake Powell averaged about 20%. I stopped at September because only 292 reservoirs had reported October values.</p>
           <p>The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript. Its reservoir data comes from nine providers. The animation uses the October 31 data snapshot to preserve the historical records.</p>
@@ -270,15 +270,14 @@
             <li>Labels show the share stored for the displayed month. Each label keeps the same position for the whole animation.</li>
             <li>The sidebar shows the combined trend at the top. Below it, three small charts follow the reservoirs with the largest storage swings.</li>
           </ul>
-          <h2>How the animation is made</h2>
-          <ol>
+          <h2>Method</h2>
+          <ul>
             <li>A fixed snapshot of the dashboard’s reservoir data, from October 31, 2026, supplies monthly mean storage for each reservoir.</li>
             <li>The basemap is one capture of the dashboard’s ArcGIS map, with Esri’s Oceans basemap, its attribution, and its scale bar.</li>
-            <li>A Python script projects each reservoir to Web Mercator, the projection of the basemap, and places it on the capture.</li>
-            <li>Matplotlib draws every frame at 2160 pixels. A label placement step tests candidate positions and avoids overlaps with other labels and rings.</li>
-            <li>FFmpeg encodes the frames as 1080-pixel H.264 video at 60 frames per second.</li>
-          </ol>
-          <p>Storage moves smoothly from one monthly mean to the next. Each change eases in and out, so every month holds briefly before the next one starts. The tables and labels show the observed monthly values, not the values between months.</p>
+            <li>Each reservoir is projected to Web Mercator, the projection of the basemap, and placed on the capture.</li>
+            <li>Label placement tests candidate positions and avoids overlaps with other labels and rings.</li>
+          </ul>
+          <p>Storage moves from one monthly mean to the next. The tables and labels show the observed monthly values, not the values between months.</p>
           <h2>Data notes</h2>
           <ul>
             <li>These are monthly means. A reservoir can be higher or lower than its monthly mean on single days.</li>
@@ -290,7 +289,7 @@
           <p>Reservoir readings from nine public providers, through the Western Water Dashboard. <a href="https://github.com/buschbrian/western-water-dashboard/blob/b5627547b0d7fb4daceffd4b5a7fc8cfe69a32d3/reservoirs.json">Read the source data</a>.</p>
           <p>Esri provides the Oceans basemap and the ArcGIS Maps SDK for JavaScript. The map retains the basemap’s provider attribution.</p>
           <p><a href="https://buschbrian.github.io/western-water-dashboard/?state=all">Open the reservoir map</a>.</p>
-          <p class="source-note">The figures use fixed data snapshots. <a href="/assets/data/map-challenge-2026.json">Download the figure data</a>. <a href="/docs/map-challenge-2026.md">Read the methods and capture notes</a>.</p>
+          <p class="source-note">The figures use fixed data snapshots. <a href="/assets/data/map-challenge-2026.json">Download the figure data</a>.</p>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
             <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
             <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
