@@ -30,7 +30,6 @@ Each page is an `index.html` file in its own folder.
 - Behavior: `assets/js/site.js`
 - Map animations: `assets/video/`
 - Fixed figure data: `assets/data/map-challenge-2026.json`
-- 2026 map methods: `docs/map-challenge-2026.md`
 
 Responsive WebP images are in `assets/images/r/`. The original JPG files in `assets/images/` are the fallback images.
 

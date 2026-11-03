@@ -70,7 +70,7 @@
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>Day 3: Polygons</strong></div>
             <div><span>Subject</span><strong>Drought in western drainage basins</strong></div>
-            <div><span>Made with</span><strong>Scripted: Python, GeoPandas, Matplotlib, FFmpeg</strong></div>
+            <div><span>Made with</span><strong>Python (GeoPandas, Shapely, pyproj, Matplotlib), FFmpeg</strong></div>
             <div><span>Challenge date</span><strong><time datetime="2026-11-03">November 3, 2026</time></strong></div>
           </div>
         </header>
@@ -79,14 +79,14 @@
             <source src="/assets/video/drought-in-western-basins.mp4" type="video/mp4">
             <p><a href="/assets/images/drought-in-western-basins.jpg">View the October 27 still</a>.</p>
           </video>
-          <figcaption id="map-caption">The page video has no audio and no end card. <a href="/assets/video/drought-in-western-basins.mp4" download>Download the page video</a>. <a href="/assets/images/drought-in-western-basins.jpg">Open the October 27 still</a>.</figcaption>
+          <figcaption id="map-caption"><a href="/assets/video/drought-in-western-basins.mp4" download>Download the page video</a>. <a href="/assets/images/drought-in-western-basins.jpg">Open the October 27 still</a>.</figcaption>
         </figure>
         <div class="post-content">
           <h2>The polygons are the data</h2>
           <p>The U.S. Drought Monitor is a weekly map. Its authors draw the drought lines by hand. They combine many indicators with local reports. The classes go from D0, abnormally dry, to D4, exceptional drought.</p>
           <p>The map here clips those polygons to 75 drainage basins. A drainage basin is land that drains toward a common outlet. These are six-digit hydrologic units, called HUC-6 basins, from the USGS Watershed Boundary Dataset.</p>
           <figure class="post-hero-image">
-            <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-classes-480.webp 480w, /assets/images/r/drought-in-western-basins-classes-960.webp 960w, /assets/images/r/drought-in-western-basins-classes-1440.webp 1440w, /assets/images/r/drought-in-western-basins-classes-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/drought-in-western-basins-classes.jpg" alt="U.S. Drought Monitor classes for October 27, 2026, clipped to 75 western drainage basins. Extreme drought covers parts of central Oregon, southern Idaho and Utah. Twenty-one of 75 basins hold extreme or exceptional drought." width="2160" height="2160" loading="lazy"></picture>
+            <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-classes-480.webp 480w, /assets/images/r/drought-in-western-basins-classes-960.webp 960w, /assets/images/r/drought-in-western-basins-classes-1440.webp 1440w, /assets/images/r/drought-in-western-basins-classes-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/drought-in-western-basins-classes.jpg" alt="U.S. Drought Monitor classes for October 27, 2026, clipped to 75 western drainage basins. Faint state lines and labels give context. Extreme drought covers parts of central Oregon, southern Idaho and Utah. Twenty-one of 75 basins have some land in extreme or exceptional drought." width="2160" height="2160" loading="lazy"></picture>
             <figcaption>October 27, 2026. Darker colors are more severe classes. <a href="/assets/images/drought-in-western-basins-classes.jpg">Open the still</a>.</figcaption>
           </figure>
           <p>On October 27, 21 of the 75 basins held extreme or exceptional drought, D3 or D4.</p>
@@ -113,17 +113,21 @@
             <li>The other scenes use six classes for the share of land at D2 or worse, from none to 75% or more.</li>
             <li>All maps use an equal-area projection, so basin sizes compare fairly.</li>
           </ul>
-          <h2>How the video is made</h2>
-          <p>A Python script reads the drought data from a fixed commit of the Western Water Dashboard. GeoPandas clips the polygons and projects them. Matplotlib draws each frame at 2160 pixels. FFmpeg encodes the frames.</p>
-          <p>The script checks its own numbers against the dashboard before it draws. The type is Mona Sans, an open-source typeface from GitHub.</p>
-          <p>The posted video is square at 60 frames per second. This page uses a 30-frame-per-second cut without the end card. The video starts when the reader selects Play.</p>
+          <h2>Method</h2>
+          <ul>
+            <li>The drought polygons come from the U.S. Drought Monitor, through a fixed snapshot of the Western Water Dashboard’s drought data.</li>
+            <li>The basins are the 75 HUC-6 units in hydrologic regions 14 through 18, from the USGS Watershed Boundary Dataset. Only U.S. land is colored.</li>
+            <li>The maps use the Contiguous USA Albers equal-area projection (EPSG:5070), so basin areas compare fairly.</li>
+            <li>Each basin’s value is its share of land at D2 or worse. The West-wide share weights each basin by its U.S. land area.</li>
+            <li>Two weeks in February 2026 are missing from the Drought Monitor archive. The maps leave them missing.</li>
+          </ul>
           <h2>Data and credit</h2>
-          <p>The National Drought Mitigation Center, USDA and NOAA produce the U.S. Drought Monitor. USGS provides the Watershed Boundary Dataset. The Western Water Dashboard measures the share of each basin in each class.</p>
+          <p>The National Drought Mitigation Center, USDA and NOAA produce the U.S. Drought Monitor. USGS provides the Watershed Boundary Dataset. The state lines come from Natural Earth. The Western Water Dashboard measures the share of each basin in each class.</p>
           <ul>
             <li><a href="https://droughtmonitor.unl.edu/">Open the U.S. Drought Monitor</a>.</li>
             <li><a href="https://buschbrian.github.io/western-water-dashboard/drought.html?state=all">Open drought on the Western Water Dashboard</a>.</li>
           </ul>
-          <p class="source-note"><a href="/assets/data/day-3-drought.json">Read the figure values for each basin</a>. <a href="/docs/map-challenge-2026.md">Read the challenge methods</a>.</p>
+          <p class="source-note"><a href="/assets/data/day-3-drought.json">Read the figure values for each basin</a>.</p>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
             <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
             <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
