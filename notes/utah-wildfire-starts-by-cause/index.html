@@ -70,7 +70,7 @@
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>Day 4: Clusters</strong></div>
             <div><span>Subject</span><strong>Wildfire starts in Utah, 1992–2024</strong></div>
-            <div><span>Made with</span><strong>Python (GeoPandas, SciPy, Matplotlib), FFmpeg</strong></div>
+            <div><span>Made with</span><strong>Python (GeoPandas, SciPy, Matplotlib), FFmpeg, ArcGIS Maps SDK for JavaScript</strong></div>
             <div><span>Challenge date</span><strong><time datetime="2026-11-04">November 4, 2026</time></strong></div>
           </div>
         </header>
@@ -106,6 +106,12 @@
           </figure>
           <p>Both surfaces reach 10 starts per 1,000 km² per year on 633 km², 0.3% of Utah. Natural starts alone reach it on 6.0% of the state. Human-caused starts alone reach it on 4.4%.</p>
           <p>62% of natural starts land where human-caused starts are rare, under 3 per 1,000 km² per year. Natural starts also peak harder in summer. July and August hold 71% of natural starts and 41% of human-caused starts.</p>
+          <h2>Explore the starts</h2>
+          <p>The interactive map draws the same 37,882 starts with a known cause. Filter them by cause and by year. Show them as clusters, as a density surface, or as single dots.</p>
+          <figure class="post-hero-image post-embed">
+            <iframe src="/notes/utah-wildfire-starts-by-cause/map/" title="Interactive map of Utah wildfire starts by cause, 1992 to 2024" width="720" height="760" loading="lazy"></iframe>
+            <figcaption>Clusters split as you zoom in. Select a cluster to see its share of each cause. <a href="/notes/utah-wildfire-starts-by-cause/map/">Open the map on its own page</a>. <a href="https://codepen.io/editor/buschbrian/pen/01a1a3c3-78c2-76da-ba1d-5193f999645a">Read the code on CodePen</a>.</figcaption>
+          </figure>
           <h2>Symbol guide</h2>
           <ul>
             <li>Yellow is natural causes. Red is human causes.</li>
@@ -122,6 +128,7 @@
             <li>Density uses a Gaussian kernel with a 5 km bandwidth on a 1 km grid, divided by the 33 years of record.</li>
             <li>Each cause's densest tenth is measured on its own surface. The two tenths are different areas.</li>
             <li>The relief is a multi-direction hillshade from AWS Terrain Tiles at zoom 9.</li>
+            <li>The interactive map draws density in the browser with a 14 km kernel that ends at its edge. This kernel spreads each start as much as the 5 km Gaussian does. The land above each density threshold is within 6% of the stills.</li>
           </ul>
           <h2>Data notes</h2>
           <ul>
