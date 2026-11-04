@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="#30DayMapChallenge 2026, Day 4. 37,882 known-cause Utah wildfire starts, 1992–2024 (FPA FOD 7th ed.), clustered as natural/people donuts with the ArcGIS Maps SDK for JavaScript 5.1 in a Utah-centred Albers projection.">
+<title>Day 4 · Clusters — Utah wildfire starts by cause</title>
+<script>window.PEN_DATA = "/assets/data/";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css">
+<script type="module" src="https://js.arcgis.com/5.1/"></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --ink: #1f1a17;
+  --muted: #6b625b;
+  --rule: #e4ddd5;
+  --nat: #ffd23f;
+  --hum: #ff4a3d;
+  --nat-ink: #a86400;
+  --hum-ink: #c4261c;
+  --calcite-font-family: "Mona Sans", system-ui, sans-serif;
+  --calcite-color-brand: var(--ink);
+  --calcite-color-brand-hover: #3a322d;
+  --calcite-color-brand-press: #000;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.35 "Mona Sans", system-ui, sans-serif;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  height: 100%;
+}
+
+.panel {
+  padding: 28px 28px 20px;
+  overflow-y: auto;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.map-slot { min-width: 0; height: 100%; }
+arcgis-map { display: block; height: 100%; background: var(--bg); }
+
+.kicker, .label {
+  margin: 0;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1 {
+  margin: -6px 0 0;
+  font-stretch: 75%;
+  font-weight: 800;
+  font-size: 38px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.sub, .note, .muted { margin: 0; color: var(--muted); }
+.note { font-size: 13px; }
+
+.controls { display: grid; gap: 8px; }
+.controls .label:not(:first-child) { margin-top: 10px; }
+.label { display: flex; justify-content: space-between; }
+
+.figure { font-variant-numeric: tabular-nums; }
+
+.key { display: grid; gap: 4px; }
+.key[hidden] { display: none; }
+.key .note { margin-top: 18px; }
+.ramp { height: 10px; border-radius: 2px; }
+.ramp.nat { background: linear-gradient(90deg, #6e3a00, #c26a00, #f59a00, #ffc83a, #ffe58f, #fffbe6); }
+.ramp.hum { background: linear-gradient(90deg, #6e0c1c, #bb1f26, #ef4532, #ff7c55, #ffb497, #fff0e8); }
+.ticks { position: relative; height: 14px; font-size: 11px; color: var(--muted); }
+.ticks span { position: absolute; transform: translateX(-50%); }
+.ticks span:first-child { left: 0; transform: none; }
+.ticks span:nth-child(2) { left: 36.7%; }
+.ticks span:nth-child(3) { left: 70.2%; }
+.ticks span:last-child { left: 100%; transform: translateX(-100%); }
+
+.readout { border-top: 1px solid var(--rule); padding-top: 14px; }
+.big { margin: 0; font-size: 46px; font-weight: 700; line-height: 1; }
+.split { list-style: none; margin: 10px 0 0; padding: 0; display: flex; gap: 18px; }
+.chip { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.chip.nat { background: var(--nat); box-shadow: 0 0 0 1px var(--nat-ink); }
+.chip.hum { background: var(--hum); box-shadow: 0 0 0 1px var(--hum-ink); }
+#nat { color: var(--nat-ink); font-weight: 600; }
+#hum { color: var(--hum-ink); font-weight: 600; }
+
+footer {
+  margin-top: auto;
+  border-top: 1px solid var(--rule);
+  padding-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+footer p { margin: 0 0 6px; }
+footer b { font-weight: 600; color: var(--ink); }
+.handles a { color: inherit; text-decoration: none; margin-left: 8px; white-space: nowrap; }
+.handles a:hover { color: var(--ink); }
+.handles i { margin-right: 3px; }
+
+@media (max-width: 760px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: 58vh auto; height: auto; }
+  .map-slot { order: -1; height: 58vh; }
+  .panel { border-right: 0; padding: 20px 16px; }
+  h1 { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <aside class="panel">
+    <p class="kicker">30 Day Map Challenge 2026 · Day 04 · Clusters</p>
+    <h1>Utah wildfire starts by cause</h1>
+    <p class="sub">Every known-cause start inside Utah, 1992–2024. Zoom in and the clusters split; tap one for its natural/people split.</p>
+
+    <section class="controls" aria-label="Map controls">
+      <label class="label" for="cause">Cause</label>
+      <calcite-segmented-control id="cause" width="full" scale="m">
+        <calcite-segmented-control-item value="B" checked>Both</calcite-segmented-control-item>
+        <calcite-segmented-control-item value="N">Natural</calcite-segmented-control-item>
+        <calcite-segmented-control-item value="H">People</calcite-segmented-control-item>
+      </calcite-segmented-control>
+
+      <label class="label" for="years">Years <span id="years-out" class="figure">1992–2024</span></label>
+      <calcite-slider id="years" min="1992" max="2024" min-value="1992" max-value="2024" step="1" snap ticks="4" label-ticks></calcite-slider>
+
+      <label class="label" for="mode">Draw as</label>
+      <calcite-segmented-control id="mode" width="full" scale="m">
+        <calcite-segmented-control-item value="clusters" checked>Clusters</calcite-segmented-control-item>
+        <calcite-segmented-control-item value="density">Density</calcite-segmented-control-item>
+        <calcite-segmented-control-item value="dots">Dots</calcite-segmented-control-item>
+      </calcite-segmented-control>
+    </section>
+
+    <section id="density-key" class="key" hidden>
+      <p class="label">Starts per 1,000 km² per year</p>
+      <div class="ramp nat" aria-hidden="true"></div>
+      <div class="ramp hum" aria-hidden="true"></div>
+      <div class="ticks figure" aria-hidden="true"><span>3</span><span>10</span><span>30</span><span>80</span></div>
+      <p class="note">Natural on top, people below, one log scale for both; pale where both are dense. Drawn live by the SDK’s heatmap with a 14 km kernel, the spread of the poster’s 5 km Gaussian. Rates are per year of the years selected.</p>
+    </section>
+
+    <section class="readout" aria-live="polite">
+      <p class="big figure" id="total">37,882</p>
+      <p class="muted">starts shown</p>
+      <ul class="split">
+        <li><span class="chip nat"></span><span class="figure" id="nat">22,377</span> natural</li>
+        <li><span class="chip hum"></span><span class="figure" id="hum">15,505</span> people</li>
+      </ul>
+    </section>
+
+    <p class="note">Natural is the source’s category and is broader than lightning. 3,235 records with no recorded cause are left out. Starts outside Utah aren’t in the data, so clusters along the state line read low.</p>
+
+    <footer>
+      <p><b>Data</b> FPA FOD 7th ed. (USDA Forest Service) · UGRC Utah boundary</p>
+      <p><b>Made with</b> ArcGIS Maps SDK for JavaScript 5.1 (cluster pie charts, heatmap, layer blending), Calcite · data prep in Python (GeoPandas)</p>
+      <p class="handles">Brian Busch
+        <a href="https://www.linkedin.com/in/brian-busch1"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>brian-busch1</a>
+        <a href="https://x.com/brianjbusch"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i>@brianjbusch</a>
+        <a href="https://github.com/buschbrian"><i class="fa-brands fa-github" aria-hidden="true"></i>buschbrian</a>
+        <a href="https://www.instagram.com/brianbusch1"><i class="fa-brands fa-instagram" aria-hidden="true"></i>@brianbusch1</a>
+      </p>
+    </footer>
+  </aside>
+
+  <div id="map-slot" class="map-slot"></div>
+</main>
+<script>
+(async () => {
+  await customElements.whenDefined("arcgis-map");
+  const load = (m) => $arcgis.import(`@arcgis/core/${m}.js`);
+  const [Map, CSVLayer, GeoJSONLayer, GroupLayer, Polygon, SpatialReference, reactiveUtils, pieChart, clusterLabels] =
+    await Promise.all([
+    "Map", "layers/CSVLayer", "layers/GeoJSONLayer", "layers/GroupLayer", "geometry/Polygon", "geometry/SpatialReference",
+    "core/reactiveUtils",
+    "smartMapping/renderers/pieChart", "smartMapping/labels/clusters"].map(load));
+
+  const DATA = window.PEN_DATA ?? "https://buschbrian.github.io/assets/data/";
+  // Albers centred on Utah, the same projection as the posted Day 4 maps.
+  const sr = new SpatialReference({ wkt:
+    'PROJCS["Utah Albers (NAD83)",GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",' +
+    'SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],' +
+    'PROJECTION["Albers"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],' +
+    'PARAMETER["Central_Meridian",-111.5],PARAMETER["Standard_Parallel_1",37.5],' +
+    'PARAMETER["Standard_Parallel_2",41.5],PARAMETER["Latitude_Of_Origin",39.5],UNIT["Meter",1.0]]' });
+  const COLOR = { N: "#ffd23f", H: "#ff4a3d" };
+  const INK = [31, 26, 23];
+
+  const dot = (color) => ({ type: "simple-marker", size: 3.5, color, outline: { color: [...INK, 0.5], width: 0.3 } });
+  const fires = new CSVLayer({
+    url: DATA + "day-4-fire-starts.csv",
+    title: "Wildfire starts",
+    latitudeField: "lat",
+    longitudeField: "lon",
+    spatialReference: sr,
+    copyright: "FPA FOD 7th ed., USDA Forest Service",
+    outFields: ["*"],
+    renderer: {
+      type: "unique-value",
+      field: "cause",
+      uniqueValueInfos: [
+        { value: "N", label: "Natural", symbol: dot(COLOR.N) },
+        { value: "H", label: "People", symbol: dot(COLOR.H) },
+      ],
+    },
+    popupTemplate: {
+      title: "{expression/cause}",
+      expressionInfos: [
+        { name: "cause", expression: "Decode($feature.cause, 'N', 'Natural-cause start', 'H', 'Human-caused start', 'Start')" },
+        { name: "found", expression: "Text(DateAdd(Date($feature.year, 0, 1), $feature.doy - 1, 'days'), 'MMMM D, Y')" },
+      ],
+      content: "Discovered {expression/found}. Final size {acres} acres.",
+      fieldInfos: [{ fieldName: "acres", format: { places: 2, digitSeparator: true } }],
+    },
+  });
+
+  const outline = (fill, extra) => new GeoJSONLayer({
+    url: DATA + "day-4-utah-outline.geojson",
+    title: "Utah",
+    copyright: "UGRC",
+    popupEnabled: false,
+    renderer: { type: "simple", symbol: { type: "simple-fill", color: fill, outline: { color: [...INK, 0.9], width: 0.8 } } },
+    ...extra,
+  });
+  const utah = outline("#2b2420");
+  await utah.load();
+  const { features: [state] } = await utah.queryFeatures({ where: "1=1", returnGeometry: true, outSpatialReference: sr });
+
+  const page = Polygon.fromExtent(state.geometry.extent.clone().expand(6));
+
+  // Density: the SDK's heatmap, a kernel that falls to zero at its radius (assumed quartic, as in
+  // ArcGIS Kernel Density). A 2D quartic of radius h spreads like a Gaussian of sigma h / (2 sqrt 2),
+  // so h = 14.1 km matches the poster's 5 km Gaussian. referenceScale pins the radius (in points) to the
+  // ground; the density comes out per CSS pixel² at that scale (measured against the Python surface:
+  // day04_pen_calibration.py), which converts to the poster's starts per 1,000 km² per year.
+  const REF = 2e6;
+  const KM_PER_PT = REF * 0.0254 / 72 / 1000;
+  const KM_PER_PX = REF * 0.0254 / 96 / 1000;
+  const RADIUS_KM = 2 * Math.SQRT2 * 5;
+  const LO = 3, HI = 80;
+  const RAMP = {
+    N: ["#6e3a00", "#c26a00", "#f59a00", "#ffc83a", "#ffe58f", "#fffbe6"],
+    H: ["#6e0c1c", "#bb1f26", "#ef4532", "#ff7c55", "#ffb497", "#fff0e8"],
+  };
+  const perPx = (u, nYears) => u * nYears / 1000 * KM_PER_PX ** 2;
+  const heatRenderer = (code, nYears) => ({
+    type: "heatmap",
+    radius: RADIUS_KM / KM_PER_PT,
+    referenceScale: REF,
+    minDensity: perPx(LO, nYears),
+    maxDensity: perPx(HI, nYears),
+    // One log scale for both causes, as on the poster: stops at 3, 5.8, 11, 22, 42 and 80.
+    colorStops: [{ ratio: 0, color: [0, 0, 0, 0] }, ...RAMP[code].map((color, i) => {
+      const u = LO * (HI / LO) ** (i / 5);
+      return { ratio: Math.max((u - LO) / (HI - LO), 0.0005), color };
+    })],
+  });
+  const heat = (code) => new CSVLayer({
+    url: DATA + "day-4-fire-starts.csv",
+    title: code === "N" ? "Natural density" : "People density",
+    latitudeField: "lat",
+    longitudeField: "lon",
+    spatialReference: sr,
+    definitionExpression: `cause = '${code}'`,
+    popupEnabled: false,
+    blendMode: "screen",
+    renderer: heatRenderer(code, 33),
+  });
+  const heats = { N: heat("N"), H: heat("H") };
+  // Screen adds the two ramps toward pale where both are dense; destination-in clips the group to Utah.
+  const density = new GroupLayer({
+    title: "Density",
+    visible: false,
+    layers: [heats.N, heats.H, outline("#000000", { blendMode: "destination-in" })],
+  });
+
+  // CodePen can start its preview frame at 1 px. A map created at that size never fits Utah, so the
+  // map element is created only once its slot has a real size.
+  const slot = document.querySelector("#map-slot");
+  const sized = () => slot.clientWidth > 100 && slot.clientHeight > 100;
+  if (!sized()) await new Promise((resolve) => {
+    const watcher = new ResizeObserver(() => sized() && (watcher.disconnect(), resolve()));
+    watcher.observe(slot);
+  });
+  const el = document.createElement("arcgis-map");
+  el.id = "map";
+  el.setAttribute("aria-label", "Map of Utah wildfire starts by cause");
+  el.innerHTML = '<arcgis-zoom slot="top-right"></arcgis-zoom><arcgis-home slot="top-right"></arcgis-home>';
+  const home = state.geometry.extent.clone().expand(1.12);
+  el.spatialReference = sr;
+  el.extent = home;
+  el.map = new Map({ layers: [utah, density, outline([0, 0, 0, 0]), fires] });
+  slot.append(el);
+  await el.viewOnReady();
+  const view = el.view;
+  view.constraints = { rotationEnabled: false, minScale: 25e6, maxScale: 9000, geometry: page };
+  el.querySelector("arcgis-home").viewpoint = { targetGeometry: home };
+  // Refit Utah when the frame resizes, until the reader pans or zooms.
+  let touched = false;
+  view.on(["drag", "mouse-wheel", "double-click", "key-down"], () => (touched = true));
+  const fit = () => view.width > 100 && view.height > 100 && view.goTo(home, { animate: false }).catch(() => {});
+  reactiveUtils.watch(() => view.size.join(), () => touched || fit());
+  fit();
+
+  await fires.load();
+  const { renderer: donut, fields } = await pieChart.createRendererForClustering({ layer: fires, shape: "donut" });
+  donut.holePercentage = 0.58;
+  donut.outline = { color: [255, 255, 255, 0.9], width: 0.6 };
+  const name = Object.fromEntries(donut.attributes.map((a) => [a.label, a.field]));
+  const { labelingInfo, clusterMinSize } = (await clusterLabels.getLabelSchemes({ layer: fires, view })).primaryScheme;
+  for (const info of labelingInfo) {
+    info.symbol.color = "#ffffff";
+    info.symbol.haloColor = [...INK, 0.75];
+    info.symbol.haloSize = 1;
+    info.symbol.font.size = 10;
+  }
+  const clusters = {
+    type: "cluster",
+    clusterRadius: "70px",
+    clusterMinSize,
+    clusterMaxSize: "54px",
+    fields,
+    renderer: donut,
+    labelingInfo,
+    popupTemplate: {
+      title: "{cluster_count} starts in this cluster",
+      expressionInfos: [{
+        name: "share",
+        expression: `Round(100 * $feature["${name.Natural}"] / $feature.cluster_count) + "% natural causes, " + ` +
+                    `Round(100 * $feature["${name.People}"] / $feature.cluster_count) + "% people"`,
+      }],
+      content: [
+        { type: "text", text: "{expression/share}" },
+        { type: "media", mediaInfos: [{ type: "pie-chart", value: { fields: [name.Natural, name.People] } }] },
+      ],
+      fieldInfos: fields.map((f) => ({ fieldName: f.name, label: f.alias, format: { places: 0, digitSeparator: true } })),
+    },
+  };
+  fires.featureReduction = clusters;
+  const lv = await view.whenLayerView(fires);
+
+  const cause = document.querySelector("#cause");
+  const years = document.querySelector("#years");
+  const mode = document.querySelector("#mode");
+  const fmt = new Intl.NumberFormat("en-US");
+  const out = (id, v) => (document.getElementById(id).textContent = v);
+
+  async function apply() {
+    const [y0, y1] = [years.minValue, years.maxValue];
+    const span = `year >= ${y0} AND year <= ${y1}`;
+    const pick = cause.value === "B" ? "" : ` AND cause = '${cause.value}'`;
+    lv.filter = { where: span + pick };
+    for (const [code, layer] of Object.entries(heats)) {
+      layer.visible = cause.value === "B" || cause.value === code;
+      layer.definitionExpression = `cause = '${code}' AND ${span}`;
+      layer.renderer = heatRenderer(code, y1 - y0 + 1);
+    }
+    out("years-out", y0 === y1 ? `${y0}` : `${y0}–${y1}`);
+    const [nat, hum] = await Promise.all(["N", "H"].map((c) =>
+      cause.value === "B" || cause.value === c ? fires.queryFeatureCount({ where: `${span} AND cause = '${c}'` }) : 0));
+    out("total", fmt.format(nat + hum));
+    out("nat", fmt.format(nat));
+    out("hum", fmt.format(hum));
+  }
+
+  cause.addEventListener("calciteSegmentedControlChange", apply);
+  years.addEventListener("calciteSliderInput", apply);
+  mode.addEventListener("calciteSegmentedControlChange", () => {
+    fires.featureReduction = mode.value === "clusters" ? clusters : null;
+    fires.visible = mode.value !== "density";
+    density.visible = mode.value === "density";
+    document.querySelector("#density-key").hidden = mode.value !== "density";
+  });
+  await apply();
+})();
+</script>
+</body>
+</html>

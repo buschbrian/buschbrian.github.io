@@ -422,6 +422,10 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
   border: 1px solid var(--line); border-radius: var(--r); background: var(--cosmic);
 }
 .post-map-animation figcaption a { color: var(--cosmic); text-decoration: underline; text-underline-offset: 3px; }
+.post-embed iframe {
+  display: block; width: 100%; height: clamp(560px, 82vh, 760px);
+  border: 1px solid var(--line); border-radius: var(--r); background: var(--white);
+}
 .challenge-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 32px; }
 .reservoir-chain { padding-left: 24px; list-style: decimal; }
 .post-content .reservoir-chain li { padding-left: 4px; }
