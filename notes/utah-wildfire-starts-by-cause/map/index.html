@@ -6,6 +6,7 @@
 <meta name="description" content="#30DayMapChallenge 2026, Day 4. 37,882 known-cause Utah wildfire starts, 1992–2024 (FPA FOD 7th ed.), clustered as natural/people donuts with the ArcGIS Maps SDK for JavaScript 5.1 in a Utah-centred Albers projection.">
 <title>Day 4 · Clusters — Utah wildfire starts by cause</title>
 <script>window.PEN_DATA = "/assets/data/";</script>
+<script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..800&display=swap">
@@ -124,6 +125,32 @@ footer b { font-weight: 600; color: var(--ink); }
   .panel { border-right: 0; padding: 20px 16px; }
   h1 { font-size: 30px; }
 }
+
+/* ?embed: the Day 4 article carries the title, notes and credits, so the frame keeps
+   the controls and the count in a bar above the map and never scrolls. */
+.embed .kicker, .embed h1, .embed .sub, .embed .caveat, .embed footer { display: none; }
+.embed .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); height: 100%; }
+.embed .map-slot { order: 0; height: 100%; }
+.embed .panel { overflow: visible; border-right: 0; border-bottom: 1px solid var(--rule); padding: 14px 16px 12px; gap: 12px; }
+.embed .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 20px; }
+.embed .controls .label { margin-top: 0; }
+.embed label[for="cause"] { grid-area: 1 / 1; }
+.embed #cause { grid-area: 2 / 1; }
+.embed label[for="mode"] { grid-area: 1 / 2; }
+.embed #mode { grid-area: 2 / 2; }
+.embed label[for="years"] { grid-area: 3 / 1 / 4 / 3; margin-top: 6px; }
+.embed #years { grid-area: 4 / 1 / 5 / 3; }
+.embed .key .note { display: none; }
+.embed .readout { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding-top: 10px; }
+.embed .big { font-size: 24px; }
+.embed .split { margin: 0; }
+
+@media (max-width: 520px) {
+  .embed .controls { grid-template-columns: minmax(0, 1fr); }
+  .embed label[for="cause"], .embed #cause, .embed label[for="mode"], .embed #mode,
+  .embed label[for="years"], .embed #years { grid-area: auto; }
+  .embed label[for="mode"], .embed label[for="years"] { margin-top: 6px; }
+}
 </style>
 </head>
 <body>
@@ -169,7 +196,7 @@ footer b { font-weight: 600; color: var(--ink); }
       </ul>
     </section>
 
-    <p class="note">Natural is the source’s category and is broader than lightning. 3,235 records with no recorded cause are left out. Starts outside Utah aren’t in the data, so clusters along the state line read low.</p>
+    <p class="note caveat">Natural is the source’s category and is broader than lightning. 3,235 records with no recorded cause are left out. Starts outside Utah aren’t in the data, so clusters along the state line read low.</p>
 
     <footer>
       <p><b>Data</b> FPA FOD 7th ed. (USDA Forest Service) · UGRC Utah boundary</p>
