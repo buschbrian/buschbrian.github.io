@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="One shared prompt, two earthquake maps, and a 30-minute limit. What Opus 5.5 and Sol 6.1 produced, and what the reviews found.">
+    <meta name="theme-color" content="#ffffff">
+    <title>One Prompt, Two Maps of Japan | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/beneath-japan-one-prompt/">
+    <meta property="og:title" content="One Prompt, Two Maps of Japan | Brian Busch, GISP">
+    <meta property="og:description" content="One shared prompt, two earthquake maps, and a 30-minute limit. What Opus 5.5 and Sol 6.1 produced, and what the reviews found.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/day-10-comparison.jpg">
+    <meta property="og:image:alt" content="Two original earthquake posters side by side. Opus uses a pale map, depth classes, and named trenches. Sol uses a dark map and a continuous depth scale. Both show Japan and a plot of earthquake depth below the map.">
+    <meta property="og:image:width" content="2400">
+    <meta property="og:image:height" content="1600">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-05T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/beneath-japan-one-prompt/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "One Prompt, Two Maps of Japan",
+  "description": "One shared prompt, two earthquake maps, and a 30-minute limit. What Opus 5.5 and Sol 6.1 produced, and what the reviews found.",
+  "image": "https://buschbrian.github.io/assets/images/day-10-comparison.jpg",
+  "datePublished": "2026-11-05",
+  "dateModified": "2026-11-05",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/beneath-japan-one-prompt/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 10: Prompting</p>
+          <h1>One Prompt, Two Maps of Japan</h1>
+          <p class="post-deck">A shared brief gave two models 30 minutes to make a complete map. Both finished early. The review found fewer problems than I expected.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 10: Prompting</strong></div>
+            <div><span>Subject</span><strong>2025 earthquakes around Japan</strong></div>
+            <div><span>Models</span><strong>Claude Opus 5.5 and GPT-6.1 Sol</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-10">November 10, 2026</time></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image">
+          <picture><source type="image/webp" srcset="/assets/images/r/day-10-comparison-480.webp 480w, /assets/images/r/day-10-comparison-960.webp 960w, /assets/images/r/day-10-comparison-1440.webp 1440w, /assets/images/r/day-10-comparison-2400.webp 2400w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-comparison.jpg" alt="Two original earthquake posters side by side. Opus uses a pale map, depth classes, and named trenches. Sol uses a dark map and a continuous depth scale. Both show Japan and a plot of earthquake depth below the map." width="2400" height="1600" fetchpriority="high"></picture>
+          <figcaption>Opus at left, Sol at right. These are the original outputs. The experiment and review took place on November 5.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>From scripts to the whole map</h2>
+          <p>Claude and Codex had helped with scripts, Python, and downloads on earlier challenge days. Those prompts usually took several attempts.</p>
+          <p>For Day 10, I asked GPT-6 Astra, on Extra High, to write one prompt for both models. Each model had to make a professional map within 30 minutes. The same brief went to Claude Opus 5.5 on High and GPT-6.1 Sol on Extra High.</p>
+          <p>I gave no follow-up instructions during either run. The models could inspect and revise their own work. “One shot” describes the human input, not a ban on internal revisions.</p>
+          <h2>The brief: Beneath Japan</h2>
+          <p>The question was specific: where did earthquakes occur around Japan in 2025, and what does their depth reveal?</p>
+          <ul>
+            <li>Use USGS earthquakes of magnitude 4.5 or greater, within 128–147°E and 29–46°N.</li>
+            <li>Use the 2025 calendar year in UTC. Exclude January 1, 2026.</li>
+            <li>Pair a map with a longitude-versus-depth plot for the 36–40°N band. This shows where earthquakes lie below the surface.</li>
+            <li>Include a title, legends, scale, orientation, projection, sources, and a clear explanation.</li>
+            <li>Deliver a 2160 × 2700 poster, a 540 × 675 preview, an editable vector export, code, data, and documentation.</li>
+            <li>Count planning, downloads, rendering, checks, and delivery within the 30-minute limit.</li>
+          </ul>
+          <p>The brief fixed the question and evidence. Each model chose its tools, visual hierarchy, colors, and supporting context.</p>
+          <details>
+            <summary>Read the exact prompt</summary>
+            <figure class="code-excerpt"><pre tabindex="0"><code>Create a finished, professional cartographic poster for Day 10,
+“Prompting,” of the 2026 #30DayMapChallenge.
+
+This is a one-shot assignment. Make the map autonomously from this brief,
+without clarification questions or human feedback. You may inspect and
+revise your own work within the time limit.
+
+TIME LIMIT
+
+You have a maximum of 30 minutes of total elapsed time from submission
+of this prompt. Planning, research, downloads, tool execution, rendering,
+inspection, and delivery all count. Record the start time immediately
+and monitor the deadline.
+
+Aim to produce a usable export by minute 20. Reserve the final five
+minutes for inspection, corrections, and delivery. At 30 minutes, stop
+all work and deliver the best existing result, stating any omissions.
+Do not continue background work beyond the deadline.
+
+Use any available tools. Keep the model selected for this session;
+do not switch to or consult another model.
+
+THE MAP
+
+Title: “Beneath Japan”
+
+Create a map answering:
+Where did earthquakes occur around Japan in 2025, and what does their
+depth reveal that a surface map alone would hide?
+
+Audience: an interested general reader without specialist geological
+knowledge. The result should be suitable for a professional cartography
+portfolio and understandable as a social-media image.
+
+Create one original composition at 2160 × 2700 pixels, portrait.
+The geographic map must be the dominant element.
+
+FIXED DATA AND SCOPE
+
+Use the USGS earthquake catalog:
+https://earthquake.usgs.gov/fdsnws/event/1/
+
+Retrieve GeoJSON or CSV from its /query endpoint with:
+- starttime: 2025-01-01T00:00:00
+- endtime: 2026-01-01T00:00:00
+- minmagnitude: 4.5
+- minlatitude: 29
+- maxlatitude: 46
+- minlongitude: 128
+- maxlongitude: 147
+- eventtype: earthquake
+- orderby: time-asc
+
+Retain events from the start of 2025 through, but excluding, the start
+of 2026, in UTC. Use unique event IDs and verify that the response is
+complete. Preserve the downloaded data and retrieval time.
+
+These bounds define the analytical area. You may add geographic context
+outside it, but make the coverage boundary clear and calculate all
+summary statistics from the defined selection.
+
+Use the catalog’s reported magnitude and hypocentral depth. Label
+magnitude “M”; the catalog can contain different magnitude types.
+Document any excluded or missing records.
+
+Use real geographic data for coastlines and contextual features.
+Natural Earth is a suitable starting point:
+https://www.naturalearthdata.com/
+
+Geographic positions, data values, and scientific claims must be
+traceable to sources. Any generated decorative imagery must remain
+separate from the geographic and analytical content.
+
+REQUIRED CONTENT
+
+1. Main map
+Show earthquake epicenters with graduated circles indicating magnitude
+and a perceptually ordered color scheme indicating depth in kilometers.
+Make overlapping events readable. Use identical encodings in the
+legend and supporting graphic. Explain the symbol sizes without
+implying that they represent shaking intensity or energy.
+
+Include enough geographic labels to orient an unfamiliar reader:
+Japan’s principal islands, surrounding waters, and a restrained
+selection of cities or other reference places.
+
+2. Supporting depth graphic
+Show longitude against earthquake depth for the subset between
+36°N and 40°N, across the same longitude range as the main map.
+
+Put west on the left, east on the right, and increasing depth downward.
+Mark this latitude band on the main map. Label both axes and explain
+that events across the band are combined into this view. Show the
+observed points; do not invent a continuous slab surface.
+
+3. Story
+Write a concise subtitle and two short annotations that help readers
+interpret specific patterns visible in the data. Include at least one
+computed numerical finding. Distinguish observations from geological
+interpretation, and support any explanation of subduction with an
+authoritative source.
+
+Let the actual data determine the claims.
+
+CARTOGRAPHY AND DESIGN
+
+Include:
+- A clear title, geographic scope, date range, and magnitude threshold.
+- Complete magnitude and depth legends with units.
+- A suitable regional projection, identified in the credits.
+- An accurate kilometer scale bar and north indicator.
+- Restrained coordinate references and a clear map boundary.
+- A small locator inset showing the region’s global context.
+- Readable source credits, retrieval date, and software credits.
+- “#30DayMapChallenge · Day 10 · Prompting”
+- “AI-generated from a single prompt”
+
+Use sans-serif typography only. Choose the palette, composition,
+background, visual hierarchy, and annotation treatment yourself.
+Build a coherent visual theme around the subject. Make deliberate
+use of whitespace and keep supporting information subordinate to
+the map. Additional layers must improve the story enough to justify
+their acquisition and visual complexity.
+
+Create a new design for this assignment. Keep the artwork model-neutral
+so the two results can be compared without their model names.
+
+CHECK BEFORE DELIVERY
+
+Inspect the actual exported image at full resolution and at 540 pixels
+wide. Check label collisions, clipping, legibility, symbol visibility,
+legend consistency, geographic alignment, scale, and orientation.
+
+Verify that counts, extrema, annotations, and the supporting graphic
+agree with the saved data. Correct consequential problems within the
+remaining time. State any unresolved limitations honestly.
+
+DELIVERABLES
+
+Save everything in a new output folder:
+- map.png — 2160 × 2700 pixels.
+- preview.png — 540 × 675 pixels.
+- map.pdf or map.svg — a matching print/vector export, preserving
+  vector text and graphics where practical.
+- The script or editable project used to create the map.
+- The downloaded analytical data.
+- README.md with source URLs, retrieval time, projection, processing
+  choices, reproduction instructions, actual elapsed time, and any
+  limitations.
+
+Prioritize a complete, accurate, visually resolved map over additional
+features. Finish by displaying the map and linking to the deliverables.
+Keep your final explanation under 150 words.</code></pre><figcaption>The same prompt was submitted to both models. <a href="/assets/data/day-10-prompting/prompt.txt" download>Download the prompt</a>.</figcaption></figure>
+          </details>
+          <h2>The runs</h2>
+          <table>
+            <caption>Observed runs, each with a 30-minute limit</caption>
+            <thead><tr><th scope="col">Model</th><th scope="col">Setting and app</th><th scope="col">Elapsed time</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Claude Opus 5.5</th><td>High<br>Claude Code</td><td>About 10 minutes</td></tr>
+              <tr><th scope="row">GPT-6.1 Sol</th><td>Extra High<br>Codex Desktop</td><td>About 13 minutes</td></tr>
+            </tbody>
+          </table>
+          <p>The recorded turn spans were 10:10 for Opus and 13:28 for Sol. Their internal timers reported 9:46 and 12:56.9. The clocks cover slightly different intervals, so the rounded times are more useful here.</p>
+          <p>Both finished within the limit. This was one run per model, with different apps and effort settings. It does not establish a general speed or quality ranking. I did not measure cost.</p>
+          <h2>Two different posters</h2>
+          <p>Opus included more geological context. Named trenches and depth classes helped explain the earthquake pattern. Sol gave more space to the map and its main observations. Its reading order worked better for a social post.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/day-10-opus-480.webp 480w, /assets/images/r/day-10-opus-960.webp 960w, /assets/images/r/day-10-opus-1440.webp 1440w, /assets/images/r/day-10-opus-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img data-full="/assets/images/day-10-opus-original.png" src="/assets/images/day-10-opus.jpg" alt="Original Opus map. Pale land and sea, six depth classes, named plate boundaries, and a depth profile. Dense explanation fills a narrow right column. The source credit incorrectly names Tarr as first author." width="2160" height="2700" loading="lazy"></picture>
+            <figcaption><strong>Opus 5.5, High.</strong> More geological context, with a crowded explanation column. Its “Tarr et al.” credit is incorrect; the report is by Rhea et al. (2010). <a href="/assets/images/day-10-opus-original.png">Open the original PNG</a>.</figcaption>
+          </figure>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/day-10-sol-480.webp 480w, /assets/images/r/day-10-sol-960.webp 960w, /assets/images/r/day-10-sol-1440.webp 1440w, /assets/images/r/day-10-sol-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img data-full="/assets/images/day-10-sol-original.png" src="/assets/images/day-10-sol.jpg" alt="Original Sol map. Pink shallow earthquakes and lighter deep earthquakes on a dark blue map of Japan. Large observations sit within the map and depth profile. A local scale bar is labeled 500 kilometers at 32 degrees north." width="2160" height="2700" loading="lazy"></picture>
+            <figcaption><strong>GPT-6.1 Sol, Extra High.</strong> Clearer reading order, with less small-island detail. Its 500 km scale bar checks out on the ground. <a href="/assets/images/day-10-sol-original.png">Open the original PNG</a>.</figcaption>
+          </figure>
+          <h2>What the checks supported</h2>
+          <p>I asked Astra to review both outputs, then asked for an independent Fable 5.1 review. A follow-up checked Fable’s findings against the files and calculations.</p>
+          <p>Astra had also written the prompt. Its first review was therefore not independent of the brief’s design. Fable provided another perspective, and caught a citation error that the first review missed.</p>
+          <ul>
+            <li>Both maps used the same 515 unique earthquake records. The shared depth-profile band contained 165 events.</li>
+            <li>449 earthquakes, about 87%, were shallower than 70 km. Fourteen were at least 300 km deep.</li>
+            <li>The deepest event was 561.251 km below the surface. The largest was magnitude 7.6, on December 8, 2025.</li>
+            <li>The plotted coordinates, depth values, legend calculations, and checked numerical claims matched the saved data.</li>
+            <li>Both render scripts reproduced their original PNGs pixel for pixel in the available environment.</li>
+          </ul>
+          <p>The checks found no consequential numerical or coordinate errors in either map. Matching a saved image proves repeatability in that environment. It does not prove the science, design, or delivery package is complete.</p>
+          <h2>The issues that remained</h2>
+          <p><strong>A factual credit error.</strong> Opus named “Tarr et al.” for a USGS report whose first author is Susan Rhea. The correct citation is Rhea et al. (2010). The mistake appears in the poster and its documentation.</p>
+          <p><strong>A portability gap.</strong> Opus’s script used basemaps, plate boundaries, and fonts outside its delivered folder. It ran on the original machine, but the folder alone was insufficient for a clean-machine rebuild. Sol included its geographic inputs.</p>
+          <p><strong>Text that needed more room.</strong> Much of Opus’s sidebar and profile explanation became tiny at the required preview size. Both posters had small legends or credits. A full-resolution export cannot substitute for a phone-size check.</p>
+          <p><strong>A narrow geographic description.</strong> Opus described deep events as south of Honshu and near Vladivostok. Some also lay beneath Honshu and west of the Noto Peninsula. The explanation needed broader wording.</p>
+          <p><strong>Design tradeoffs in Sol’s map.</strong> Its simpler coastline omitted small islands near the Tokara cluster. Its continuous 0–600 km depth scale grouped most shallow earthquakes into similar pinks. Trench lines could have strengthened the geological explanation. These are improvements to consider, rather than failed requirements.</p>
+          <h2>The reviews needed checking too</h2>
+          <p>Fable questioned Sol’s 500 km scale bar after measuring about 498.1 km in projected coordinates. A projection converts the curved Earth to a flat map. Its coordinate distances can differ from ground distances.</p>
+          <p>The follow-up measured the bar on Earth: its two segments totalled 500.0003 km. The local ground scale was correct. Opus’s 400 km bar measured about 399.6 km, a negligible difference for this poster.</p>
+          <p>Other criticisms were preferences rather than broken requirements. The brief did not mandate a particular Python package manager. A valid depth scale did not have to make deeper events darker. Neither issue warranted a failure.</p>
+          <p>That distinction matters. A confident review is another claim to check, especially when it alleges a technical error.</p>
+          <h2>What AI can check, and what people still decide</h2>
+          <p>AI helped compare records, recompute statistics, inspect coordinate transforms, measure scale, and rerun the code. These tasks had saved inputs and observable results.</p>
+          <p>Human review still needs to ask whether the map tells a supported story. The reader must be able to find the main point, read the symbols, and understand the limits. Credits and packaging also need verification.</p>
+          <p>A second AI review can help find omissions. It does not replace the mapmaker’s decision to publish. In this experiment, the reviewers performed the technical audits; I set the task and asked for the follow-up checks.</p>
+          <h2>The process in 98 seconds</h2>
+          <figure class="post-hero-image post-map-animation is-four-five">
+            <video controls playsinline preload="none" width="1080" height="1350" poster="/assets/images/day-10-feed-cover.jpg" aria-label="Caption-led comparison of two AI-generated earthquake maps" aria-describedby="process-caption">
+              <source src="/assets/video/day-10-feed.mp4" type="video/mp4">
+              <p><a href="/assets/video/day-10-feed.mp4">Download the process video</a>.</p>
+            </video>
+            <figcaption id="process-caption">A silent, caption-led edit. The article contains the same findings in text. <a href="/assets/video/day-10-feed.mp4" download>Download the 4:5 edit</a> or <a href="/assets/video/day-10-reel.mp4" download>the 9:16 Reel</a>.</figcaption>
+          </figure>
+          <p>I expected more problems from a single prompt. Both maps were coherent, their core numbers held up, and both finished early. The remaining issues still mattered. A strong brief reduced the work needed after delivery; it did not remove the need for review.</p>
+          <h2>Sources and scope</h2>
+          <p>This is a selected earthquake catalog, not a hazard forecast or a map of every earthquake. The magnitude threshold, geographic bounds, year, and profile band limit the story.</p>
+          <ul>
+            <li><a href="https://earthquake.usgs.gov/fdsnws/event/1/">USGS earthquake catalog and query service</a>. Both runs saved the source records used in their maps.</li>
+            <li><a href="https://www.usgs.gov/publications/seismicity-earth-1900-2007-japan-and-vicinity">Rhea et al. (2010), Seismicity of the Earth 1900–2007, Japan and vicinity</a>. USGS Open-File Report 2010–1083–D, DOI 10.3133/ofr20101083D.</li>
+            <li><a href="https://www.usgs.gov/faqs/what-depth-do-earthquakes-occur-what-significance-depth">USGS explanation of earthquake depth</a>.</li>
+            <li><a href="https://www.naturalearthdata.com/">Natural Earth</a> provides basemap data. Opus used finer coastlines than Sol.</li>
+            <li><a href="https://github.com/fraxen/tectonicplates">PB2002 plate boundaries</a>, used by Opus for tectonic context.</li>
+          </ul>
+          <p>The original PNG downloads preserve both results, including the documented errors. The prompt is also available above. Raw chat transcripts remain private.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/drought-in-western-basins/">Day 3: Polygons</a>
+            <a href="/notes/utah-wildfire-starts-by-cause/">Day 4: Clusters</a>
+            <a href="/notes/canyon-overlook-trail-viewshed/">Day 5: Sight</a>
+            <a href="/notes/beneath-japan-one-prompt/" aria-current="page">Day 10: Prompting</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.instagram.com/brianbusch1/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
