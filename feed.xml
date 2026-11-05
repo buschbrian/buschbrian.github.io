@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>UGEM Hub</title>
       <link>https://buschbrian.github.io/notes/ugem-hub/</link>
@@ -120,6 +120,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-wildfire-starts-by-cause/</guid>
       <description>37,882 Utah wildfire records with known causes, 1992–2024. Maps compare natural and human-caused starts as points and density surfaces.</description>
       <pubDate>Wed, 04 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>What the Canyon Overlook Trail Sees</title>
+      <link>https://buschbrian.github.io/notes/canyon-overlook-trail-viewshed/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/canyon-overlook-trail-viewshed/</guid>
+      <description>A viewshed every 5 m along the Canyon Overlook Trail in Zion National Park. On bare earth, nearly half of the ground the walk shows comes into view in its last 15 m.</description>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>October Precipitation in the Four Corners</title>

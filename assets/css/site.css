@@ -443,6 +443,17 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
   font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .88em;
   background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px;
 }
+/* code excerpts: the block scrolls sideways, so the page does not */
+.code-excerpt { margin: 0 0 28px; }
+.code-excerpt pre {
+  margin: 0; padding: 16px 18px; overflow-x: auto;
+  background: #f4f6fa; border: 1px solid var(--line); border-radius: 12px;
+  font-size: 13px; line-height: 1.6; tab-size: 4;
+}
+.code-excerpt pre:focus-visible { outline: 2px solid var(--cerulean-text); outline-offset: 2px; }
+.post-content .code-excerpt pre code { border: 0; padding: 0; font-size: inherit; color: var(--body); }
+.code-excerpt figcaption { margin-top: 10px; font-size: var(--fs-caption); line-height: 1.6; letter-spacing: .04em; color: var(--muted); }
+.post-map-animation.is-portrait video { aspect-ratio: 9 / 16; max-width: 420px; margin-inline: auto; }
 .post-content table {
   width: 100%; border-collapse: collapse; margin: 0 0 20px;
   font-size: var(--fs-body); line-height: 1.45;
