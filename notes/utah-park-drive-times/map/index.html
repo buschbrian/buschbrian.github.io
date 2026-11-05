@@ -350,6 +350,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   :root { --side: 0px; --gap: 12px; }
   .app { display: flex; flex-direction: column; height: auto; overflow: visible; padding: 12px; gap: 12px; }
   .stage { position: relative; inset: auto; height: 52vh; min-height: 340px; border-radius: 12px; overflow: hidden; }
+  .dock, .about { align-self: stretch; }
   .mapkey { top: 8px; left: 8px; width: 196px; padding: 10px 12px; }
   .mapkey .key-note.faint { display: none; }
   .row, #from, .icon-btn { height: 44px; }
@@ -360,8 +361,15 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   .loading { left: 50%; }
 }
 
-/* ?embed: the article carries the title and credits. */
-.embed .head, .embed .about { display: none; }
+/* ?embed: the article carries the title, the town lookup and the credits; the frame keeps the map,
+   its key and the time control, and fills the frame's height. */
+.embed { --side: 0px; }
+.embed .head, .embed .about, .embed .from, .embed .share { display: none; }
+.embed .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); grid-template-areas: "dock"; }
+@media (max-width: 760px) {
+  .embed .app { height: 100%; overflow: hidden; }
+  .embed .stage { height: auto; flex: 1 1 auto; min-height: 0; }
+}
 </style>
 </head>
 <body>
@@ -488,6 +496,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     return parent.appendChild(e);
   };
   const narrow = () => matchMedia("(max-width: 760px)").matches;
+  const embedded = document.documentElement.classList.contains("embed");
 
   // Map key.
   const mapkey = document.querySelector("#mapkey");
@@ -1011,7 +1020,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       return;
     }
     const g = gap();
-    const right = document.querySelector(".from").offsetWidth + 2 * g;
+    const right = embedded ? 0 : document.querySelector(".from").offsetWidth + 2 * g;
     const bottom = document.querySelector(".dock").offsetHeight + 2 * g;
     const left = mapkey.open ? mapkey.offsetWidth + 2 * g : 0;
     view.padding = { top: g, right, bottom, left };
