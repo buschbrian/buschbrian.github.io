@@ -19,11 +19,6 @@
   --ink: #1f1a17;
   --muted: #6b625b;
   --rule: #e4ddd5;
-  --k1: #efe3c8;
-  --k2: #dcbd84;
-  --k3: #c98a4b;
-  --k4: #9e4f2b;
-  --k5: #5a2018;
   --calcite-font-family: "Mona Sans", system-ui, sans-serif;
   --calcite-color-brand: var(--ink);
 }
@@ -130,7 +125,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--ink); outli
 .key[hidden] { display: none; }
 .ramp-key { display: grid; gap: 4px; align-content: start; }
 .ramp-key[hidden] { display: none; }
-.ramp { height: 12px; border-radius: 2px; background: linear-gradient(90deg, #3d1d14, #8e4127, #c98a4b, #e7cf9e, #f6efe0); }
+.ramp { height: 12px; border-radius: 2px; background: linear-gradient(90deg, var(--r1), var(--r2), var(--r3), var(--r4), var(--r5)); }
 .ramp-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
 
 .time { display: grid; gap: 2px; min-width: 0; }
@@ -151,7 +146,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--ink); outli
 .chart text { font: 11px "Mona Sans", system-ui, sans-serif; fill: var(--muted); }
 .chart .axis { stroke: var(--rule); }
 .chart .cursor { stroke: var(--ink); stroke-width: 1.5; }
-.chart .park-line { fill: none; stroke: var(--ink); stroke-width: 2; }
+.chart .guide { stroke: var(--rule); stroke-dasharray: 2 3; }
 #minutes { width: 100%; margin: 0; accent-color: var(--ink); }
 
 footer { grid-column: 1 / -1; font-size: 11px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 14px; }
@@ -196,8 +191,8 @@ footer b { font-weight: 600; color: var(--ink); }
       <h1>Drive times to Utah's five national parks</h1>
       <p class="sub">Move the time. The map shows how many of the five parks each place can reach by car. Select a place to see its drive time to each park.</p>
       <div class="counter" aria-live="polite">
-        <p class="big figure" id="big">51.6%</p>
-        <p id="say">of Utahns live within <b>4 h</b> of <b>all five parks</b>.</p>
+        <p class="big figure" id="big">62.6%</p>
+        <p id="say">of Utahns live within <b>4 h 30 min</b> of <b>all five parks</b>.</p>
       </div>
     </section>
     <div id="map-slot" class="map-slot"></div>
@@ -230,11 +225,11 @@ footer b { font-weight: 600; color: var(--ink); }
     <div class="time">
       <div class="time-head">
         <label class="label" for="minutes">Drive time</label>
-        <output id="time-out" class="figure" for="minutes">4 h</output>
+        <output id="time-out" class="figure" for="minutes">4 h 30 min</output>
         <button type="button" id="play">Play</button>
       </div>
-      <svg class="chart" id="chart" viewBox="0 0 600 96" preserveAspectRatio="none" role="img" aria-label="Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 1% at 3 hours to 52% at 4 hours."></svg>
-      <input type="range" id="minutes" min="15" max="300" step="15" value="240" aria-valuetext="4 hours">
+      <svg class="chart" id="chart" role="img" aria-label="Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes."></svg>
+      <input type="range" id="minutes" min="15" max="300" step="15" value="270" aria-valuetext="4 hours 30 minutes">
     </div>
 
     <footer>
@@ -253,7 +248,25 @@ footer b { font-weight: 600; color: var(--ink); }
 (async () => {
   const DATA = window.PEN_DATA ?? "https://buschbrian.github.io/assets/data/";
   const PARKS = ["Arches", "Bryce Canyon", "Canyonlands", "Capitol Reef", "Zion"];
-  const K = ["#efe3c8", "#dcbd84", "#c98a4b", "#9e4f2b", "#5a2018"];
+  // Review palettes, chosen with ?palette=. k: one to five parks, light to dark. r: one park, near to far.
+  const PALETTES = {
+    dusk: {
+      k: ["#fcefc7", "#f9b97a", "#e8694f", "#a52a5e", "#45134f"],
+      r: ["#2d0d40", "#7b1f62", "#d1495b", "#f4a261", "#fbe8c3"],
+    },
+    sage: {
+      k: ["#e6efe3", "#b4d4bf", "#6fae9f", "#2e7b84", "#163e57"],
+      r: ["#0f2f45", "#245f74", "#4f9a96", "#9fcbb0", "#e8f1e4"],
+    },
+    batlow: {
+      k: ["#f8c3d6", "#e9a15f", "#8e8a36", "#2f6a5a", "#0c2f5c"],
+      r: ["#0c2f5c", "#2f6a5a", "#8e8a36", "#e9a15f", "#f8c3d6"],
+    },
+  };
+  const P = PALETTES[new URLSearchParams(location.search).get("palette")] ?? PALETTES.dusk;
+  const K = P.k;
+  P.k.forEach((c, i) => document.documentElement.style.setProperty(`--k${i + 1}`, c));
+  P.r.forEach((c, i) => document.documentElement.style.setProperty(`--r${i + 1}`, c));
   const INK = [31, 26, 23];
   const reach = await (await fetch(DATA + "day-13-reach.json")).json();
   const pop = reach.population_2020;
@@ -261,13 +274,15 @@ footer b { font-weight: 600; color: var(--ink); }
   const hm = (m) => (m < 60 ? `${m} min` : m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`);
   const spoken = (m) => hm(m).replace(" h", m >= 120 ? " hours" : " hour").replace(" min", " minutes");
   const pct = (v) => `${(100 * v).toFixed(1)}%`;
-  const state = { minutes: 240, park: "" };
+  const state = { minutes: 270, park: "" };
 
-  // Chart: one nested area per count, the same colors as the map. Drawn once; the cursor moves.
+  // Chart, drawn at its real pixel width so the text never stretches. All five: one nested area
+  // per count, the map's colors. One park: that park's share only, with 50% and 100% guides.
   const svg = document.querySelector("#chart");
   const NS = "http://www.w3.org/2000/svg";
-  const W = 600, H = 80, X0 = 15, X1 = 300;
-  const x = (m) => ((m - X0) / (X1 - X0)) * W;
+  const H = 80, X0 = 15, X1 = 300, L = 34;
+  let W = 600;
+  const x = (m) => L + ((m - X0) / (X1 - X0)) * (W - L);
   const y = (v) => H - v * H;
   const cut = Object.keys(reach.share_at_least_k).map(Number);
   const add = (tag, attrs) => {
@@ -275,17 +290,34 @@ footer b { font-weight: 600; color: var(--ink); }
     for (const [a, v] of Object.entries(attrs)) e.setAttribute(a, v);
     return svg.appendChild(e);
   };
-  for (let k = 1; k <= 5; k++) {
-    const pts = cut.map((m) => `${x(m)},${y(reach.share_at_least_k[m][k - 1])}`);
-    add("path", { d: `M0,${H} L${pts.join(" L")} L${W},${H} Z`, fill: K[k - 1] });
+  const area = (vals, fill) => {
+    const pts = cut.map((m, i) => `${x(m)},${y(vals[i])}`);
+    add("path", { d: `M${x(X0)},${H} L${pts.join(" L")} L${x(X1)},${H} Z`, fill });
+  };
+  let cursor;
+  function draw() {
+    W = Math.max(svg.clientWidth, 200);
+    svg.setAttribute("viewBox", `0 0 ${W} 96`);
+    svg.replaceChildren();
+    for (const v of [0.5, 1]) {
+      add("line", { class: "guide", x1: L, x2: W, y1: y(v), y2: y(v) });
+      add("text", { x: L - 6, y: y(v) + 4, "text-anchor": "end" }).textContent = `${v * 100}%`;
+    }
+    if (state.park) {
+      const people = reach.people_within_by_park[state.park];
+      area(cut.map((m) => people[m] / pop), P.r[2]);
+    } else {
+      for (let k = 1; k <= 5; k++) area(cut.map((m) => reach.share_at_least_k[m][k - 1]), K[k - 1]);
+    }
+    add("line", { class: "axis", x1: L, x2: W, y1: H, y2: H });
+    for (let h = 1; h <= 5; h++) {
+      add("line", { class: "axis", x1: x(h * 60), x2: x(h * 60), y1: H, y2: H + 4 });
+      add("text", { x: x(h * 60), y: H + 15, "text-anchor": h === 5 ? "end" : "middle" }).textContent = `${h} h`;
+    }
+    cursor = add("line", { class: "cursor", y1: 0, y2: H + 4, x1: x(state.minutes), x2: x(state.minutes) });
   }
-  add("line", { class: "axis", x1: 0, x2: W, y1: H, y2: H });
-  for (let h = 1; h <= 5; h++) {
-    add("line", { class: "axis", x1: x(h * 60), x2: x(h * 60), y1: H, y2: H + 4 });
-    add("text", { x: x(h * 60), y: H + 15, "text-anchor": h === 5 ? "end" : "middle" }).textContent = `${h} h`;
-  }
-  const parkLine = add("path", { class: "park-line", d: "" });
-  const cursor = add("line", { class: "cursor", y1: 0, y2: H + 4 });
+  draw();
+  new ResizeObserver(draw).observe(svg);
 
   const big = document.querySelector("#big");
   const say = document.querySelector("#say");
@@ -322,22 +354,20 @@ footer b { font-weight: 600; color: var(--ink); }
     },
   });
   const bands = new GeoJSONLayer({
-    url: DATA + "day-13-park-bands.geojson",
+    url: DATA + "day-13-park-reach.geojson",
     title: "Drive time to one park",
     copyright: credit,
     outFields: ["park", "minutes"],
     popupEnabled: false,
     visible: false,
+    orderBy: [{ field: "minutes", order: "ascending" }],
     renderer: {
       type: "simple",
-      symbol: fill("#c98a4b"),
+      symbol: fill(P.r[2]),
       visualVariables: [{
         type: "color",
         field: "minutes",
-        stops: [
-          { value: 15, color: "#3d1d14" }, { value: 75, color: "#8e4127" }, { value: 150, color: "#c98a4b" },
-          { value: 225, color: "#e7cf9e" }, { value: 300, color: "#f6efe0" },
-        ],
+        stops: P.r.map((color, i) => ({ value: 15 + (i * 285) / 4, color })),
       }],
     },
   });
@@ -367,21 +397,19 @@ footer b { font-weight: 600; color: var(--ink); }
       new Graphic({ geometry, symbol: label(name, 9, "normal", [...INK, 0.85], [5, -3]) }),
     ]);
   }
-  const SHORT = {
-    "Arches Visitor Center": ["Arches", "above-right"], "Island in the Sky Visitor Center": ["Island in the Sky", "center-right"],
-    "Needles Visitor Center": ["Needles", "below-right"], "Capitol Reef Visitor Center": ["Capitol Reef", "above-left"],
-    "Bryce Canyon Visitor Center": ["Bryce Canyon", "center-right"], "Zion Canyon Visitor Center": ["Zion", "center-right"],
-    "Kolob Canyons Visitor Center": ["Kolob Canyons", "center-left"],
+  const PLACE = {
+    Arches: "above-right", Canyonlands: "below-right", "Capitol Reef": "above-left",
+    "Bryce Canyon": "center-right", Zion: "center-right",
   };
   const origins = new GeoJSONLayer({
     url: DATA + "day-13-origins.geojson",
     title: "Visitor centers",
     outFields: ["*"],
     popupEnabled: false,
-    renderer: { type: "simple", symbol: { type: "simple-marker", style: "triangle", size: 11, color: "#ffffff", outline: { color: INK, width: 1.6 } } },
-    labelingInfo: Object.entries(SHORT).map(([entrance, [text, labelPlacement]]) => ({
-      where: `entrance = '${entrance}'`,
-      labelExpressionInfo: { expression: `"${text}"` },
+    renderer: { type: "simple", symbol: { type: "simple-marker", style: "circle", size: 9, color: INK, outline: { color: "#ffffff", width: 2 } } },
+    labelingInfo: Object.entries(PLACE).map(([park, labelPlacement]) => ({
+      where: `park = '${park}'`,
+      labelExpressionInfo: { expression: "$feature.park" },
       labelPlacement,
       deconflictionStrategy: "none",
       symbol: { type: "text", color: INK, haloColor: "white", haloSize: 1.6, font: { family: "Noto Sans", size: 11, weight: "bold" } },
@@ -435,8 +463,8 @@ footer b { font-weight: 600; color: var(--ink); }
     timeOut.textContent = hm(m);
     slider.value = m;
     slider.setAttribute("aria-valuetext", spoken(m));
-    cursor.setAttribute("x1", x(m));
-    cursor.setAttribute("x2", x(m));
+    cursor.setAttribute("x1", x(state.minutes));
+    cursor.setAttribute("x2", x(state.minutes));
     for (const span of keyEl.querySelectorAll("[data-k]")) {
       const v = s[span.dataset.k - 1];
       span.textContent = pct(v);
@@ -448,7 +476,7 @@ footer b { font-weight: 600; color: var(--ink); }
       say.innerHTML = `of Utahns live within <b>${hm(m)}</b> of <b>${state.park}</b>.`;
       if (lv.bands) lv.bands.filter = { where: `park = '${state.park}' AND minutes <= ${m}` };
     } else {
-      const k = s[4] > 0.005 ? 5 : s[2] > 0.005 ? 3 : 1;
+      const k = s[4] >= 0.05 ? 5 : s[2] >= 0.05 ? 3 : 1;
       big.textContent = pct(s[k - 1]);
       const many = k === 5 ? "all five parks" : k === 3 ? "at least three parks" : "at least one park";
       say.innerHTML = `of Utahns live within <b>${hm(m)}</b> of <b>${many}</b>.`;
@@ -464,8 +492,7 @@ footer b { font-weight: 600; color: var(--ink); }
     keyEl.hidden = !!park;
     rampKey.hidden = !park;
     document.querySelector("#ramp-park").textContent = park || "the park";
-    const people = reach.people_within_by_park[park];
-    parkLine.setAttribute("d", park ? "M" + cut.map((m) => `${x(m)},${y(people[m] / pop)}`).join(" L") : "");
+    draw();
     apply();
   }
 
@@ -519,7 +546,7 @@ footer b { font-weight: 600; color: var(--ink); }
     view.openPopup({
       location: event.mapPoint,
       title: `${inReach} of 5 parks within ${hm(state.minutes)}`,
-      content: `<p style="margin:0 0 6px">Drive time from here to the nearest visitor center of each park:</p><ul style="margin:0;padding-left:18px">${list}</ul>`,
+      content: `<p style="margin:0 0 6px">Drive time from here to each park's main visitor center:</p><ul style="margin:0;padding-left:18px">${list}</ul>`,
     });
   });
 })();
