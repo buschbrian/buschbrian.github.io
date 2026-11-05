@@ -579,8 +579,6 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 /* --- image viewer --- */
 .zoomable { position: relative; display: block; width: 100%; padding: 0; border: 0; background: transparent; border-radius: var(--r); cursor: zoom-in; }
 .zoomable:focus-visible { outline-offset: 5px; }
-.zoomable-hint { display: flex; width: fit-content; margin: 12px 0 0 auto; padding: 8px 14px; background: var(--white); color: var(--cosmic); border: 1px solid var(--line); border-radius: 6px; font: 500 13px/1.4 var(--font-sans); transition: transform .18s ease; }
-.zoomable:hover .zoomable-hint { transform: translateY(-3px); }
 body.lightbox-open { overflow: hidden; }
 .lightbox {
   --viewer-paper: #edf0f4;
@@ -654,7 +652,7 @@ body.lightbox-open { overflow: hidden; }
   .lightbox .lightbox-overview { right: 12px; bottom: 12px; width: 70px; }
 }
 @keyframes viewer-enter { from { opacity: 0; } to { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .lightbox[open] { animation: none; } .zoomable-hint { transition: none; } .zoomable:hover .zoomable-hint { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .lightbox[open] { animation: none; } }
 
 /* --- challenge reading --- */
 .series-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; max-width: var(--measure); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 1px solid var(--line); font-size: 13px; }

@@ -30,13 +30,9 @@ export function initImageViewer() {
       trigger = document.createElement("button");
       trigger.type = "button";
       trigger.className = "zoomable";
-      trigger.setAttribute("aria-label", `Explore image: ${entries[index].title}`);
-      const hint = document.createElement("span");
-      hint.className = "zoomable-hint";
-      hint.setAttribute("aria-hidden", "true");
-      hint.textContent = "Explore image ↗";
+      trigger.setAttribute("aria-label", `Expand image: ${entries[index].title}`);
       target.before(trigger);
-      trigger.append(target, hint);
+      trigger.append(target);
     }
     trigger.setAttribute("aria-haspopup", "dialog");
     triggers.set(trigger, index);
