@@ -84,12 +84,12 @@
           <p>On bare earth, the first 500 m see less than a tenth of the ground that is in view at the rim. About two-thirds of the way along, a gap opens a window west to the West Temple and the Sundial. Then the rock closes in again.</p>
           <p>Nearly half of all the ground the walk shows comes into view only in the last 15 m. That ground includes the canyon right below the viewpoint: Pine Creek and the highway switchbacks.</p>
           <h2>Watch the walk</h2>
-          <figure class="post-hero-image post-map-animation is-portrait">
-            <video controls loop muted playsinline preload="none" width="1080" height="1920" poster="/assets/images/canyon-overlook-trail-viewshed-cover.jpg" aria-label="A gold dot walks the Canyon Overlook Trail from the trailhead to the viewpoint. Gold shading shows the ground in view from the dot, and pale gold shows ground seen earlier. Captions name four stages: on the trail, a window to the west, behind the rock again, and the rim. At the end, red marks the ground that only the rim shows." aria-describedby="walk-caption">
+          <figure class="post-hero-image post-map-animation is-four-five">
+            <video controls loop muted playsinline preload="none" width="1080" height="1350" poster="/assets/images/canyon-overlook-trail-viewshed-cover.jpg" aria-label="A gold dot walks the Canyon Overlook Trail from the trailhead to the viewpoint. Gold shading shows the ground in view from the dot, and pale gold shows ground seen earlier. Captions name four stages: on the trail, a window to the west, behind the rock again, and the rim. At the end, red marks the ground that only the rim shows." aria-describedby="walk-caption">
               <source src="/assets/video/canyon-overlook-trail-viewshed.mp4" type="video/mp4">
               <p><a href="/assets/images/canyon-overlook-trail-viewshed.jpg">View the still</a>.</p>
             </video>
-            <figcaption id="walk-caption">The walk in 22 seconds, as a vertical video. <a href="/assets/video/canyon-overlook-trail-viewshed.mp4" download>Download the video</a>.</figcaption>
+            <figcaption id="walk-caption">The walk in 21 seconds. <a href="/assets/video/canyon-overlook-trail-viewshed.mp4" download>Download the video</a>.</figcaption>
           </figure>
           <h2>How the model works</h2>
           <p>A viewshed is the area that is visible from one point. The model runs a viewshed every 5 m along the trail, 155 positions in all.</p>
@@ -111,18 +111,20 @@
           <p>One viewpoint cannot show when that view arrives. So the final map runs the viewshed along the whole walk and keeps the first point where each cell comes into view.</p>
           <h2>Inside the scripts</h2>
           <p>Three Python scripts build the map. <code>day05_viewshed_check.py</code> sets the viewpoint and runs the checks. <code>day05_sight.py</code> builds the terrain surface. <code>day05_walk.py</code> walks the trail and draws the still and the video.</p>
-          <p>The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
+          <p>The scripts pass the default checks of the ruff linter and use its code format. The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
           <p>The 1 m lidar covers a 1 km square around the viewpoint. The script averages it to 2 m cells. A weight then rises from 0 to 1 between 10 m and 30 m inside the tile edge. In that band, the surface is a mix of the two sources.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>def hybrid(g, t1, ox, oy):
-    """2 m surface over ±HALF: bilinear 10 m DEM, with the lidar tile blended in from 10 to 30 m inside its edge."""
+    """2 m surface over ±HALF: the 10 m DEM, bilinear, with the lidar tile blended in
+    from 10 to 30 m inside its edge."""
     # ...
     lid = a1.reshape(a1.shape[0] // 2, 2, a1.shape[1] // 2, 2).mean(axis=(1, 3))
     r0, c0 = int(round((y1 - ly1) / H)), int(round((lx0 - x0) / H))
-    ii, jj = np.mgrid[:lid.shape[0], :lid.shape[1]]
-    w = np.clip((np.minimum.reduce([ii, jj, lid.shape[0] - 1 - ii, lid.shape[1] - 1 - jj]) * H - 10) / 20, 0, 1)
-    win = dem[r0:r0 + lid.shape[0], c0:c0 + lid.shape[1]]
-    dem[r0:r0 + lid.shape[0], c0:c0 + lid.shape[1]] = w * lid + (1 - w) * win
+    ii, jj = np.mgrid[: lid.shape[0], : lid.shape[1]]
+    edge = np.minimum.reduce([ii, jj, lid.shape[0] - 1 - ii, lid.shape[1] - 1 - jj])
+    w = np.clip((edge * H - 10) / 20, 0, 1)
+    win = dem[r0 : r0 + lid.shape[0], c0 : c0 + lid.shape[1]]
+    dem[r0 : r0 + lid.shape[0], c0 : c0 + lid.shape[1]] = w * lid + (1 - w) * win
     return dem, float(x0), float(y1)</code></pre>
             <figcaption>From <code>day05_sight.py</code>. The two surfaces meet without a step.</figcaption>
           </figure>
@@ -130,11 +132,14 @@
           <p>The <code>-cc 0.85714</code> option lowers far ground for the curve of the earth and for light that bends in the air.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>def viewshed(src, ox, oy, oz, radius, cell):
+    fmt = ["-q", "-of", "ENVI"]
+    at = ["-ox", repr(float(ox)), "-oy", repr(float(oy)), "-oz", repr(float(oz))]
+    reach = ["-tz", "0", "-md", f"{radius:g}", "-cc", repr(V.CC)]
+    values = ["-vv", "1", "-iv", "0", "-ov", "2"]
     with tempfile.TemporaryDirectory() as tmp:
         out = Path(tmp) / "v.bin"
-        subprocess.run(V.GDAL + ["gdal_viewshed", "-q", "-of", "ENVI", "-ox", repr(float(ox)), "-oy", repr(float(oy)),
-                                 "-oz", repr(float(oz)), "-tz", "0", "-md", f"{radius:g}", "-cc", repr(V.CC), "-vv", "1",
-                                 "-iv", "0", "-ov", "2", str(src), str(out)], check=True, capture_output=True)
+        cmd = ["gdal_viewshed", *fmt, *at, *reach, *values, str(src), str(out)]
+        subprocess.run(V.GDAL + cmd, check=True, capture_output=True)
         return V.read_envi(out, cell=cell)</code></pre>
             <figcaption>From <code>day05_sight.py</code>. <code>V.GDAL</code> runs GDAL 3.13 from a pixi environment.</figcaption>
           </figure>
@@ -150,10 +155,12 @@ for i, s in enumerate(walk):
     if i == len(walk) - 1:
         gz = obs["ground"]
     else:
-        q = np.arange(max(0.0, s - 3), min(s_obs, s + 3) + .01, 1.0)
-        gz = float(np.median([V.z1m(t1, route.interpolate(v).x, route.interpolate(v).y)[0] for v in q]))
+        q = np.arange(max(0.0, s - 3), min(s_obs, s + 3) + 0.01, 1.0)
+        pts = [route.interpolate(v) for v in q]
+        gz = float(np.median([V.z1m(t1, pt.x, pt.y)[0] for pt in pts]))
     ro, co = int((y1 - p.y) // H), int((p.x - x0) // H)
-    v, wx0, wy1 = S.viewshed(src, p.x, p.y, gz + V.EYE - float(dem[ro, co]), S.MAP_R, H)
+    oz = gz + V.EYE - float(dem[ro, co])
+    v, wx0, wy1 = S.viewshed(src, p.x, p.y, oz, S.MAP_R, H)
     vis = v == 1
     # ...
     first[crop &amp; np.isinf(first)] = s
