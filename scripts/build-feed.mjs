@@ -30,7 +30,6 @@ const ORDER = [
   "utah-wildfire-starts-by-cause",
   "canyon-overlook-trail-viewshed",
   "holmes-zion-panorama",
-  "four-corners-october-precipitation",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
