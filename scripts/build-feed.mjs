@@ -31,6 +31,7 @@ const ORDER = [
   "canyon-overlook-trail-viewshed",
   "holmes-zion-panorama",
   "wasatch-front-walk-to-transit",
+  "great-salt-lake-at-4198-feet",
   "utah-urban-and-rural",
   "utah-dark-sky-points",
   "utah-scenic-byways",
