@@ -83,6 +83,15 @@
           <p>Utopia is the theme for Day 8. This map draws Great Salt Lake at 4,198 feet. That level is the low end of the 4,198 to 4,205 foot range that the Great Salt Lake Strike Team calls healthy.</p>
           <p>On November 3, 2026, the USGS gauge at Saltair on the South Arm read 4,190.0 feet. This value is provisional. At 4,198 feet, the lake would cover about 1,399 square miles (3,625 km²), up from 926 square miles (2,398 km²). That is about 474 square miles (1,227 km²) more, a 51% gain. The lake would hold about 5.7 million acre-feet (7.0 km³) more water.</p>
           <p>At that level, Farmington Bay and Bear River Bay hold water again. Spiral Jetty sits about 2 feet under water. The map shows a shoreline at a stated elevation. It is not a forecast.</p>
+          <h2>Watch the lake rise</h2>
+          <p>The video floods the model in 16 steps of half a foot each. Each step is a separate flood, and its figures and distances come from that flood. The video does not interpolate between steps.</p>
+          <figure class="post-hero-image post-map-animation is-four-five">
+            <video controls loop muted playsinline preload="none" width="1080" height="1350" poster="/assets/images/great-salt-lake-at-4198-feet-cover.jpg" aria-label="The lake rises from its November 3 level to 4,198 feet, half a foot at a time. Bright blue water spreads along the shore and fills Farmington Bay and Bear River Bay. The figures count up to 474 more square miles, 5.7 million more acre-feet and 8 feet of rise. Labels give the distance to water at each step. Spiral Jetty goes under water at 4,195.5 feet." aria-describedby="rise-caption">
+              <source src="/assets/video/great-salt-lake-at-4198-feet.mp4" type="video/mp4">
+              <p><a href="/assets/images/great-salt-lake-at-4198-feet.jpg">View the still</a>.</p>
+            </video>
+            <figcaption id="rise-caption">The rise in 24 seconds, half a foot at a time. <a href="/assets/video/great-salt-lake-at-4198-feet.mp4" download>Download the video</a>.</figcaption>
+          </figure>
           <h2>Two datums for one lake</h2>
           <p>A vertical datum is the zero point that a set of elevations is measured from. The lake gauges and the lake model use different datums.</p>
           <ul>
@@ -105,7 +114,31 @@
             <li>The 657 salt ponds and diked water bodies in OSM cannot fill.</li>
             <li>The script measures area and volume from the flooded cells.</li>
           </ul>
-          <!-- Day 8 code excerpts go here, after the ruff pass on the day08 scripts. Add the ruff sentence from the Day 7 page with them. -->
+          <p>The scripts pass the default checks of the ruff linter and use its code format. The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>wall = rasterize(
+    ((g, 1) for g in walls.geometry if g is not None),
+    out_shape=shape,
+    transform=tr,
+    all_touched=True,
+    dtype="uint8",
+).astype(bool)
+# ...
+        L = navd[level_key]
+        if L not in labels:
+            labels[L] = ndimage.label(valid &amp; ~wall &amp; ~pond &amp; (dem &lt; L))[0]
+        lab = labels[L]
+        rs, cs = box_slices(BOXES[region])
+        ids, counts = np.unique(lab[rs, cs], return_counts=True)
+        keep = ids &gt; 0
+        # ...
+        best = ids[keep][np.argmax(counts[keep])]
+        m = lab == best
+        # ...
+        out[m &amp; (out == 0)] = code
+        vol_m3 = float(((L - dem[m]) * 0.3048).sum()) * cell_km2 * 1e6</code></pre>
+            <figcaption>From <code>day08_flood_gate.py</code>. <code>L</code> is the level in NAVD 88 feet. <code>all_touched</code> burns every cell that a wall touches. <code>ndimage.label</code> joins cells through shared edges only, so a wall one cell wide holds on a diagonal too.</figcaption>
+          </figure>
           <p>The first run walled off Bear River Bay behind the railroad crossing to Little Mountain. The South Arm came up 4.8% short of its table. The low ground behind that crossing measured exactly the table&rsquo;s 85.4 km² for Bear River Bay. So the crossing is the edge of the bay in the USGS tables, not a wall. Now the bay floods from its own seed at the South Arm level.</p>
           <section class="storage-table-wrap" aria-label="Flooded area against the USGS tables" tabindex="0">
             <table>
@@ -122,6 +155,18 @@
           <p>Each part is within 0.6% of its table at both levels. The volumes agree within 0.7%. The map&rsquo;s figures come from the flood, which keeps the diked ponds dry.</p>
           <h2>Where the shore moves</h2>
           <p>The map labels five places. The script <code>day08_anchors.py</code> measures the straight-line distance from each place to the nearest flooded cell. On 33 ft (10 m) cells, the distances are good to about 33 feet. Saltair and the Great Salt Lake Marina are 1.5 miles apart, so they share one label.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>r0, c0 = max(r - HALF, 0), max(c - HALF, 0)
+win = water[r0 : r + HALF, c0 : c + HALF]
+if win[r - r0, c - c0]:
+    rec[case] = {"km": 0.0, "bearing": None, "in_water": True}
+    continue
+_, (ir, ic) = ndimage.distance_transform_edt(~win, return_indices=True)
+tr_r, tr_c = ir[r - r0, c - c0] + r0, ic[r - r0, c - c0] + c0
+wx, wy = tr * (tr_c + 0.5, tr_r + 0.5)
+km = math.hypot(wx - x, wy - y) / 1000</code></pre>
+            <figcaption>From <code>day08_anchors.py</code>. The distance transform gives the nearest water cell for each dry cell. The script measures to the center of that cell, inside a 50 km window around each place.</figcaption>
+          </figure>
           <ul>
             <li>Spiral Jetty: water 0.4 miles (0.6 km) away on November 3. Under water at 4,198 feet.</li>
             <li>Promontory Point: water 0.4 miles (0.6 km) away on November 3, and 0.1 miles (0.1 km) at 4,198 feet.</li>
