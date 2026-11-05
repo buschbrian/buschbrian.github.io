@@ -454,6 +454,8 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 .post-content .code-excerpt pre code { border: 0; padding: 0; font-size: inherit; color: var(--body); }
 .code-excerpt figcaption { margin-top: 10px; font-size: var(--fs-caption); line-height: 1.6; letter-spacing: .04em; color: var(--muted); }
 .post-map-animation.is-four-five video { aspect-ratio: 4 / 5; }
+.post-map-animation.is-reel { max-width: 420px; margin-inline: auto; }
+.post-map-animation.is-reel video { aspect-ratio: 9 / 16; }
 .post-content table {
   width: 100%; border-collapse: collapse; margin: 0 0 20px;
   font-size: var(--fs-body); line-height: 1.45;
