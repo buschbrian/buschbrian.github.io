@@ -81,12 +81,12 @@
         <div class="post-content">
           <h2>Nine in ten on about 1% of the land</h2>
           <p>In the 2020 Census, 2,937,303 of Utah's 3,271,616 residents lived in an urban area. That is 89.8%. Utah's 25 urban areas cover 2,439 of the state's 213,355 square kilometers (km²) of land, or 1.1%.</p>
-          <p>The rest of the state held 334,313 people, 10.2%, on 98.9% of the land. Urban areas average 1,204 residents per km² of land. The rest of Utah averages 1.6.</p>
-          <p>Most of the urban share is on the Wasatch Front. The Salt Lake City, Ogden–Layton and Provo–Orem urban areas hold 72.6% of Utahns on 0.82% of the land.</p>
-          <p>The Kem C. Gardner Policy Institute at the University of Utah reports the same 89.8%. Its October 2024 fact sheet by Mallory Bateman ranks Utah's urban share 7th among the states. Nationally, the share is 80%.</p>
+          <p>The rest of the state held 334,313 people, 10.2%, on 98.9% of the land. In 2020, urban areas averaged 1,204 residents per km² of land. The rest of Utah averaged 1.6.</p>
+          <p>Most of the urban share is on the Wasatch Front. In 2020, the Salt Lake City, Ogden–Layton and Provo–Orem urban areas held 72.6% of Utahns on 0.82% of the land.</p>
+          <p>The Kem C. Gardner Policy Institute at the University of Utah reports the same 89.8%. Its October 2024 fact sheet by Mallory Bateman ranks Utah's urban share seventh among the states. Nationally, the share is 80%.</p>
           <h2>What counts as urban</h2>
           <p>A Census block is the smallest area the Census Bureau counts, often one city block. For the 2020 Census, the Bureau classed every block as urban or rural.</p>
-          <p>An urban area is a cluster of blocks with at least 2,000 housing units or 5,000 residents. Every other block is rural. Each urban block carries the code of its urban area.</p>
+          <p>Urban areas include densely developed blocks and nearby land that meets the Census criteria. In 2020, each qualifying area needed at least 2,000 housing units or 5,000 residents. Land outside those areas was classified as rural. Each urban block carries the code of its urban area.</p>
           <p>The script, <code>day09_urban_rural.py</code>, reads the Utah block file from the Census TIGER/Line files. It adds up residents and land area by block. The script passes the default checks of the ruff linter and uses its code format. The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>    pop, land = int(b.POP20.sum()), int(b.ALAND20.sum())
@@ -113,7 +113,7 @@
           </figure>
           <p>The urban blocks fall in 25 urban areas. The largest, Salt Lake City, held 36.0% of Utahns. Eleven of Utah's 29 counties have no urban block at all.</p>
           <h2>Drawing the land the figures count</h2>
-          <p>The brick-red shapes on the poster are the urban blocks, merged by urban area. So the map draws exactly the land that the figures count. The Census urban area file supplies only the names.</p>
+          <p>The brick-red shapes on the poster are the urban blocks, merged by urban area. Using the same blocks keeps the map and the counts closely aligned. The Census urban area file supplies only the names.</p>
           <p>Some rural blocks are mostly water, in the Great Salt Lake, Lake Powell and Bear Lake. Drawn as land, these 128 blocks would fill in the lakes. The maps draw them as water, and the figures still count them.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>    # Rural blocks that are mostly water (the Great Salt Lake, Lake Powell, Bear Lake:
@@ -169,7 +169,7 @@
           <p>An earlier version drew each whole line twice and clipped each copy at the seam. Univers tucks the &ldquo;f&rdquo; under the &ldquo;o&rdquo;, so part of the &ldquo;f&rdquo; reached back across the seam.</p>
           <h2>Six palettes, checked for contrast</h2>
           <p>The first draft set the two halves in near-white and near-black. I tried six softer palettes and chose salt and juniper: pale sand for urban Utah and dark juniper green for rural Utah.</p>
-          <p>Before it draws anything, the script checks every palette against WCAG 2 contrast ratios. WCAG is the web accessibility standard. The main text and the small text need at least 4.5:1 against their background. The large figures, the label shares, and the urban and rural land need at least 3:1.</p>
+          <p>Before rendering, the script checks each selected palette’s contrast using ratios from the Web Content Accessibility Guidelines (WCAG). The main text and the small text need at least 4.5:1 against their background. The large figures, the label shares, and the urban and rural land need at least 3:1.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>def luminance(hex_):
     c = [int(hex_[i : i + 2], 16) / 255 for i in (1, 3, 5)]
