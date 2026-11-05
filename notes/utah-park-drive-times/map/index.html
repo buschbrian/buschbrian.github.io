@@ -10,13 +10,13 @@
 <script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css">
 <script type="module" src="https://js.arcgis.com/5.1/"></script>
 <style>
 /* One system: a dark slate page, one sequential ramp that brightens with the number of parks in
-   reach, Inter on an 8 px grid, flat cards. */
+   reach, Mona Sans (the Day 1-11 face) on an 8 px grid, flat cards. */
 :root {
   --bg: #0b0e13;
   --card: rgba(16, 20, 27, 0.88);
@@ -34,7 +34,7 @@
   --k5: #f2d15c;
   --side: 380px;
   --gap: 16px;
-  --font: "Inter", system-ui, sans-serif;
+  --font: "Mona Sans", system-ui, sans-serif;
   color-scheme: dark;
 }
 
@@ -52,9 +52,19 @@ html, body {
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 button, input { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-output, .row .t, .meter .v, .chart text, .axis text, .share h2 b, .labels-row, .scale .ticks, .listbox .pop { font-variant-numeric: tabular-nums; }
 
-.app { position: relative; height: 100%; overflow: hidden; }
+.app {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--side);
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+  grid-template-areas: ". head" ". from" ". share" "dock about";
+  gap: 12px var(--gap);
+  padding: var(--gap);
+}
+.app > .card { position: relative; z-index: 2; min-width: 0; }
 .stage { position: absolute; inset: 0; }
 .map-slot { position: absolute; inset: 0; }
 arcgis-map { display: block; height: 100%; background: var(--bg); }
@@ -83,22 +93,12 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 }
 .loading[hidden] { display: none; }
 
-/* Right column of cards. */
-.side {
-  position: absolute;
-  top: var(--gap);
-  right: var(--gap);
-  bottom: var(--gap);
-  width: var(--side);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  z-index: 2;
-}
+.head { grid-area: head; }
+.from { grid-area: from; }
+.share { grid-area: share; }
+.about { grid-area: about; align-self: end; }
 .head { padding: 16px; }
-.head h1 { margin: 8px 0 8px; font-size: 22px; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; }
+.head h1 { margin: 8px 0 8px; font-size: 24px; line-height: 1.15; font-weight: 760; font-stretch: 108%; letter-spacing: -0.01em; }
 .head p.sub { margin: 0; color: var(--muted); }
 
 .from { padding: 16px; }
@@ -152,7 +152,6 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 .listbox li b { color: var(--text); font-weight: 600; }
 .listbox li[aria-selected="true"] { background: rgba(255, 255, 255, 0.08); color: var(--text); }
 .listbox li[aria-disabled="true"] { color: var(--faint); cursor: default; }
-.listbox .pop { font-size: 11px; color: var(--faint); }
 .from-msg:empty { display: none; }
 
 .rows { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid var(--line); }
@@ -176,15 +175,21 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 .row[aria-pressed="true"] { background: color-mix(in srgb, var(--accent) 12%, transparent); }
 .row[aria-pressed="true"]::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; border-radius: 1px; background: var(--accent); }
 .row .t { font-weight: 600; transition: color 0.2s; }
-.row.beyond .t { color: var(--faint); }
+.row.beyond .t { color: var(--muted); font-weight: 500; }
+.row .name { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.tag { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: 8px; color: var(--bg); background: var(--text); }
+.tag[hidden] { display: none; }
+.from-label { margin: 12px 0 0; font-size: 12px; color: var(--muted); }
+.from-label b { color: var(--text); font-weight: 600; }
+.farthest { margin: 8px 8px 0; font-size: 13px; color: #c3cad3; }
+.farthest b { color: var(--text); }
 .row svg { width: 16px; height: 16px; color: var(--muted); overflow: visible; }
 .row svg g { transition: transform 0.35s ease; }
-.row.all { font-weight: 700; }
-.row.all svg { visibility: hidden; }
 .hint { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
 
 .share { padding: 16px; }
-.share h2 { margin: 0 0 12px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.share h2 { margin: 0; font-size: 12px; font-weight: 600; color: var(--muted); }
+.share .sub2 { margin: 2px 0 12px; font-size: 11px; color: var(--faint); }
 .share h2 b { color: var(--text); }
 .meters { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .meter { display: grid; grid-template-columns: 10px 104px minmax(0, 1fr) 40px; gap: 8px; align-items: center; height: 20px; }
@@ -195,7 +200,9 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 .meter .v { text-align: right; font-weight: 600; }
 .meter.on .n, .meter.on .v { color: var(--accent); }
 
-.about { padding: 12px 16px; font-size: 11.5px; color: var(--muted); }
+.about { padding: 10px 16px; font-size: 11.5px; color: var(--muted); }
+.about summary { cursor: pointer; font-size: 12px; font-weight: 600; }
+.about p:first-of-type { margin-top: 8px; }
 .about p { margin: 0 0 4px; }
 .about p:last-child { margin: 0; }
 .about b { color: var(--text); font-weight: 600; }
@@ -204,7 +211,23 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 .handles i { margin-right: 4px; }
 
 /* Map key, top left. */
-.mapkey { position: absolute; top: var(--gap); left: var(--gap); width: 232px; padding: 12px 16px; z-index: 2; }
+.mapkey { position: absolute; top: var(--gap); left: var(--gap); width: 248px; padding: 12px 16px; z-index: 2; }
+.key-note { margin: 10px 0 0; font-size: 12px; line-height: 1.4; color: #c3cad3; }
+.key-note b { color: var(--text); }
+.key-note.faint { margin-top: 8px; color: var(--muted); }
+.chip {
+  margin-top: 10px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip:hover { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.09); }
+.chip[hidden] { display: none; }
 .mapkey summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
 .mapkey summary::-webkit-details-marker { display: none; }
 .mapkey summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(45deg) translateY(-2px); }
@@ -219,16 +242,10 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 .scale[hidden] { display: none; }
 
 /* Time dock, bottom of the map. */
-.dock {
-  position: absolute;
-  left: var(--gap);
-  right: calc(var(--side) + 2 * var(--gap));
-  bottom: var(--gap);
-  padding: 12px 16px 8px;
-  z-index: 2;
-}
+.dock { grid-area: dock; align-self: end; padding: 12px 16px 8px; }
 .dock-head { display: flex; align-items: center; gap: 12px; height: 32px; }
 .dock-head output { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.chart-cap { margin: 6px 0 0 36px; font-size: 11px; color: var(--muted); }
 #play {
   margin-left: auto;
   height: 32px;
@@ -277,6 +294,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 #minutes:hover::-webkit-slider-thumb, #minutes:active::-webkit-slider-thumb { box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 32%, transparent), 0 2px 6px rgba(0, 0, 0, 0.5); }
 #minutes:focus-visible { outline: none; }
 #minutes:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent); }
+#minutes:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent); }
 
 /* Map labels, drawn as HTML over the map. */
 .labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
@@ -321,19 +339,24 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 @media (min-width: 761px) and (max-width: 1100px) {
   :root { --side: 320px; --gap: 12px; }
   .meter { grid-template-columns: 10px 92px minmax(0, 1fr) 40px; }
+  .mapkey { width: 220px; }
+}
+@media (min-width: 761px) and (max-height: 860px) {
+  .head .sub { display: none; }
+  .hint { display: none; }
 }
 
 @media (max-width: 760px) {
   :root { --side: 0px; --gap: 12px; }
-  .app { height: auto; overflow: visible; display: flex; flex-direction: column; gap: 12px; padding: 12px; }
-  .stage { position: relative; inset: auto; height: 62vh; order: 2; border-radius: 12px; overflow: hidden; }
-  .side { display: contents; }
-  .head { order: 1; }
-  .dock { position: static; order: 3; }
-  .from { order: 4; }
-  .share { order: 5; }
-  .mapkey { position: static; order: 6; width: auto; }
-  .about { order: 7; }
+  .app { display: flex; flex-direction: column; height: auto; overflow: visible; padding: 12px; gap: 12px; }
+  .stage { position: relative; inset: auto; height: 52vh; min-height: 340px; border-radius: 12px; overflow: hidden; }
+  .mapkey { top: 8px; left: 8px; width: 196px; padding: 10px 12px; }
+  .mapkey .key-note.faint { display: none; }
+  .row, #from, .icon-btn { height: 44px; }
+  .from-row { grid-template-columns: minmax(0, 1fr) 44px; }
+  .field svg { top: 14px; }
+  .listbox { top: 50px; }
+  .listbox li { height: 44px; }
   .loading { left: 50%; }
 }
 
@@ -343,69 +366,52 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 </head>
 <body>
 <main class="app">
+  <header class="head card">
+    <p class="eyebrow">30 Day Map Challenge 2026 · Day 13 · Interactions</p>
+    <h1>Drive times to Utah's five national parks</h1>
+    <p class="sub">Move the drive-time slider. Type a Utah town, use your location, or select a place on the map.</p>
+  </header>
+
+  <section class="from card" aria-label="Drive time to each park">
+    <label class="card-title" for="from">From</label>
+    <div class="from-row">
+      <div class="field">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input type="text" id="from" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="town-list" autocomplete="off" spellcheck="false" placeholder="Type a Utah town" value="Salt Lake City" aria-describedby="from-msg">
+        <!-- [html-validate-disable-next prefer-native-element -- a select cannot filter 96 towns as the reader types] -->
+        <ul class="listbox" id="town-list" role="listbox" aria-label="Utah cities and towns" hidden></ul>
+      </div>
+      <button type="button" class="icon-btn" id="locate" aria-label="Use my location" title="Use my location">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><path d="M8 .8v2.4M8 12.8v2.4M.8 8h2.4M12.8 8h2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <p class="from-msg" id="from-msg" aria-live="polite"></p>
+    <p class="from-label" id="from-label">Times from <b>Salt Lake City</b></p>
+    <ul class="rows" id="rows" role="group" aria-label="Select a park to map it"></ul>
+    <p class="farthest" id="farthest"></p>
+    <p class="hint">Separate drives to each park's main visitor center, rounded up to the next 15 minutes. Select a park to map it. Select it again to show all five.</p>
+  </section>
+
   <div class="stage">
     <div id="map-slot" class="map-slot"></div>
     <div class="fx" id="fx" aria-hidden="true"></div>
     <div class="labels" id="labels" aria-hidden="true"></div>
     <p class="loading" id="loading">Loading the map…</p>
-  </div>
-
-  <details class="mapkey card" id="mapkey" open>
-    <summary class="card-title">Key</summary>
-    <div class="scale" id="count-key">
-      <p class="card-title">Parks in reach</p>
-      <div class="steps" id="steps" aria-hidden="true"></div>
-      <div class="labels-row" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>All 5</span></div>
-    </div>
-    <div class="scale" id="park-key" hidden>
-      <p class="card-title">Drive time to <span id="ramp-park">the park</span></p>
-      <div class="ramp" id="ramp" aria-hidden="true"></div>
-      <div class="ticks" id="ticks" aria-hidden="true"></div>
-    </div>
-  </details>
-
-  <aside class="side" aria-label="Drive times">
-    <header class="head card">
-      <p class="eyebrow">30 Day Map Challenge 2026 · Day 13 · Interactions</p>
-      <h1>Drive times to Utah's five national parks</h1>
-      <p class="sub">Move the drive-time slider. Type a town, use your location, or select a place on the map.</p>
-    </header>
-
-    <section class="from card" aria-label="Drive time to each park">
-      <label class="card-title" for="from">From</label>
-      <div class="from-row">
-        <div class="field">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          <input type="text" id="from" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="town-list" autocomplete="off" spellcheck="false" placeholder="Type a Utah town" value="Salt Lake City" aria-describedby="from-msg">
-          <!-- [html-validate-disable-next prefer-native-element -- a select cannot filter 96 towns as the reader types] -->
-          <ul class="listbox" id="town-list" role="listbox" aria-label="Utah cities and towns" hidden></ul>
-        </div>
-        <button type="button" class="icon-btn" id="locate" aria-label="Use my location" title="Use my location">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><path d="M8 .8v2.4M8 12.8v2.4M.8 8h2.4M12.8 8h2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
+    <details class="mapkey card" id="mapkey" open>
+      <summary class="card-title">Key</summary>
+      <p class="key-note" id="key-note">Colors show how many parks each place can reach within <b>4 h 30 min</b>.</p>
+      <div class="scale" id="count-key">
+        <div class="steps" id="steps" aria-hidden="true"></div>
+        <div class="labels-row" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>All 5</span></div>
       </div>
-      <p class="from-msg" id="from-msg" aria-live="polite"></p>
-      <ul class="rows" id="rows" role="group" aria-label="Map one park, or all five"></ul>
-      <p class="hint">Rounded up to the next 15 minutes. Grey times are longer than the slider. Select a park to map it.</p>
-    </section>
-
-    <section class="share card" aria-label="Share of Utahns in reach">
-      <h2 id="share-title">Utahns within <b>4 h 30 min</b> of</h2>
-      <ul class="meters" id="meters"></ul>
-      <p class="sr-only" id="status" aria-live="polite"></p>
-    </section>
-
-    <footer class="about card">
-      <p><b>Data</b> Drive times from the ArcGIS Online Service Area solver, November 5, 2026 · 2020 Census blocks · park boundaries from the NPS Land Resources Division · roads, water and towns from OpenStreetMap contributors (ODbL) · relief from USGS 3DEP · UGRC Utah boundary</p>
-      <p><b>Made with</b> ArcGIS Maps SDK for JavaScript 5.1 · data prep in Python (GeoPandas, Rasterio)</p>
-      <p class="handles">Brian Busch ·
-        <a href="https://www.linkedin.com/in/brian-busch1"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>brian-busch1</a>
-        <a href="https://x.com/brianjbusch"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i>@brianjbusch</a>
-        <a href="https://github.com/buschbrian"><i class="fa-brands fa-github" aria-hidden="true"></i>buschbrian</a>
-        <a href="https://www.instagram.com/brianbusch1"><i class="fa-brands fa-instagram" aria-hidden="true"></i>@brianbusch1</a>
-      </p>
-    </footer>
-  </aside>
+      <div class="scale" id="park-key" hidden>
+        <div class="ramp" id="ramp" aria-hidden="true"></div>
+        <div class="ticks" id="ticks" aria-hidden="true"></div>
+      </div>
+      <p class="key-note faint" id="key-blank">Uncolored: no park within this time.</p>
+      <button type="button" class="chip" id="show-all" hidden>Show all five parks</button>
+    </details>
+  </div>
 
   <section class="dock card" aria-label="Drive time">
     <div class="dock-head">
@@ -413,10 +419,30 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       <output id="time-out" for="minutes">4 h 30 min</output>
       <button type="button" id="play"><svg viewBox="0 0 12 12" aria-hidden="true"><path id="play-icon" d="M2 1 L11 6 L2 11 Z" fill="currentColor"/></svg><span id="play-text">Play</span></button>
     </div>
+    <p class="chart-cap" id="chart-cap">Share of Utah residents who can reach 1 to 5 parks</p>
     <svg class="chart" id="chart" role="img" aria-label="Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes."></svg>
     <input type="range" id="minutes" min="15" max="300" step="15" value="270" aria-valuetext="4 hours 30 minutes">
     <svg class="axis" id="axis" aria-hidden="true"></svg>
   </section>
+
+  <section class="share card" aria-label="Share of Utahns in reach">
+    <h2 id="share-title">Utahns within <b>4 h 30 min</b> of</h2>
+    <p class="sub2" id="share-sub">Statewide. The groups overlap.</p>
+    <ul class="meters" id="meters"></ul>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+  </section>
+
+  <details class="about card">
+    <summary>About the data</summary>
+    <p><b>Data</b> Drive times from the ArcGIS Online Service Area solver, November 5, 2026 · 2020 Census blocks · park boundaries from the NPS Land Resources Division · roads, water and towns from OpenStreetMap contributors (ODbL) · relief from USGS 3DEP · UGRC Utah boundary</p>
+    <p><b>Made with</b> ArcGIS Maps SDK for JavaScript 5.1 · data prep in Python (GeoPandas, Rasterio)</p>
+    <p class="handles">Brian Busch ·
+      <a href="https://www.linkedin.com/in/brian-busch1"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>brian-busch1</a>
+      <a href="https://x.com/brianjbusch"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i>@brianjbusch</a>
+      <a href="https://github.com/buschbrian"><i class="fa-brands fa-github" aria-hidden="true"></i>buschbrian</a>
+      <a href="https://www.instagram.com/brianbusch1"><i class="fa-brands fa-instagram" aria-hidden="true"></i>@brianbusch1</a>
+    </p>
+  </details>
 </main>
 <script>
 (async () => {
@@ -465,28 +491,28 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 
   // Map key.
   const mapkey = document.querySelector("#mapkey");
-  mapkey.open = !matchMedia("(max-width: 1100px)").matches;
+  mapkey.open = true;
   document.querySelector("#steps").innerHTML = K.map((c) => `<span style="background:${c}"></span>`).join("");
   document.querySelector("#ticks").innerHTML = [1, 2, 3, 4, 5]
     .map((h) => `<span style="left:${((h * 60 - X0) / (X1 - X0)) * 100}%">${h} h</span>`).join("");
   // From card: one row for each park (bearing arrow, name, time) and an "All five" row.
   const rowsEl = document.querySelector("#rows");
   const rows = {};
-  for (const park of [...PARKS, ""]) {
+  for (const park of PARKS) {
     const li = document.createElement("li");
     const b = document.createElement("button");
     b.type = "button";
-    b.className = park ? "row" : "row all";
+    b.className = "row";
     b.dataset.park = park;
-    b.setAttribute("aria-pressed", String(park === ""));
+    b.setAttribute("aria-pressed", "false");
     const svg = make(b, "svg", { viewBox: "-8 -8 16 16", "aria-hidden": "true" });
     if (park) svg.style.color = PARK_COLOR[park];
     const g = make(svg, "g", {});
     make(g, "path", { d: "M0 -6.5 L4.5 -1.5 H1.4 V6.5 H-1.4 V-1.5 H-4.5 Z", fill: "currentColor" });
-    b.insertAdjacentHTML("beforeend", `<span>${park || "All five"}</span><span class="t">–</span>`);
+    b.insertAdjacentHTML("beforeend", `<span class="name">${park}<span class="tag" hidden>Closest</span></span><span class="t">–</span><span class="sr-only beyond-note"></span>`);
     li.append(b);
     rowsEl.append(li);
-    rows[park] = { b, g, t: b.querySelector(".t") };
+    rows[park] = { b, g, t: b.querySelector(".t"), tag: b.querySelector(".tag"), note: b.querySelector(".beyond-note") };
   }
   const fromEl = document.querySelector("#from");
   const fromMsg = document.querySelector("#from-msg");
@@ -585,17 +611,33 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     cursor.setAttribute("x2", x(m));
     cap.setAttribute("cx", x(m));
     shareTitle.innerHTML = `Utahns within <b>${hm(m)}</b> of`;
+    document.querySelector("#share-sub").textContent = state.park ? "Statewide share for each park." : "Statewide. The groups overlap.";
+    document.querySelector("#key-note").innerHTML = state.park
+      ? `Colors show the drive time to ${state.park}, up to <b>${hm(m)}</b>.`
+      : `Colors show how many parks each place can reach within <b>${hm(m)}</b>.`;
+    document.querySelector("#key-blank").textContent = state.park
+      ? `Uncolored: more than ${hm(m)} from ${state.park}.`
+      : "Uncolored: no park within this time.";
     meters.forEach((r, i) => {
       const v = state.park ? reach.people_within_by_park[PARKS[i]][m] / pop : s[COUNTS[i][0] - 1];
       r.v.textContent = pct(v);
       r.fill.style.width = `${100 * v}%`;
     });
     if (state.times) {
+      const known = PARKS.map((k) => state.times[k]).filter((t) => t !== null);
+      const best = known.length ? Math.min(...known) : null;
       for (const [park, r] of Object.entries(rows)) {
         const t = state.times[park];
+        const beyond = t === null || t > m;
         r.t.textContent = t === null ? "over 5 h" : hm(t);
-        r.b.classList.toggle("beyond", t === null || t > m);
+        r.b.classList.toggle("beyond", beyond);
+        r.note.textContent = beyond ? ", longer than the selected drive time" : "";
+        r.tag.hidden = t === null || t !== best;
       }
+      const far = PARKS.filter((k) => state.times[k] === null);
+      const worst = far.length ? null : Math.max(...known);
+      const farName = far.length ? far.join(" and ") : PARKS.filter((k) => state.times[k] === worst).join(" and ");
+      document.querySelector("#farthest").innerHTML = `Farthest park: <b>${farName}</b>, ${worst === null ? "over 5 h" : hm(worst)}.`;
     }
     if (map.ready) {
       if (state.park) map.lv.bands.filter = { where: `park = '${state.park}' AND minutes <= ${m}` };
@@ -611,9 +653,9 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   apply();
 
   // The From card reads from one start. Towns use drive times worked out in advance, so it fills at once.
+  const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const bearing = ([lon, lat], p) => (Math.atan2((p[0] - lon) * Math.cos((lat * Math.PI) / 180), p[1] - lat) * 180) / Math.PI;
   function showTimes(times, ll) {
-    times = { ...times, "": PARKS.some((p) => times[p] === null) ? null : Math.max(...PARKS.map((p) => times[p])) };
     state.times = times;
     for (const p of PARKS) {
       let deg = bearing(ll, parkLL[p]);
@@ -624,6 +666,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       rows[p].g.style.transform = `rotate(${deg.toFixed(1)}deg)`;
     }
     fromMsg.textContent = PARKS.every((p) => times[p] === null) ? "This place is outside Utah, or more than 5 h from every park." : "";
+    document.querySelector("#from-label").innerHTML = `Times from <b>${esc(state.from.name)}</b>`;
     apply();
   }
   function setTown(name) {
@@ -647,8 +690,6 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   // Town picker. Matches rank: name starts with the text, then a word starts with it, then it appears
   // anywhere; ties go to the larger town. An empty box lists the largest towns.
   const listEl = document.querySelector("#town-list");
-  const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  const popText = (p) => (p >= 1e4 ? `${Math.round(p / 1e3)}k` : p >= 1e3 ? `${(p / 1e3).toFixed(1)}k` : "");
   let matches = [], active = -1;
   function search(q) {
     q = q.trim().toLowerCase();
@@ -668,8 +709,8 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       return i < 0 ? esc(n) : `${esc(n.slice(0, i))}<b>${esc(n.slice(i, i + ql.length))}</b>${esc(n.slice(i + ql.length))}`;
     };
     listEl.innerHTML = matches.length
-      ? matches.map((t, i) => `<li role="option" id="town-opt-${i}" aria-selected="${i === active}" data-name="${esc(t.n)}"><span>${mark(t.n)}</span><span class="pop">${popText(t.p)}</span></li>`).join("")
-      : '<li role="option" aria-disabled="true" aria-selected="false">No Utah city or town matches</li>';
+      ? matches.map((t, i) => `<li role="option" id="town-opt-${i}" aria-selected="${i === active}" data-name="${esc(t.n)}"><span>${mark(t.n)}</span></li>`).join("")
+      : '<li role="option" aria-disabled="true" aria-selected="false">No Utah town matches. Try another name, or select a place on the map.</li>';
     listEl.hidden = false;
     fromEl.setAttribute("aria-expanded", "true");
     highlight();
@@ -690,7 +731,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     closeList(false);
     fromMsg.textContent = "";
     setTown(name);
-    fromEl.blur();
+    statusEl.textContent = `Drive times from ${name}: ` + PARKS.map((k) => `${k} ${state.times[k] === null ? "over 5 hours" : spoken(state.times[k])}`).join(", ") + ".";
   }
   fromEl.addEventListener("focus", () => { fromEl.select(); renderList(""); });
   fromEl.addEventListener("input", () => renderList(fromEl.value));
@@ -727,8 +768,11 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 
   const countKey = document.querySelector("#count-key");
   const parkKey = document.querySelector("#park-key");
+  const showAll = document.querySelector("#show-all");
+  showAll.addEventListener("click", () => choose(""));
   function choose(park) {
     state.park = park;
+    showAll.hidden = !park;
     for (const r of Object.values(rows)) r.b.setAttribute("aria-pressed", String(r.b.dataset.park === park));
     setAccent(park ? PARK_COLOR[park] : ALL_FIVE);
     if (park) document.querySelector("#ramp").style.background = `linear-gradient(90deg, ${nearRamp(park).join(", ")})`;
@@ -740,7 +784,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     }
     countKey.hidden = !!park;
     parkKey.hidden = !park;
-    document.querySelector("#ramp-park").textContent = park || "the park";
+    document.querySelector("#chart-cap").textContent = park ? `Share of Utah residents within each drive time of ${park}` : "Share of Utah residents who can reach 1 to 5 parks";
     labelMeters();
     draw();
     apply();
@@ -748,9 +792,9 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     announce();
   }
   for (const r of Object.values(rows)) {
-    r.b.addEventListener("click", () => choose(r.b.dataset.park));
+    r.b.addEventListener("click", () => choose(state.park === r.b.dataset.park ? "" : r.b.dataset.park));
     // Hovering a park row sends one ring out from that park, so the reader can find it.
-    r.b.addEventListener("mouseenter", () => map.ready && r.b.dataset.park && map.ripple(r.b.dataset.park, 1, 4));
+    r.b.addEventListener("mouseenter", () => map.ready && map.ripple(r.b.dataset.park, 1, 4));
   }
   slider.addEventListener("input", () => { stop(); map.ready && map.stopReveal(); state.minutes = Number(slider.value); apply(); });
   slider.addEventListener("change", announce);
@@ -962,12 +1006,12 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   // Keep Utah clear of the cards: the column on the right, the dock below, the key on the left.
   const pad = () => {
     if (narrow()) {
-      view.padding = { top: 0, right: 0, bottom: 0, left: 0 };
+      view.padding = { top: mapkey.open ? mapkey.offsetHeight + 8 : 0, right: 0, bottom: 0, left: 0 };
       view.ui.padding = { top: 12, right: 12, bottom: 12, left: 12 };
       return;
     }
     const g = gap();
-    const right = document.querySelector(".side").offsetWidth + 2 * g;
+    const right = document.querySelector(".from").offsetWidth + 2 * g;
     const bottom = document.querySelector(".dock").offsetHeight + 2 * g;
     const left = mapkey.open ? mapkey.offsetWidth + 2 * g : 0;
     view.padding = { top: g, right, bottom, left };
@@ -1087,7 +1131,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       t += 15;
     };
     step();
-    revealTimer = setInterval(step, 40);
+    revealTimer = setInterval(step, 22);
   };
   measure();
   reactiveUtils.watch(() => [view.extent?.xmin, view.extent?.ymax, view.scale, view.size.join()], () => { place(); placeHalo(); });
@@ -1115,8 +1159,10 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 
   // Select a park's visitor center to map that park. Select anywhere else to read the From card from there.
   view.on("click", async (event) => {
-    const hit = await view.hitTest(event, { include: [originLayer] });
-    if (hit.results.length) return choose(hit.results[0].graphic.attributes.park);
+    const near16 = PARKS.find((k) => { const q = view.toScreen(parkPt[k]); return q && Math.hypot(q.x - event.x, q.y - event.y) < 16; });
+    const hit = near16 ? null : await view.hitTest(event, { include: [originLayer] });
+    const park = near16 ?? hit?.results[0]?.graphic.attributes.park;
+    if (park) return choose(state.park === park ? "" : park);
     const p = event.mapPoint;
     const near = Object.entries(townPoint).map(([n, q]) => [n, Math.hypot(q.x - p.x, q.y - p.y)]).sort((a, b) => a[1] - b[1])[0];
     if (near[1] < 6000) return setTown(near[0]);
