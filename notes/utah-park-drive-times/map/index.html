@@ -25,7 +25,8 @@
   --text: #e8ecf1;
   --muted: #8d97a5;
   --faint: #5d6774;
-  --accent: #ff7a59;
+  --accent: #f2d15c;
+  --warn: #ffb38a;
   --k1: #233047;
   --k2: #24566e;
   --k3: #22857f;
@@ -128,7 +129,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 }
 .icon-btn:hover { border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.07); }
 .icon-btn svg { width: 16px; height: 16px; }
-.from-msg { margin: 8px 0 0; font-size: 12px; color: var(--accent); }
+.from-msg { margin: 8px 0 0; font-size: 12px; color: var(--warn); }
 .listbox {
   position: absolute;
   top: 42px;
@@ -172,10 +173,10 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   cursor: pointer;
 }
 .row:hover { background: rgba(255, 255, 255, 0.04); }
-.row[aria-pressed="true"] { background: rgba(255, 122, 89, 0.1); }
+.row[aria-pressed="true"] { background: color-mix(in srgb, var(--accent) 12%, transparent); }
 .row[aria-pressed="true"]::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; border-radius: 1px; background: var(--accent); }
 .row .t { font-weight: 600; transition: color 0.2s; }
-.row.far .t { color: var(--faint); }
+.row.beyond .t { color: var(--faint); }
 .row svg { width: 16px; height: 16px; color: var(--muted); overflow: visible; }
 .row svg g { transition: transform 0.35s ease; }
 .row.all { font-weight: 700; }
@@ -271,9 +272,9 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 #minutes::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--accent) var(--fill, 85%), rgba(255, 255, 255, 0.14) var(--fill, 85%)); }
 #minutes::-moz-range-track { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); }
 #minutes::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--accent); }
-#minutes::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255, 122, 89, 0.35), 0 2px 6px rgba(0, 0, 0, 0.5); transition: box-shadow 0.15s; }
-#minutes::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255, 122, 89, 0.35), 0 2px 6px rgba(0, 0, 0, 0.5); }
-#minutes:hover::-webkit-slider-thumb, #minutes:active::-webkit-slider-thumb { box-shadow: 0 0 0 7px rgba(255, 122, 89, 0.3), 0 2px 6px rgba(0, 0, 0, 0.5); }
+#minutes::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 38%, transparent), 0 2px 6px rgba(0, 0, 0, 0.5); transition: box-shadow 0.15s; }
+#minutes::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 38%, transparent), 0 2px 6px rgba(0, 0, 0, 0.5); }
+#minutes:hover::-webkit-slider-thumb, #minutes:active::-webkit-slider-thumb { box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 32%, transparent), 0 2px 6px rgba(0, 0, 0, 0.5); }
 #minutes:focus-visible { outline: none; }
 #minutes:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent); }
 
@@ -293,7 +294,16 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 }
 .labels span[hidden] { display: none; }
 .labels .park { font-size: 13px; font-weight: 600; color: #bff0d3; }
-.labels .from { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.labels .from { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); }
+
+/* Selection effects: rings burst from a park, and a soft halo pulses while it stays selected. */
+.fx { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+.fx span { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; }
+.fx .ring { border: 2px solid var(--c); box-shadow: 0 0 12px var(--c), inset 0 0 8px var(--c); animation: ring 1.4s cubic-bezier(0.15, 0.6, 0.3, 1) both; }
+.fx .pulse { background: radial-gradient(circle, color-mix(in srgb, var(--c) 60%, transparent), transparent 70%); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes ring { from { transform: scale(0.4); opacity: 0.95; } to { transform: scale(var(--s, 6)); opacity: 0; } }
+@keyframes pulse { 0%, 100% { transform: scale(1.6); opacity: 0.6; } 50% { transform: scale(3); opacity: 0.15; } }
+@media (prefers-reduced-motion: reduce) { .fx { display: none; } }
 .labels .route {
   height: 16px;
   padding: 0 5px;
@@ -335,6 +345,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 <main class="app">
   <div class="stage">
     <div id="map-slot" class="map-slot"></div>
+    <div class="fx" id="fx" aria-hidden="true"></div>
     <div class="labels" id="labels" aria-hidden="true"></div>
     <p class="loading" id="loading">Loading the map…</p>
   </div>
@@ -416,10 +427,17 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   const PARKS = ["Arches", "Bryce Canyon", "Canyonlands", "Capitol Reef", "Zion"];
   const COUNTS = [[5, "All five parks"], [4, "Four or more"], [3, "Three or more"], [2, "Two or more"], [1, "At least one"]];
   const LABELLED = ["Logan", "Ogden", "Salt Lake City", "Provo", "Vernal", "Price", "Richfield", "Cedar City", "St. George", "Moab"];
-  const BG = "#0b0e13", TEXT = "#e8ecf1", ACCENT = "#ff7a59", PARK = "#8fe3b5";
+  const BG = "#0b0e13", TEXT = "#e8ecf1";
+  const PARK_COLOR = { Arches: "#ff4d5e", "Bryce Canyon": "#ff9442", Canyonlands: "#46b6ff", "Capitol Reef": "#9d7bff", Zion: "#f067ff" };
   // One ramp: dark at one park, brightest where all five are in reach. A single park runs bright near, dark far.
   const K = ["#233047", "#24566e", "#22857f", "#55b77a", "#f2d15c"];
-  const NEAR = [...K].reverse();
+  const ALL_FIVE = K[4];
+  const mixHex = (a, b, t) => "#" + [1, 3, 5].map((i) => Math.round(parseInt(a.slice(i, i + 2), 16) * (1 - t) + parseInt(b.slice(i, i + 2), 16) * t)
+    .toString(16).padStart(2, "0")).join("");
+  // One park's ramp: its own color near the park, fading to the darkest reach color far away.
+  const nearRamp = (park) => [0, 0.3, 0.55, 0.78, 1].map((t) => mixHex(PARK_COLOR[park], "#1a2232", t));
+  const setAccent = (c) => document.documentElement.style.setProperty("--accent", c);
+  const calm = matchMedia("(prefers-reduced-motion: reduce)");
   const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
   const rgba = (h, a) => [...hex(h), a];
 
@@ -449,7 +467,6 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   const mapkey = document.querySelector("#mapkey");
   mapkey.open = !matchMedia("(max-width: 1100px)").matches;
   document.querySelector("#steps").innerHTML = K.map((c) => `<span style="background:${c}"></span>`).join("");
-  document.querySelector("#ramp").style.background = `linear-gradient(90deg, ${NEAR.join(", ")})`;
   document.querySelector("#ticks").innerHTML = [1, 2, 3, 4, 5]
     .map((h) => `<span style="left:${((h * 60 - X0) / (X1 - X0)) * 100}%">${h} h</span>`).join("");
   // From card: one row for each park (bearing arrow, name, time) and an "All five" row.
@@ -463,6 +480,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     b.dataset.park = park;
     b.setAttribute("aria-pressed", String(park === ""));
     const svg = make(b, "svg", { viewBox: "-8 -8 16 16", "aria-hidden": "true" });
+    if (park) svg.style.color = PARK_COLOR[park];
     const g = make(svg, "g", {});
     make(g, "path", { d: "M0 -6.5 L4.5 -1.5 H1.4 V6.5 H-1.4 V-1.5 H-4.5 Z", fill: "currentColor" });
     b.insertAdjacentHTML("beforeend", `<span>${park || "All five"}</span><span class="t">–</span>`);
@@ -484,7 +502,8 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   }
   function labelMeters() {
     meters.forEach((r, i) => {
-      const color = state.park ? (PARKS[i] === state.park ? ACCENT : "#7b8695") : K[COUNTS[i][0] - 1];
+      const color = state.park ? PARK_COLOR[PARKS[i]] : K[COUNTS[i][0] - 1];
+      r.li.style.opacity = state.park && PARKS[i] !== state.park ? "0.55" : "";
       r.sw.style.background = color;
       r.fill.style.background = color;
       r.n.textContent = state.park ? PARKS[i] : COUNTS[i][1];
@@ -528,7 +547,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     }
     if (state.park) {
       const people = reach.people_within_by_park[state.park];
-      area(cut.map((m) => people[m] / pop), ACCENT);
+      area(cut.map((m) => people[m] / pop), PARK_COLOR[state.park]);
     } else {
       for (let k = 1; k <= 5; k++) area(cut.map((m) => reach.share_at_least_k[m][k - 1]), K[k - 1]);
     }
@@ -575,7 +594,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       for (const [park, r] of Object.entries(rows)) {
         const t = state.times[park];
         r.t.textContent = t === null ? "over 5 h" : hm(t);
-        r.b.classList.toggle("far", t === null || t > m);
+        r.b.classList.toggle("beyond", t === null || t > m);
       }
     }
     if (map.ready) {
@@ -711,7 +730,11 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   function choose(park) {
     state.park = park;
     for (const r of Object.values(rows)) r.b.setAttribute("aria-pressed", String(r.b.dataset.park === park));
+    setAccent(park ? PARK_COLOR[park] : ALL_FIVE);
+    if (park) document.querySelector("#ramp").style.background = `linear-gradient(90deg, ${nearRamp(park).join(", ")})`;
     if (map.ready) {
+      if (park) tintBands(park);
+      map.select(park);
       map.counts.visible = !park;
       map.bands.visible = !!park;
     }
@@ -721,10 +744,15 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     labelMeters();
     draw();
     apply();
+    if (map.ready) map.reveal();
     announce();
   }
-  for (const r of Object.values(rows)) r.b.addEventListener("click", () => choose(r.b.dataset.park));
-  slider.addEventListener("input", () => { stop(); state.minutes = Number(slider.value); apply(); });
+  for (const r of Object.values(rows)) {
+    r.b.addEventListener("click", () => choose(r.b.dataset.park));
+    // Hovering a park row sends one ring out from that park, so the reader can find it.
+    r.b.addEventListener("mouseenter", () => map.ready && r.b.dataset.park && map.ripple(r.b.dataset.park, 1, 4));
+  }
+  slider.addEventListener("input", () => { stop(); map.ready && map.stopReveal(); state.minutes = Number(slider.value); apply(); });
   slider.addEventListener("change", announce);
   new ResizeObserver(apply).observe(slider);
 
@@ -838,9 +866,14 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
         { value: "hour", symbol: fill(K[2], { color: rgba(BG, 0.7), width: 1 }) },
         { value: "quarter", symbol: fill(K[2], { color: rgba(BG, 0.25), width: 0.4 }) },
       ],
-      visualVariables: [{ type: "color", field: "minutes", stops: NEAR.map((color, i) => ({ value: 15 + (i * 285) / 4, color })) }],
+      visualVariables: [{ type: "color", field: "minutes", stops: nearRamp(PARKS[0]).map((color, i) => ({ value: 15 + (i * 285) / 4, color })) }],
     },
   });
+  const tintBands = (park) => {
+    const r = bands.renderer.clone();
+    r.visualVariables = [{ type: "color", field: "minutes", stops: nearRamp(park).map((color, i) => ({ value: 15 + (i * 285) / 4, color })) }];
+    bands.renderer = r;
+  };
   // Day 4's hillshade on the Day 11 terrain, centred on 50% grey and soft-light blended over everything below.
   const shade = new MediaLayer({
     title: "Relief",
@@ -857,7 +890,11 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   const parkShapes = layerFrom("parks", {
     title: "National parks",
     copyright: "NPS Land Resources Division",
-    renderer: { type: "simple", symbol: fill(rgba(PARK, 0.12), { color: PARK, width: 1.2 }) },
+    renderer: {
+      type: "unique-value",
+      field: "park",
+      uniqueValueInfos: PARKS.map((k) => ({ value: k, symbol: fill(rgba(PARK_COLOR[k], 0.14), { color: PARK_COLOR[k], width: 1.3 }) })),
+    },
   });
   const roads = layerFrom("roads", {
     title: "Roads",
@@ -888,7 +925,12 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   const fromLayer = new GraphicsLayer({ title: "Start" });
   const originLayer = layerFrom("origins", {
     title: "Visitor centers",
-    renderer: { type: "simple", symbol: { type: "simple-marker", size: 9, color: PARK, outline: { color: BG, width: 2 } } },
+    effect: "bloom(1.3, 0.6px, 0.1)",
+    renderer: {
+      type: "unique-value",
+      field: "park",
+      uniqueValueInfos: PARKS.map((k) => ({ value: k, symbol: { type: "simple-marker", size: 10, color: PARK_COLOR[k], outline: { color: BG, width: 2 } } })),
+    },
   });
 
   const xs = albers.utah.rows[0][0].flat(2).filter((_, i) => i % 2 === 0);
@@ -955,6 +997,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   for (const [, park, xy] of albers.origins.rows) {
     const [dx, dy, end] = PLACE[park];
     const l = label(park, "park", pt(xy), dx, dy, end ? "end" : "start", 0);
+    l.el.style.color = mixHex(PARK_COLOR[park], "#ffffff", 0.35);
     l.alts = [[-dx, dy, end ? "start" : "end"], [0, 16, "center"], [0, -16, "center"]];  // tried in turn when the first spot is taken
   }
   const fromTag = label("Start", "from", null, 0, 16, "center", 1);
@@ -984,8 +1027,69 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       l.el.style.transform = `translate(${spot.left}px, ${spot.top}px)`;
     }
   };
+  // Effects. Rings and the halo are HTML over the map, placed from the visitor center's map point.
+  const fxEl = document.querySelector("#fx");
+  const parkPt = Object.fromEntries(albers.origins.rows.map(([, park, xy]) => [park, pt(xy)]));
+  let halo = null;
+  map.ripple = (park, rings = 3, scale = 6, delay = 0) => {
+    if (calm.matches) return;
+    const p = view.toScreen(parkPt[park]);
+    if (!p) return;
+    for (let i = 0; i < rings; i++) {
+      const d = document.createElement("span");
+      d.className = "ring";
+      d.style.left = `${p.x}px`;
+      d.style.top = `${p.y}px`;
+      d.style.setProperty("--c", PARK_COLOR[park]);
+      d.style.setProperty("--s", scale);
+      d.style.animationDelay = `${delay + i * 200}ms`;
+      d.addEventListener("animationend", () => d.remove());
+      fxEl.append(d);
+    }
+  };
+  const placeHalo = () => {
+    if (!halo) return;
+    const p = view.toScreen(parkPt[halo.dataset.park]);
+    if (p) { halo.style.left = `${p.x}px`; halo.style.top = `${p.y}px`; }
+  };
+  map.select = (park) => {
+    halo?.remove();
+    halo = null;
+    // The chosen park's marker and boundary glow; the others dim.
+    const fx = park ? { filter: { where: `park = '${park}'` }, includedEffect: "bloom(2.2, 1px, 0)", excludedEffect: "opacity(35%)" } : null;
+    originLayer.featureEffect = fx;
+    parkShapes.featureEffect = fx && { ...fx, includedEffect: "bloom(1.4, 0.8px, 0) brightness(1.2)", excludedEffect: "opacity(40%)" };
+    if (park) {
+      halo = document.createElement("span");
+      halo.className = "pulse";
+      halo.dataset.park = park;
+      halo.style.setProperty("--c", PARK_COLOR[park]);
+      fxEl.append(halo);
+      placeHalo();
+      map.ripple(park, 3, 7);
+    } else {
+      PARKS.forEach((k, i) => map.ripple(k, 1, 5, i * 120));
+    }
+  };
+  // The reach grows outward from the park (or across Utah for all five) up to the slider's time.
+  let revealTimer = null;
+  map.stopReveal = () => { clearInterval(revealTimer); revealTimer = null; };
+  map.reveal = () => {
+    map.stopReveal();
+    if (calm.matches) return;
+    const target = state.minutes;
+    let t = X0;
+    const step = () => {
+      const where = state.park ? `park = '${state.park}' AND minutes <= ${t}` : `minutes = ${t}`;
+      (state.park ? map.lv.bands : map.lv.counts).filter = { where };
+      if (t >= target) return map.stopReveal();
+      t += 15;
+    };
+    step();
+    revealTimer = setInterval(step, 40);
+  };
   measure();
-  reactiveUtils.watch(() => [view.extent?.xmin, view.extent?.ymax, view.scale, view.size.join()], place);
+  reactiveUtils.watch(() => [view.extent?.xmin, view.extent?.ymax, view.scale, view.size.join()], () => { place(); placeHalo(); });
   reactiveUtils.watch(() => view.size.join(), () => { pad(); touched || fit(); });
   document.fonts.ready.then(() => { measure(); pad(); touched || fit(); place(); });
   fit();
@@ -993,7 +1097,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   map.mark = async () => {
     const p = state.from.point ?? townPoint[state.from.name] ?? (await projection()).execute(new Point({ longitude: state.from.ll[0], latitude: state.from.ll[1] }), sr);
     fromLayer.removeAll();
-    fromLayer.add(new Graphic({ geometry: p, symbol: { type: "simple-marker", size: 11, color: ACCENT, outline: { color: TEXT, width: 1.6 } } }));
+    fromLayer.add(new Graphic({ geometry: p, symbol: { type: "simple-marker", size: 11, color: BG, outline: { color: TEXT, width: 2.5 } } }));
     fromTag.point = LABELLED.includes(state.from.name) ? null : p;
     place();
   };
@@ -1027,7 +1131,11 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   counts.visible = !state.park;
   bands.visible = !!state.park;
   apply();
-  reactiveUtils.when(() => !view.updating, () => { loadingEl.hidden = true; performance.mark("d13-drawn"); }, { once: true });
+  reactiveUtils.when(() => !view.updating, () => {
+    loadingEl.hidden = true;
+    performance.mark("d13-drawn");
+    PARKS.forEach((k, i) => map.ripple(k, 1, 5, i * 150));
+  }, { once: true });
   } catch (err) {
     loadingEl.hidden = false;
     loadingEl.textContent = "The map did not load. Reload the page.";
