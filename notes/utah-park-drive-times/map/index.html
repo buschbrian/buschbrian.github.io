@@ -778,10 +778,11 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   play.addEventListener("click", () => {
     if (timer) return stop();
     if (state.minutes >= X1) state.minutes = X0 - 15;
+    // Each step is clamped to 5 h, and the timer starts only if there is a step left to take.
+    const step = () => { state.minutes = Math.min(X1, state.minutes + 15); apply(); return state.minutes < X1; };
+    if (!step()) return announce();
     setPlaying(true);
-    const step = () => { state.minutes += 15; apply(); if (state.minutes >= X1) stop(); };
-    step();
-    timer = setInterval(step, 450);
+    timer = setInterval(() => { if (!step()) stop(); }, 450);
   });
 
   setTown("Salt Lake City");
