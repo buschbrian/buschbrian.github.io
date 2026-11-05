@@ -3,10 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="#30DayMapChallenge 2026, Day 13. Drive times from Utah homes to the five national parks. Move the time to see how many parks each place can reach. Pick a town to read its drive time to each park.">
+<meta name="description" content="#30DayMapChallenge 2026, Day 13. Drive times from Utah homes to the five national parks. Move the drive-time slider to see how many parks each place can reach. Pick a town to read its drive time to each park.">
 <title>Day 13 · Interactions — Drive times to Utah's five national parks</title>
 <script>window.PEN_DATA = "/assets/data/";</script>
-<script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
+<script>
+  (() => {
+    const q = new URLSearchParams(location.search);
+    const styles = ["atlas", "core", "contour"];
+    document.documentElement.dataset.style = styles.includes(q.get("style")) ? q.get("style") : "atlas";
+    if (q.has("embed")) document.documentElement.classList.add("embed");
+    if (q.has("review")) document.documentElement.classList.add("review");
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
@@ -14,28 +22,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css">
 <script type="module" src="https://js.arcgis.com/5.1/"></script>
 <style>
-/* Day 11's Ember palette, with guide-sign brown and green. Overpass follows the highway sign alphabet. */
+/* Paper, guide-sign brown and green. Overpass follows the highway sign alphabet. */
 :root {
   --bg: #f8f2e8;
+  --bg-a: 248, 242, 232;
   --ink: #2b1d18;
   --muted: #6a5b53;
   --rule: #e0d5c6;
   --sign: #5c3920;
   --sign-hi: #70472a;
   --green: #1d5a3c;
-  --green-hi: #246a48;
   --gold: #ffd166;
-  --k1: #f2e9d8;
-  --k2: #f5cf8c;
-  --k3: #e9974a;
-  --k4: #c44d2a;
-  --k5: #6b1a1c;
+  --side: 420px;
   --sign-font: "Overpass", "Source Sans 3", system-ui, sans-serif;
   --text: "Source Sans 3", system-ui, sans-serif;
-  /* Grain: dark specks for paper, light specks for reflective sheeting and asphalt. */
   --paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .18 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --sheet: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .32 -.08'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --sheen: linear-gradient(165deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0) 38%, rgba(0, 0, 0, 0.1));
+  --car: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='22' viewBox='0 0 38 22'%3E%3Crect x='5' y='1' width='6' height='4' rx='1' fill='%23151515'/%3E%3Crect x='26' y='1' width='6' height='4' rx='1' fill='%23151515'/%3E%3Crect x='5' y='17' width='6' height='4' rx='1' fill='%23151515'/%3E%3Crect x='26' y='17' width='6' height='4' rx='1' fill='%23151515'/%3E%3Crect x='1.5' y='3.5' width='35' height='15' rx='6' fill='%23f4f1ea' stroke='%23151515' stroke-width='1.2'/%3E%3Crect x='22' y='5.5' width='7' height='11' rx='2' fill='%232f3a44'/%3E%3Crect x='8' y='5.5' width='5' height='11' rx='1.5' fill='%232f3a44'/%3E%3Crect x='13.5' y='6.5' width='8' height='9' rx='1.5' fill='%23e6e1d6'/%3E%3Crect x='34' y='5' width='2' height='3' rx='.8' fill='%23ffd166'/%3E%3Crect x='34' y='14' width='2' height='3' rx='.8' fill='%23ffd166'/%3E%3C/svg%3E");
+  --find: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='6.5' cy='6.5' r='4.5' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Cpath d='M10 10l4.5 4.5' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 * { box-sizing: border-box; }
@@ -48,29 +54,32 @@ html, body {
   background: var(--paper), var(--bg);
 }
 
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
 .app {
   display: grid;
   height: 100%;
-  grid-template-columns: minmax(0, 1fr) 400px;
+  grid-template-columns: minmax(0, 1fr) var(--side);
   grid-template-rows: minmax(0, 1fr) auto auto;
   grid-template-areas: "map side" "time time" "foot foot";
 }
 
-.stage { grid-area: map; position: relative; min-height: 0; min-width: 0; }
+/* The map runs under the sign column, so the signs stand on the same landscape. */
+.stage { grid-row: 1; grid-column: 1 / -1; position: relative; min-height: 0; min-width: 0; }
 .map-slot { position: absolute; inset: 0; }
 arcgis-map { display: block; height: 100%; background: var(--bg); }
 .loading {
   position: absolute;
-  left: 50%;
+  left: calc((100% - var(--side)) / 2);
   top: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
-  padding: 10px 16px;
+  padding: 10px 16px 8px;
   border-radius: 8px;
-  background: var(--sign);
   color: #fff;
   font: 700 15px/1 var(--sign-font);
-  box-shadow: 0 2px 10px rgba(43, 29, 24, 0.25);
+  background: var(--sheen), var(--sheet), var(--sign);
+  box-shadow: inset 0 0 0 2px var(--sign), inset 0 0 0 4px #fff, 0 4px 12px rgba(43, 29, 24, 0.25);
   z-index: 3;
 }
 .loading[hidden] { display: none; }
@@ -83,37 +92,60 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   color: var(--muted);
 }
 .figure { font-variant-numeric: tabular-nums; }
-button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+/* Two-tone focus ring: reads on paper and on the signs. */
+button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; box-shadow: 0 0 0 5px var(--gold); }
 
-/* The sign column: title, then the sign assembly on two posts down to the ground line. */
+/* Map key, bottom left of the map. */
+.mapkey {
+  position: absolute;
+  left: 14px;
+  bottom: 28px;
+  z-index: 2;
+  width: 236px;
+  padding: 8px 12px 9px;
+  border-radius: 8px;
+  background: rgba(var(--bg-a), 0.94);
+  box-shadow: 0 1px 0 rgba(43, 29, 24, 0.12), 0 4px 14px rgba(43, 29, 24, 0.12);
+  font-size: 13px;
+}
+.mapkey summary { cursor: pointer; font: 800 11px/1.4 var(--sign-font); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.mapkey ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 4px; }
+.mapkey li { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 8px; }
+.mapkey svg { width: 34px; height: 18px; overflow: visible; }
+.mapkey .reach { display: block; margin: 6px 0 2px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
+.mapkey .reach p { margin: 0 0 4px; font-weight: 700; }
+.mapkey .reach[hidden] { display: none; }
+.mapkey .ramp { height: 12px; border-radius: 2px; }
+.mapkey .ticks { position: relative; height: 16px; font: 700 10.5px/1 var(--sign-font); color: var(--muted); }
+.mapkey .ticks span { position: absolute; top: 4px; transform: translateX(-50%); }
+.mapkey .ticks span::before { content: ""; position: absolute; left: 50%; top: -6px; height: 5px; border-left: 1px solid var(--ink); }
+
+/* The sign column. */
 .side {
   grid-area: side;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 8px;
   min-height: 0;
   overflow: auto;
-  padding: 14px 24px 0;
-  border-left: 1px solid var(--rule);
+  padding: 14px 24px 0 46px;
+  background: linear-gradient(90deg, rgba(var(--bg-a), 0) 0, rgba(var(--bg-a), 0.82) 40px, rgba(var(--bg-a), 0.9) 100%) top / 100% calc(100% - 20px) no-repeat;
 }
-.head .label { color: var(--muted); }
-.head h1 {
-  margin: 4px 0 4px;
-  font: 800 27px/1 var(--sign-font);
-  letter-spacing: -0.01em;
-}
+.head h1 { margin: 4px 0 4px; font: 800 27px/1 var(--sign-font); letter-spacing: -0.01em; }
 .head p.sub { margin: 0; color: var(--muted); font-size: 14px; }
 
-.assembly { position: relative; flex: 1 0 auto; display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; }
+.assembly { position: relative; flex: 1 0 auto; display: flex; flex-direction: column; gap: 8px; padding-bottom: 32px; }
 .post {
   position: absolute;
   top: 6px;
-  bottom: 0;
+  bottom: -2px;
   width: 12px;
   border-radius: 2px 2px 0 0;
   background:
     radial-gradient(circle, rgba(30, 30, 32, 0.55) 1.7px, transparent 2.2px) 50% 4px / 12px 15px repeat-y,
     linear-gradient(90deg, #73787e, #c7cbcf 42%, #9ba0a5 58%, #6e7379);
+  box-shadow: 3px 0 4px rgba(43, 29, 24, 0.15);
 }
 .post.l { left: calc(27% - 6px); }
 .post.r { left: calc(73% - 6px); }
@@ -128,24 +160,41 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     radial-gradient(circle at 27% 9px, #e9ebed 0 2px, #757a7f 2.6px, transparent 3.2px),
     radial-gradient(circle at 73% 9px, #e9ebed 0 2px, #757a7f 2.6px, transparent 3.2px),
     var(--sheen), var(--sheet), var(--base);
-  box-shadow: inset 0 0 0 3px var(--base), inset 0 0 0 5.5px #fff, 0 3px 0 rgba(43, 29, 24, 0.22), 0 6px 14px rgba(43, 29, 24, 0.12);
+  box-shadow: inset 0 0 0 3px var(--base), inset 0 0 0 5.5px #fff, 0 3px 0 rgba(43, 29, 24, 0.22), 0 6px 14px rgba(43, 29, 24, 0.14);
 }
 .guide { padding: 13px 14px 9px; }
+.sign :focus-visible { outline: 2px solid var(--gold); box-shadow: none; }
 
-.sign-top { display: flex; align-items: baseline; gap: 8px; padding: 4px 6px 8px; border-bottom: 2px solid rgba(255, 255, 255, 0.92); }
+.sign-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 4px 6px 8px; border-bottom: 2px solid rgba(255, 255, 255, 0.92); }
 .sign-top label { font: 800 12px/1 var(--sign-font); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
 #from {
   min-width: 0;
-  flex: 1;
+  width: 100%;
   font: 700 19px/1.2 var(--sign-font);
   color: #fff;
-  background: transparent;
+  background: var(--find) right 7px center / 14px no-repeat, rgba(0, 0, 0, 0.16);
   border: 0;
-  border-bottom: 1.5px dashed rgba(255, 255, 255, 0.55);
-  padding: 0 2px;
+  border-bottom: 1.5px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 4px 4px 0 0;
+  padding: 3px 28px 1px 6px;
+}
+#from::placeholder { color: rgba(255, 255, 255, 0.62); font-weight: 600; }
+#locate {
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: #fff;
   cursor: pointer;
 }
-#from option { color: var(--ink); background: #fff; }
+#locate:hover { background: var(--sign-hi); }
+#locate svg { width: 16px; height: 16px; }
+.from-msg { margin: 6px 6px 0; font: 600 12.5px/1.25 var(--text); color: var(--gold); }
+.from-msg:empty { display: none; }
 
 .rows { list-style: none; margin: 3px 0 0; padding: 0; }
 .row {
@@ -164,7 +213,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   cursor: pointer;
 }
 .row:hover { background: var(--sign-hi); }
-.row[aria-pressed="true"] { color: var(--gold); }
+.row[aria-pressed="true"] { color: var(--gold); box-shadow: inset 3px 0 0 var(--gold); }
 .row .t { font-variant-numeric: tabular-nums; transition: opacity 0.25s; }
 .row.far .t { opacity: 0.45; }
 .row svg { width: 20px; height: 20px; overflow: visible; }
@@ -179,10 +228,11 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   --base: var(--green);
   border-radius: 8px;
   display: grid;
-  grid-template-columns: 14px minmax(0, 1fr) auto;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
   gap: 10px;
   align-items: center;
   padding: 5px 14px 3px;
+  color: #fff;
   font: 700 15.5px/1.1 var(--sign-font);
   background:
     radial-gradient(circle at 6px 50%, #e9ebed 0 1.6px, #757a7f 2.1px, transparent 2.6px),
@@ -193,18 +243,22 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .plate.lead { display: block; font-size: 15px; padding: 7px 16px 5px; }
 .plate.lead b { color: var(--gold); }
 .plate .v { font-variant-numeric: tabular-nums; font-weight: 800; }
-.plate .sw { width: 14px; height: 14px; border-radius: 3px; box-shadow: 0 0 0 1.5px #fff; }
+.plate .sw { width: 16px; height: 14px; border-radius: 3px; box-shadow: 0 0 0 1.5px #fff; }
+[data-style="contour"] .plate .sw { height: 6px; border-radius: 2px; }
 .plate.on { color: var(--gold); }
 .plate.zero .v { opacity: 0.5; }
 
-.sw.k1 { background: var(--k1); }
-.sw.k2 { background: var(--k2); }
-.sw.k3 { background: var(--k3); }
-.sw.k4 { background: var(--k4); }
-.sw.k5 { background: var(--k5); }
-
-/* The time strip is the ground the posts stand on; the slider is a road. */
-.time { grid-area: time; display: grid; gap: 4px; padding: 10px 24px 6px; border-top: 4px solid var(--ink); min-width: 0; }
+/* The time strip: a gravel shoulder, the chart with mile markers, and the road. */
+.time { grid-area: time; position: relative; display: grid; gap: 0; padding: 15px 24px 6px; min-width: 0; }
+.time::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 8px;
+  background: var(--grit), linear-gradient(#6f604d, #a08f76);
+}
 .time-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
 .time-head output { font: 800 20px/1 var(--sign-font); }
 #play {
@@ -219,52 +273,40 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   box-shadow: inset 0 0 0 1.5px var(--sign), inset 0 0 0 3px #fff;
   cursor: pointer;
 }
-.ramp-key { display: flex; align-items: center; gap: 8px; margin-left: auto; font-size: 13px; color: var(--muted); }
-.ramp-key[hidden] { display: none; }
-.ramp { width: 160px; height: 12px; border-radius: 2px; background: linear-gradient(90deg, var(--k5), var(--k4), var(--k3), var(--k2), var(--k1)); }
-.chart { width: 100%; height: 70px; display: block; overflow: visible; }
-.chart text { font: 600 11px var(--sign-font); fill: var(--muted); }
+.chart { width: 100%; height: 84px; display: block; overflow: visible; touch-action: pan-y; cursor: ew-resize; }
+.chart text { font: 700 11px var(--sign-font); fill: var(--muted); }
 .chart .axis { stroke: rgba(43, 29, 24, 0.25); }
 .chart .guide { stroke: rgba(43, 29, 24, 0.18); stroke-dasharray: 2 4; }
-.chart .edge { fill: none; stroke: rgba(255, 255, 255, 0.55); stroke-width: 1; }
+.chart .edge { fill: none; stroke: rgba(255, 255, 255, 0.6); stroke-width: 1; }
 .chart .cursor { stroke: var(--ink); stroke-width: 2; }
 .chart .cursor-cap { fill: var(--ink); }
+.chart .mm rect { fill: var(--green); stroke: #fff; stroke-width: 1.2; }
+.chart .mm line { stroke: #8f949a; stroke-width: 2.5; }
+.chart .mm text { fill: #fff; font: 800 9.5px var(--sign-font); }
 
-#minutes { -webkit-appearance: none; appearance: none; width: 100%; height: 26px; margin: 0; background: transparent; cursor: pointer; }
+#minutes { -webkit-appearance: none; appearance: none; height: 28px; margin: 0 0 0 34px; width: calc(100% - 34px); background: transparent; cursor: grab; }
+#minutes:active { cursor: grabbing; }
 #minutes::-webkit-slider-runnable-track {
-  height: 16px;
-  border-radius: 4px;
+  height: 20px;
+  border-radius: 3px;
   background:
-    linear-gradient(90deg, #f2c14e 50%, transparent 0) 0 50% / 26px 2px repeat-x,
-    var(--sheet), #3b3734;
-  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.85), inset 0 -2px 0 rgba(255, 255, 255, 0.85);
+    linear-gradient(90deg, #f2c14e 55%, transparent 0) 0 50% / 30px 2px repeat-x,
+    linear-gradient(#f4f1ea, #f4f1ea) 0 3px / 100% 1.5px no-repeat,
+    linear-gradient(#f4f1ea, #f4f1ea) 0 calc(100% - 3px) / 100% 1.5px no-repeat,
+    var(--grit), linear-gradient(#45403b, #34302c);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6), 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 #minutes::-moz-range-track {
-  height: 16px;
-  border-radius: 4px;
+  height: 20px;
+  border-radius: 3px;
   background:
-    linear-gradient(90deg, #f2c14e 50%, transparent 0) 0 50% / 26px 2px repeat-x,
-    var(--sheet), #3b3734;
-  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.85), inset 0 -2px 0 rgba(255, 255, 255, 0.85);
+    linear-gradient(90deg, #f2c14e 55%, transparent 0) 0 50% / 30px 2px repeat-x,
+    linear-gradient(#f4f1ea, #f4f1ea) 0 3px / 100% 1.5px no-repeat,
+    linear-gradient(#f4f1ea, #f4f1ea) 0 calc(100% - 3px) / 100% 1.5px no-repeat,
+    var(--grit), linear-gradient(#45403b, #34302c);
 }
-#minutes::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 24px;
-  height: 24px;
-  margin-top: -4px;
-  border-radius: 50%;
-  background: #fff;
-  border: 4px solid var(--sign);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-#minutes::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #fff;
-  border: 4px solid var(--sign);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
+#minutes::-webkit-slider-thumb { -webkit-appearance: none; width: 38px; height: 22px; margin-top: -1px; border: 0; background: var(--car) center / contain no-repeat; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35)); }
+#minutes::-moz-range-thumb { width: 38px; height: 22px; border: 0; border-radius: 0; background: var(--car) center / contain no-repeat; }
 
 .foot { grid-area: foot; display: flex; flex-wrap: wrap; gap: 2px 14px; padding: 6px 24px 10px; font-size: 12px; color: var(--muted); }
 .foot p { margin: 0; }
@@ -273,7 +315,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .handles a:hover { color: var(--ink); }
 .handles i { margin-right: 3px; }
 
-/* Map labels, drawn as HTML over the map. */
+/* Map labels and route shields, drawn as HTML over the map. */
 .labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .labels span {
   position: absolute;
@@ -284,23 +326,51 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   color: var(--ink);
   text-shadow: 0 0 2px var(--bg), 0 0 3px var(--bg), 0 0 4px var(--bg), 0 0 6px var(--bg);
 }
-.labels .park { font: 800 14.5px/1 var(--sign-font); color: #163f2b; }
+.labels .park { font: 800 14.5px/1 var(--sign-font); color: #133d29; }
 .labels .from { font: 800 10.5px/1 var(--sign-font); letter-spacing: 0.1em; text-transform: uppercase; }
+.labels .shield { text-shadow: none; line-height: 0; }
+.labels .shield svg { display: block; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25)); }
+.shield text, .mapkey text { font: 800 10px var(--sign-font); }
+
+.review-bar { display: none; }
+.review .review-bar {
+  display: flex;
+  gap: 6px;
+  position: fixed;
+  top: 10px;
+  left: calc((100% - var(--side)) / 2);
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.86);
+  font: 700 12px/1 var(--sign-font);
+}
+.review-bar a { color: #fff; text-decoration: none; padding: 5px 10px 3px; border-radius: 999px; }
+.review-bar a[aria-current="page"] { background: #fff; color: #111; }
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  :root { --side: 360px; }
+  .side { padding-left: 32px; padding-right: 16px; }
+  .row { font-size: 16.5px; }
+}
 
 @media (max-width: 760px) {
+  :root { --side: 0px; }
   .app {
     height: auto;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
     grid-template-areas: "head" "map" "time" "assembly" "foot";
   }
-  .stage { height: 58vh; }
+  .stage { grid-area: map; height: 60vh; }
   .side { display: contents; }
   .head { grid-area: head; padding: 16px 16px 12px; }
   .head h1 { font-size: 26px; }
   .assembly { grid-area: assembly; padding: 14px 16px; }
   .time, .foot { padding-left: 16px; padding-right: 16px; }
-  .ramp-key { margin-left: 0; }
+  .mapkey { bottom: 22px; left: 8px; width: auto; max-width: 230px; font-size: 12px; }
+  .loading { left: 50%; }
 }
 
 /* ?embed: the article carries the title and credits. */
@@ -308,18 +378,32 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 </style>
 </head>
 <body>
+<nav class="review-bar" aria-label="Styles to review">
+  <a href="?style=atlas&amp;review">Atlas</a>
+  <a href="?style=core&amp;review">Core</a>
+  <a href="?style=contour&amp;review">Contour</a>
+</nav>
 <main class="app">
   <div class="stage">
     <div id="map-slot" class="map-slot"></div>
     <div class="labels" id="labels" aria-hidden="true"></div>
+    <details class="mapkey" id="mapkey" open>
+      <summary>Map key</summary>
+      <div class="reach" id="reach-key" hidden>
+        <p>Drive time to <span id="ramp-park">the park</span></p>
+        <div class="ramp" id="ramp" aria-hidden="true"></div>
+        <div class="ticks" id="ticks" aria-hidden="true"></div>
+      </div>
+      <ul id="key-list"></ul>
+    </details>
     <p class="loading" id="loading">Loading drive times…</p>
   </div>
 
-  <aside class="side">
+  <aside class="side" aria-label="Drive times">
     <header class="head">
       <p class="label">30 Day Map Challenge 2026 · Day 13 · Interactions</p>
       <h1>Drive times to Utah's five national parks</h1>
-      <p class="sub">Move the time. Pick a town, or select a place on the map, to read its drive times.</p>
+      <p class="sub">Move the drive-time slider. Type a town, use your location, or select a place on the map.</p>
     </header>
 
     <div class="assembly">
@@ -328,15 +412,21 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
       <section class="sign guide" aria-label="Drive time to each park">
         <div class="sign-top">
           <label for="from">From</label>
-          <select id="from"></select>
+          <input type="text" id="from" list="towns" autocomplete="off" spellcheck="false" placeholder="Type a town" value="Salt Lake City" aria-describedby="from-msg">
+          <button type="button" id="locate" aria-label="Use my location" title="Use my location">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
         </div>
-        <ul class="rows" id="rows"></ul>
-        <p class="sign-note">Rounded up to the next 15 minutes. Dim times are past the slider.</p>
+        <datalist id="towns"></datalist>
+        <p class="from-msg" id="from-msg" aria-live="polite"></p>
+        <ul class="rows" id="rows" role="group" aria-label="Map one park, or all five"></ul>
+        <p class="sign-note">Rounded up to the next 15 minutes. Dim times are longer than the selected drive time. Select a park to map it.</p>
       </section>
 
-      <ul class="plates" id="plates" aria-live="polite" aria-label="Share of Utahns in reach">
+      <ul class="plates" id="plates" aria-label="Share of Utahns in reach">
         <li class="plate lead" id="lead">Utahns within <b>4 h 30 min</b> of</li>
       </ul>
+      <p class="sr-only" id="status" aria-live="polite"></p>
     </div>
   </aside>
 
@@ -345,17 +435,13 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
       <label class="label" for="minutes">Drive time</label>
       <output id="time-out" class="figure" for="minutes">4 h 30 min</output>
       <button type="button" id="play">Play</button>
-      <div class="ramp-key" id="ramp-key" hidden>
-        <span>Drive time to <b id="ramp-park">the park</b></span>
-        <span>15 min</span><span class="ramp" aria-hidden="true"></span><span>5 h</span>
-      </div>
     </div>
     <svg class="chart" id="chart" role="img" aria-label="Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes."></svg>
     <input type="range" id="minutes" min="15" max="300" step="15" value="270" aria-valuetext="4 hours 30 minutes">
   </section>
 
   <footer class="foot">
-    <p><b>Data</b> Drive times from the ArcGIS Online Service Area solver, November 5, 2026 · 2020 Census blocks · park boundaries from the NPS Land Resources Division · visitor centers from OpenStreetMap · relief from USGS 3DEP · UGRC Utah boundary</p>
+    <p><b>Data</b> Drive times from the ArcGIS Online Service Area solver, November 5, 2026 · 2020 Census blocks · park boundaries from the NPS Land Resources Division · roads, water and towns from OpenStreetMap contributors (ODbL) · relief from USGS 3DEP · UGRC Utah boundary</p>
     <p><b>Made with</b> ArcGIS Maps SDK for JavaScript 5.1 · data prep in Python (GeoPandas, Rasterio)</p>
     <p class="handles">Brian Busch
       <a href="https://www.linkedin.com/in/brian-busch1"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>brian-busch1</a>
@@ -367,25 +453,65 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 </main>
 <script>
 (async () => {
+  const loadingEl = document.querySelector("#loading");
+  try {
+  performance.mark("d13-start");
   const DATA = window.PEN_DATA ?? "https://buschbrian.github.io/assets/data/";
+  const STYLE = document.documentElement.dataset.style;
   const PARKS = ["Arches", "Bryce Canyon", "Canyonlands", "Capitol Reef", "Zion"];
-  const K = ["#f2e9d8", "#f5cf8c", "#e9974a", "#c44d2a", "#6b1a1c"];
-  const NEAR = [...K].reverse();
   const INK = "#2b1d18", BG = "#f8f2e8", PARK = "#1d5a3c";
-  const TOWNS = [
-    ["Logan", 41.737, -111.834], ["Ogden", 41.223, -111.974], ["Salt Lake City", 40.761, -111.891],
-    ["Provo", 40.234, -111.659], ["Vernal", 40.456, -109.529], ["Price", 39.599, -110.811],
-    ["Richfield", 38.773, -112.084], ["Cedar City", 37.678, -113.062], ["St. George", 37.097, -113.568],
-  ];
+  const LABELLED = ["Logan", "Ogden", "Salt Lake City", "Provo", "Vernal", "Price", "Richfield", "Cedar City", "St. George", "Moab"];
   const COUNTS = [[5, "All five parks"], [4, "Four or more"], [3, "Three or more"], [2, "Two or more"], [1, "At least one"]];
+  const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const rgba = (h, a) => [...hex(h), a];
+  // Fills are opaque colors pre-mixed with the paper, so nested shapes never stack and the key matches the map.
+  const mix = (h, a) => "#" + hex(h).map((c, i) => Math.round(c * a + hex(BG)[i] * (1 - a)).toString(16).padStart(2, "0")).join("");
+  const ROADS = { interstate: "#3d3936", us: "#5c5652", state: "#9c948a" };
 
-  const reach = await (await fetch(DATA + "day-13-reach.json")).json();
-  const relief = await (await fetch(DATA + "day-13-relief.json")).json();
+  // Three symbology styles for review. k: one to five parks. near: one park, near to far.
+  const STYLES = {
+    atlas: {
+      k: ["#eedb9c", "#e5bd73", "#d9954f", "#c3663a", "#a23b2c"], a: 0.9,
+      near: ["#a23b2c", "#c3663a", "#d9954f", "#e5bd73", "#f3e6bf"],
+      edge: (k) => ({ color: rgba(INK, k === 5 ? 0.9 : 0.3), width: k === 5 ? 1.5 : 0.6 }),
+      hour: { color: rgba(INK, 0.5), width: 1.1 }, quarter: { color: rgba(INK, 0.14), width: 0.4 },
+      relief: 0.75,
+    },
+    core: {
+      k: ["#e6dfd3", "#d6cbbb", "#c1b29d", "#a3937c", "#0f6b66"], a: 1,
+      near: ["#0b4d4a", "#1f7b74", "#5fae9f", "#b5d9cb", "#eef5f0"],
+      edge: (k) => (k === 5 ? { color: "#063f3c", width: 1.8 } : null),
+      hour: { color: rgba("#063f3c", 0.6), width: 1 }, quarter: null,
+      relief: 0.8,
+    },
+    contour: {
+      k: ["#e9b949", "#e28a3a", "#c9553f", "#8f2f53", "#47205a"], a: 0.12,
+      near: ["#47205a", "#8f2f53", "#c9553f", "#e28a3a", "#e9b949"],
+      edge: (k) => ({ color: ["#d9a531", "#e28a3a", "#c9553f", "#8f2f53", "#47205a"][k - 1], width: [1.3, 1.6, 1.9, 2.3, 2.9][k - 1] }),
+      hour: { color: rgba("#47205a", 0.9), width: 1.8 }, quarter: { color: rgba("#8f2f53", 0.4), width: 0.6 },
+      relief: 0.9,
+    },
+  };
+  const S = STYLES[STYLE];
+  const FILL = S.k.map((c) => mix(c, S.a));
+  const SWATCH = STYLE === "contour" ? S.k : FILL;
+  const NEAR = S.near.map((c) => mix(c, Math.max(S.a, 0.85)));
+  for (const a of document.querySelectorAll(".review-bar a")) {
+    if (a.getAttribute("href").includes(`style=${STYLE}&`)) a.setAttribute("aria-current", "page");
+  }
+
+  const [reach, relief, townList, shields, origins] = await Promise.all(
+    ["day-13-reach.json", "day-13-relief.json", "day-13-towns.json", "day-13-shields.json", "day-13-origins.geojson"]
+      .map((f) => fetch(DATA + f).then((r) => { if (!r.ok) throw new Error(f); return r.json(); })));
+  performance.mark("d13-data");
+  const town = Object.fromEntries(townList.map(([n, lat, lon, p, t]) => [n, { lat, lon, times: t }]));
+  const parkLL = Object.fromEntries(origins.features.map((f) => [f.properties.park, f.geometry.coordinates]));
   const pop = reach.population_2020;
   const hm = (m) => (m < 60 ? `${m} min` : m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`);
   const spoken = (m) => hm(m).replace(" h", m >= 120 ? " hours" : " hour").replace(" min", " minutes");
-  const pct = (v) => `${(100 * v).toFixed(1)}%`;
-  const state = { minutes: 270, park: "", times: null };
+  const pct = (v) => `${Math.round(100 * v)}%`;
+  const state = { minutes: 270, park: "", times: null, from: null };
+  const map = { ready: false };
   const cut = Object.keys(reach.share_at_least_k).map(Number);
   const X0 = 15, X1 = 300;
   const NS = "http://www.w3.org/2000/svg";
@@ -394,6 +520,40 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     for (const [a, v] of Object.entries(attrs)) e.setAttribute(a, v);
     return parent.appendChild(e);
   };
+
+  // Route shields, used on the map and in the key.
+  const shieldSvg = (kind, num) => {
+    const w = num.length > 2 ? 30 : 24;
+    if (kind === "I") {
+      return `<svg width="${w}" height="24" viewBox="0 0 ${w} 24"><path d="M1.5 4 Q${w / 2} -0.5 ${w - 1.5} 4 Q${w} 15 ${w / 2} 23 Q0 15 1.5 4 Z" fill="#1c4396" stroke="#fff" stroke-width="1.5"/>` +
+        `<path d="M2.2 4.4 Q${w / 2} 0.6 ${w - 2.2} 4.4 L${w - 1.9} 8 H1.9 Z" fill="#c8102e"/>` +
+        `<text x="${w / 2}" y="17.5" text-anchor="middle" fill="#fff">${num}</text></svg>`;
+    }
+    return `<svg width="${w}" height="24" viewBox="0 0 ${w} 24"><path d="M3 2 H${w - 3} Q${w - 3} 5 ${w - 0.8} 6.5 Q${w - 1.5} 18 ${w / 2} 23 Q1.5 18 0.8 6.5 Q3 5 3 2 Z" fill="#fff" stroke="#151515" stroke-width="1.4"/>` +
+      `<text x="${w / 2}" y="16" text-anchor="middle" fill="#151515">${num}</text></svg>`;
+  };
+  const STAR = "M12 1 L14.9 8.4 L22.8 8.8 L16.6 13.8 L18.7 21.5 L12 17.2 L5.3 21.5 L7.4 13.8 L1.2 8.8 L9.1 8.4 Z";
+
+  // Map key: every symbol on the map, drawn with the map's own colors.
+  const mapkey = document.querySelector("#mapkey");
+  mapkey.open = !matchMedia("(max-width: 1100px)").matches;
+  const line = (c, w, casing) => (casing ? `<line x1="2" y1="9" x2="32" y2="9" stroke="#fff" stroke-width="${w + 2.4}"/>` : "") +
+    `<line x1="2" y1="9" x2="32" y2="9" stroke="${c}" stroke-width="${w}"/>`;
+  const key = [
+    [line(ROADS.interstate, 2.6, true) + `<g transform="translate(20 -3) scale(.62)">${shieldSvg("I", "15").replace(/<\/?svg[^>]*>/g, "")}</g>`, "Interstate"],
+    [line(ROADS.us, 1.8, true) + `<g transform="translate(20 -3) scale(.62)">${shieldSvg("US", "89").replace(/<\/?svg[^>]*>/g, "")}</g>`, "US highway"],
+    [line(ROADS.state, 1), "State route"],
+    [`<rect x="2" y="2" width="30" height="14" rx="3" fill="#a9cde3" stroke="#6ea6cb"/><path d="M2 12 Q12 6 32 10" fill="none" stroke="#4b8fc0" stroke-width="1.4"/>`, "Lake, river"],
+    [`<rect x="2" y="2" width="30" height="14" rx="3" fill="${PARK}" fill-opacity=".32" stroke="${PARK}" stroke-width="1.5"/>`, "National park"],
+    [`<circle cx="17" cy="9" r="7.5" fill="${PARK}" stroke="#fff" stroke-width="2"/><path d="M12.5 12.5 L16 7 L17.8 9.6 L19.4 7.6 L22 12.5 Z" fill="#fff"/>`, "Main visitor center"],
+    [`<path d="${STAR}" transform="translate(11 0) scale(.75)" fill="${INK}"/>`, "State capital"],
+    [`<circle cx="17" cy="9" r="3.5" fill="${BG}" stroke="${INK}" stroke-width="1.5"/>`, "City or town"],
+    [`<circle cx="17" cy="9" r="6.5" fill="#ffd166" stroke="${INK}" stroke-width="2"/>`, "Start point"],
+    [`<line x1="2" y1="9" x2="32" y2="9" stroke="${INK}" stroke-width="1.3" stroke-dasharray="7 4"/>`, "Utah state line"],
+  ];
+  document.querySelector("#key-list").innerHTML = key.map(([g, t]) => `<li><svg viewBox="0 0 34 18" aria-hidden="true">${g}</svg>${t}</li>`).join("");
+  document.querySelector("#ramp").style.background = `linear-gradient(90deg, ${NEAR.join(", ")})`;
+  document.querySelector("#ticks").innerHTML = [1, 2, 3, 4, 5].map((h) => `<span style="left:${((h * 60 - X0) / (X1 - X0)) * 100}%">${h} h</span>`).join("");
 
   // The guide sign: one row for each park (arrow, name, time) and an "All five" row.
   const rowsEl = document.querySelector("#rows");
@@ -414,9 +574,8 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     rows[park] = { b, g, t: b.querySelector(".t") };
   }
   const fromEl = document.querySelector("#from");
-  for (const [name] of TOWNS) fromEl.add(new Option(name, name, false, name === "Salt Lake City"));
-  fromEl.add(new Option("the place you selected", "point"));
-  fromEl.options[fromEl.options.length - 1].hidden = true;
+  const fromMsg = document.querySelector("#from-msg");
+  document.querySelector("#towns").innerHTML = townList.map(([n]) => `<option value="${n}"></option>`).join("");
 
   // Green plates. Their lines never change meaning while the time moves; only the values do.
   const platesEl = document.querySelector("#plates");
@@ -431,26 +590,19 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   }
   function labelPlates() {
     plates.forEach((p, i) => {
-      if (state.park) {
-        p.sw.className = "sw";
-        p.sw.style.visibility = "hidden";
-        p.n.textContent = PARKS[i];
-        p.li.classList.toggle("on", PARKS[i] === state.park);
-      } else {
-        p.sw.className = `sw k${COUNTS[i][0]}`;
-        p.sw.style.visibility = "";
-        p.n.textContent = COUNTS[i][1];
-        p.li.classList.remove("on");
-      }
+      p.sw.style.visibility = state.park ? "hidden" : "";
+      p.sw.style.background = SWATCH[COUNTS[i][0] - 1];
+      p.n.textContent = state.park ? PARKS[i] : COUNTS[i][1];
+      p.li.classList.toggle("on", !!state.park && PARKS[i] === state.park);
     });
   }
   labelPlates();
 
-  // Chart: smooth monotone curves (no overshoot), drawn at the real pixel width.
+  // Chart: smooth monotone curves, aligned with the road below it. Hours are green mile markers.
   const svg = document.querySelector("#chart");
-  const H = 54, L = 34;
+  const H = 50, L = 34, CAR = 38;
   let W = 600;
-  const x = (m) => L + ((m - X0) / (X1 - X0)) * (W - L);
+  const x = (m) => L + CAR / 2 + ((m - X0) / (X1 - X0)) * (W - L - CAR);
   const y = (v) => H - v * H;
   const smooth = (pts) => {
     const n = pts.length;
@@ -461,7 +613,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
       const a = t[i] / d[i], b = t[i + 1] / d[i], s = a * a + b * b;
       if (s > 9) { const k = 3 / Math.sqrt(s); t[i] = k * a * d[i]; t[i + 1] = k * b * d[i]; }
     }
-    let path = `L${pts[0][0]},${pts[0][1]}`;
+    let path = `${pts[0][0]},${pts[0][1]}`;
     for (let i = 0; i < n - 1; i++) {
       const h = (pts[i + 1][0] - pts[i][0]) / 3;
       path += ` C${pts[i][0] + h},${pts[i][1] + h * t[i]} ${pts[i + 1][0] - h},${pts[i + 1][1] - h * t[i + 1]} ${pts[i + 1][0]},${pts[i + 1][1]}`;
@@ -470,13 +622,13 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   };
   const area = (vals, fill) => {
     const curve = smooth(cut.map((m, i) => [x(m), y(vals[i])]));
-    make(svg, "path", { d: `M${x(X0)},${H} ${curve} L${x(X1)},${H} Z`, fill });
-    make(svg, "path", { class: "edge", d: `M${curve.slice(1)}` });
+    make(svg, "path", { d: `M${x(X0)},${H} L${curve} L${x(X1)},${H} Z`, fill });
+    make(svg, "path", { class: "edge", d: `M${curve}` });
   };
   let cursor, cap;
   function draw() {
-    W = Math.max(svg.clientWidth, 200);
-    svg.setAttribute("viewBox", `0 0 ${W} 70`);
+    W = Math.max(svg.clientWidth, 240);
+    svg.setAttribute("viewBox", `0 0 ${W} 84`);
     svg.replaceChildren();
     for (const v of [0.5, 1]) {
       make(svg, "line", { class: "guide", x1: L, x2: W, y1: y(v), y2: y(v) });
@@ -484,25 +636,30 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     }
     if (state.park) {
       const people = reach.people_within_by_park[state.park];
-      area(cut.map((m) => people[m] / pop), K[3]);
+      area(cut.map((m) => people[m] / pop), NEAR[1]);
     } else {
-      for (let k = 1; k <= 5; k++) area(cut.map((m) => reach.share_at_least_k[m][k - 1]), K[k - 1]);
+      for (let k = 1; k <= 5; k++) area(cut.map((m) => reach.share_at_least_k[m][k - 1]), STYLE === "contour" ? mix(S.k[k - 1], 0.75) : FILL[k - 1]);
     }
     make(svg, "line", { class: "axis", x1: L, x2: W, y1: H, y2: H });
     for (let h = 1; h <= 5; h++) {
-      make(svg, "line", { class: "axis", x1: x(h * 60), x2: x(h * 60), y1: H, y2: H + 4 });
-      make(svg, "text", { x: x(h * 60), y: H + 15, "text-anchor": h === 5 ? "end" : "middle" }).textContent = `${h} h`;
+      const mm = make(svg, "g", { class: "mm", transform: `translate(${x(h * 60)},${H + 4})` });
+      make(mm, "line", { x1: 0, x2: 0, y1: 15, y2: 30 });
+      make(mm, "rect", { x: -11, y: 0, width: 22, height: 15, rx: 2.5 });
+      make(mm, "text", { x: 0, y: 11, "text-anchor": "middle" }).textContent = `${h} h`;
     }
     cursor = make(svg, "line", { class: "cursor", y1: -2, y2: H, x1: x(state.minutes), x2: x(state.minutes) });
     cap = make(svg, "circle", { class: "cursor-cap", r: 3.5, cx: x(state.minutes), cy: -2 });
+    svg.setAttribute("aria-label", state.park
+      ? `Share of Utahns within each drive time of ${state.park}, from 15 minutes to 5 hours.`
+      : "Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes.");
   }
   draw();
   new ResizeObserver(draw).observe(svg);
 
   const timeOut = document.querySelector("#time-out");
   const slider = document.querySelector("#minutes");
-  const rampKey = document.querySelector("#ramp-key");
-  const lv = {};
+  const reachKey = document.querySelector("#reach-key");
+  const statusEl = document.querySelector("#status");
 
   function apply() {
     const m = state.minutes;
@@ -526,22 +683,129 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
         r.b.classList.toggle("far", t === null || t > m);
       }
     }
-    if (state.park) {
-      if (lv.bands) lv.bands.filter = { where: `park = '${state.park}' AND minutes <= ${m}` };
-    } else if (lv.counts) {
-      lv.counts.filter = { where: `minutes = ${m}` };
+    if (map.ready) {
+      if (state.park) map.lv.bands.filter = { where: `park = '${state.park}' AND minutes <= ${m}` };
+      else map.lv.counts.filter = { where: `minutes = ${m}` };
     }
   }
+  const announce = () => {
+    const m = state.minutes;
+    statusEl.textContent = state.park
+      ? `Within ${spoken(m)}: ${pct(reach.people_within_by_park[state.park][m] / pop)} of Utahns can reach ${state.park}.`
+      : `Within ${spoken(m)}: ${pct(reach.share_at_least_k[m][4])} of Utahns can reach all five parks, ${pct(reach.share_at_least_k[m][0])} at least one.`;
+  };
   apply();
 
+  // The sign reads from one start. Towns use drive times worked out in advance, so the sign fills at once.
+  const bearing = ([lon, lat], p) => (Math.atan2((p[0] - lon) * Math.cos((lat * Math.PI) / 180), p[1] - lat) * 180) / Math.PI;
+  function showTimes(times, ll) {
+    times = { ...times, "": PARKS.some((p) => times[p] === null) ? null : Math.max(...PARKS.map((p) => times[p])) };
+    state.times = times;
+    for (const p of PARKS) {
+      let deg = bearing(ll, parkLL[p]);
+      const now = Number(rows[p].g.dataset.deg ?? deg);
+      while (deg - now > 180) deg -= 360;
+      while (now - deg > 180) deg += 360;
+      rows[p].g.dataset.deg = deg;
+      rows[p].g.style.transform = `rotate(${deg.toFixed(1)}deg)`;
+    }
+    fromMsg.textContent = PARKS.every((p) => times[p] === null) ? "This place is outside Utah, or more than 5 h from every park." : "";
+    apply();
+  }
+  function setTown(name) {
+    const t = town[name];
+    state.from = { name, ll: [t.lon, t.lat] };
+    fromEl.value = name;
+    showTimes(Object.fromEntries(PARKS.map((p, i) => [p, t.times[i]])), state.from.ll);
+    if (map.ready) map.mark();
+  }
+  let asked = 0;
+  async function setPlace(ll, name, point) {
+    const ask = ++asked;
+    state.from = { name, ll, point };
+    fromEl.value = name;
+    fromMsg.textContent = "Reading drive times…";
+    if (!map.ready) await map.whenReady;
+    map.mark();
+    const times = await map.timesAt(ll, point);
+    if (ask === asked) showTimes(times, ll);
+  }
+  const findTown = (v) => townList.find(([n]) => n.toLowerCase() === v.trim().toLowerCase())?.[0];
+  fromEl.addEventListener("input", () => { const n = findTown(fromEl.value); if (n) setTown(n); });
+  fromEl.addEventListener("change", () => {
+    if (findTown(fromEl.value)) return;
+    if (fromEl.value.trim()) fromMsg.textContent = "Pick a Utah city or town from the list.";
+    fromEl.value = state.from?.name ?? "";
+  });
+  fromEl.addEventListener("keydown", (e) => { if (e.key === "Escape") { fromEl.value = state.from?.name ?? ""; fromEl.blur(); } });
+  fromEl.addEventListener("focus", () => fromEl.select());
+  document.querySelector("#locate").addEventListener("click", () => {
+    if (!navigator.geolocation) return (fromMsg.textContent = "This browser cannot share a location.");
+    fromMsg.textContent = "Finding your location…";
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => setPlace([coords.longitude, coords.latitude], "Your location"),
+      () => (fromMsg.textContent = "Your browser did not share your location. Type a town instead."),
+      { timeout: 10000, maximumAge: 600000 },
+    );
+  });
+
+  function choose(park) {
+    state.park = park;
+    for (const r of Object.values(rows)) r.b.setAttribute("aria-pressed", String(r.b.dataset.park === park));
+    if (map.ready) {
+      map.counts.visible = !park;
+      map.bands.visible = !!park;
+    }
+    reachKey.hidden = !park;
+    document.querySelector("#ramp-park").textContent = park || "the park";
+    labelPlates();
+    draw();
+    apply();
+    announce();
+  }
+  for (const r of Object.values(rows)) r.b.addEventListener("click", () => choose(r.b.dataset.park));
+  slider.addEventListener("input", () => { stop(); state.minutes = Number(slider.value); apply(); });
+  slider.addEventListener("change", announce);
+
+  const fromChart = (e) => {
+    const r = svg.getBoundingClientRect();
+    const m = X0 + Math.round((((e.clientX - r.left - L - CAR / 2) / (r.width - L - CAR)) * (X1 - X0)) / 15) * 15;
+    state.minutes = Math.min(X1, Math.max(X0, m));
+    apply();
+  };
+  svg.addEventListener("pointerdown", (e) => { stop(); svg.setPointerCapture(e.pointerId); fromChart(e); });
+  svg.addEventListener("pointermove", (e) => svg.hasPointerCapture(e.pointerId) && fromChart(e));
+  svg.addEventListener("pointerup", announce);
+
+  const play = document.querySelector("#play");
+  let timer = null;
+  function stop() { if (timer) { clearInterval(timer); timer = null; play.textContent = "Play"; announce(); } }
+  play.addEventListener("click", () => {
+    if (timer) return stop();
+    if (state.minutes >= X1) state.minutes = X0 - 15;
+    play.textContent = "Pause";
+    const step = () => { state.minutes += 15; apply(); if (state.minutes >= X1) stop(); };
+    step();
+    timer = setInterval(step, 450);
+  });
+
+  setTown("Salt Lake City");
+  announce();
+
+  // The map. Everything above works before it loads. All vector layers arrive already in Utah Albers,
+  // in whole metres, so the browser never reprojects them while it draws.
+  let readyResolve;
+  map.whenReady = new Promise((r) => (readyResolve = r));
+  const albersFiles = ["reach-by-count", "park-reach", "roads", "lakes", "rivers", "parks", "origins", "utah", "points"];
+  const albers = Object.fromEntries(await Promise.all(albersFiles.map((f) =>
+    fetch(`${DATA}day-13-${f}.json`).then((r) => { if (!r.ok) throw new Error(f); return r.json(); }).then((j) => [f, j]))));
   await customElements.whenDefined("arcgis-map");
   const load = (m) => $arcgis.import(`@arcgis/core/${m}.js`);
-  const [Map, GeoJSONLayer, Graphic, GraphicsLayer, MediaLayer, ImageElement, ExtentAndRotationGeoreference, Extent,
-    Polygon, SpatialReference, reactiveUtils, Point, projectOperator] = await Promise.all([
-    "Map", "layers/GeoJSONLayer", "Graphic", "layers/GraphicsLayer", "layers/MediaLayer", "layers/support/ImageElement",
-    "layers/support/ExtentAndRotationGeoreference", "geometry/Extent", "geometry/Polygon", "geometry/SpatialReference",
-    "core/reactiveUtils", "geometry/Point", "geometry/operators/projectOperator"].map(load));
-  await projectOperator.load();
+  const [Map, FeatureLayer, Graphic, GraphicsLayer, MediaLayer, ImageElement, ExtentAndRotationGeoreference, Extent,
+    Polygon, Point, SpatialReference, reactiveUtils] = await Promise.all([
+    "Map", "layers/FeatureLayer", "Graphic", "layers/GraphicsLayer", "layers/MediaLayer", "layers/support/ImageElement",
+    "layers/support/ExtentAndRotationGeoreference", "geometry/Extent", "geometry/Polygon", "geometry/Point",
+    "geometry/SpatialReference", "core/reactiveUtils"].map(load));
 
   // Albers centred on Utah, the same projection as the Day 4 map.
   const sr = new SpatialReference({ wkt:
@@ -550,33 +814,59 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     'PROJECTION["Albers"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],' +
     'PARAMETER["Central_Meridian",-111.5],PARAMETER["Standard_Parallel_1",37.5],' +
     'PARAMETER["Standard_Parallel_2",41.5],PARAMETER["Latitude_Of_Origin",39.5],UNIT["Meter",1.0]]' });
+  const pt = ([x, y]) => new Point({ x, y, spatialReference: sr });
+  // The projection engine loads only when a reader shares a location or selects the map.
+  let projector = null;
+  const projection = async () => {
+    if (!projector) {
+      projector = await load("geometry/operators/projectOperator");
+      await projector.load();
+    }
+    return projector;
+  };
+
+  const FIELD = { minutes: "integer", at_least: "integer" };
+  const layerFrom = (name, props) => {
+    const { geometry, fields, rows } = albers[name];
+    const geom = (g) => (geometry === "polygon" ? { type: "polygon", rings: g, spatialReference: sr }
+      : geometry === "polyline" ? { type: "polyline", paths: g, spatialReference: sr } : { type: "point", x: g[0], y: g[1], spatialReference: sr });
+    return new FeatureLayer({
+      source: rows.map((r, i) => new Graphic({
+        geometry: geom(r[fields.length]),
+        attributes: { oid: i + 1, ...Object.fromEntries(fields.map((f, j) => [f, r[j]])) },
+      })),
+      objectIdField: "oid",
+      fields: [{ name: "oid", type: "oid" }, ...fields.map((f) => ({ name: f, type: FIELD[f] ?? "string" }))],
+      geometryType: geometry,
+      spatialReference: sr,
+      popupEnabled: false,
+      outFields: ["*"],
+      ...props,
+    });
+  };
 
   const credit = "Drive times: ArcGIS Online Service Area (Esri), solved 2026-11-05";
-  const fill = (color) => ({ type: "simple-fill", color, outline: null });
-  const counts = new GeoJSONLayer({
-    url: DATA + "day-13-reach-by-count.geojson",
+  const counts = layerFrom("reach-by-count", {
     title: "Parks within reach",
     copyright: credit,
-    popupEnabled: false,
     orderBy: [{ field: "at_least", order: "descending" }],
     visible: false,
     renderer: {
       type: "unique-value",
       field: "at_least",
-      uniqueValueInfos: K.map((c, i) => ({ value: i + 1, label: `${i + 1}`, symbol: fill(c) })),
+      uniqueValueInfos: FILL.map((c, i) => ({ value: i + 1, label: `${i + 1}`, symbol: { type: "simple-fill", color: c, outline: S.edge(i + 1) } })),
     },
   });
-  const bands = new GeoJSONLayer({
-    url: DATA + "day-13-park-reach.geojson",
+  const bandSymbol = (outline) => ({ type: "simple-fill", color: NEAR[2], outline });
+  const bands = layerFrom("park-reach", {
     title: "Drive time to one park",
     copyright: credit,
-    outFields: ["park", "minutes"],
-    popupEnabled: false,
     visible: false,
     orderBy: [{ field: "minutes", order: "ascending" }],
     renderer: {
-      type: "simple",
-      symbol: fill(K[2]),
+      type: "unique-value",
+      valueExpression: "IIf($feature.minutes % 60 == 0, 'hour', 'quarter')",
+      uniqueValueInfos: [{ value: "hour", symbol: bandSymbol(S.hour) }, { value: "quarter", symbol: bandSymbol(S.quarter) }],
       visualVariables: [{ type: "color", field: "minutes", stops: NEAR.map((color, i) => ({ value: 15 + (i * 285) / 4, color })) }],
     },
   });
@@ -585,50 +875,79 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     title: "Relief",
     copyright: "USGS 3DEP",
     blendMode: "multiply",
-    opacity: 0.8,
+    opacity: S.relief,
     source: [new ImageElement({
       image: DATA + "day-13-relief.jpg",
       georeference: new ExtentAndRotationGeoreference({ extent: new Extent({ ...relief, spatialReference: sr }) }),
     })],
   });
-  const parkShapes = new GeoJSONLayer({
-    url: DATA + "day-13-parks.geojson",
+  const lakes = layerFrom("lakes", {
+    title: "Lakes",
+    copyright: "OpenStreetMap contributors",
+    renderer: { type: "simple", symbol: { type: "simple-fill", color: "#a9cde3", outline: { color: "#6ea6cb", width: 0.6 } } },
+  });
+  const rivers = layerFrom("rivers", {
+    title: "Rivers",
+    copyright: "OpenStreetMap contributors",
+    renderer: { type: "simple", symbol: { type: "simple-line", color: "#4b8fc0", width: 1 } },
+  });
+  const parkShapes = layerFrom("parks", {
     title: "National parks",
     copyright: "NPS Land Resources Division",
-    popupEnabled: false,
-    renderer: { type: "simple", symbol: { type: "simple-fill", color: [29, 90, 60, 0.32], outline: { color: PARK, width: 1.6 } } },
+    renderer: { type: "simple", symbol: { type: "simple-fill", color: rgba(PARK, 0.32), outline: { color: PARK, width: 1.5 } } },
   });
-  const utah = new GeoJSONLayer({
-    url: DATA + "day-4-utah-outline.geojson",
+  const cased = (color, w) => ({
+    type: "cim",
+    data: { type: "CIMSymbolReference", symbol: { type: "CIMLineSymbol", symbolLayers: [
+      { type: "CIMSolidStroke", enable: true, width: w, color: [...hex(color), 255], capStyle: "Round", joinStyle: "Round" },
+      { type: "CIMSolidStroke", enable: true, width: w + 2.2, color: [255, 255, 255, 235], capStyle: "Round", joinStyle: "Round" },
+    ] } },
+  });
+  const roads = layerFrom("roads", {
+    title: "Roads",
+    copyright: "OpenStreetMap contributors",
+    orderBy: [{ valueExpression: "Decode($feature.cls, 'interstate', 3, 'us', 2, 1)", order: "ascending" }],
+    renderer: {
+      type: "unique-value",
+      field: "cls",
+      uniqueValueInfos: [
+        { value: "interstate", symbol: cased(ROADS.interstate, 2.4) },
+        { value: "us", symbol: cased(ROADS.us, 1.6) },
+        { value: "state", symbol: { type: "simple-line", color: ROADS.state, width: 0.7 } },
+      ],
+    },
+  });
+  const utah = layerFrom("utah", {
     title: "Utah",
     copyright: "UGRC",
-    popupEnabled: false,
-    renderer: { type: "simple", symbol: { type: "simple-fill", color: [0, 0, 0, 0], outline: { color: INK, width: 1.2 } } },
+    renderer: { type: "simple", symbol: { type: "simple-fill", color: [0, 0, 0, 0], outline: { color: rgba(INK, 0.8), width: 1.3, style: "long-dash" } } },
   });
+  const townPoint = Object.fromEntries(Object.entries(albers.points.towns).map(([n, xy]) => [n, pt(xy)]));
   const towns = new GraphicsLayer({ title: "Towns" });
-  towns.addMany(TOWNS.map(([, lat, lon]) => new Graphic({
-    geometry: { type: "point", latitude: lat, longitude: lon },
-    symbol: { type: "simple-marker", size: 4.5, color: INK, outline: { color: BG, width: 0.8 } },
-  })));
+  for (const name of LABELLED) {
+    if (!townPoint[name]) continue;
+    towns.add(new Graphic({
+      geometry: townPoint[name],
+      symbol: name === "Salt Lake City"
+        ? { type: "simple-marker", style: "path", path: STAR, size: 11, color: INK, outline: { color: BG, width: 0.8 } }
+        : { type: "simple-marker", size: 5.5, color: BG, outline: { color: INK, width: 1.4 } },
+    }));
+  }
   const fromLayer = new GraphicsLayer({ title: "Start" });
-  // Visitor centers: a green recreation-style plate with a white peak, in the park green.
   const marker = "data:image/svg+xml;base64," + btoa(
     '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">' +
-    `<rect x="2" y="2" width="36" height="36" rx="8" fill="${PARK}" stroke="#fff" stroke-width="3"/>` +
-    '<path d="M8 30 L17 15 L21 21 L25 16 L32 30 Z" fill="#fff"/><circle cx="27.5" cy="11" r="2.8" fill="#ffd166"/></svg>');
-  const origins = new GeoJSONLayer({
-    url: DATA + "day-13-origins.geojson",
+    `<circle cx="20" cy="20" r="17" fill="${PARK}" stroke="#fff" stroke-width="4"/>` +
+    '<path d="M9.5 27 L17 15 L21 20.5 L24.5 16.5 L31 27 Z" fill="#fff"/></svg>');
+  const originLayer = layerFrom("origins", {
     title: "Visitor centers",
-    outFields: ["*"],
-    popupEnabled: false,
     renderer: { type: "simple", symbol: { type: "picture-marker", url: marker, width: 19, height: 19 } },
   });
 
-  await utah.load();
-  const { features: [shape] } = await utah.queryFeatures({ where: "1=1", returnGeometry: true, outSpatialReference: sr });
-  const extent = shape.geometry.extent;
+  const xs = albers.utah.rows[0][0].flat(2).filter((_, i) => i % 2 === 0);
+  const ys = albers.utah.rows[0][0].flat(2).filter((_, i) => i % 2 === 1);
+  const extent = new Extent({ xmin: Math.min(...xs), ymin: Math.min(...ys), xmax: Math.max(...xs), ymax: Math.max(...ys), spatialReference: sr });
   const narrow = () => matchMedia("(max-width: 760px)").matches;
-  const home = () => extent.clone().expand(narrow() ? 1.75 : 1.12);
+  const home = () => extent.clone().expand(narrow() ? 1.75 : 1.1);
   const page = Polygon.fromExtent(extent.clone().expand(5));
 
   const slot = document.querySelector("#map-slot");
@@ -642,148 +961,109 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   el.innerHTML = '<arcgis-zoom slot="top-left"></arcgis-zoom><arcgis-home slot="top-left"></arcgis-home>';
   el.spatialReference = sr;
   el.extent = home();
-  el.map = new Map({ layers: [counts, bands, shade, parkShapes, utah, towns, fromLayer, origins] });
+  el.map = new Map({ layers: [counts, bands, shade, lakes, rivers, parkShapes, roads, utah, towns, fromLayer, originLayer] });
   slot.append(el);
   await el.viewOnReady();
+  performance.mark("d13-view");
   const view = el.view;
   view.background = { color: BG };
   view.constraints = { rotationEnabled: false, minScale: 20e6, maxScale: 20000, geometry: page };
+  const pad = () => (view.padding = { left: 0, top: 0, bottom: 0, right: narrow() ? 0 : document.querySelector(".side").offsetWidth });
+  pad();
   el.querySelector("arcgis-home").viewpoint = { targetGeometry: home() };
   let touched = false;
   view.on(["drag", "mouse-wheel", "double-click", "key-down"], () => (touched = true));
+  el.querySelector("arcgis-zoom").addEventListener("click", () => (touched = true));
   const fit = () => view.width > 100 && view.height > 100 && view.goTo(home(), { animate: false }).catch(() => {});
 
-  // Labels as HTML, placed from map coordinates on every view change.
-  const PLACE = { Arches: [12, -13], Canyonlands: [12, 12], "Capitol Reef": [-12, -13, "end"], "Bryce Canyon": [13, 0], Zion: [13, 0] };
+  // Labels and shields as HTML. Sizes are measured once; a greedy pass hides any label that would
+  // overlap a label placed before it (parks first, then the start, towns and shields).
+  const PLACE = { Arches: [13, -13], Canyonlands: [13, 12], "Capitol Reef": [-13, -13, "end"], "Bryce Canyon": [14, 0], Zion: [14, 0] };
   const labelsEl = document.querySelector("#labels");
   const labelled = [];
-  const label = (text, cls, point, dx, dy, end) => {
+  const label = (html, cls, point, dx, dy, align, rank) => {
     const e = document.createElement("span");
     e.className = cls;
-    e.textContent = text;
+    e.innerHTML = html;
     labelsEl.append(e);
-    const l = { el: e, point, dx, dy, end };
+    const l = { el: e, point, dx, dy, align, rank, w: 0, h: 0 };
     labelled.push(l);
     return l;
   };
-  const { features: originFeatures } = await origins.queryFeatures({ where: "1=1", returnGeometry: true, outSpatialReference: sr });
-  const parkPoint = {};
-  for (const f of originFeatures) {
-    const [dx, dy, end] = PLACE[f.attributes.park];
-    parkPoint[f.attributes.park] = f.geometry;
-    label(f.attributes.park, "park", f.geometry, dx, dy, end);
+  for (const [, park, xy] of albers.origins.rows) {
+    const [dx, dy, end] = PLACE[park];
+    label(park, "park", pt(xy), dx, dy, end ? "end" : "start", 0);
   }
-  const townPoint = {};
-  for (const [name, lat, lon] of TOWNS) {
-    townPoint[name] = projectOperator.execute(new Point({ latitude: lat, longitude: lon }), sr);
-    label(name, "town", townPoint[name], 6, 0);
-  }
-  const fromTag = label("From here", "from", null, 0, 17);
+  const fromTag = label("Start", "from", null, 0, 17, "center", 1);
+  for (const name of LABELLED) if (townPoint[name]) label(name, "town", townPoint[name], 7, 0, "start", 2);
+  for (const [kind, num, x0, y0] of albers.points.shields) label(shieldSvg(kind, num), "shield", pt([x0, y0]), 0, 0, "center", 3);
+  labelled.sort((a, b) => a.rank - b.rank);
+  const measure = () => { for (const l of labelled) { l.w = l.el.offsetWidth; l.h = l.el.offsetHeight; } };
   const place = () => {
+    const boxes = [];
     for (const l of labelled) {
       const p = l.point && view.toScreen(l.point);
-      l.el.hidden = !p;
-      if (!p) continue;
-      const w = l.end ? l.el.offsetWidth : l === fromTag ? l.el.offsetWidth / 2 : 0;
-      l.el.style.transform = `translate(${p.x + l.dx - w}px, ${p.y + l.dy - l.el.offsetHeight / 2}px)`;
+      if (!p) { l.el.hidden = true; continue; }
+      const left = p.x + l.dx - (l.align === "end" ? l.w : l.align === "center" ? l.w / 2 : 0);
+      const top = p.y + l.dy - l.h / 2;
+      const box = [left - 2, top - 2, left + l.w + 2, top + l.h + 2];
+      const hit = boxes.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1]);
+      l.el.hidden = hit || box[2] < 0 || box[0] > view.width || box[3] < 0 || box[1] > view.height;
+      if (l.el.hidden) continue;
+      boxes.push(box);
+      l.el.style.transform = `translate(${left}px, ${top}px)`;
     }
   };
+  measure();
   reactiveUtils.watch(() => [view.extent?.xmin, view.extent?.ymax, view.scale, view.size.join()], place);
-  reactiveUtils.watch(() => view.size.join(), () => touched || fit());
-  document.fonts.ready.then(() => { touched || fit(); place(); });
+  reactiveUtils.watch(() => view.size.join(), () => { pad(); touched || fit(); });
+  document.fonts.ready.then(() => { measure(); pad(); touched || fit(); place(); });
   fit();
 
-  function choose(park) {
-    state.park = park;
-    for (const r of Object.values(rows)) r.b.setAttribute("aria-pressed", String(r.b.dataset.park === park));
-    counts.visible = !park && !!lv.counts;
-    bands.visible = !!park;
-    rampKey.hidden = !park;
-    document.querySelector("#ramp-park").textContent = park || "the park";
-    labelPlates();
-    draw();
-    apply();
-  }
-  for (const r of Object.values(rows)) r.b.addEventListener("click", () => choose(r.b.dataset.park));
-  slider.addEventListener("input", () => { stop(); state.minutes = Number(slider.value); apply(); });
-
-  const fromChart = (e) => {
-    const r = svg.getBoundingClientRect();
-    const m = X0 + Math.round((((e.clientX - r.left - L) / (r.width - L)) * (X1 - X0)) / 15) * 15;
-    state.minutes = Math.min(X1, Math.max(X0, m));
-    apply();
-  };
-  svg.addEventListener("pointerdown", (e) => { stop(); svg.setPointerCapture(e.pointerId); fromChart(e); });
-  svg.addEventListener("pointermove", (e) => svg.hasPointerCapture(e.pointerId) && fromChart(e));
-
-  const play = document.querySelector("#play");
-  let timer = null;
-  function stop() { if (timer) { clearInterval(timer); timer = null; play.textContent = "Play"; } }
-  play.addEventListener("click", () => {
-    if (timer) return stop();
-    state.minutes = X0 - 15;
-    play.textContent = "Pause";
-    timer = setInterval(() => {
-      state.minutes += 15;
-      apply();
-      if (state.minutes >= X1) stop();
-    }, 450);
-  });
-
-  // The sign reads from one start: a town from the list, or a place selected on the map.
-  let asked = 0;
-  async function setFrom(point, name) {
-    const ask = ++asked;
-    fromEl.value = name ?? "point";
-    fromEl.options[fromEl.options.length - 1].hidden = !!name;
+  const townAt = (name) => townPoint[name];
+  map.mark = async () => {
+    const p = state.from.point ?? townAt(state.from.name) ?? (await projection()).execute(new Point({ longitude: state.from.ll[0], latitude: state.from.ll[1] }), sr);
     fromLayer.removeAll();
-    fromLayer.add(new Graphic({
-      geometry: point,
-      symbol: { type: "simple-marker", size: 15, color: [255, 209, 102, 0.95], outline: { color: INK, width: 2 } },
-    }));
-    fromTag.point = name ? null : point;
+    fromLayer.add(new Graphic({ geometry: p, symbol: { type: "simple-marker", size: 15, color: [255, 209, 102, 0.95], outline: { color: INK, width: 2 } } }));
+    fromTag.point = LABELLED.includes(state.from.name) ? null : p;
     place();
-    for (const p of PARKS) {
-      const a = parkPoint[p];
-      let deg = (Math.atan2(a.x - point.x, a.y - point.y) * 180) / Math.PI;
-      // Turn the arrow the short way round from where it points now.
-      const now = Number(rows[p].g.dataset.deg ?? deg);
-      while (deg - now > 180) deg -= 360;
-      while (now - deg > 180) deg += 360;
-      rows[p].g.dataset.deg = deg;
-      rows[p].g.style.transform = `rotate(${deg.toFixed(1)}deg)`;
-    }
-    const { features } = await bands.queryFeatures({
-      geometry: point, spatialRelationship: "intersects", outFields: ["park", "minutes"], returnGeometry: false,
-    });
-    if (ask !== asked) return;
-    const times = Object.fromEntries(PARKS.map((p) => [p, null]));
+  };
+  map.timesAt = async (ll, point) => {
+    const p = point ?? (await projection()).execute(new Point({ longitude: ll[0], latitude: ll[1] }), sr);
+    const { features } = await bands.queryFeatures({ geometry: p, spatialRelationship: "intersects", outFields: ["park", "minutes"], returnGeometry: false });
+    const times = Object.fromEntries(PARKS.map((k) => [k, null]));
     for (const f of features) {
       const { park, minutes } = f.attributes;
       if (times[park] === null || minutes < times[park]) times[park] = minutes;
     }
-    times[""] = PARKS.some((p) => times[p] === null) ? null : Math.max(...PARKS.map((p) => times[p]));
-    state.times = times;
-    apply();
-  }
-  fromEl.addEventListener("change", () => fromEl.value !== "point" && setFrom(townPoint[fromEl.value], fromEl.value));
+    return times;
+  };
 
   // Select a park's visitor center to map that park. Select anywhere else to read the sign from there.
   view.on("click", async (event) => {
-    const hit = await view.hitTest(event, { include: [origins] });
+    const hit = await view.hitTest(event, { include: [originLayer] });
     if (hit.results.length) return choose(hit.results[0].graphic.attributes.park);
     const p = event.mapPoint;
-    const town = TOWNS.map(([n]) => [n, Math.hypot(townPoint[n].x - p.x, townPoint[n].y - p.y)]).sort((a, b) => a[1] - b[1])[0];
-    if (town[1] < 9000) setFrom(townPoint[town[0]], town[0]);
-    else setFrom(p, null);
+    const near = Object.entries(townPoint).map(([n, q]) => [n, Math.hypot(q.x - p.x, q.y - p.y)]).sort((a, b) => a[1] - b[1])[0];
+    if (near[1] < 6000) return setTown(near[0]);
+    const ll = (await projection()).execute(p, new SpatialReference({ wkid: 4326 }));
+    setPlace([ll.x, ll.y], "Selected place", p);
   });
 
-  setFrom(townPoint["Salt Lake City"], "Salt Lake City");
-  [lv.counts, lv.bands] = await Promise.all([view.whenLayerView(counts), view.whenLayerView(bands)]);
+  const [lvCounts, lvBands] = await Promise.all([view.whenLayerView(counts), view.whenLayerView(bands)]);
+  performance.mark("d13-layers");
+  Object.assign(map, { counts, bands, lv: { counts: lvCounts, bands: lvBands }, ready: true });
+  readyResolve();
+  map.mark();
   counts.visible = !state.park;
   bands.visible = !!state.park;
   apply();
-  reactiveUtils.when(() => !view.updating, () => (document.querySelector("#loading").hidden = true), { once: true });
+  reactiveUtils.when(() => !view.updating, () => { loadingEl.hidden = true; performance.mark("d13-drawn"); }, { once: true });
+  } catch (err) {
+    loadingEl.hidden = false;
+    loadingEl.textContent = "The map did not load. Reload the page.";
+    throw err;
+  }
 })();
 </script>
 </body>
