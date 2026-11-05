@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>UGEM Hub</title>
       <link>https://buschbrian.github.io/notes/ugem-hub/</link>
@@ -141,6 +141,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/wasatch-front-walk-to-transit/</guid>
       <description>More than half the Wasatch Front lives within a 10-minute walk of a bus or train stop. About 21% live that close to service every 15 minutes or better at weekday midday, UTA's standard for frequent service.</description>
       <pubDate>Sat, 07 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Nine in Ten Utahns Live on About 1% of the Land</title>
+      <link>https://buschbrian.github.io/notes/utah-urban-and-rural/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-urban-and-rural/</guid>
+      <description>In the 2020 Census, 89.8% of Utahns lived in the state's 25 urban areas. Those areas cover 1.1% of its land. The rest of Utah held 10.2% of residents on 98.9% of the land.</description>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>October Precipitation in the Four Corners</title>

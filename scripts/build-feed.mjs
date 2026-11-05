@@ -31,6 +31,7 @@ const ORDER = [
   "canyon-overlook-trail-viewshed",
   "holmes-zion-panorama",
   "wasatch-front-walk-to-transit",
+  "utah-urban-and-rural",
   "four-corners-october-precipitation",
   "utah-dark-sky-points",
   "utah-scenic-byways",
