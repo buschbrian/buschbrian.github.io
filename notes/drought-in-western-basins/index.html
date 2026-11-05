@@ -34,7 +34,7 @@
   "description": "The U.S. Drought Monitor's October 27, 2026 map across 75 western drainage basins, then ten years of weekly maps as each basin's share of land in severe drought or worse.",
   "image": "https://buschbrian.github.io/assets/images/drought-in-western-basins.jpg",
   "datePublished": "2026-11-03",
-  "dateModified": "2026-11-03",
+  "dateModified": "2026-11-04",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://buschbrian.github.io/notes/drought-in-western-basins/"
@@ -83,7 +83,7 @@
         </figure>
         <div class="post-content">
           <h2>The polygons are the data</h2>
-          <p>The U.S. Drought Monitor is a weekly map. Its authors draw the drought lines by hand. They combine many indicators with local reports. The classes go from D0, abnormally dry, to D4, exceptional drought.</p>
+          <p>The U.S. Drought Monitor is a weekly map. Its authors draw the drought lines by hand. They combine many indicators with local reports. D0 means abnormally dry conditions. Drought begins at D1, moderate drought, and extends to D4, exceptional drought.</p>
           <p>The map here clips those polygons to 75 drainage basins. A drainage basin is land that drains toward a common outlet. These are six-digit hydrologic units, called HUC-6 basins, from the USGS Watershed Boundary Dataset.</p>
           <figure class="post-hero-image">
             <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-classes-480.webp 480w, /assets/images/r/drought-in-western-basins-classes-960.webp 960w, /assets/images/r/drought-in-western-basins-classes-1440.webp 1440w, /assets/images/r/drought-in-western-basins-classes-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/drought-in-western-basins-classes.jpg" alt="U.S. Drought Monitor classes for October 27, 2026, clipped to 75 western drainage basins. Faint state lines and labels give context. Extreme drought covers parts of central Oregon, southern Idaho and Utah. Twenty-one of 75 basins have some land in extreme or exceptional drought." width="2160" height="2160" loading="lazy"></picture>
@@ -91,14 +91,14 @@
           </figure>
           <p>On October 27, 21 of the 75 basins had some land in extreme or exceptional drought, D3 or D4.</p>
           <h2>Ten years, basin by basin</h2>
-          <p>The second scene changes the measure. Each basin gets the share of its land at D2, severe drought, or worse. The scene replays every weekly map from November 2016 to October 2026.</p>
-          <p>A share of land is a fairer measure than the worst class present. One small patch of D4 does not make a large basin look exceptional.</p>
+          <p>The second scene changes the measure. Each basin gets the share of its land at D2, severe drought, or worse. The scene replays the available weekly maps from November 2016 through October 2026.</p>
+          <p>This measure shows how much of each basin is affected. A small D4 patch does not set the color for the whole basin.</p>
           <figure class="post-hero-image">
             <picture><source type="image/webp" srcset="/assets/images/r/drought-in-western-basins-2021-480.webp 480w, /assets/images/r/drought-in-western-basins-2021-960.webp 960w, /assets/images/r/drought-in-western-basins-2021-1440.webp 1440w, /assets/images/r/drought-in-western-basins-2021-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/drought-in-western-basins-2021.jpg" alt="Western drainage basins on July 27, 2021, colored by their share of land at D2 or worse. Almost every basin is at 75% or more. Across all 75 basins the share is 88%." width="2160" height="2160" loading="lazy"></picture>
-            <figcaption>July 27, 2021, the highest week in this record. The small chart traces the West-wide share. <a href="/assets/images/drought-in-western-basins-2021.jpg">Open the still</a>.</figcaption>
+            <figcaption>July 27, 2021, the highest week in this record. The small chart traces the combined share across the 75 basins. <a href="/assets/images/drought-in-western-basins-2021.jpg">Open the still</a>.</figcaption>
           </figure>
-          <p>Across all 75 basins, the highest share in this record was 88%, on July 27, 2021. The West-wide share weights each basin by its U.S. land area.</p>
-          <h2>The fall eased it, mostly</h2>
+          <p>Across all 75 basins, the highest share in this record was 88%, on July 27, 2021. The combined share weights each basin by its U.S. land area.</p>
+          <h2>Less land in severe drought this fall</h2>
           <p>In 2026 the share reached 47% on August 4. By October 27 it was 23%.</p>
           <p>From October 20 to October 27, 19 basins had less land at D2 or worse. None had more. The other 56 did not change.</p>
           <figure class="post-hero-image">
@@ -118,8 +118,8 @@
             <li>The drought polygons come from the U.S. Drought Monitor, through a fixed snapshot of the Western Water Dashboard’s drought data.</li>
             <li>The basins are the 75 HUC-6 units in hydrologic regions 14 through 18, from the USGS Watershed Boundary Dataset. Only U.S. land is colored.</li>
             <li>The maps use the Contiguous USA Albers equal-area projection (EPSG:5070), so basin areas compare fairly.</li>
-            <li>Each basin’s value is its share of land at D2 or worse. The West-wide share weights each basin by its U.S. land area.</li>
-            <li>Two weeks in February 2026 are missing from the Drought Monitor archive. The maps leave them missing.</li>
+            <li>Each basin’s value is its share of land at D2 or worse. The combined share weights each basin by its U.S. land area.</li>
+            <li>The data snapshot lacks February 17 and 24, 2026. The animation skips those dates.</li>
           </ul>
           <h2>Data and credit</h2>
           <p>The National Drought Mitigation Center, USDA and NOAA produce the U.S. Drought Monitor. USGS provides the Watershed Boundary Dataset. The state lines come from Natural Earth. The Western Water Dashboard measures the share of each basin in each class.</p>

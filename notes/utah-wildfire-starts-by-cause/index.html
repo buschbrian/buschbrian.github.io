@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="41,117 Utah wildfire records from 1992 to 2024, split into natural and human causes, mapped as dots, as kernel density, and as one combined surface.">
+    <meta name="description" content="37,882 Utah wildfire records with known causes, 1992–2024. Maps compare natural and human-caused starts as points and density surfaces.">
     <meta name="theme-color" content="#ffffff">
     <title>Utah Wildfire Starts by Cause | Brian Busch, GISP</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/utah-wildfire-starts-by-cause/">
     <meta property="og:title" content="Utah Wildfire Starts by Cause | Brian Busch, GISP">
-    <meta property="og:description" content="41,117 Utah wildfire records from 1992 to 2024, split into natural and human causes, mapped as dots, as kernel density, and as one combined surface.">
+    <meta property="og:description" content="37,882 Utah wildfire records with known causes, 1992–2024. Maps compare natural and human-caused starts as points and density surfaces.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/utah-wildfire-starts-by-cause.jpg">
     <meta property="og:image:alt" content="Natural and human-caused wildfire density in Utah, 1992–2024, on a common scale over dark shaded relief. Natural starts spread across the plateaus and mountains. Human-caused starts follow the Wasatch Front, I-15 and towns. Each cause&#39;s densest tenth of the state holds 46% of starts from natural causes and 60% of human-caused starts.">
     <meta property="og:image:width" content="2160">
@@ -31,7 +31,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Utah Wildfire Starts by Cause",
-  "description": "41,117 Utah wildfire records from 1992 to 2024, split into natural and human causes, mapped as dots, as kernel density, and as one combined surface.",
+  "description": "37,882 Utah wildfire records with known causes, 1992–2024. Maps compare natural and human-caused starts as points and density surfaces.",
   "image": "https://buschbrian.github.io/assets/images/utah-wildfire-starts-by-cause.jpg",
   "datePublished": "2026-11-04",
   "dateModified": "2026-11-04",
@@ -82,16 +82,16 @@
           <figcaption id="map-caption"><a href="/assets/video/utah-wildfire-starts-by-cause.mp4" download>Download the page video</a>. <a href="/assets/images/utah-wildfire-starts-by-cause.jpg">Open the density still</a>.</figcaption>
         </figure>
         <div class="post-content">
-          <h2>Every recorded start</h2>
+          <h2>Recorded wildfire starts</h2>
           <p>The Fire Program Analysis fire-occurrence database (FPA FOD) records wildfire starts across the United States. Its 7th edition covers 1992 to 2024. Inside Utah's boundary it holds 41,117 records.</p>
           <p>Natural causes account for 54% of those records. People caused 38%. The other 8% have no cause recorded, so neither panel shows them. Across 75 western drainage basins, natural causes account for 32% of starts. Utah reverses the western pattern.</p>
           <figure class="post-hero-image">
             <picture><source type="image/webp" srcset="/assets/images/r/utah-wildfire-starts-by-cause-dots-480.webp 480w, /assets/images/r/utah-wildfire-starts-by-cause-dots-960.webp 960w, /assets/images/r/utah-wildfire-starts-by-cause-dots-1440.webp 1440w, /assets/images/r/utah-wildfire-starts-by-cause-dots-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/utah-wildfire-starts-by-cause-dots.jpg" alt="Utah wildfire records, 1992–2024, as one dot each, with natural causes in yellow and human causes in red. The two panels draw 37,882 records with assigned causes. Of all 41,117 records, 54% have natural causes, 38% human causes and 8% no assigned cause." width="2160" height="2160" loading="lazy"></picture>
             <figcaption>One dot for each start with a known cause, 37,882 in all. <a href="/assets/images/utah-wildfire-starts-by-cause-dots.jpg">Open the still</a>.</figcaption>
           </figure>
-          <p>The database calls the first group Natural. That group is broader than lightning, so this page does not call it lightning.</p>
+          <p>The source's Natural category includes more than lightning.</p>
           <h2>From dots to density</h2>
-          <p>Dots stack up where starts are common. A density surface shows the same pattern more clearly. Kernel density spreads each start over the land around it. Here each start spreads with a Gaussian kernel, 5 km wide, on a 1 km grid.</p>
+          <p>Dots stack up where starts are common. Density smoothing spreads each recorded start over nearby land. Nearby starts contribute most. The stills use a Gaussian kernel with a 5 km standard deviation, calculated on a 1 km grid.</p>
           <p>Both causes use one log scale, in starts per 1,000 km² per year. The colors compare directly across the two panels.</p>
           <figure class="post-hero-image">
             <picture><source type="image/webp" srcset="/assets/images/r/utah-wildfire-starts-by-cause-480.webp 480w, /assets/images/r/utah-wildfire-starts-by-cause-960.webp 960w, /assets/images/r/utah-wildfire-starts-by-cause-1440.webp 1440w, /assets/images/r/utah-wildfire-starts-by-cause-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/utah-wildfire-starts-by-cause.jpg" alt="Natural and human-caused wildfire density in Utah, 1992–2024, on a common scale over dark shaded relief. Natural starts spread across the plateaus and mountains. Human-caused starts follow the Wasatch Front, I-15 and towns. Each cause's densest tenth of the state holds 46% of starts from natural causes and 60% of human-caused starts." width="2160" height="2160" loading="lazy"></picture>
@@ -105,7 +105,7 @@
             <figcaption>Both surfaces on one map, with the overlap outlined. <a href="/assets/images/utah-wildfire-starts-by-cause-overlap.jpg">Open the still</a>.</figcaption>
           </figure>
           <p>Both surfaces reach 10 starts per 1,000 km² per year on 633 km², 0.3% of Utah. Natural starts alone reach it on 6.0% of the state. Human-caused starts alone reach it on 4.4%.</p>
-          <p>62% of natural starts land where human-caused starts are rare, under 3 per 1,000 km² per year. Natural starts also peak harder in summer. July and August hold 71% of natural starts and 41% of human-caused starts.</p>
+          <p>62% of natural starts land where human-caused starts are rare, under 3 per 1,000 km² per year. July and August hold 71% of natural starts and 41% of human-caused starts.</p>
           <h2>Explore the starts</h2>
           <p>The interactive map draws the same 37,882 starts with a known cause. Filter them by cause and by year. Show them as clusters, as a density surface, or as single dots.</p>
           <figure class="post-hero-image post-embed">
@@ -125,10 +125,10 @@
             <li>The fire records are FPA FOD, 7th edition, clipped to the UGRC Utah boundary.</li>
             <li>The cause groups use the database's cause classification: natural, human, or missing.</li>
             <li>The maps use an Albers equal-area projection centered on Utah, so areas compare fairly.</li>
-            <li>Density uses a Gaussian kernel with a 5 km bandwidth on a 1 km grid, divided by the 33 years of record.</li>
+            <li>Density uses a Gaussian kernel with a 5 km standard deviation on a 1 km grid, divided by the 33 years of record.</li>
             <li>Each cause's densest tenth is measured on its own surface. The two tenths are different areas.</li>
             <li>The relief is a multi-direction hillshade from AWS Terrain Tiles at zoom 9.</li>
-            <li>The interactive map draws density in the browser with a 14 km kernel that ends at its edge. This kernel spreads each start as much as the 5 km Gaussian does. The land above each density threshold is within 6% of the stills.</li>
+            <li>The interactive map uses a different kernel with a radius of about 14 km. It is calibrated to approximate the stills. The two methods can produce different local values.</li>
           </ul>
           <h2>Data notes</h2>
           <ul>
