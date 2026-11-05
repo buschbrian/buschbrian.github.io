@@ -45,13 +45,13 @@ html, body {
   background: var(--bg);
   color: var(--text);
   font: 14px/1.43 var(--font);
-  font-feature-settings: "tnum" 1, "cv11" 1;
   -webkit-font-smoothing: antialiased;
 }
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 button, input { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+output, .row .t, .meter .v, .chart text, .axis text, .share h2 b, .labels-row, .scale .ticks, .listbox .pop { font-variant-numeric: tabular-nums; }
 
 .app { position: relative; height: 100%; overflow: hidden; }
 .stage { position: absolute; inset: 0; }
@@ -129,6 +129,29 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 .icon-btn:hover { border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.07); }
 .icon-btn svg { width: 16px; height: 16px; }
 .from-msg { margin: 8px 0 0; font-size: 12px; color: var(--accent); }
+.listbox {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  max-height: 272px;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+  background: #151a22;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  scrollbar-width: thin;
+}
+.listbox[hidden] { display: none; }
+.listbox li { height: 32px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 10px; border-radius: 6px; color: #c3cad3; cursor: pointer; }
+.listbox li b { color: var(--text); font-weight: 600; }
+.listbox li[aria-selected="true"] { background: rgba(255, 255, 255, 0.08); color: var(--text); }
+.listbox li[aria-disabled="true"] { color: var(--faint); cursor: default; }
+.listbox .pop { font-size: 11px; color: var(--faint); }
 .from-msg:empty { display: none; }
 
 .rows { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid var(--line); }
@@ -193,10 +216,6 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 .scale .ticks { position: relative; height: 16px; margin-top: 4px; font-size: 11px; color: var(--muted); }
 .scale .ticks span { position: absolute; top: 0; transform: translateX(-50%); }
 .scale[hidden] { display: none; }
-.symbols { list-style: none; margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; font-size: 12px; color: #c3cad3; }
-.symbols li { display: grid; grid-template-columns: 40px 1fr; gap: 8px; align-items: center; height: 16px; }
-.symbols li > span:first-child { display: flex; justify-content: center; }
-.symbols svg { width: 32px; height: 16px; margin: 0 4px; overflow: visible; }
 
 /* Time dock, bottom of the map. */
 .dock {
@@ -225,30 +244,38 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 }
 #play:hover { border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.07); }
 #play svg { width: 12px; height: 12px; }
-.chart { width: 100%; height: 84px; display: block; margin-top: 8px; overflow: visible; touch-action: pan-y; cursor: ew-resize; }
+.chart { width: 100%; height: 64px; display: block; margin-top: 8px; overflow: visible; touch-action: pan-y; cursor: ew-resize; }
+.axis { width: 100%; height: 22px; display: block; overflow: visible; }
+.axis text { font: 500 11px var(--font); fill: var(--muted); }
+.axis .minor { stroke: rgba(255, 255, 255, 0.16); }
+.axis .major { stroke: rgba(255, 255, 255, 0.4); }
+.chart .hour { stroke: rgba(255, 255, 255, 0.05); }
 .chart text { font: 500 11px var(--font); fill: var(--muted); }
 .chart .grid { stroke: var(--line); }
 .chart .tick { stroke: var(--line-2); }
-.chart .cursor { stroke: var(--text); stroke-width: 1.5; }
-.chart .cursor-cap { fill: var(--text); }
+.chart .cursor { stroke: var(--accent); stroke-width: 1.5; }
+.chart .cursor-cap { fill: var(--accent); }
 
-/* Slider: a flat track whose filled part ends at the handle. The thumb is 16 px; the chart's x-axis
-   runs from 8 px inside the track's left end to 8 px inside its right end, so they line up. */
+/* Slider: the time control. A 6 px track fills in the accent up to a 20 px handle. The chart and the
+   axis below run from 10 px inside the track's left end to 10 px inside its right end, so all three line up. */
 #minutes {
   -webkit-appearance: none;
   appearance: none;
   display: block;
   width: calc(100% - 36px);
-  height: 24px;
-  margin: 0 0 0 36px;
+  height: 28px;
+  margin: 4px 0 0 36px;
   background: transparent;
   cursor: pointer;
 }
-#minutes::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--text) var(--fill, 85%), rgba(255, 255, 255, 0.14) var(--fill, 85%)); }
-#minutes::-moz-range-track { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.14); }
-#minutes::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--text); }
-#minutes::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border-radius: 50%; background: var(--text); border: 3px solid var(--bg); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6); }
-#minutes::-moz-range-thumb { width: 10px; height: 10px; border-radius: 50%; background: var(--text); border: 3px solid var(--bg); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6); }
+#minutes::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--accent) var(--fill, 85%), rgba(255, 255, 255, 0.14) var(--fill, 85%)); }
+#minutes::-moz-range-track { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); }
+#minutes::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--accent); }
+#minutes::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255, 122, 89, 0.35), 0 2px 6px rgba(0, 0, 0, 0.5); transition: box-shadow 0.15s; }
+#minutes::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255, 122, 89, 0.35), 0 2px 6px rgba(0, 0, 0, 0.5); }
+#minutes:hover::-webkit-slider-thumb, #minutes:active::-webkit-slider-thumb { box-shadow: 0 0 0 7px rgba(255, 122, 89, 0.3), 0 2px 6px rgba(0, 0, 0, 0.5); }
+#minutes:focus-visible { outline: none; }
+#minutes:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent); }
 
 /* Map labels, drawn as HTML over the map. */
 .labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
@@ -267,7 +294,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 .labels span[hidden] { display: none; }
 .labels .park { font-size: 13px; font-weight: 600; color: #bff0d3; }
 .labels .from { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
-.labels .route, .symbols .route {
+.labels .route {
   height: 16px;
   padding: 0 5px;
   border-radius: 8px;
@@ -280,7 +307,6 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   text-shadow: none;
 }
 .labels .route.i { border-color: rgba(255, 255, 255, 0.6); }
-.symbols .route { display: inline-block; white-space: nowrap; }
 
 @media (min-width: 761px) and (max-width: 1100px) {
   :root { --side: 320px; --gap: 12px; }
@@ -314,7 +340,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   </div>
 
   <details class="mapkey card" id="mapkey" open>
-    <summary class="card-title">Map key</summary>
+    <summary class="card-title">Key</summary>
     <div class="scale" id="count-key">
       <p class="card-title">Parks in reach</p>
       <div class="steps" id="steps" aria-hidden="true"></div>
@@ -325,7 +351,6 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       <div class="ramp" id="ramp" aria-hidden="true"></div>
       <div class="ticks" id="ticks" aria-hidden="true"></div>
     </div>
-    <ul class="symbols" id="symbols"></ul>
   </details>
 
   <aside class="side" aria-label="Drive times">
@@ -340,13 +365,14 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
       <div class="from-row">
         <div class="field">
           <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          <input type="text" id="from" list="towns" autocomplete="off" spellcheck="false" placeholder="Type a Utah town" value="Salt Lake City" aria-describedby="from-msg">
+          <input type="text" id="from" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="town-list" autocomplete="off" spellcheck="false" placeholder="Type a Utah town" value="Salt Lake City" aria-describedby="from-msg">
+          <!-- [html-validate-disable-next prefer-native-element -- a select cannot filter 96 towns as the reader types] -->
+          <ul class="listbox" id="town-list" role="listbox" aria-label="Utah cities and towns" hidden></ul>
         </div>
         <button type="button" class="icon-btn" id="locate" aria-label="Use my location" title="Use my location">
           <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><path d="M8 .8v2.4M8 12.8v2.4M.8 8h2.4M12.8 8h2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
       </div>
-      <datalist id="towns"></datalist>
       <p class="from-msg" id="from-msg" aria-live="polite"></p>
       <ul class="rows" id="rows" role="group" aria-label="Map one park, or all five"></ul>
       <p class="hint">Rounded up to the next 15 minutes. Grey times are longer than the slider. Select a park to map it.</p>
@@ -378,6 +404,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     </div>
     <svg class="chart" id="chart" role="img" aria-label="Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes."></svg>
     <input type="range" id="minutes" min="15" max="300" step="15" value="270" aria-valuetext="4 hours 30 minutes">
+    <svg class="axis" id="axis" aria-hidden="true"></svg>
   </section>
 </main>
 <script>
@@ -425,18 +452,6 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   document.querySelector("#ramp").style.background = `linear-gradient(90deg, ${NEAR.join(", ")})`;
   document.querySelector("#ticks").innerHTML = [1, 2, 3, 4, 5]
     .map((h) => `<span style="left:${((h * 60 - X0) / (X1 - X0)) * 100}%">${h} h</span>`).join("");
-  const sample = (inner) => `<svg viewBox="0 0 32 16" aria-hidden="true">${inner}</svg>`;
-  document.querySelector("#symbols").innerHTML = [
-    [sample('<line x1="1" y1="8" x2="31" y2="8" stroke="rgba(220,228,236,.85)" stroke-width="1.4"/><line x1="1" y1="12.5" x2="31" y2="12.5" stroke="rgba(200,208,218,.6)" stroke-width=".9"/>'), "Interstate, US highway"],
-    ['<span class="route">I-15</span>', "Route number"],
-    [sample('<rect x="1" y="2" width="30" height="12" rx="2" fill="#16304a" stroke="#2c5a80"/><path d="M1 11 Q12 5 31 8" fill="none" stroke="#3d77a6" stroke-width="1.2"/>'), "Lake, river"],
-    [sample(`<rect x="1" y="2" width="30" height="12" rx="2" fill="${PARK}" fill-opacity=".12" stroke="${PARK}" stroke-width="1.2"/>`), "National park"],
-    [sample(`<circle cx="16" cy="8" r="4.5" fill="${PARK}" stroke="${BG}" stroke-width="2"/>`), "Main visitor center"],
-    [sample(`<circle cx="10" cy="8" r="2.2" fill="${TEXT}"/><circle cx="22" cy="8" r="3.4" fill="${BG}" stroke="${TEXT}" stroke-width="1.6"/>`), "Town, state capital"],
-    [sample(`<circle cx="16" cy="8" r="5" fill="${ACCENT}" stroke="${TEXT}" stroke-width="1.6"/>`), "Start point"],
-    [sample('<line x1="1" y1="8" x2="31" y2="8" stroke="rgba(255,255,255,.55)" stroke-width="1" stroke-dasharray="5 3"/>'), "Utah state line"],
-  ].map(([icon, text]) => `<li>${icon.startsWith("<span") ? `<span>${icon}</span>` : icon}<span>${text}</span></li>`).join("");
-
   // From card: one row for each park (bearing arrow, name, time) and an "All five" row.
   const rowsEl = document.querySelector("#rows");
   const rows = {};
@@ -457,7 +472,6 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   }
   const fromEl = document.querySelector("#from");
   const fromMsg = document.querySelector("#from-msg");
-  document.querySelector("#towns").innerHTML = townList.map(([n]) => `<option value="${n}"></option>`).join("");
 
   // Share card: five fixed lines. Each keeps its meaning while the time moves; only the values change.
   const meters = [];
@@ -481,7 +495,8 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
 
   // Chart: smooth monotone curves. The x-axis matches the slider's handle travel exactly.
   const svg = document.querySelector("#chart");
-  const L = 36, THUMB = 16, H = 60;
+  const L = 36, THUMB = 20, H = 60;
+  const axis = document.querySelector("#axis");
   let W = 600;
   const x = (m) => L + THUMB / 2 + ((m - X0) / (X1 - X0)) * (W - L - THUMB);
   const y = (v) => 4 + (1 - v) * (H - 4);
@@ -505,7 +520,7 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
   let cursor, cap;
   function draw() {
     W = Math.max(svg.clientWidth, 240);
-    svg.setAttribute("viewBox", `0 0 ${W} 84`);
+    svg.setAttribute("viewBox", `0 0 ${W} 64`);
     svg.replaceChildren();
     for (const v of [0, 0.5, 1]) {
       make(svg, "line", { class: "grid", x1: L, x2: W, y1: y(v), y2: y(v) });
@@ -517,9 +532,14 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     } else {
       for (let k = 1; k <= 5; k++) area(cut.map((m) => reach.share_at_least_k[m][k - 1]), K[k - 1]);
     }
-    for (let h = 1; h <= 5; h++) {
-      make(svg, "line", { class: "tick", x1: x(h * 60), x2: x(h * 60), y1: H, y2: H + 4 });
-      make(svg, "text", { x: x(h * 60), y: H + 18, "text-anchor": "middle" }).textContent = `${h} h`;
+    for (let h = 1; h <= 5; h++) make(svg, "line", { class: "hour", x1: x(h * 60), x2: x(h * 60), y1: 4, y2: H });
+    // Axis under the slider: a tick every 15 minutes, a labelled one every hour.
+    axis.setAttribute("viewBox", `0 0 ${W} 22`);
+    axis.replaceChildren();
+    for (let m = X0; m <= X1; m += 15) {
+      const hour = m % 60 === 0;
+      make(axis, "line", { class: hour ? "major" : "minor", x1: x(m), x2: x(m), y1: 0, y2: hour ? 6 : 3 });
+      if (hour) make(axis, "text", { x: x(m), y: 19, "text-anchor": "middle" }).textContent = `${m / 60} h`;
     }
     cursor = make(svg, "line", { class: "cursor", y1: 0, y2: H, x1: x(state.minutes), x2: x(state.minutes) });
     cap = make(svg, "circle", { class: "cursor-cap", r: 3, cx: x(state.minutes), cy: 0 });
@@ -605,15 +625,77 @@ arcgis-map { display: block; height: 100%; background: var(--bg); }
     const times = await map.timesAt(ll, point);
     if (ask === asked) showTimes(times, ll);
   }
-  const findTown = (v) => townList.find(([n]) => n.toLowerCase() === v.trim().toLowerCase())?.[0];
-  fromEl.addEventListener("input", () => { const n = findTown(fromEl.value); if (n) setTown(n); });
-  fromEl.addEventListener("change", () => {
-    if (findTown(fromEl.value)) return;
-    if (fromEl.value.trim()) fromMsg.textContent = "Pick a Utah city or town from the list.";
-    fromEl.value = state.from?.name ?? "";
+  // Town picker. Matches rank: name starts with the text, then a word starts with it, then it appears
+  // anywhere; ties go to the larger town. An empty box lists the largest towns.
+  const listEl = document.querySelector("#town-list");
+  const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const popText = (p) => (p >= 1e4 ? `${Math.round(p / 1e3)}k` : p >= 1e3 ? `${(p / 1e3).toFixed(1)}k` : "");
+  let matches = [], active = -1;
+  function search(q) {
+    q = q.trim().toLowerCase();
+    const scored = townList.map(([n, , , p]) => {
+      const low = n.toLowerCase();
+      const score = !q ? 0 : low.startsWith(q) ? 0 : low.split(/[\s.-]+/).some((w) => w.startsWith(q)) ? 1 : low.includes(q) ? 2 : 9;
+      return { n, p, score };
+    }).filter((t) => t.score < 9);
+    return scored.sort((a, b) => a.score - b.score || b.p - a.p).slice(0, 8);
+  }
+  function renderList(q) {
+    matches = search(q);
+    active = matches.length ? 0 : -1;
+    const ql = q.trim().toLowerCase();
+    const mark = (n) => {
+      const i = ql ? n.toLowerCase().indexOf(ql) : -1;
+      return i < 0 ? esc(n) : `${esc(n.slice(0, i))}<b>${esc(n.slice(i, i + ql.length))}</b>${esc(n.slice(i + ql.length))}`;
+    };
+    listEl.innerHTML = matches.length
+      ? matches.map((t, i) => `<li role="option" id="town-opt-${i}" aria-selected="${i === active}" data-name="${esc(t.n)}"><span>${mark(t.n)}</span><span class="pop">${popText(t.p)}</span></li>`).join("")
+      : '<li role="option" aria-disabled="true" aria-selected="false">No Utah city or town matches</li>';
+    listEl.hidden = false;
+    fromEl.setAttribute("aria-expanded", "true");
+    highlight();
+  }
+  function highlight() {
+    listEl.querySelectorAll("[data-name]").forEach((li, i) => li.setAttribute("aria-selected", String(i === active)));
+    const li = listEl.querySelector(`#town-opt-${active}`);
+    if (li) { fromEl.setAttribute("aria-activedescendant", li.id); li.scrollIntoView({ block: "nearest" }); }
+    else fromEl.removeAttribute("aria-activedescendant");
+  }
+  function closeList(revert) {
+    listEl.hidden = true;
+    fromEl.setAttribute("aria-expanded", "false");
+    fromEl.removeAttribute("aria-activedescendant");
+    if (revert) fromEl.value = state.from?.name ?? "";
+  }
+  function pick(name) {
+    closeList(false);
+    fromMsg.textContent = "";
+    setTown(name);
+    fromEl.blur();
+  }
+  fromEl.addEventListener("focus", () => { fromEl.select(); renderList(""); });
+  fromEl.addEventListener("input", () => renderList(fromEl.value));
+  fromEl.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      if (listEl.hidden) return renderList(fromEl.value);
+      if (matches.length) active = (active + (e.key === "ArrowDown" ? 1 : -1) + matches.length) % matches.length;
+      highlight();
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (active >= 0 && matches[active]) pick(matches[active].n);
+      else fromMsg.textContent = "Pick a Utah city or town from the list.";
+    } else if (e.key === "Escape") {
+      closeList(true);
+      fromEl.blur();
+    }
   });
-  fromEl.addEventListener("keydown", (e) => { if (e.key === "Escape") { fromEl.value = state.from?.name ?? ""; fromEl.blur(); } });
-  fromEl.addEventListener("focus", () => fromEl.select());
+  fromEl.addEventListener("blur", () => closeList(true));
+  listEl.addEventListener("mousedown", (e) => {
+    e.preventDefault();  // keep focus in the box until the pick is made
+    const li = e.target.closest("[data-name]");
+    if (li) pick(li.dataset.name);
+  });
   document.querySelector("#locate").addEventListener("click", () => {
     if (!navigator.geolocation) return (fromMsg.textContent = "This browser cannot share a location.");
     fromMsg.textContent = "Finding your location…";
