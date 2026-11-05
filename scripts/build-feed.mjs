@@ -28,6 +28,7 @@ const ORDER = [
   "two-lakes-two-river-systems",
   "drought-in-western-basins",
   "utah-wildfire-starts-by-cause",
+  "canyon-overlook-trail-viewshed",
   "four-corners-october-precipitation",
   "utah-dark-sky-points",
   "utah-scenic-byways",
