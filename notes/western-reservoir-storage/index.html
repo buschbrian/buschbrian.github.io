@@ -34,7 +34,7 @@
   "description": "Monthly storage at 405 western reservoirs, replayed over the Western Water Dashboard’s ArcGIS basemap.",
   "image": "https://buschbrian.github.io/assets/images/western-reservoir-storage.jpg",
   "datePublished": "2026-11-01",
-  "dateModified": "2026-11-04",
+  "dateModified": "2026-11-05",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://buschbrian.github.io/notes/western-reservoir-storage/"
@@ -293,6 +293,194 @@
           <p>Reservoir readings from nine public providers, through the Western Water Dashboard. <a href="https://github.com/buschbrian/western-water-dashboard/blob/b5627547b0d7fb4daceffd4b5a7fc8cfe69a32d3/reservoirs.json">Read the source data</a>.</p>
           <p>Esri provides the Oceans basemap and the ArcGIS Maps SDK for JavaScript. The map retains the basemap’s provider attribution.</p>
           <p><a href="https://buschbrian.github.io/western-water-dashboard/?state=all">Open the reservoir map</a>.</p>
+          <section class="challenge-bonus" id="day-1-bonus" aria-labelledby="day-1-bonus-title">
+            <p class="eyebrow">Day 1 bonus</p>
+            <h2 id="day-1-bonus-title">October Precipitation in the Four Corners</h2>
+            <figure class="post-hero-image post-map-animation">
+              <video controls loop muted playsinline preload="none" width="1080" height="1080"
+                poster="/assets/images/four-corners-october-precipitation.jpg" aria-label="October 2026 precipitation at 111 Four Corners mountain stations over an ArcGIS basemap. Colors show accumulated rain and snow as water. The median across 58 long-record stations reaches 6.9 inches, against a 1991–2020 historical median near 2.2 inches." aria-describedby="bonus-map-caption">
+                <source src="/assets/video/four-corners-october-precipitation.mp4" type="video/mp4">
+                <p><a href="/assets/images/four-corners-october-precipitation.jpg">View the still map</a>.</p>
+              </video>
+              <figcaption id="bonus-map-caption">October 31 totals. The comparison uses 58 long-record stations. These mountain measurements do not describe city precipitation totals.
+                <a href="/assets/images/four-corners-october-precipitation.jpg">Open the full-size still</a>.
+                <a href="/assets/video/four-corners-october-precipitation.mp4" download>Download the video</a>.
+              </figcaption>
+            </figure>
+            <p>This map follows October’s accumulating precipitation at 111 mountain weather stations. The stations are in Utah, Colorado, Arizona and New Mexico.</p>
+            <p>SNOTEL is a mountain monitoring network run by the USDA Natural Resources Conservation Service. Each point represents one SNOTEL station. Point color and size show precipitation accumulated since October 1. The totals include rain and snow measured as water.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/four-corners-october-precipitation-480.webp 480w, /assets/images/r/four-corners-october-precipitation-960.webp 960w, /assets/images/r/four-corners-october-precipitation-1440.webp 1440w, /assets/images/r/four-corners-october-precipitation-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/four-corners-october-precipitation.jpg" alt="October 2026 precipitation at 111 Four Corners mountain stations over an ArcGIS basemap. Colors show accumulated rain and snow as water. The median across 58 long-record stations reaches 6.9 inches, against a 1991–2020 historical median near 2.2 inches." width="2160" height="2160" loading="lazy"></picture>
+              <figcaption>October 31, 2026, the last frame of the animation, as a still. <a href="/assets/images/four-corners-october-precipitation.jpg">Open the still</a>.</figcaption>
+            </figure>
+            <p>I used the 58 stations whose stored records cover every water year from 1991 through 2026 for the historical comparison. Their median total reached 6.9 inches by October 31. Their 1991–2020 historical median for that date was about 2.2 inches.</p>
+            <p>The main wet periods were October 10–14, 21–22 and 30–31. These mountain measurements do not describe precipitation totals in nearby cities.</p>
+            <p>The basemap is Esri’s Oceans basemap, captured once from the dashboard’s ArcGIS map. The symbols use the dashboard’s precipitation colors. A ripple marks each day that a station gains half an inch or more. Hollow markers show missing readings. On October 31, 110 of the 111 mapped stations reported.</p>
+            <p>The data comes through the Western Water Dashboard. Its data pipeline is scheduled to refresh station readings each day. The dashboard is built on Esri’s ArcGIS Maps SDK for JavaScript.</p>
+            <p>This bonus is a second point map for Day 1. I published it on November 2.</p>
+            <h3>The wettest stations</h3>
+            <table>
+              <caption>Precipitation accumulated through October 31, 2026, measured as inches of water.</caption>
+              <thead><tr><th scope="col">Station</th><th scope="col">State</th><th scope="col">Inches</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Buckboard Flat</th><td>Utah</td><td>16.5</td></tr>
+                <tr><th scope="row">Wolf Creek Summit</th><td>Colorado</td><td>15.8</td></tr>
+                <tr><th scope="row">Upper San Juan</th><td>Colorado</td><td>13.9</td></tr>
+                <tr><th scope="row">Snowslide Canyon</th><td>Arizona</td><td>13.4</td></tr>
+                <tr><th scope="row">Baker Butte Smt</th><td>Arizona</td><td>12.8</td></tr>
+              </tbody>
+            </table>
+            <h3>How October unfolded</h3>
+            <p>The median stayed near zero for the first week. Three storm periods then did most of the work.</p>
+            <ul>
+              <li>October 10–14 added 3.0 inches to the median, from 0.1 to 3.1 inches. The median passed the historical median for the date on October 11 and stayed above it.</li>
+              <li>October 21–22 added 1.9 inches, from 3.2 to 5.1 inches.</li>
+              <li>October 30–31 added 1.4 inches, from 5.5 to 6.9 inches.</li>
+            </ul>
+            <p>By October 31, the median was about three times the historical median for that date. The largest one-day gain was at Snowslide Canyon in Arizona: 4.3 inches on October 11.</p>
+            <figure class="post-chart">
+              <section class="post-chart-scroll" aria-label="October precipitation chart" tabindex="0">
+                <svg class="post-chart-svg" viewBox="0 0 560 300" role="img" aria-labelledby="chart-rain-t chart-rain-d" xmlns="http://www.w3.org/2000/svg">
+                <title id="chart-rain-t">October 2026 precipitation: median of 58 long-record stations against the 1991 to 2020 historical median</title><desc id="chart-rain-d">Accumulated rain and snow as water, in inches, from October 1 to October 31, 2026. The median passed the historical median on October 11 and reached 6.9 inches by October 31. The historical median for that date is 2.2 inches.</desc>
+                <line x1="56" x2="440" y1="260.0" y2="260.0" stroke="#e3e6eb" stroke-width="1"/>
+                <text x="48" y="265.0" text-anchor="end" font-size="14" fill="#5b6472">0 in</text>
+                <line x1="56" x2="440" y1="200.0" y2="200.0" stroke="#e3e6eb" stroke-width="1"/>
+                <text x="48" y="205.0" text-anchor="end" font-size="14" fill="#5b6472">2 in</text>
+                <line x1="56" x2="440" y1="140.0" y2="140.0" stroke="#e3e6eb" stroke-width="1"/>
+                <text x="48" y="145.0" text-anchor="end" font-size="14" fill="#5b6472">4 in</text>
+                <line x1="56" x2="440" y1="80.0" y2="80.0" stroke="#e3e6eb" stroke-width="1"/>
+                <text x="48" y="85.0" text-anchor="end" font-size="14" fill="#5b6472">6 in</text>
+                <line x1="56" x2="440" y1="20.0" y2="20.0" stroke="#e3e6eb" stroke-width="1"/>
+                <text x="48" y="25.0" text-anchor="end" font-size="14" fill="#5b6472">8 in</text>
+                <text x="56.0" y="284" text-anchor="middle" font-size="14" fill="#5b6472">Oct 1</text>
+                <text x="171.2" y="284" text-anchor="middle" font-size="14" fill="#5b6472">Oct 10</text>
+                <text x="299.2" y="284" text-anchor="middle" font-size="14" fill="#5b6472">Oct 20</text>
+                <text x="440.0" y="284" text-anchor="middle" font-size="14" fill="#5b6472">Oct 31</text>
+                <line x1="56" x2="440" y1="260" y2="260" stroke="#5b6472" stroke-width="1"/>
+                <path d="M56.0,260.0 L68.8,258.3 L81.6,256.6 L94.4,254.9 L107.2,253.1 L120.0,251.4 L132.8,249.7 L145.6,248.0 L158.4,246.1 L171.2,244.1 L184.0,242.4 L196.8,240.7 L209.6,238.9 L222.4,237.1 L235.2,235.2 L248.0,233.0 L260.8,231.5 L273.6,229.9 L286.4,228.2 L299.2,224.8 L312.0,222.7 L324.8,221.0 L337.6,218.0 L350.4,214.8 L363.2,210.9 L376.0,207.1 L388.8,203.2 L401.6,199.7 L414.4,197.0 L427.2,194.8 L440.0,193.1" fill="none" stroke="#5b6472" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 5"/>
+                <path d="M56.0,260.0 L68.8,260.0 L81.6,260.0 L94.4,260.0 L107.2,260.0 L120.0,260.0 L132.8,260.0 L145.6,258.5 L158.4,257.0 L171.2,251.0 L184.0,230.0 L196.8,213.5 L209.6,185.0 L222.4,167.0 L235.2,164.0 L248.0,164.0 L260.8,164.0 L273.6,164.0 L286.4,164.0 L299.2,164.0 L312.0,140.0 L324.8,107.0 L337.6,104.0 L350.4,99.5 L363.2,96.5 L376.0,96.5 L388.8,96.5 L401.6,96.5 L414.4,95.0 L427.2,80.0 L440.0,53.0" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                <circle cx="56.0" cy="260.0" r="10" fill="transparent"><title>October 1: median 0.00 in, historical median 0.00 in</title></circle>
+                <circle cx="68.8" cy="260.0" r="10" fill="transparent"><title>October 2: median 0.00 in, historical median 0.06 in</title></circle>
+                <circle cx="81.6" cy="260.0" r="10" fill="transparent"><title>October 3: median 0.00 in, historical median 0.11 in</title></circle>
+                <circle cx="94.4" cy="260.0" r="10" fill="transparent"><title>October 4: median 0.00 in, historical median 0.17 in</title></circle>
+                <circle cx="107.2" cy="260.0" r="10" fill="transparent"><title>October 5: median 0.00 in, historical median 0.23 in</title></circle>
+                <circle cx="120.0" cy="260.0" r="10" fill="transparent"><title>October 6: median 0.00 in, historical median 0.29 in</title></circle>
+                <circle cx="132.8" cy="260.0" r="10" fill="transparent"><title>October 7: median 0.00 in, historical median 0.34 in</title></circle>
+                <circle cx="145.6" cy="258.5" r="10" fill="transparent"><title>October 8: median 0.05 in, historical median 0.40 in</title></circle>
+                <circle cx="158.4" cy="257.0" r="10" fill="transparent"><title>October 9: median 0.10 in, historical median 0.46 in</title></circle>
+                <circle cx="171.2" cy="251.0" r="10" fill="transparent"><title>October 10: median 0.30 in, historical median 0.53 in</title></circle>
+                <circle cx="184.0" cy="230.0" r="10" fill="transparent"><title>October 11: median 1.00 in, historical median 0.59 in</title></circle>
+                <circle cx="196.8" cy="213.5" r="10" fill="transparent"><title>October 12: median 1.55 in, historical median 0.64 in</title></circle>
+                <circle cx="209.6" cy="185.0" r="10" fill="transparent"><title>October 13: median 2.50 in, historical median 0.70 in</title></circle>
+                <circle cx="222.4" cy="167.0" r="10" fill="transparent"><title>October 14: median 3.10 in, historical median 0.76 in</title></circle>
+                <circle cx="235.2" cy="164.0" r="10" fill="transparent"><title>October 15: median 3.20 in, historical median 0.82 in</title></circle>
+                <circle cx="248.0" cy="164.0" r="10" fill="transparent"><title>October 16: median 3.20 in, historical median 0.90 in</title></circle>
+                <circle cx="260.8" cy="164.0" r="10" fill="transparent"><title>October 17: median 3.20 in, historical median 0.95 in</title></circle>
+                <circle cx="273.6" cy="164.0" r="10" fill="transparent"><title>October 18: median 3.20 in, historical median 1.00 in</title></circle>
+                <circle cx="286.4" cy="164.0" r="10" fill="transparent"><title>October 19: median 3.20 in, historical median 1.06 in</title></circle>
+                <circle cx="299.2" cy="164.0" r="10" fill="transparent"><title>October 20: median 3.20 in, historical median 1.17 in</title></circle>
+                <circle cx="312.0" cy="140.0" r="10" fill="transparent"><title>October 21: median 4.00 in, historical median 1.24 in</title></circle>
+                <circle cx="324.8" cy="107.0" r="10" fill="transparent"><title>October 22: median 5.10 in, historical median 1.30 in</title></circle>
+                <circle cx="337.6" cy="104.0" r="10" fill="transparent"><title>October 23: median 5.20 in, historical median 1.40 in</title></circle>
+                <circle cx="350.4" cy="99.5" r="10" fill="transparent"><title>October 24: median 5.35 in, historical median 1.51 in</title></circle>
+                <circle cx="363.2" cy="96.5" r="10" fill="transparent"><title>October 25: median 5.45 in, historical median 1.64 in</title></circle>
+                <circle cx="376.0" cy="96.5" r="10" fill="transparent"><title>October 26: median 5.45 in, historical median 1.76 in</title></circle>
+                <circle cx="388.8" cy="96.5" r="10" fill="transparent"><title>October 27: median 5.45 in, historical median 1.89 in</title></circle>
+                <circle cx="401.6" cy="96.5" r="10" fill="transparent"><title>October 28: median 5.45 in, historical median 2.01 in</title></circle>
+                <circle cx="414.4" cy="95.0" r="10" fill="transparent"><title>October 29: median 5.50 in, historical median 2.10 in</title></circle>
+                <circle cx="427.2" cy="80.0" r="10" fill="transparent"><title>October 30: median 6.00 in, historical median 2.17 in</title></circle>
+                <circle cx="440.0" cy="53.0" r="10" fill="transparent"><title>October 31: median 6.90 in, historical median 2.23 in</title></circle>
+                <circle cx="440.0" cy="53.0" r="4" fill="#2a78d6" stroke="#ffffff" stroke-width="2"/>
+                <text x="450.0" y="58.0" text-anchor="start" font-size="15" font-weight="500" fill="#22262e">2026: 6.9 in</text>
+                <text x="450.0" y="198.1" text-anchor="start" font-size="15" font-weight="400" fill="#22262e">1991–2020: 2.2 in</text>
+                </svg>
+              </section>
+              <figcaption>Median accumulated precipitation at 58 long-record stations, with the 1991–2020 historical median for each date as a dashed line. Hover over the line to see daily values.</figcaption>
+            </figure>
+            <details class="storage-data">
+              <summary>View the daily median and historical median</summary>
+              <section class="storage-table-wrap" aria-label="Daily precipitation values" tabindex="0">
+                <table>
+                  <caption>Accumulated precipitation since October 1, in inches of water. Both medians use the 58 long-record stations. Reported counts use all 111 stations.</caption>
+                  <thead><tr><th scope="col">Date</th><th scope="col">Median</th><th scope="col">1991–2020 median</th><th scope="col">Stations reporting</th></tr></thead>
+                  <tbody>
+                  <tr><th scope="row">October 1</th><td>0.00</td><td>0.00</td><td>111</td></tr>
+                  <tr><th scope="row">October 2</th><td>0.00</td><td>0.06</td><td>111</td></tr>
+                  <tr><th scope="row">October 3</th><td>0.00</td><td>0.11</td><td>111</td></tr>
+                  <tr><th scope="row">October 4</th><td>0.00</td><td>0.17</td><td>111</td></tr>
+                  <tr><th scope="row">October 5</th><td>0.00</td><td>0.23</td><td>111</td></tr>
+                  <tr><th scope="row">October 6</th><td>0.00</td><td>0.29</td><td>111</td></tr>
+                  <tr><th scope="row">October 7</th><td>0.00</td><td>0.34</td><td>111</td></tr>
+                  <tr><th scope="row">October 8</th><td>0.05</td><td>0.40</td><td>111</td></tr>
+                  <tr><th scope="row">October 9</th><td>0.10</td><td>0.46</td><td>111</td></tr>
+                  <tr><th scope="row">October 10</th><td>0.30</td><td>0.53</td><td>111</td></tr>
+                  <tr><th scope="row">October 11</th><td>1.00</td><td>0.59</td><td>111</td></tr>
+                  <tr><th scope="row">October 12</th><td>1.55</td><td>0.64</td><td>111</td></tr>
+                  <tr><th scope="row">October 13</th><td>2.50</td><td>0.70</td><td>111</td></tr>
+                  <tr><th scope="row">October 14</th><td>3.10</td><td>0.76</td><td>111</td></tr>
+                  <tr><th scope="row">October 15</th><td>3.20</td><td>0.82</td><td>111</td></tr>
+                  <tr><th scope="row">October 16</th><td>3.20</td><td>0.90</td><td>111</td></tr>
+                  <tr><th scope="row">October 17</th><td>3.20</td><td>0.95</td><td>111</td></tr>
+                  <tr><th scope="row">October 18</th><td>3.20</td><td>1.00</td><td>111</td></tr>
+                  <tr><th scope="row">October 19</th><td>3.20</td><td>1.06</td><td>111</td></tr>
+                  <tr><th scope="row">October 20</th><td>3.20</td><td>1.17</td><td>111</td></tr>
+                  <tr><th scope="row">October 21</th><td>4.00</td><td>1.24</td><td>111</td></tr>
+                  <tr><th scope="row">October 22</th><td>5.10</td><td>1.30</td><td>111</td></tr>
+                  <tr><th scope="row">October 23</th><td>5.20</td><td>1.40</td><td>111</td></tr>
+                  <tr><th scope="row">October 24</th><td>5.35</td><td>1.51</td><td>111</td></tr>
+                  <tr><th scope="row">October 25</th><td>5.45</td><td>1.64</td><td>111</td></tr>
+                  <tr><th scope="row">October 26</th><td>5.45</td><td>1.76</td><td>111</td></tr>
+                  <tr><th scope="row">October 27</th><td>5.45</td><td>1.89</td><td>111</td></tr>
+                  <tr><th scope="row">October 28</th><td>5.45</td><td>2.01</td><td>111</td></tr>
+                  <tr><th scope="row">October 29</th><td>5.50</td><td>2.10</td><td>111</td></tr>
+                  <tr><th scope="row">October 30</th><td>6.00</td><td>2.17</td><td>109</td></tr>
+                  <tr><th scope="row">October 31</th><td>6.90</td><td>2.23</td><td>110</td></tr>
+                  </tbody>
+                </table>
+              </section>
+            </details>
+            <h3>By state</h3>
+            <p>Colorado stations had the highest median total. Utah has the most stations on the map. New Mexico has one station inside the map frame.</p>
+            <section class="storage-table-wrap" aria-label="Totals by state" tabindex="0">
+              <table>
+                <caption>October 31 totals for all reporting stations, in inches of water. These medians use every reporting station, not only the 58-station sample.</caption>
+                <thead><tr><th scope="col">State</th><th scope="col">Stations</th><th scope="col">Median</th><th scope="col">Highest</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Colorado</th><td>37</td><td>7.8</td><td>15.8</td></tr>
+                  <tr><th scope="row">Arizona</th><td>20</td><td>7.2</td><td>13.4</td></tr>
+                  <tr><th scope="row">Utah</th><td>52 of 53</td><td>6.0</td><td>16.5</td></tr>
+                  <tr><th scope="row">New Mexico</th><td>1</td><td>5.4</td><td>5.4</td></tr>
+                </tbody>
+              </table>
+            </section>
+            <p>On October 31, 40 of the 110 reporting stations had 8 inches or more. Another 50 had 4 to 8 inches. Only four stations had less than 2 inches.</p>
+            <h3>How to read the symbols</h3>
+            <ul>
+              <li>Each circle is one SNOTEL station. Circle radius grows with the square root of the accumulated total, so larger totals make larger circles.</li>
+              <li>Color shows the same total in six classes, with breaks at 0.5, 1, 2, 4, and 8 inches. The colors follow the dashboard’s precipitation colors.</li>
+              <li>A ripple marks each day that a station gains half an inch or more. October had 571 of these station-days.</li>
+              <li>Hollow markers show missing readings. A missing day stays missing. The animation does not fill it from nearby days.</li>
+              <li>The sidebar compares the median with the historical median, then lists the five wettest stations by their October 31 totals.</li>
+            </ul>
+            <h3>Method</h3>
+            <ul>
+              <li>A fixed snapshot of the dashboard’s station data, from November 1, 2026, supplies the accumulated totals for each date.</li>
+              <li>The basemap is one capture of the dashboard’s ArcGIS map, zoomed to the Four Corners.</li>
+              <li>Each station is projected to Web Mercator, the projection of the basemap, and placed on the capture.</li>
+              <li>Circle sizes change as precipitation accumulates from day to day.</li>
+            </ul>
+            <h3>Data notes</h3>
+            <ul>
+              <li>The water year starts on October 1. October totals are therefore also water-year totals.</li>
+              <li>The historical reference comes from stored weekly medians for 1991–2020. The figure interpolates between weekly values for each date.</li>
+              <li>The comparison uses the 58 stations whose stored records cover every water year from 1991 through 2026. The other 53 stations have a gap in that period. For five of them, the first gap comes after 2020.</li>
+              <li>Mountain stations sit high in the watersheds. Their totals do not describe precipitation in nearby cities.</li>
+            </ul>
+            <h3>Sources and map services</h3>
+            <p>USDA Natural Resources Conservation Service SNOTEL readings and historical precipitation records. <a href="https://github.com/buschbrian/western-water-dashboard/blob/6c90fbecf7c73e10dd1479fe98dfa19898c3d36f/precipitation.json">Read the source data</a>.</p>
+            <p>Esri provides the Oceans basemap and the ArcGIS Maps SDK for JavaScript. The map retains the basemap’s provider attribution.</p>
+            <p><a href="https://buschbrian.github.io/western-water-dashboard/precipitation.html">Open the dashboard’s precipitation page</a>.</p>
+          </section>
           <p class="source-note">The figures use fixed data snapshots. <a href="/assets/data/map-challenge-2026.json">Download the figure data</a>.</p>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
             <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
@@ -303,7 +491,6 @@
             <a href="/notes/holmes-zion-panorama/">Day 6: Vintage</a>
             <a href="/notes/wasatch-front-walk-to-transit/">Day 7: 10 minute map</a>
             <a href="/notes/great-salt-lake-at-4198-feet/">Day 8: Utopia</a>
-            <a href="/notes/four-corners-october-precipitation/">Bonus: Precipitation</a>
           </nav>
         </div>
       </article>

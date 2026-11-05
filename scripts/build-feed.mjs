@@ -32,7 +32,6 @@ const ORDER = [
   "holmes-zion-panorama",
   "wasatch-front-walk-to-transit",
   "great-salt-lake-at-4198-feet",
-  "four-corners-october-precipitation",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",

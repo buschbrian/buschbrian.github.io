@@ -27,7 +27,9 @@ Each page is an `index.html` file in its own folder.
 - Page not found: `404.html`
 - Western Water Dashboard system atlas: `projects/western-water-dashboard-atlas/`
 - Styles: `assets/css/site.css`
-- Behavior: `assets/js/site.js`
+- Navigation: `assets/js/site.js`
+- Image viewer: `assets/js/image-viewer.mjs` and `assets/js/image-geometry.mjs`
+- Challenge reading controls: `assets/js/challenge-reading.mjs`
 - Map animations: `assets/video/`
 - Fixed figure data: `assets/data/map-challenge-2026.json`
 
@@ -61,13 +63,16 @@ Run these commands:
 
 ```sh
 node --check assets/js/site.js
+node --check assets/js/image-viewer.mjs
+node --check assets/js/challenge-reading.mjs
+node --test tests/*.test.mjs
 npx --yes html-validate@11.6.2 "**/*.html"
 git diff --check
 ```
 
 Check all changed links and image paths. Test interface changes with a keyboard and at the widths in `CONTRIBUTING.md`.
 
-The **Validate site** workflow runs the first two checks on each pull request.
+The **Validate site** workflow checks JavaScript syntax, image geometry and HTML on each pull request.
 
 Install the pre-commit hooks once in each clone:
 
@@ -109,6 +114,38 @@ the posted counts. Add its entry and day link on Projects, then its entry on
 Notes. The homepage uses a dated collection label so it remains
 accurate after November.
 
-The image viewer loads the original image when opened. A `data-full`
-attribute can override that source. Links with `data-image-viewer` keep
-their original-image destination when JavaScript is unavailable.
+## Image viewer and challenge reading
+
+The image viewer uses a native dialog and JavaScript modules. It needs no
+framework, external service or build step. The geometry module has Node tests
+for fit, zoom anchoring, pan limits, resizing, overview bounds and pinch input.
+
+The viewer shows the existing preview while it loads the original image. A
+`data-full` attribute can override the source. Image links in figure captions
+use the same viewer. Modified clicks keep the link's normal browser behavior.
+The download link saves the original image without opening another window.
+
+Fit image shows the whole image. Read labels shows it at its original pixel
+size. The percentage measures image pixels against CSS pixels, so 100% means
+one image pixel per CSS pixel. Dragging and ordinary scrolling move the image.
+Pinching and Ctrl or Command with scrolling zoom around the pointer. Double-click
+or double-tap switches between fit and original size. The overview shows the
+visible region and lets a reader choose another area.
+
+Arrow keys pan a zoomed image. At fit, left and right switch images. Page Up
+and Page Down also switch images. The 0 key fits the image; 1 shows original
+size. Escape closes the viewer and returns focus to the trigger. Native dialog
+focus handling keeps the underlying page inactive while the viewer is open.
+Opening motion respects the reduced-motion preference.
+
+On 2026 challenge notes, navigation uses the existing challenge links. This
+keeps previous and next links in step with the published pages. Map details
+and code excerpts are collapsed after JavaScript loads. The original HTML,
+images, links and code remain available when JavaScript is unavailable.
+The collection uses consistent image frames that show each map in full.
+
+For browser verification, check portrait and landscape images, figure-caption
+links, fit and original size, keyboard focus, resize while zoomed, gallery
+navigation, failed image loading and retry. Check 320, 768, 1024 and 1440 CSS
+pixels. Touch emulation does not replace testing on an actual iOS or Android
+device.
