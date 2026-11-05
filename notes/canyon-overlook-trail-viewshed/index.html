@@ -210,6 +210,39 @@ seen = np.isfinite(first)</code></pre>
             <li><a href="https://catalog.data.gov/dataset/zion-national-park-trail-and-trailhead-gis-datasets">Open the NPS Zion trail data</a>.</li>
             <li><a href="https://www.nps.gov/zion/planyourvisit/maps.htm">Open the NPS Zion maps</a>.</li>
           </ul>
+          <section class="challenge-bonus" id="day-5-bonus" aria-labelledby="day-5-bonus-title">
+            <p class="eyebrow">Day 5 bonus</p>
+            <h2 id="day-5-bonus-title">The View You Hike For</h2>
+            <p>I ran the same walk model on a longer Zion trail, with tree heights added. The East Mesa Trail goes 3.4 mi (5.4 km) from the East Mesa Trailhead to Observation Point. The point looks down Zion Canyon toward Springdale.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/observation-point-east-mesa-trail-480.webp 480w, /assets/images/r/observation-point-east-mesa-trail-960.webp 960w, /assets/images/r/observation-point-east-mesa-trail-1440.webp 1440w, /assets/images/r/observation-point-east-mesa-trail-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/observation-point-east-mesa-trail.jpg" alt="Map of Zion Canyon below Observation Point over shaded relief, turned so the canyon runs down the page from the point to Springdale. A dashed line traces the East Mesa Trail from the East Mesa Trailhead to the point. Gold marks ground below the point that comes into view earlier on the trail, mostly the canyon floor from Zion Lodge down to Springdale. Red marks ground that comes into view only on the last 60 m, mostly the upper canyon between the point and the Lodge. A strip under the map shows the share of that ground in view along the walk: flat for the first 3.3 km, a few narrow spikes, a wide rise near the junction, then a jump at the end. Modeled with tree heights." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption>Ground below Observation Point that the point sees, colored by where on the trail it first comes into view. <a href="/assets/images/observation-point-east-mesa-trail.jpg">Open the still</a>.</figcaption>
+            </figure>
+            <p>For the first 2 mi (3.3 km), the model shows almost none of the canyon. Less than 1% of the ground below the point is in view. The trail stays back from the rim, and the mesa top blocks the view.</p>
+            <p>Then the view comes in glimpses. Between 2.1 and 2.5 mi (3.4 and 4.0 km), gaps show ground far down the canyon, toward Springdale. Near the junction, at about 3 mi (4.8 km), the canyon floor around Zion Lodge comes into view.</p>
+            <p>Angels Landing comes last. The model first shows its summit from the last 200 ft (60 m) of the trail. Only there does the view below the point stay open.</p>
+            <p>The glimpses add up. About 89% of the ground below the point is in view somewhere before the final stretch. But most of it shows only through gaps along the way.</p>
+            <h3>Trees in the model</h3>
+            <ul>
+              <li>The Day 5 map above uses bare earth. This model adds tree heights from the High Resolution Canopy Height Maps by Meta and the World Resources Institute (WRI), at 1 m.</li>
+              <li>Each tree crown counts as solid. The model clears trees within 10 ft (3 m) of the trail, so the eye is never inside a crown.</li>
+              <li>1 m lidar covers the mesa rim, and 10 m elevation covers the ground beyond. The model works on a 2 m grid, with a viewshed every 5 m along the trail.</li>
+              <li>The model counts only ground lower than the point that the point can see. The analysis stops 10.9 mi (17.5 km) south of the point.</li>
+              <li>The trees shorten some glimpses but remove none of them.</li>
+            </ul>
+            <h3>Data notes</h3>
+            <ul>
+              <li>The canopy map can miss short and sparse trees, such as pinyon pine and juniper. Along this trail it shows few trees.</li>
+              <li>Solid crowns block more of the view than real trees do.</li>
+              <li>The model has no brush, boulders or haze.</li>
+              <li>The trail line comes from the NPS trail data, not a new survey.</li>
+            </ul>
+            <h3>Data and credit</h3>
+            <p>The U.S. Geological Survey provides the 3DEP elevation data and lidar. Meta and WRI provide the canopy heights under the CC BY 4.0 license. The National Park Service provides the trail line. Peak names come from GNIS. Roads and rivers come from OpenStreetMap.</p>
+            <ul>
+              <li><a href="https://registry.opendata.aws/dataforgood-fb-forests/">Open the Meta and WRI canopy height data</a>.</li>
+            </ul>
+          </section>
           <p class="source-note">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
             <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
@@ -220,7 +253,6 @@ seen = np.isfinite(first)</code></pre>
             <a href="/notes/holmes-zion-panorama/">Day 6: Vintage</a>
             <a href="/notes/wasatch-front-walk-to-transit/">Day 7: 10 minute map</a>
             <a href="/notes/utah-urban-and-rural/">Day 9: Urban-rural</a>
-            <a href="/notes/four-corners-october-precipitation/">Bonus: Precipitation</a>
           </nav>
         </div>
       </article>
