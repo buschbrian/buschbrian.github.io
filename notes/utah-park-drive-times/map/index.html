@@ -1,47 +1,40 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="calcite-mode-dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="#30DayMapChallenge 2026, Day 13. Drive times from Utah homes to the five national parks. Move the drive-time slider to see how many parks each place can reach. Pick a town to read its drive time to each park.">
+<meta name="theme-color" content="#0b0e13">
 <title>Day 13 · Interactions — Drive times to Utah's five national parks</title>
 <script>window.PEN_DATA = "/assets/data/";</script>
-<script>
-  (() => {
-    const q = new URLSearchParams(location.search);
-    const styles = ["atlas", "core", "contour"];
-    document.documentElement.dataset.style = styles.includes(q.get("style")) ? q.get("style") : "atlas";
-    if (q.has("embed")) document.documentElement.classList.add("embed");
-    if (q.has("review")) document.documentElement.classList.add("review");
-  })();
-</script>
+<script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css">
 <script type="module" src="https://js.arcgis.com/5.1/"></script>
 <style>
-/* Paper, guide-sign brown and green. Overpass follows the highway sign alphabet. */
+/* One system: a dark slate page, one sequential ramp that brightens with the number of parks in
+   reach, Inter on an 8 px grid, flat cards. */
 :root {
-  --bg: #f8f2e8;
-  --bg-a: 248, 242, 232;
-  --ink: #2b1d18;
-  --muted: #6a5b53;
-  --rule: #e0d5c6;
-  --sign: #5c3920;
-  --sign-hi: #70472a;
-  --green: #1d5a3c;
-  --gold: #ffd166;
-  --side: 420px;
-  --sign-font: "Overpass", "Source Sans 3", system-ui, sans-serif;
-  --text: "Source Sans 3", system-ui, sans-serif;
-  --paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .18 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --sheet: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .32 -.08'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --sheen: linear-gradient(165deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0) 38%, rgba(0, 0, 0, 0.1));
-  --car: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='22' viewBox='0 0 38 22'%3E%3Crect x='5' y='1' width='6' height='4' rx='1' fill='%23151515'/%3E%3Crect x='26' y='1' width='6' height='4' rx='1' fill='%23151515'/%3E%3Crect x='5' y='17' width='6' height='4' rx='1' fill='%23151515'/%3E%3Crect x='26' y='17' width='6' height='4' rx='1' fill='%23151515'/%3E%3Crect x='1.5' y='3.5' width='35' height='15' rx='6' fill='%23f4f1ea' stroke='%23151515' stroke-width='1.2'/%3E%3Crect x='22' y='5.5' width='7' height='11' rx='2' fill='%232f3a44'/%3E%3Crect x='8' y='5.5' width='5' height='11' rx='1.5' fill='%232f3a44'/%3E%3Crect x='13.5' y='6.5' width='8' height='9' rx='1.5' fill='%23e6e1d6'/%3E%3Crect x='34' y='5' width='2' height='3' rx='.8' fill='%23ffd166'/%3E%3Crect x='34' y='14' width='2' height='3' rx='.8' fill='%23ffd166'/%3E%3C/svg%3E");
-  --find: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='6.5' cy='6.5' r='4.5' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Cpath d='M10 10l4.5 4.5' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --bg: #0b0e13;
+  --card: rgba(16, 20, 27, 0.88);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --text: #e8ecf1;
+  --muted: #8d97a5;
+  --faint: #5d6774;
+  --accent: #ff7a59;
+  --k1: #233047;
+  --k2: #24566e;
+  --k3: #22857f;
+  --k4: #55b77a;
+  --k5: #f2d15c;
+  --side: 380px;
+  --gap: 16px;
+  --font: "Inter", system-ui, sans-serif;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -49,407 +42,343 @@
 html, body {
   height: 100%;
   margin: 0;
-  color: var(--ink);
-  font: 15px/1.35 var(--text);
-  background: var(--paper), var(--bg);
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.43 var(--font);
+  font-feature-settings: "tnum" 1, "cv11" 1;
+  -webkit-font-smoothing: antialiased;
 }
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.app {
-  display: grid;
-  height: 100%;
-  grid-template-columns: minmax(0, 1fr) var(--side);
-  grid-template-rows: minmax(0, 1fr) auto auto;
-  grid-template-areas: "map side" "time time" "foot foot";
-}
-
-/* The map runs under the sign column, so the signs stand on the same landscape. */
-.stage { grid-row: 1; grid-column: 1 / -1; position: relative; min-height: 0; min-width: 0; }
+.app { position: relative; height: 100%; overflow: hidden; }
+.stage { position: absolute; inset: 0; }
 .map-slot { position: absolute; inset: 0; }
 arcgis-map { display: block; height: 100%; background: var(--bg); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.eyebrow { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card-title { margin: 0; font-size: 12px; font-weight: 600; color: var(--muted); }
+
 .loading {
   position: absolute;
-  left: calc((100% - var(--side)) / 2);
-  top: 50%;
+  left: calc((100% - var(--side) - var(--gap)) / 2);
+  top: 45%;
   transform: translate(-50%, -50%);
   margin: 0;
-  padding: 10px 16px 8px;
-  border-radius: 8px;
-  color: #fff;
-  font: 700 15px/1 var(--sign-font);
-  background: var(--sheen), var(--sheet), var(--sign);
-  box-shadow: inset 0 0 0 2px var(--sign), inset 0 0 0 4px #fff, 0 4px 12px rgba(43, 29, 24, 0.25);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
   z-index: 3;
 }
 .loading[hidden] { display: none; }
 
-.label {
-  margin: 0;
-  font: 700 11px/1.3 var(--sign-font);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.figure { font-variant-numeric: tabular-nums; }
-/* Two-tone focus ring: reads on paper and on the signs. */
-button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; box-shadow: 0 0 0 5px var(--gold); }
-
-/* Map key, bottom left of the map. */
-.mapkey {
-  position: absolute;
-  left: 14px;
-  bottom: 28px;
-  z-index: 2;
-  width: 236px;
-  padding: 8px 12px 9px;
-  border-radius: 8px;
-  background: rgba(var(--bg-a), 0.94);
-  box-shadow: 0 1px 0 rgba(43, 29, 24, 0.12), 0 4px 14px rgba(43, 29, 24, 0.12);
-  font-size: 13px;
-}
-.mapkey summary { cursor: pointer; font: 800 11px/1.4 var(--sign-font); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-.mapkey ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 4px; }
-.mapkey li { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 8px; }
-.mapkey svg { width: 34px; height: 18px; overflow: visible; }
-.mapkey .reach { display: block; margin: 6px 0 2px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
-.mapkey .reach p { margin: 0 0 4px; font-weight: 700; }
-.mapkey .reach[hidden] { display: none; }
-.mapkey .ramp { height: 12px; border-radius: 2px; }
-.mapkey .ticks { position: relative; height: 16px; font: 700 10.5px/1 var(--sign-font); color: var(--muted); }
-.mapkey .ticks span { position: absolute; top: 4px; transform: translateX(-50%); }
-.mapkey .ticks span::before { content: ""; position: absolute; left: 50%; top: -6px; height: 5px; border-left: 1px solid var(--ink); }
-
-/* The sign column. */
+/* Right column of cards. */
 .side {
-  grid-area: side;
-  z-index: 2;
+  position: absolute;
+  top: var(--gap);
+  right: var(--gap);
+  bottom: var(--gap);
+  width: var(--side);
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-height: 0;
-  overflow: auto;
-  padding: 14px 24px 0 46px;
-  background: linear-gradient(90deg, rgba(var(--bg-a), 0) 0, rgba(var(--bg-a), 0.82) 40px, rgba(var(--bg-a), 0.9) 100%) top / 100% calc(100% - 20px) no-repeat;
+  gap: 12px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  z-index: 2;
 }
-.head h1 { margin: 4px 0 4px; font: 800 27px/1 var(--sign-font); letter-spacing: -0.01em; }
-.head p.sub { margin: 0; color: var(--muted); font-size: 14px; }
+.head { padding: 16px; }
+.head h1 { margin: 8px 0 8px; font-size: 22px; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; }
+.head p.sub { margin: 0; color: var(--muted); }
 
-.assembly { position: relative; flex: 1 0 auto; display: flex; flex-direction: column; gap: 8px; padding-bottom: 32px; }
-.post {
-  position: absolute;
-  top: 6px;
-  bottom: -2px;
-  width: 12px;
-  border-radius: 2px 2px 0 0;
-  background:
-    radial-gradient(circle, rgba(30, 30, 32, 0.55) 1.7px, transparent 2.2px) 50% 4px / 12px 15px repeat-y,
-    linear-gradient(90deg, #73787e, #c7cbcf 42%, #9ba0a5 58%, #6e7379);
-  box-shadow: 3px 0 4px rgba(43, 29, 24, 0.15);
-}
-.post.l { left: calc(27% - 6px); }
-.post.r { left: calc(73% - 6px); }
-
-.sign {
-  --base: var(--sign);
-  position: relative;
-  z-index: 1;
-  border-radius: 12px;
-  color: #fff;
-  background:
-    radial-gradient(circle at 27% 9px, #e9ebed 0 2px, #757a7f 2.6px, transparent 3.2px),
-    radial-gradient(circle at 73% 9px, #e9ebed 0 2px, #757a7f 2.6px, transparent 3.2px),
-    var(--sheen), var(--sheet), var(--base);
-  box-shadow: inset 0 0 0 3px var(--base), inset 0 0 0 5.5px #fff, 0 3px 0 rgba(43, 29, 24, 0.22), 0 6px 14px rgba(43, 29, 24, 0.14);
-}
-.guide { padding: 13px 14px 9px; }
-.sign :focus-visible { outline: 2px solid var(--gold); box-shadow: none; }
-
-.sign-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 4px 6px 8px; border-bottom: 2px solid rgba(255, 255, 255, 0.92); }
-.sign-top label { font: 800 12px/1 var(--sign-font); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+.from { padding: 16px; }
+.from-row { display: grid; grid-template-columns: minmax(0, 1fr) 36px; gap: 8px; margin-top: 8px; }
+.field { position: relative; }
+.field svg { position: absolute; left: 10px; top: 10px; width: 16px; height: 16px; color: var(--muted); pointer-events: none; }
 #from {
-  min-width: 0;
   width: 100%;
-  font: 700 19px/1.2 var(--sign-font);
-  color: #fff;
-  background: var(--find) right 7px center / 14px no-repeat, rgba(0, 0, 0, 0.16);
-  border: 0;
-  border-bottom: 1.5px dashed rgba(255, 255, 255, 0.6);
-  border-radius: 4px 4px 0 0;
-  padding: 3px 28px 1px 6px;
+  height: 36px;
+  padding: 0 10px 0 34px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  font-weight: 600;
 }
-#from::placeholder { color: rgba(255, 255, 255, 0.62); font-weight: 600; }
-#locate {
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  padding: 0;
+#from::placeholder { color: var(--faint); font-weight: 500; }
+#from:hover { border-color: rgba(255, 255, 255, 0.24); }
+.icon-btn {
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
-  background: transparent;
-  color: #fff;
+  padding: 0;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
   cursor: pointer;
 }
-#locate:hover { background: var(--sign-hi); }
-#locate svg { width: 16px; height: 16px; }
-.from-msg { margin: 6px 6px 0; font: 600 12.5px/1.25 var(--text); color: var(--gold); }
+.icon-btn:hover { border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.07); }
+.icon-btn svg { width: 16px; height: 16px; }
+.from-msg { margin: 8px 0 0; font-size: 12px; color: var(--accent); }
 .from-msg:empty { display: none; }
 
-.rows { list-style: none; margin: 3px 0 0; padding: 0; }
+.rows { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid var(--line); }
 .row {
+  position: relative;
   width: 100%;
+  height: 36px;
   display: grid;
-  grid-template-columns: 22px minmax(0, 1fr) auto;
-  gap: 10px;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  gap: 12px;
   align-items: center;
-  padding: 4px 6px 3px;
+  padding: 0 8px;
   border: 0;
-  border-radius: 6px;
+  border-bottom: 1px solid var(--line);
   background: transparent;
-  color: #fff;
-  font: 700 18px/1.15 var(--sign-font);
+  font-weight: 500;
   text-align: left;
   cursor: pointer;
 }
-.row:hover { background: var(--sign-hi); }
-.row[aria-pressed="true"] { color: var(--gold); box-shadow: inset 3px 0 0 var(--gold); }
-.row .t { font-variant-numeric: tabular-nums; transition: opacity 0.25s; }
-.row.far .t { opacity: 0.45; }
-.row svg { width: 20px; height: 20px; overflow: visible; }
-.row svg g { transition: transform 0.4s ease; }
-.row.all { margin-top: 3px; border-top: 2px solid rgba(255, 255, 255, 0.92); border-radius: 0 0 6px 6px; padding-top: 7px; }
-.row.all svg { opacity: 0; }
-.sign-note { margin: 5px 6px 0; font: 400 12px/1.25 var(--text); opacity: 0.85; }
+.row:hover { background: rgba(255, 255, 255, 0.04); }
+.row[aria-pressed="true"] { background: rgba(255, 122, 89, 0.1); }
+.row[aria-pressed="true"]::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; border-radius: 1px; background: var(--accent); }
+.row .t { font-weight: 600; transition: color 0.2s; }
+.row.far .t { color: var(--faint); }
+.row svg { width: 16px; height: 16px; color: var(--muted); overflow: visible; }
+.row svg g { transition: transform 0.35s ease; }
+.row.all { font-weight: 700; }
+.row.all svg { visibility: hidden; }
+.hint { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
 
-/* Green plates: one fixed line for each count, so values change smoothly as the time moves. */
-.plates { position: relative; z-index: 1; list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.plate {
-  --base: var(--green);
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: 16px minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-  padding: 5px 14px 3px;
-  color: #fff;
-  font: 700 15.5px/1.1 var(--sign-font);
-  background:
-    radial-gradient(circle at 6px 50%, #e9ebed 0 1.6px, #757a7f 2.1px, transparent 2.6px),
-    radial-gradient(circle at calc(100% - 6px) 50%, #e9ebed 0 1.6px, #757a7f 2.1px, transparent 2.6px),
-    var(--sheen), var(--sheet), var(--base);
-  box-shadow: inset 0 0 0 2px var(--base), inset 0 0 0 4px #fff, 0 2px 0 rgba(43, 29, 24, 0.2);
-}
-.plate.lead { display: block; font-size: 15px; padding: 7px 16px 5px; }
-.plate.lead b { color: var(--gold); }
-.plate .v { font-variant-numeric: tabular-nums; font-weight: 800; }
-.plate .sw { width: 16px; height: 14px; border-radius: 3px; box-shadow: 0 0 0 1.5px #fff; }
-[data-style="contour"] .plate .sw { height: 6px; border-radius: 2px; }
-.plate.on { color: var(--gold); }
-.plate.zero .v { opacity: 0.5; }
+.share { padding: 16px; }
+.share h2 { margin: 0 0 12px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.share h2 b { color: var(--text); }
+.meters { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.meter { display: grid; grid-template-columns: 10px 104px minmax(0, 1fr) 40px; gap: 8px; align-items: center; height: 20px; }
+.meter .sw { width: 10px; height: 10px; border-radius: 2px; }
+.meter .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter .bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.06); overflow: hidden; }
+.meter .bar i { display: block; height: 100%; border-radius: 3px; transition: width 0.2s ease; }
+.meter .v { text-align: right; font-weight: 600; }
+.meter.on .n, .meter.on .v { color: var(--accent); }
 
-/* The time strip: a gravel shoulder, the chart with mile markers, and the road. */
-.time { grid-area: time; position: relative; display: grid; gap: 0; padding: 15px 24px 6px; min-width: 0; }
-.time::before {
-  content: "";
+.about { padding: 12px 16px; font-size: 11.5px; color: var(--muted); }
+.about p { margin: 0 0 4px; }
+.about p:last-child { margin: 0; }
+.about b { color: var(--text); font-weight: 600; }
+.handles a { color: inherit; text-decoration: none; margin-right: 10px; white-space: nowrap; }
+.handles a:hover { color: var(--text); }
+.handles i { margin-right: 4px; }
+
+/* Map key, top left. */
+.mapkey { position: absolute; top: var(--gap); left: var(--gap); width: 232px; padding: 12px 16px; z-index: 2; }
+.mapkey summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.mapkey summary::-webkit-details-marker { display: none; }
+.mapkey summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(45deg) translateY(-2px); }
+.mapkey[open] summary::after { transform: rotate(-135deg) translateY(-2px); }
+.scale { margin-top: 12px; }
+.scale .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; height: 8px; margin-top: 8px; }
+.scale .steps span { border-radius: 1px; }
+.scale .labels-row { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 4px; font-size: 11px; color: var(--muted); text-align: center; }
+.scale .ramp { height: 8px; margin-top: 8px; border-radius: 1px; }
+.scale .ticks { position: relative; height: 16px; margin-top: 4px; font-size: 11px; color: var(--muted); }
+.scale .ticks span { position: absolute; top: 0; transform: translateX(-50%); }
+.scale[hidden] { display: none; }
+.symbols { list-style: none; margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; font-size: 12px; color: #c3cad3; }
+.symbols li { display: grid; grid-template-columns: 40px 1fr; gap: 8px; align-items: center; height: 16px; }
+.symbols li > span:first-child { display: flex; justify-content: center; }
+.symbols svg { width: 32px; height: 16px; margin: 0 4px; overflow: visible; }
+
+/* Time dock, bottom of the map. */
+.dock {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 8px;
-  background: var(--grit), linear-gradient(#6f604d, #a08f76);
+  left: var(--gap);
+  right: calc(var(--side) + 2 * var(--gap));
+  bottom: var(--gap);
+  padding: 12px 16px 8px;
+  z-index: 2;
 }
-.time-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
-.time-head output { font: 800 20px/1 var(--sign-font); }
+.dock-head { display: flex; align-items: center; gap: 12px; height: 32px; }
+.dock-head output { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
 #play {
-  font: 800 12px/1 var(--sign-font);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 7px 12px 5px;
-  border: 0;
-  border-radius: 5px;
-  color: #fff;
-  background: var(--sheen), var(--sheet), var(--sign);
-  box-shadow: inset 0 0 0 1.5px var(--sign), inset 0 0 0 3px #fff;
+  margin-left: auto;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
 }
-.chart { width: 100%; height: 84px; display: block; overflow: visible; touch-action: pan-y; cursor: ew-resize; }
-.chart text { font: 700 11px var(--sign-font); fill: var(--muted); }
-.chart .axis { stroke: rgba(43, 29, 24, 0.25); }
-.chart .guide { stroke: rgba(43, 29, 24, 0.18); stroke-dasharray: 2 4; }
-.chart .edge { fill: none; stroke: rgba(255, 255, 255, 0.6); stroke-width: 1; }
-.chart .cursor { stroke: var(--ink); stroke-width: 2; }
-.chart .cursor-cap { fill: var(--ink); }
-.chart .mm rect { fill: var(--green); stroke: #fff; stroke-width: 1.2; }
-.chart .mm line { stroke: #8f949a; stroke-width: 2.5; }
-.chart .mm text { fill: #fff; font: 800 9.5px var(--sign-font); }
+#play:hover { border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.07); }
+#play svg { width: 12px; height: 12px; }
+.chart { width: 100%; height: 84px; display: block; margin-top: 8px; overflow: visible; touch-action: pan-y; cursor: ew-resize; }
+.chart text { font: 500 11px var(--font); fill: var(--muted); }
+.chart .grid { stroke: var(--line); }
+.chart .tick { stroke: var(--line-2); }
+.chart .cursor { stroke: var(--text); stroke-width: 1.5; }
+.chart .cursor-cap { fill: var(--text); }
 
-#minutes { -webkit-appearance: none; appearance: none; height: 28px; margin: 0 0 0 34px; width: calc(100% - 34px); background: transparent; cursor: grab; }
-#minutes:active { cursor: grabbing; }
-#minutes::-webkit-slider-runnable-track {
-  height: 20px;
-  border-radius: 3px;
-  background:
-    linear-gradient(90deg, #f2c14e 55%, transparent 0) 0 50% / 30px 2px repeat-x,
-    linear-gradient(#f4f1ea, #f4f1ea) 0 3px / 100% 1.5px no-repeat,
-    linear-gradient(#f4f1ea, #f4f1ea) 0 calc(100% - 3px) / 100% 1.5px no-repeat,
-    var(--grit), linear-gradient(#45403b, #34302c);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6), 0 -1px 0 rgba(0, 0, 0, 0.15);
+/* Slider: a flat track whose filled part ends at the handle. The thumb is 16 px; the chart's x-axis
+   runs from 8 px inside the track's left end to 8 px inside its right end, so they line up. */
+#minutes {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: calc(100% - 36px);
+  height: 24px;
+  margin: 0 0 0 36px;
+  background: transparent;
+  cursor: pointer;
 }
-#minutes::-moz-range-track {
-  height: 20px;
-  border-radius: 3px;
-  background:
-    linear-gradient(90deg, #f2c14e 55%, transparent 0) 0 50% / 30px 2px repeat-x,
-    linear-gradient(#f4f1ea, #f4f1ea) 0 3px / 100% 1.5px no-repeat,
-    linear-gradient(#f4f1ea, #f4f1ea) 0 calc(100% - 3px) / 100% 1.5px no-repeat,
-    var(--grit), linear-gradient(#45403b, #34302c);
-}
-#minutes::-webkit-slider-thumb { -webkit-appearance: none; width: 38px; height: 22px; margin-top: -1px; border: 0; background: var(--car) center / contain no-repeat; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35)); }
-#minutes::-moz-range-thumb { width: 38px; height: 22px; border: 0; border-radius: 0; background: var(--car) center / contain no-repeat; }
+#minutes::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--text) var(--fill, 85%), rgba(255, 255, 255, 0.14) var(--fill, 85%)); }
+#minutes::-moz-range-track { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.14); }
+#minutes::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--text); }
+#minutes::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border-radius: 50%; background: var(--text); border: 3px solid var(--bg); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6); }
+#minutes::-moz-range-thumb { width: 10px; height: 10px; border-radius: 50%; background: var(--text); border: 3px solid var(--bg); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6); }
 
-.foot { grid-area: foot; display: flex; flex-wrap: wrap; gap: 2px 14px; padding: 6px 24px 10px; font-size: 12px; color: var(--muted); }
-.foot p { margin: 0; }
-.foot b { font-weight: 700; color: var(--ink); }
-.handles a { color: inherit; text-decoration: none; margin-left: 8px; white-space: nowrap; }
-.handles a:hover { color: var(--ink); }
-.handles i { margin-right: 3px; }
-
-/* Map labels and route shields, drawn as HTML over the map. */
-.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+/* Map labels, drawn as HTML over the map. */
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
 .labels span {
   position: absolute;
   left: 0;
   top: 0;
+  display: block;
   white-space: nowrap;
-  font: 600 12.5px/1 var(--text);
-  color: var(--ink);
-  text-shadow: 0 0 2px var(--bg), 0 0 3px var(--bg), 0 0 4px var(--bg), 0 0 6px var(--bg);
+  line-height: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c3cad3;
+  text-shadow: 0 0 2px var(--bg), 0 0 4px var(--bg), 0 0 6px var(--bg);
 }
-.labels .park { font: 800 14.5px/1 var(--sign-font); color: #133d29; }
-.labels .from { font: 800 10.5px/1 var(--sign-font); letter-spacing: 0.1em; text-transform: uppercase; }
-.labels .shield { text-shadow: none; line-height: 0; }
-.labels .shield svg { display: block; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25)); }
-.shield text, .mapkey text { font: 800 10px var(--sign-font); }
-
-.review-bar { display: none; }
-.review .review-bar {
-  display: flex;
-  gap: 6px;
-  position: fixed;
-  top: 10px;
-  left: calc((100% - var(--side)) / 2);
-  transform: translateX(-50%);
-  z-index: 10;
-  padding: 6px 8px;
-  border-radius: 999px;
-  background: rgba(20, 20, 20, 0.86);
-  font: 700 12px/1 var(--sign-font);
+.labels span[hidden] { display: none; }
+.labels .park { font-size: 13px; font-weight: 600; color: #bff0d3; }
+.labels .from { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.labels .route, .symbols .route {
+  height: 16px;
+  padding: 0 5px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #171c24;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  color: #e6ebf1;
+  text-shadow: none;
 }
-.review-bar a { color: #fff; text-decoration: none; padding: 5px 10px 3px; border-radius: 999px; }
-.review-bar a[aria-current="page"] { background: #fff; color: #111; }
+.labels .route.i { border-color: rgba(255, 255, 255, 0.6); }
+.symbols .route { display: inline-block; white-space: nowrap; }
 
 @media (min-width: 761px) and (max-width: 1100px) {
-  :root { --side: 360px; }
-  .side { padding-left: 32px; padding-right: 16px; }
-  .row { font-size: 16.5px; }
+  :root { --side: 320px; --gap: 12px; }
+  .meter { grid-template-columns: 10px 92px minmax(0, 1fr) 40px; }
 }
 
 @media (max-width: 760px) {
-  :root { --side: 0px; }
-  .app {
-    height: auto;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
-    grid-template-areas: "head" "map" "time" "assembly" "foot";
-  }
-  .stage { grid-area: map; height: 60vh; }
+  :root { --side: 0px; --gap: 12px; }
+  .app { height: auto; overflow: visible; display: flex; flex-direction: column; gap: 12px; padding: 12px; }
+  .stage { position: relative; inset: auto; height: 62vh; order: 2; border-radius: 12px; overflow: hidden; }
   .side { display: contents; }
-  .head { grid-area: head; padding: 16px 16px 12px; }
-  .head h1 { font-size: 26px; }
-  .assembly { grid-area: assembly; padding: 14px 16px; }
-  .time, .foot { padding-left: 16px; padding-right: 16px; }
-  .mapkey { bottom: 22px; left: 8px; width: auto; max-width: 230px; font-size: 12px; }
+  .head { order: 1; }
+  .dock { position: static; order: 3; }
+  .from { order: 4; }
+  .share { order: 5; }
+  .mapkey { position: static; order: 6; width: auto; }
+  .about { order: 7; }
   .loading { left: 50%; }
 }
 
 /* ?embed: the article carries the title and credits. */
-.embed .head, .embed .foot { display: none; }
+.embed .head, .embed .about { display: none; }
 </style>
 </head>
 <body>
-<nav class="review-bar" aria-label="Styles to review">
-  <a href="?style=atlas&amp;review">Atlas</a>
-  <a href="?style=core&amp;review">Core</a>
-  <a href="?style=contour&amp;review">Contour</a>
-</nav>
 <main class="app">
   <div class="stage">
     <div id="map-slot" class="map-slot"></div>
     <div class="labels" id="labels" aria-hidden="true"></div>
-    <details class="mapkey" id="mapkey" open>
-      <summary>Map key</summary>
-      <div class="reach" id="reach-key" hidden>
-        <p>Drive time to <span id="ramp-park">the park</span></p>
-        <div class="ramp" id="ramp" aria-hidden="true"></div>
-        <div class="ticks" id="ticks" aria-hidden="true"></div>
-      </div>
-      <ul id="key-list"></ul>
-    </details>
-    <p class="loading" id="loading">Loading drive times…</p>
+    <p class="loading" id="loading">Loading the map…</p>
   </div>
 
+  <details class="mapkey card" id="mapkey" open>
+    <summary class="card-title">Map key</summary>
+    <div class="scale" id="count-key">
+      <p class="card-title">Parks in reach</p>
+      <div class="steps" id="steps" aria-hidden="true"></div>
+      <div class="labels-row" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>All 5</span></div>
+    </div>
+    <div class="scale" id="park-key" hidden>
+      <p class="card-title">Drive time to <span id="ramp-park">the park</span></p>
+      <div class="ramp" id="ramp" aria-hidden="true"></div>
+      <div class="ticks" id="ticks" aria-hidden="true"></div>
+    </div>
+    <ul class="symbols" id="symbols"></ul>
+  </details>
+
   <aside class="side" aria-label="Drive times">
-    <header class="head">
-      <p class="label">30 Day Map Challenge 2026 · Day 13 · Interactions</p>
+    <header class="head card">
+      <p class="eyebrow">30 Day Map Challenge 2026 · Day 13 · Interactions</p>
       <h1>Drive times to Utah's five national parks</h1>
       <p class="sub">Move the drive-time slider. Type a town, use your location, or select a place on the map.</p>
     </header>
 
-    <div class="assembly">
-      <span class="post l" aria-hidden="true"></span>
-      <span class="post r" aria-hidden="true"></span>
-      <section class="sign guide" aria-label="Drive time to each park">
-        <div class="sign-top">
-          <label for="from">From</label>
-          <input type="text" id="from" list="towns" autocomplete="off" spellcheck="false" placeholder="Type a town" value="Salt Lake City" aria-describedby="from-msg">
-          <button type="button" id="locate" aria-label="Use my location" title="Use my location">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4" stroke="currentColor" stroke-width="2"/></svg>
-          </button>
+    <section class="from card" aria-label="Drive time to each park">
+      <label class="card-title" for="from">From</label>
+      <div class="from-row">
+        <div class="field">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="text" id="from" list="towns" autocomplete="off" spellcheck="false" placeholder="Type a Utah town" value="Salt Lake City" aria-describedby="from-msg">
         </div>
-        <datalist id="towns"></datalist>
-        <p class="from-msg" id="from-msg" aria-live="polite"></p>
-        <ul class="rows" id="rows" role="group" aria-label="Map one park, or all five"></ul>
-        <p class="sign-note">Rounded up to the next 15 minutes. Dim times are longer than the selected drive time. Select a park to map it.</p>
-      </section>
+        <button type="button" class="icon-btn" id="locate" aria-label="Use my location" title="Use my location">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><path d="M8 .8v2.4M8 12.8v2.4M.8 8h2.4M12.8 8h2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <datalist id="towns"></datalist>
+      <p class="from-msg" id="from-msg" aria-live="polite"></p>
+      <ul class="rows" id="rows" role="group" aria-label="Map one park, or all five"></ul>
+      <p class="hint">Rounded up to the next 15 minutes. Grey times are longer than the slider. Select a park to map it.</p>
+    </section>
 
-      <ul class="plates" id="plates" aria-label="Share of Utahns in reach">
-        <li class="plate lead" id="lead">Utahns within <b>4 h 30 min</b> of</li>
-      </ul>
+    <section class="share card" aria-label="Share of Utahns in reach">
+      <h2 id="share-title">Utahns within <b>4 h 30 min</b> of</h2>
+      <ul class="meters" id="meters"></ul>
       <p class="sr-only" id="status" aria-live="polite"></p>
-    </div>
+    </section>
+
+    <footer class="about card">
+      <p><b>Data</b> Drive times from the ArcGIS Online Service Area solver, November 5, 2026 · 2020 Census blocks · park boundaries from the NPS Land Resources Division · roads, water and towns from OpenStreetMap contributors (ODbL) · relief from USGS 3DEP · UGRC Utah boundary</p>
+      <p><b>Made with</b> ArcGIS Maps SDK for JavaScript 5.1 · data prep in Python (GeoPandas, Rasterio)</p>
+      <p class="handles">Brian Busch ·
+        <a href="https://www.linkedin.com/in/brian-busch1"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>brian-busch1</a>
+        <a href="https://x.com/brianjbusch"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i>@brianjbusch</a>
+        <a href="https://github.com/buschbrian"><i class="fa-brands fa-github" aria-hidden="true"></i>buschbrian</a>
+        <a href="https://www.instagram.com/brianbusch1"><i class="fa-brands fa-instagram" aria-hidden="true"></i>@brianbusch1</a>
+      </p>
+    </footer>
   </aside>
 
-  <section class="time" aria-label="Drive time">
-    <div class="time-head">
-      <label class="label" for="minutes">Drive time</label>
-      <output id="time-out" class="figure" for="minutes">4 h 30 min</output>
-      <button type="button" id="play">Play</button>
+  <section class="dock card" aria-label="Drive time">
+    <div class="dock-head">
+      <label class="card-title" for="minutes">Drive time</label>
+      <output id="time-out" for="minutes">4 h 30 min</output>
+      <button type="button" id="play"><svg viewBox="0 0 12 12" aria-hidden="true"><path id="play-icon" d="M2 1 L11 6 L2 11 Z" fill="currentColor"/></svg><span id="play-text">Play</span></button>
     </div>
     <svg class="chart" id="chart" role="img" aria-label="Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes."></svg>
     <input type="range" id="minutes" min="15" max="300" step="15" value="270" aria-valuetext="4 hours 30 minutes">
   </section>
-
-  <footer class="foot">
-    <p><b>Data</b> Drive times from the ArcGIS Online Service Area solver, November 5, 2026 · 2020 Census blocks · park boundaries from the NPS Land Resources Division · roads, water and towns from OpenStreetMap contributors (ODbL) · relief from USGS 3DEP · UGRC Utah boundary</p>
-    <p><b>Made with</b> ArcGIS Maps SDK for JavaScript 5.1 · data prep in Python (GeoPandas, Rasterio)</p>
-    <p class="handles">Brian Busch
-      <a href="https://www.linkedin.com/in/brian-busch1"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>brian-busch1</a>
-      <a href="https://x.com/brianjbusch"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i>@brianjbusch</a>
-      <a href="https://github.com/buschbrian"><i class="fa-brands fa-github" aria-hidden="true"></i>buschbrian</a>
-      <a href="https://www.instagram.com/brianbusch1"><i class="fa-brands fa-instagram" aria-hidden="true"></i>@brianbusch1</a>
-    </p>
-  </footer>
 </main>
 <script>
 (async () => {
@@ -457,51 +386,18 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   try {
   performance.mark("d13-start");
   const DATA = window.PEN_DATA ?? "https://buschbrian.github.io/assets/data/";
-  const STYLE = document.documentElement.dataset.style;
   const PARKS = ["Arches", "Bryce Canyon", "Canyonlands", "Capitol Reef", "Zion"];
-  const INK = "#2b1d18", BG = "#f8f2e8", PARK = "#1d5a3c";
-  const LABELLED = ["Logan", "Ogden", "Salt Lake City", "Provo", "Vernal", "Price", "Richfield", "Cedar City", "St. George", "Moab"];
   const COUNTS = [[5, "All five parks"], [4, "Four or more"], [3, "Three or more"], [2, "Two or more"], [1, "At least one"]];
+  const LABELLED = ["Logan", "Ogden", "Salt Lake City", "Provo", "Vernal", "Price", "Richfield", "Cedar City", "St. George", "Moab"];
+  const BG = "#0b0e13", TEXT = "#e8ecf1", ACCENT = "#ff7a59", PARK = "#8fe3b5";
+  // One ramp: dark at one park, brightest where all five are in reach. A single park runs bright near, dark far.
+  const K = ["#233047", "#24566e", "#22857f", "#55b77a", "#f2d15c"];
+  const NEAR = [...K].reverse();
   const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
   const rgba = (h, a) => [...hex(h), a];
-  // Fills are opaque colors pre-mixed with the paper, so nested shapes never stack and the key matches the map.
-  const mix = (h, a) => "#" + hex(h).map((c, i) => Math.round(c * a + hex(BG)[i] * (1 - a)).toString(16).padStart(2, "0")).join("");
-  const ROADS = { interstate: "#3d3936", us: "#5c5652", state: "#9c948a" };
 
-  // Three symbology styles for review. k: one to five parks. near: one park, near to far.
-  const STYLES = {
-    atlas: {
-      k: ["#eedb9c", "#e5bd73", "#d9954f", "#c3663a", "#a23b2c"], a: 0.9,
-      near: ["#a23b2c", "#c3663a", "#d9954f", "#e5bd73", "#f3e6bf"],
-      edge: (k) => ({ color: rgba(INK, k === 5 ? 0.9 : 0.3), width: k === 5 ? 1.5 : 0.6 }),
-      hour: { color: rgba(INK, 0.5), width: 1.1 }, quarter: { color: rgba(INK, 0.14), width: 0.4 },
-      relief: 0.75,
-    },
-    core: {
-      k: ["#e6dfd3", "#d6cbbb", "#c1b29d", "#a3937c", "#0f6b66"], a: 1,
-      near: ["#0b4d4a", "#1f7b74", "#5fae9f", "#b5d9cb", "#eef5f0"],
-      edge: (k) => (k === 5 ? { color: "#063f3c", width: 1.8 } : null),
-      hour: { color: rgba("#063f3c", 0.6), width: 1 }, quarter: null,
-      relief: 0.8,
-    },
-    contour: {
-      k: ["#e9b949", "#e28a3a", "#c9553f", "#8f2f53", "#47205a"], a: 0.12,
-      near: ["#47205a", "#8f2f53", "#c9553f", "#e28a3a", "#e9b949"],
-      edge: (k) => ({ color: ["#d9a531", "#e28a3a", "#c9553f", "#8f2f53", "#47205a"][k - 1], width: [1.3, 1.6, 1.9, 2.3, 2.9][k - 1] }),
-      hour: { color: rgba("#47205a", 0.9), width: 1.8 }, quarter: { color: rgba("#8f2f53", 0.4), width: 0.6 },
-      relief: 0.9,
-    },
-  };
-  const S = STYLES[STYLE];
-  const FILL = S.k.map((c) => mix(c, S.a));
-  const SWATCH = STYLE === "contour" ? S.k : FILL;
-  const NEAR = S.near.map((c) => mix(c, Math.max(S.a, 0.85)));
-  for (const a of document.querySelectorAll(".review-bar a")) {
-    if (a.getAttribute("href").includes(`style=${STYLE}&`)) a.setAttribute("aria-current", "page");
-  }
-
-  const [reach, relief, townList, shields, origins] = await Promise.all(
-    ["day-13-reach.json", "day-13-relief.json", "day-13-towns.json", "day-13-shields.json", "day-13-origins.geojson"]
+  const [reach, relief, townList, origins] = await Promise.all(
+    ["day-13-reach.json", "day-13-relief.json", "day-13-towns.json", "day-13-origins.geojson"]
       .map((f) => fetch(DATA + f).then((r) => { if (!r.ok) throw new Error(f); return r.json(); })));
   performance.mark("d13-data");
   const town = Object.fromEntries(townList.map(([n, lat, lon, p, t]) => [n, { lat, lon, times: t }]));
@@ -520,42 +416,28 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     for (const [a, v] of Object.entries(attrs)) e.setAttribute(a, v);
     return parent.appendChild(e);
   };
+  const narrow = () => matchMedia("(max-width: 760px)").matches;
 
-  // Route shields, used on the map and in the key.
-  const shieldSvg = (kind, num) => {
-    const w = num.length > 2 ? 30 : 24;
-    if (kind === "I") {
-      return `<svg width="${w}" height="24" viewBox="0 0 ${w} 24"><path d="M1.5 4 Q${w / 2} -0.5 ${w - 1.5} 4 Q${w} 15 ${w / 2} 23 Q0 15 1.5 4 Z" fill="#1c4396" stroke="#fff" stroke-width="1.5"/>` +
-        `<path d="M2.2 4.4 Q${w / 2} 0.6 ${w - 2.2} 4.4 L${w - 1.9} 8 H1.9 Z" fill="#c8102e"/>` +
-        `<text x="${w / 2}" y="17.5" text-anchor="middle" fill="#fff">${num}</text></svg>`;
-    }
-    return `<svg width="${w}" height="24" viewBox="0 0 ${w} 24"><path d="M3 2 H${w - 3} Q${w - 3} 5 ${w - 0.8} 6.5 Q${w - 1.5} 18 ${w / 2} 23 Q1.5 18 0.8 6.5 Q3 5 3 2 Z" fill="#fff" stroke="#151515" stroke-width="1.4"/>` +
-      `<text x="${w / 2}" y="16" text-anchor="middle" fill="#151515">${num}</text></svg>`;
-  };
-  const STAR = "M12 1 L14.9 8.4 L22.8 8.8 L16.6 13.8 L18.7 21.5 L12 17.2 L5.3 21.5 L7.4 13.8 L1.2 8.8 L9.1 8.4 Z";
-
-  // Map key: every symbol on the map, drawn with the map's own colors.
+  // Map key.
   const mapkey = document.querySelector("#mapkey");
   mapkey.open = !matchMedia("(max-width: 1100px)").matches;
-  const line = (c, w, casing) => (casing ? `<line x1="2" y1="9" x2="32" y2="9" stroke="#fff" stroke-width="${w + 2.4}"/>` : "") +
-    `<line x1="2" y1="9" x2="32" y2="9" stroke="${c}" stroke-width="${w}"/>`;
-  const key = [
-    [line(ROADS.interstate, 2.6, true) + `<g transform="translate(20 -3) scale(.62)">${shieldSvg("I", "15").replace(/<\/?svg[^>]*>/g, "")}</g>`, "Interstate"],
-    [line(ROADS.us, 1.8, true) + `<g transform="translate(20 -3) scale(.62)">${shieldSvg("US", "89").replace(/<\/?svg[^>]*>/g, "")}</g>`, "US highway"],
-    [line(ROADS.state, 1), "State route"],
-    [`<rect x="2" y="2" width="30" height="14" rx="3" fill="#a9cde3" stroke="#6ea6cb"/><path d="M2 12 Q12 6 32 10" fill="none" stroke="#4b8fc0" stroke-width="1.4"/>`, "Lake, river"],
-    [`<rect x="2" y="2" width="30" height="14" rx="3" fill="${PARK}" fill-opacity=".32" stroke="${PARK}" stroke-width="1.5"/>`, "National park"],
-    [`<circle cx="17" cy="9" r="7.5" fill="${PARK}" stroke="#fff" stroke-width="2"/><path d="M12.5 12.5 L16 7 L17.8 9.6 L19.4 7.6 L22 12.5 Z" fill="#fff"/>`, "Main visitor center"],
-    [`<path d="${STAR}" transform="translate(11 0) scale(.75)" fill="${INK}"/>`, "State capital"],
-    [`<circle cx="17" cy="9" r="3.5" fill="${BG}" stroke="${INK}" stroke-width="1.5"/>`, "City or town"],
-    [`<circle cx="17" cy="9" r="6.5" fill="#ffd166" stroke="${INK}" stroke-width="2"/>`, "Start point"],
-    [`<line x1="2" y1="9" x2="32" y2="9" stroke="${INK}" stroke-width="1.3" stroke-dasharray="7 4"/>`, "Utah state line"],
-  ];
-  document.querySelector("#key-list").innerHTML = key.map(([g, t]) => `<li><svg viewBox="0 0 34 18" aria-hidden="true">${g}</svg>${t}</li>`).join("");
+  document.querySelector("#steps").innerHTML = K.map((c) => `<span style="background:${c}"></span>`).join("");
   document.querySelector("#ramp").style.background = `linear-gradient(90deg, ${NEAR.join(", ")})`;
-  document.querySelector("#ticks").innerHTML = [1, 2, 3, 4, 5].map((h) => `<span style="left:${((h * 60 - X0) / (X1 - X0)) * 100}%">${h} h</span>`).join("");
+  document.querySelector("#ticks").innerHTML = [1, 2, 3, 4, 5]
+    .map((h) => `<span style="left:${((h * 60 - X0) / (X1 - X0)) * 100}%">${h} h</span>`).join("");
+  const sample = (inner) => `<svg viewBox="0 0 32 16" aria-hidden="true">${inner}</svg>`;
+  document.querySelector("#symbols").innerHTML = [
+    [sample('<line x1="1" y1="8" x2="31" y2="8" stroke="rgba(220,228,236,.85)" stroke-width="1.4"/><line x1="1" y1="12.5" x2="31" y2="12.5" stroke="rgba(200,208,218,.6)" stroke-width=".9"/>'), "Interstate, US highway"],
+    ['<span class="route">I-15</span>', "Route number"],
+    [sample('<rect x="1" y="2" width="30" height="12" rx="2" fill="#16304a" stroke="#2c5a80"/><path d="M1 11 Q12 5 31 8" fill="none" stroke="#3d77a6" stroke-width="1.2"/>'), "Lake, river"],
+    [sample(`<rect x="1" y="2" width="30" height="12" rx="2" fill="${PARK}" fill-opacity=".12" stroke="${PARK}" stroke-width="1.2"/>`), "National park"],
+    [sample(`<circle cx="16" cy="8" r="4.5" fill="${PARK}" stroke="${BG}" stroke-width="2"/>`), "Main visitor center"],
+    [sample(`<circle cx="10" cy="8" r="2.2" fill="${TEXT}"/><circle cx="22" cy="8" r="3.4" fill="${BG}" stroke="${TEXT}" stroke-width="1.6"/>`), "Town, state capital"],
+    [sample(`<circle cx="16" cy="8" r="5" fill="${ACCENT}" stroke="${TEXT}" stroke-width="1.6"/>`), "Start point"],
+    [sample('<line x1="1" y1="8" x2="31" y2="8" stroke="rgba(255,255,255,.55)" stroke-width="1" stroke-dasharray="5 3"/>'), "Utah state line"],
+  ].map(([icon, text]) => `<li>${icon.startsWith("<span") ? `<span>${icon}</span>` : icon}<span>${text}</span></li>`).join("");
 
-  // The guide sign: one row for each park (arrow, name, time) and an "All five" row.
+  // From card: one row for each park (bearing arrow, name, time) and an "All five" row.
   const rowsEl = document.querySelector("#rows");
   const rows = {};
   for (const park of [...PARKS, ""]) {
@@ -565,10 +447,10 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     b.className = park ? "row" : "row all";
     b.dataset.park = park;
     b.setAttribute("aria-pressed", String(park === ""));
-    const svg = make(b, "svg", { viewBox: "-12 -12 24 24", "aria-hidden": "true" });
+    const svg = make(b, "svg", { viewBox: "-8 -8 16 16", "aria-hidden": "true" });
     const g = make(svg, "g", {});
-    make(g, "path", { d: "M0,-11 L8,-2 H3 V11 H-3 V-2 H-8 Z", fill: "currentColor" });
-    b.insertAdjacentHTML("beforeend", `<span>${park || "All five"}</span><span class="t">…</span>`);
+    make(g, "path", { d: "M0 -6.5 L4.5 -1.5 H1.4 V6.5 H-1.4 V-1.5 H-4.5 Z", fill: "currentColor" });
+    b.insertAdjacentHTML("beforeend", `<span>${park || "All five"}</span><span class="t">–</span>`);
     li.append(b);
     rowsEl.append(li);
     rows[park] = { b, g, t: b.querySelector(".t") };
@@ -577,33 +459,32 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   const fromMsg = document.querySelector("#from-msg");
   document.querySelector("#towns").innerHTML = townList.map(([n]) => `<option value="${n}"></option>`).join("");
 
-  // Green plates. Their lines never change meaning while the time moves; only the values do.
-  const platesEl = document.querySelector("#plates");
-  const lead = document.querySelector("#lead");
-  const plates = [];
+  // Share card: five fixed lines. Each keeps its meaning while the time moves; only the values change.
+  const meters = [];
   for (let i = 0; i < 5; i++) {
     const li = document.createElement("li");
-    li.className = "plate";
-    li.innerHTML = '<span class="sw"></span><span class="n"></span><span class="v figure"></span>';
-    platesEl.append(li);
-    plates.push({ li, sw: li.querySelector(".sw"), n: li.querySelector(".n"), v: li.querySelector(".v") });
+    li.className = "meter";
+    li.innerHTML = '<span class="sw"></span><span class="n"></span><span class="bar"><i></i></span><span class="v"></span>';
+    document.querySelector("#meters").append(li);
+    meters.push({ li, sw: li.querySelector(".sw"), n: li.querySelector(".n"), fill: li.querySelector("i"), v: li.querySelector(".v") });
   }
-  function labelPlates() {
-    plates.forEach((p, i) => {
-      p.sw.style.visibility = state.park ? "hidden" : "";
-      p.sw.style.background = SWATCH[COUNTS[i][0] - 1];
-      p.n.textContent = state.park ? PARKS[i] : COUNTS[i][1];
-      p.li.classList.toggle("on", !!state.park && PARKS[i] === state.park);
+  function labelMeters() {
+    meters.forEach((r, i) => {
+      const color = state.park ? (PARKS[i] === state.park ? ACCENT : "#7b8695") : K[COUNTS[i][0] - 1];
+      r.sw.style.background = color;
+      r.fill.style.background = color;
+      r.n.textContent = state.park ? PARKS[i] : COUNTS[i][1];
+      r.li.classList.toggle("on", !!state.park && PARKS[i] === state.park);
     });
   }
-  labelPlates();
+  labelMeters();
 
-  // Chart: smooth monotone curves, aligned with the road below it. Hours are green mile markers.
+  // Chart: smooth monotone curves. The x-axis matches the slider's handle travel exactly.
   const svg = document.querySelector("#chart");
-  const H = 50, L = 34, CAR = 38;
+  const L = 36, THUMB = 16, H = 60;
   let W = 600;
-  const x = (m) => L + CAR / 2 + ((m - X0) / (X1 - X0)) * (W - L - CAR);
-  const y = (v) => H - v * H;
+  const x = (m) => L + THUMB / 2 + ((m - X0) / (X1 - X0)) * (W - L - THUMB);
+  const y = (v) => 4 + (1 - v) * (H - 4);
   const smooth = (pts) => {
     const n = pts.length;
     const d = pts.slice(1).map((p, i) => (p[1] - pts[i][1]) / (p[0] - pts[i][0]));
@@ -620,35 +501,28 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     }
     return path;
   };
-  const area = (vals, fill) => {
-    const curve = smooth(cut.map((m, i) => [x(m), y(vals[i])]));
-    make(svg, "path", { d: `M${x(X0)},${H} L${curve} L${x(X1)},${H} Z`, fill });
-    make(svg, "path", { class: "edge", d: `M${curve}` });
-  };
+  const area = (vals, fill) => make(svg, "path", { d: `M${x(X0)},${H} L${smooth(cut.map((m, i) => [x(m), y(vals[i])]))} L${x(X1)},${H} Z`, fill });
   let cursor, cap;
   function draw() {
     W = Math.max(svg.clientWidth, 240);
     svg.setAttribute("viewBox", `0 0 ${W} 84`);
     svg.replaceChildren();
-    for (const v of [0.5, 1]) {
-      make(svg, "line", { class: "guide", x1: L, x2: W, y1: y(v), y2: y(v) });
-      make(svg, "text", { x: L - 6, y: y(v) + 4, "text-anchor": "end" }).textContent = `${v * 100}%`;
+    for (const v of [0, 0.5, 1]) {
+      make(svg, "line", { class: "grid", x1: L, x2: W, y1: y(v), y2: y(v) });
+      if (v) make(svg, "text", { x: L - 8, y: y(v) + 4, "text-anchor": "end" }).textContent = `${v * 100}%`;
     }
     if (state.park) {
       const people = reach.people_within_by_park[state.park];
-      area(cut.map((m) => people[m] / pop), NEAR[1]);
+      area(cut.map((m) => people[m] / pop), ACCENT);
     } else {
-      for (let k = 1; k <= 5; k++) area(cut.map((m) => reach.share_at_least_k[m][k - 1]), STYLE === "contour" ? mix(S.k[k - 1], 0.75) : FILL[k - 1]);
+      for (let k = 1; k <= 5; k++) area(cut.map((m) => reach.share_at_least_k[m][k - 1]), K[k - 1]);
     }
-    make(svg, "line", { class: "axis", x1: L, x2: W, y1: H, y2: H });
     for (let h = 1; h <= 5; h++) {
-      const mm = make(svg, "g", { class: "mm", transform: `translate(${x(h * 60)},${H + 4})` });
-      make(mm, "line", { x1: 0, x2: 0, y1: 15, y2: 30 });
-      make(mm, "rect", { x: -11, y: 0, width: 22, height: 15, rx: 2.5 });
-      make(mm, "text", { x: 0, y: 11, "text-anchor": "middle" }).textContent = `${h} h`;
+      make(svg, "line", { class: "tick", x1: x(h * 60), x2: x(h * 60), y1: H, y2: H + 4 });
+      make(svg, "text", { x: x(h * 60), y: H + 18, "text-anchor": "middle" }).textContent = `${h} h`;
     }
-    cursor = make(svg, "line", { class: "cursor", y1: -2, y2: H, x1: x(state.minutes), x2: x(state.minutes) });
-    cap = make(svg, "circle", { class: "cursor-cap", r: 3.5, cx: x(state.minutes), cy: -2 });
+    cursor = make(svg, "line", { class: "cursor", y1: 0, y2: H, x1: x(state.minutes), x2: x(state.minutes) });
+    cap = make(svg, "circle", { class: "cursor-cap", r: 3, cx: x(state.minutes), cy: 0 });
     svg.setAttribute("aria-label", state.park
       ? `Share of Utahns within each drive time of ${state.park}, from 15 minutes to 5 hours.`
       : "Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes.");
@@ -658,23 +532,24 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
 
   const timeOut = document.querySelector("#time-out");
   const slider = document.querySelector("#minutes");
-  const reachKey = document.querySelector("#reach-key");
   const statusEl = document.querySelector("#status");
+  const shareTitle = document.querySelector("#share-title");
 
   function apply() {
     const m = state.minutes;
     const s = reach.share_at_least_k[m];
     timeOut.textContent = hm(m);
     slider.value = m;
+    slider.style.setProperty("--fill", `${(((m - X0) / (X1 - X0)) * (slider.clientWidth - THUMB) + THUMB / 2)}px`);
     slider.setAttribute("aria-valuetext", spoken(m));
     cursor.setAttribute("x1", x(m));
     cursor.setAttribute("x2", x(m));
     cap.setAttribute("cx", x(m));
-    lead.innerHTML = `Utahns within <b>${hm(m)}</b> of`;
-    plates.forEach((p, i) => {
+    shareTitle.innerHTML = `Utahns within <b>${hm(m)}</b> of`;
+    meters.forEach((r, i) => {
       const v = state.park ? reach.people_within_by_park[PARKS[i]][m] / pop : s[COUNTS[i][0] - 1];
-      p.v.textContent = pct(v);
-      p.li.classList.toggle("zero", v === 0);
+      r.v.textContent = pct(v);
+      r.fill.style.width = `${100 * v}%`;
     });
     if (state.times) {
       for (const [park, r] of Object.entries(rows)) {
@@ -696,7 +571,7 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   };
   apply();
 
-  // The sign reads from one start. Towns use drive times worked out in advance, so the sign fills at once.
+  // The From card reads from one start. Towns use drive times worked out in advance, so it fills at once.
   const bearing = ([lon, lat], p) => (Math.atan2((p[0] - lon) * Math.cos((lat * Math.PI) / 180), p[1] - lat) * 180) / Math.PI;
   function showTimes(times, ll) {
     times = { ...times, "": PARKS.some((p) => times[p] === null) ? null : Math.max(...PARKS.map((p) => times[p])) };
@@ -749,6 +624,8 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     );
   });
 
+  const countKey = document.querySelector("#count-key");
+  const parkKey = document.querySelector("#park-key");
   function choose(park) {
     state.park = park;
     for (const r of Object.values(rows)) r.b.setAttribute("aria-pressed", String(r.b.dataset.park === park));
@@ -756,9 +633,10 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
       map.counts.visible = !park;
       map.bands.visible = !!park;
     }
-    reachKey.hidden = !park;
+    countKey.hidden = !!park;
+    parkKey.hidden = !park;
     document.querySelector("#ramp-park").textContent = park || "the park";
-    labelPlates();
+    labelMeters();
     draw();
     apply();
     announce();
@@ -766,10 +644,11 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   for (const r of Object.values(rows)) r.b.addEventListener("click", () => choose(r.b.dataset.park));
   slider.addEventListener("input", () => { stop(); state.minutes = Number(slider.value); apply(); });
   slider.addEventListener("change", announce);
+  new ResizeObserver(apply).observe(slider);
 
   const fromChart = (e) => {
     const r = svg.getBoundingClientRect();
-    const m = X0 + Math.round((((e.clientX - r.left - L - CAR / 2) / (r.width - L - CAR)) * (X1 - X0)) / 15) * 15;
+    const m = X0 + Math.round((((e.clientX - r.left - L - THUMB / 2) / (r.width - L - THUMB)) * (X1 - X0)) / 15) * 15;
     state.minutes = Math.min(X1, Math.max(X0, m));
     apply();
   };
@@ -778,12 +657,18 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   svg.addEventListener("pointerup", announce);
 
   const play = document.querySelector("#play");
+  const playIcon = document.querySelector("#play-icon");
+  const playText = document.querySelector("#play-text");
   let timer = null;
-  function stop() { if (timer) { clearInterval(timer); timer = null; play.textContent = "Play"; announce(); } }
+  const setPlaying = (on) => {
+    playText.textContent = on ? "Pause" : "Play";
+    playIcon.setAttribute("d", on ? "M2 1 H5 V11 H2 Z M7 1 H10 V11 H7 Z" : "M2 1 L11 6 L2 11 Z");
+  };
+  function stop() { if (timer) { clearInterval(timer); timer = null; setPlaying(false); announce(); } }
   play.addEventListener("click", () => {
     if (timer) return stop();
     if (state.minutes >= X1) state.minutes = X0 - 15;
-    play.textContent = "Pause";
+    setPlaying(true);
     const step = () => { state.minutes += 15; apply(); if (state.minutes >= X1) stop(); };
     step();
     timer = setInterval(step, 450);
@@ -814,7 +699,7 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     'PROJECTION["Albers"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],' +
     'PARAMETER["Central_Meridian",-111.5],PARAMETER["Standard_Parallel_1",37.5],' +
     'PARAMETER["Standard_Parallel_2",41.5],PARAMETER["Latitude_Of_Origin",39.5],UNIT["Meter",1.0]]' });
-  const pt = ([x, y]) => new Point({ x, y, spatialReference: sr });
+  const pt = ([px, py]) => new Point({ x: px, y: py, spatialReference: sr });
   // The projection engine loads only when a reader shares a location or selects the map.
   let projector = null;
   const projection = async () => {
@@ -827,11 +712,11 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
 
   const FIELD = { minutes: "integer", at_least: "integer" };
   const layerFrom = (name, props) => {
-    const { geometry, fields, rows } = albers[name];
+    const { geometry, fields, rows: data } = albers[name];
     const geom = (g) => (geometry === "polygon" ? { type: "polygon", rings: g, spatialReference: sr }
       : geometry === "polyline" ? { type: "polyline", paths: g, spatialReference: sr } : { type: "point", x: g[0], y: g[1], spatialReference: sr });
     return new FeatureLayer({
-      source: rows.map((r, i) => new Graphic({
+      source: data.map((r, i) => new Graphic({
         geometry: geom(r[fields.length]),
         attributes: { oid: i + 1, ...Object.fromEntries(fields.map((f, j) => [f, r[j]])) },
       })),
@@ -844,6 +729,8 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
       ...props,
     });
   };
+  const fill = (color, outline) => ({ type: "simple-fill", color, outline });
+  const lineSym = (color, width, style = "solid") => ({ type: "simple-line", color, width, style });
 
   const credit = "Drive times: ArcGIS Online Service Area (Esri), solved 2026-11-05";
   const counts = layerFrom("reach-by-count", {
@@ -854,10 +741,9 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     renderer: {
       type: "unique-value",
       field: "at_least",
-      uniqueValueInfos: FILL.map((c, i) => ({ value: i + 1, label: `${i + 1}`, symbol: { type: "simple-fill", color: c, outline: S.edge(i + 1) } })),
+      uniqueValueInfos: K.map((c, i) => ({ value: i + 1, label: `${i + 1}`, symbol: fill(c, { color: rgba(BG, 0.45), width: 0.6 }) })),
     },
   });
-  const bandSymbol = (outline) => ({ type: "simple-fill", color: NEAR[2], outline });
   const bands = layerFrom("park-reach", {
     title: "Drive time to one park",
     copyright: credit,
@@ -866,42 +752,30 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     renderer: {
       type: "unique-value",
       valueExpression: "IIf($feature.minutes % 60 == 0, 'hour', 'quarter')",
-      uniqueValueInfos: [{ value: "hour", symbol: bandSymbol(S.hour) }, { value: "quarter", symbol: bandSymbol(S.quarter) }],
+      uniqueValueInfos: [
+        { value: "hour", symbol: fill(K[2], { color: rgba(BG, 0.7), width: 1 }) },
+        { value: "quarter", symbol: fill(K[2], { color: rgba(BG, 0.25), width: 0.4 }) },
+      ],
       visualVariables: [{ type: "color", field: "minutes", stops: NEAR.map((color, i) => ({ value: 15 + (i * 285) / 4, color })) }],
     },
   });
-  // Day 4's hillshade on the Day 11 terrain, multiplied over the fills.
+  // Day 4's hillshade on the Day 11 terrain, centred on 50% grey and soft-light blended over everything below.
   const shade = new MediaLayer({
     title: "Relief",
     copyright: "USGS 3DEP",
-    blendMode: "multiply",
-    opacity: S.relief,
+    blendMode: "soft-light",
+    opacity: 0.9,
     source: [new ImageElement({
-      image: DATA + "day-13-relief.jpg",
+      image: DATA + "day-13-relief-dark.jpg",
       georeference: new ExtentAndRotationGeoreference({ extent: new Extent({ ...relief, spatialReference: sr }) }),
     })],
   });
-  const lakes = layerFrom("lakes", {
-    title: "Lakes",
-    copyright: "OpenStreetMap contributors",
-    renderer: { type: "simple", symbol: { type: "simple-fill", color: "#a9cde3", outline: { color: "#6ea6cb", width: 0.6 } } },
-  });
-  const rivers = layerFrom("rivers", {
-    title: "Rivers",
-    copyright: "OpenStreetMap contributors",
-    renderer: { type: "simple", symbol: { type: "simple-line", color: "#4b8fc0", width: 1 } },
-  });
+  const lakes = layerFrom("lakes", { title: "Lakes", copyright: "OpenStreetMap contributors", renderer: { type: "simple", symbol: fill("#16304a", { color: "#2c5a80", width: 0.6 }) } });
+  const rivers = layerFrom("rivers", { title: "Rivers", copyright: "OpenStreetMap contributors", renderer: { type: "simple", symbol: lineSym("#3d77a6", 0.9) } });
   const parkShapes = layerFrom("parks", {
     title: "National parks",
     copyright: "NPS Land Resources Division",
-    renderer: { type: "simple", symbol: { type: "simple-fill", color: rgba(PARK, 0.32), outline: { color: PARK, width: 1.5 } } },
-  });
-  const cased = (color, w) => ({
-    type: "cim",
-    data: { type: "CIMSymbolReference", symbol: { type: "CIMLineSymbol", symbolLayers: [
-      { type: "CIMSolidStroke", enable: true, width: w, color: [...hex(color), 255], capStyle: "Round", joinStyle: "Round" },
-      { type: "CIMSolidStroke", enable: true, width: w + 2.2, color: [255, 255, 255, 235], capStyle: "Round", joinStyle: "Round" },
-    ] } },
+    renderer: { type: "simple", symbol: fill(rgba(PARK, 0.12), { color: PARK, width: 1.2 }) },
   });
   const roads = layerFrom("roads", {
     title: "Roads",
@@ -911,17 +785,13 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
       type: "unique-value",
       field: "cls",
       uniqueValueInfos: [
-        { value: "interstate", symbol: cased(ROADS.interstate, 2.4) },
-        { value: "us", symbol: cased(ROADS.us, 1.6) },
-        { value: "state", symbol: { type: "simple-line", color: ROADS.state, width: 0.7 } },
+        { value: "interstate", symbol: lineSym([220, 228, 236, 0.85], 1.4) },
+        { value: "us", symbol: lineSym([200, 208, 218, 0.6], 0.9) },
+        { value: "state", symbol: lineSym([170, 180, 190, 0.3], 0.5) },
       ],
     },
   });
-  const utah = layerFrom("utah", {
-    title: "Utah",
-    copyright: "UGRC",
-    renderer: { type: "simple", symbol: { type: "simple-fill", color: [0, 0, 0, 0], outline: { color: rgba(INK, 0.8), width: 1.3, style: "long-dash" } } },
-  });
+  const utah = layerFrom("utah", { title: "Utah", copyright: "UGRC", renderer: { type: "simple", symbol: fill([0, 0, 0, 0], { color: [255, 255, 255, 0.55], width: 1, style: "dash" }) } });
   const townPoint = Object.fromEntries(Object.entries(albers.points.towns).map(([n, xy]) => [n, pt(xy)]));
   const towns = new GraphicsLayer({ title: "Towns" });
   for (const name of LABELLED) {
@@ -929,25 +799,20 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     towns.add(new Graphic({
       geometry: townPoint[name],
       symbol: name === "Salt Lake City"
-        ? { type: "simple-marker", style: "path", path: STAR, size: 11, color: INK, outline: { color: BG, width: 0.8 } }
-        : { type: "simple-marker", size: 5.5, color: BG, outline: { color: INK, width: 1.4 } },
+        ? { type: "simple-marker", size: 7, color: BG, outline: { color: TEXT, width: 1.6 } }
+        : { type: "simple-marker", size: 4.5, color: TEXT, outline: { color: BG, width: 1 } },
     }));
   }
   const fromLayer = new GraphicsLayer({ title: "Start" });
-  const marker = "data:image/svg+xml;base64," + btoa(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">' +
-    `<circle cx="20" cy="20" r="17" fill="${PARK}" stroke="#fff" stroke-width="4"/>` +
-    '<path d="M9.5 27 L17 15 L21 20.5 L24.5 16.5 L31 27 Z" fill="#fff"/></svg>');
   const originLayer = layerFrom("origins", {
     title: "Visitor centers",
-    renderer: { type: "simple", symbol: { type: "picture-marker", url: marker, width: 19, height: 19 } },
+    renderer: { type: "simple", symbol: { type: "simple-marker", size: 9, color: PARK, outline: { color: BG, width: 2 } } },
   });
 
   const xs = albers.utah.rows[0][0].flat(2).filter((_, i) => i % 2 === 0);
   const ys = albers.utah.rows[0][0].flat(2).filter((_, i) => i % 2 === 1);
   const extent = new Extent({ xmin: Math.min(...xs), ymin: Math.min(...ys), xmax: Math.max(...xs), ymax: Math.max(...ys), spatialReference: sr });
-  const narrow = () => matchMedia("(max-width: 760px)").matches;
-  const home = () => extent.clone().expand(narrow() ? 1.75 : 1.1);
+  const home = () => extent.clone().expand(narrow() ? 1.32 : 1.06);
   const page = Polygon.fromExtent(extent.clone().expand(5));
 
   const slot = document.querySelector("#map-slot");
@@ -958,27 +823,42 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   });
   const el = document.createElement("arcgis-map");
   el.setAttribute("aria-label", "Map of drive times from Utah to its five national parks");
-  el.innerHTML = '<arcgis-zoom slot="top-left"></arcgis-zoom><arcgis-home slot="top-left"></arcgis-home>';
+  el.innerHTML = '<arcgis-zoom slot="top-right"></arcgis-zoom><arcgis-home slot="top-right"></arcgis-home>';
   el.spatialReference = sr;
   el.extent = home();
-  el.map = new Map({ layers: [counts, bands, shade, lakes, rivers, parkShapes, roads, utah, towns, fromLayer, originLayer] });
+  el.map = new Map({ layers: [counts, bands, lakes, rivers, shade, parkShapes, roads, utah, towns, fromLayer, originLayer] });
   slot.append(el);
   await el.viewOnReady();
   performance.mark("d13-view");
   const view = el.view;
   view.background = { color: BG };
   view.constraints = { rotationEnabled: false, minScale: 20e6, maxScale: 20000, geometry: page };
-  const pad = () => (view.padding = { left: 0, top: 0, bottom: 0, right: narrow() ? 0 : document.querySelector(".side").offsetWidth });
+  const gap = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gap")) || 16;
+  // Keep Utah clear of the cards: the column on the right, the dock below, the key on the left.
+  const pad = () => {
+    if (narrow()) {
+      view.padding = { top: 0, right: 0, bottom: 0, left: 0 };
+      view.ui.padding = { top: 12, right: 12, bottom: 12, left: 12 };
+      return;
+    }
+    const g = gap();
+    const right = document.querySelector(".side").offsetWidth + 2 * g;
+    const bottom = document.querySelector(".dock").offsetHeight + 2 * g;
+    const left = mapkey.open ? mapkey.offsetWidth + 2 * g : 0;
+    view.padding = { top: g, right, bottom, left };
+    view.ui.padding = { top: g, right, bottom, left: g };
+  };
   pad();
   el.querySelector("arcgis-home").viewpoint = { targetGeometry: home() };
   let touched = false;
   view.on(["drag", "mouse-wheel", "double-click", "key-down"], () => (touched = true));
   el.querySelector("arcgis-zoom").addEventListener("click", () => (touched = true));
   const fit = () => view.width > 100 && view.height > 100 && view.goTo(home(), { animate: false }).catch(() => {});
+  mapkey.addEventListener("toggle", () => { pad(); touched || fit(); });
 
-  // Labels and shields as HTML. Sizes are measured once; a greedy pass hides any label that would
-  // overlap a label placed before it (parks first, then the start, towns and shields).
-  const PLACE = { Arches: [13, -13], Canyonlands: [13, 12], "Capitol Reef": [-13, -13, "end"], "Bryce Canyon": [14, 0], Zion: [14, 0] };
+  // Labels and route numbers as HTML. Sizes are measured once; a greedy pass in priority order
+  // (parks, start, towns, routes) hides any label that would overlap one placed before it.
+  const PLACE = { Arches: [10, -12], Canyonlands: [10, 12], "Capitol Reef": [-10, -12, "end"], "Bryce Canyon": [10, 0], Zion: [10, 0] };
   const labelsEl = document.querySelector("#labels");
   const labelled = [];
   const label = (html, cls, point, dx, dy, align, rank) => {
@@ -992,26 +872,34 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   };
   for (const [, park, xy] of albers.origins.rows) {
     const [dx, dy, end] = PLACE[park];
-    label(park, "park", pt(xy), dx, dy, end ? "end" : "start", 0);
+    const l = label(park, "park", pt(xy), dx, dy, end ? "end" : "start", 0);
+    l.alts = [[-dx, dy, end ? "start" : "end"], [0, 16, "center"], [0, -16, "center"]];  // tried in turn when the first spot is taken
   }
-  const fromTag = label("Start", "from", null, 0, 17, "center", 1);
-  for (const name of LABELLED) if (townPoint[name]) label(name, "town", townPoint[name], 7, 0, "start", 2);
-  for (const [kind, num, x0, y0] of albers.points.shields) label(shieldSvg(kind, num), "shield", pt([x0, y0]), 0, 0, "center", 3);
+  const fromTag = label("Start", "from", null, 0, 16, "center", 1);
+  for (const name of LABELLED) if (townPoint[name]) label(name, "town", townPoint[name], name === "Salt Lake City" ? 8 : 6, 0, "start", 2);
+  for (const [kind, num, px, py] of albers.points.shields) {
+    label(kind === "I" ? `I-${num}` : `US ${num}`, `route${kind === "I" ? " i" : ""}`, pt([px, py]), 0, 0, "center", 3);
+  }
   labelled.sort((a, b) => a.rank - b.rank);
   const measure = () => { for (const l of labelled) { l.w = l.el.offsetWidth; l.h = l.el.offsetHeight; } };
   const place = () => {
     const boxes = [];
+    const fits = (box) => box[0] >= 0 && box[2] <= view.width && box[1] >= 0 && box[3] <= view.height &&
+      !boxes.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1]);
     for (const l of labelled) {
       const p = l.point && view.toScreen(l.point);
       if (!p) { l.el.hidden = true; continue; }
-      const left = p.x + l.dx - (l.align === "end" ? l.w : l.align === "center" ? l.w / 2 : 0);
-      const top = p.y + l.dy - l.h / 2;
-      const box = [left - 2, top - 2, left + l.w + 2, top + l.h + 2];
-      const hit = boxes.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1]);
-      l.el.hidden = hit || box[2] < 0 || box[0] > view.width || box[3] < 0 || box[1] > view.height;
-      if (l.el.hidden) continue;
-      boxes.push(box);
-      l.el.style.transform = `translate(${left}px, ${top}px)`;
+      let spot = null;
+      for (const [dx, dy, align] of [[l.dx, l.dy, l.align], ...(l.alts ?? [])]) {
+        const left = Math.round(p.x + dx - (align === "end" ? l.w : align === "center" ? l.w / 2 : 0));
+        const top = Math.round(p.y + dy - l.h / 2);
+        const box = [left - 3, top - 3, left + l.w + 3, top + l.h + 3];
+        if (fits(box)) { spot = { left, top, box }; break; }
+      }
+      l.el.hidden = !spot;
+      if (!spot) continue;
+      boxes.push(spot.box);
+      l.el.style.transform = `translate(${spot.left}px, ${spot.top}px)`;
     }
   };
   measure();
@@ -1020,11 +908,10 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   document.fonts.ready.then(() => { measure(); pad(); touched || fit(); place(); });
   fit();
 
-  const townAt = (name) => townPoint[name];
   map.mark = async () => {
-    const p = state.from.point ?? townAt(state.from.name) ?? (await projection()).execute(new Point({ longitude: state.from.ll[0], latitude: state.from.ll[1] }), sr);
+    const p = state.from.point ?? townPoint[state.from.name] ?? (await projection()).execute(new Point({ longitude: state.from.ll[0], latitude: state.from.ll[1] }), sr);
     fromLayer.removeAll();
-    fromLayer.add(new Graphic({ geometry: p, symbol: { type: "simple-marker", size: 15, color: [255, 209, 102, 0.95], outline: { color: INK, width: 2 } } }));
+    fromLayer.add(new Graphic({ geometry: p, symbol: { type: "simple-marker", size: 11, color: ACCENT, outline: { color: TEXT, width: 1.6 } } }));
     fromTag.point = LABELLED.includes(state.from.name) ? null : p;
     place();
   };
@@ -1039,7 +926,7 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
     return times;
   };
 
-  // Select a park's visitor center to map that park. Select anywhere else to read the sign from there.
+  // Select a park's visitor center to map that park. Select anywhere else to read the From card from there.
   view.on("click", async (event) => {
     const hit = await view.hitTest(event, { include: [originLayer] });
     if (hit.results.length) return choose(hit.results[0].graphic.attributes.park);
