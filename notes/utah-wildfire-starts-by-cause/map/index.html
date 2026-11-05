@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="#30DayMapChallenge 2026, Day 4. 37,882 known-cause Utah wildfire starts, 1992–2024 (FPA FOD 7th ed.), clustered as natural/people donuts with the ArcGIS Maps SDK for JavaScript 5.1 in a Utah-centred Albers projection.">
+<meta name="description" content="#30DayMapChallenge 2026, Day 4. Utah wildfire records with a known cause, 1992–2024. Compare natural and human causes as clusters, density, or points.">
 <title>Day 4 · Clusters — Utah wildfire starts by cause</title>
 <script>window.PEN_DATA = "/assets/data/";</script>
 <script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
@@ -158,7 +158,7 @@ footer b { font-weight: 600; color: var(--ink); }
   <aside class="panel">
     <p class="kicker">30 Day Map Challenge 2026 · Day 04 · Clusters</p>
     <h1>Utah wildfire starts by cause</h1>
-    <p class="sub">Every known-cause start inside Utah, 1992–2024. Zoom in and the clusters split; tap one for its natural/people split.</p>
+    <p class="sub">Utah wildfire records with a known cause, 1992–2024. Zoom in to separate clusters. Select a cluster to compare causes.</p>
 
     <section class="controls" aria-label="Map controls">
       <label class="label" for="cause">Cause</label>
@@ -184,7 +184,7 @@ footer b { font-weight: 600; color: var(--ink); }
       <div class="ramp nat" aria-hidden="true"></div>
       <div class="ramp hum" aria-hidden="true"></div>
       <div class="ticks figure" aria-hidden="true"><span>3</span><span>10</span><span>30</span><span>80</span></div>
-      <p class="note">Natural on top, people below, one log scale for both; pale where both are dense. Drawn live by the SDK’s heatmap with a 14 km kernel, the spread of the poster’s 5 km Gaussian. Rates are per year of the years selected.</p>
+      <p class="note">The top ramp shows natural causes. The bottom ramp shows human causes. Both use the same log scale. Pale colors show where both are dense. Density is smoothed within a radius of about 14 km to approximate the stills. Rates are averaged over the selected years.</p>
     </section>
 
     <section class="readout" aria-live="polite">
