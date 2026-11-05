@@ -22,7 +22,14 @@ jobs:
           node-version: 24.22.1
 
       - name: Check JavaScript syntax
-        run: node --check assets/js/site.js
+        run: |
+          node --check assets/js/site.js
+          node --check assets/js/image-viewer.mjs
+          node --check assets/js/image-geometry.mjs
+          node --check assets/js/challenge-reading.mjs
+
+      - name: Check image navigation geometry
+        run: node --test tests/*.test.mjs
 
       - name: Check HTML
         run: npx --yes html-validate@11.6.2 "**/*.html"
