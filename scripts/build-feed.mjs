@@ -29,6 +29,7 @@ const ORDER = [
   "drought-in-western-basins",
   "utah-wildfire-starts-by-cause",
   "canyon-overlook-trail-viewshed",
+  "holmes-zion-panorama",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
