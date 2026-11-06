@@ -124,6 +124,42 @@
             <li>The shares use 2020 Census blocks. Each block counts at its internal point. The shares use the areas before smoothing.</li>
             <li>The map uses an Albers equal-area projection centered on Utah. The relief is a hillshade of USGS 3DEP elevation at 400 m.</li>
           </ul>
+          <h2>Inside the scripts</h2>
+          <p>A Python script, <code>day13_reach.py</code>, turns the drive-time areas into the shares on this page with GeoPandas and pandas. The map runs in the browser on the ArcGIS Maps SDK for JavaScript.</p>
+          <p>The Python script passes the default checks of the ruff linter and uses its code format. The excerpts below are trimmed. A <code># ...</code> or <code>// ...</code> line marks a cut.</p>
+          <p>Each Census block counts at one point inside it. The script puts the points and the drive-time areas in the same coordinate system, then joins them. A spatial join finds every 15-minute ring that a point falls inside. The smallest ring is that block's drive time to the park. Then one comparison and a sum across each row count the parks within any drive time.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>pts = pts.to_crs(rings.crs)
+# Match each block's point to every drive-time ring it falls inside.
+joined = gpd.sjoin(pts[["geometry"]], rings, how="inner", predicate="within")
+# Keep the smallest ring per block and park: one row per block, one column per
+# park, in minutes. A blank means more than 5 hours.
+drive = (
+    joined.groupby([joined.index, "park"])["drive_minutes"]
+    .min()
+    .unstack()
+    .reindex(index=pts.index, columns=PARKS)
+)
+# ...
+for m in (60, 120, 180, 210, 240, 270, 300):
+    # How many parks each block can reach within m minutes.
+    n = (drive &lt;= m).sum(axis=1)</code></pre>
+            <figcaption>From <code>day13_reach.py</code>. <code>pts</code> holds one point for each 2020 Census block. The shares add up the residents of the blocks where <code>n</code> is at least 1, 2, 3, 4 or 5.</figcaption>
+          </figure>
+          <p>The slider doesn't ask a server for anything. Each map layer already holds every drive time, from 15 minutes to 5 hours. When the slider moves, the page sets a filter on the layer's view, and the map redraws only the shapes that match.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>slider.addEventListener("input", () =&gt; { stop(); map.ready &amp;&amp; map.stopReveal(); state.minutes = Number(slider.value); apply(); });
+// ...
+function apply() {
+  const m = state.minutes;
+  // ...
+  if (map.ready) {
+    if (state.park) map.lv.bands.filter = { where: `park = '${state.park}' AND minutes &lt;= ${m}` };
+    else map.lv.counts.filter = { where: `minutes = ${m}` };
+  }
+}</code></pre>
+            <figcaption>From the map page, <code>notes/utah-park-drive-times/map/index.html</code>. <code>map.lv</code> holds the layer views: <code>counts</code> for how many parks each place can reach, and <code>bands</code> for one selected park.</figcaption>
+          </figure>
           <h2>Data notes</h2>
           <ul>
             <li>The times are modeled. Real trips change with traffic, weather, road work and stops.</li>
