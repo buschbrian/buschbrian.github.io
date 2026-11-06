@@ -109,6 +109,7 @@
             <pre tabindex="0"><code>def keep_steep_overlap(xyz, lo, hi, seed=14):
     # ...
     d = np.load(DIR / "mesh_narrows.npz")
+    # The 1 m elevation grid: 3,000 rows south to north by 1,600 columns west to east.
     z = d["verts"][:, 2].reshape(3000, 1600)[::-1].astype(np.float32)  # z[y, x]
     gy, gx = np.gradient(z)
     slope = np.degrees(np.arctan(np.hypot(gx, gy)))
