@@ -106,9 +106,13 @@
           <p>The fit searches two numbers and solves for two more. The outer loops try each horizontal scale and center bearing. For each pair, a weighted linear regression gives the vertical scale and the horizon row directly. The ratio of the two scales is the height stretch. The search rejects any stretch outside 0.8 to 3.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>def skyline(x, y, eye=1.7):
+    # Eye height: the ground under the viewpoint plus a standing person.
     z0, ok = ter_s.sample(np.array([x]), np.array([y]))
     ze = z0[0] + eye
+    # Sample the terrain along every bearing (columns) at every distance (rows).
     zz, ok = ter_s.sample(x + TS[:, None] * np.sin(AZ), y + TS[:, None] * np.cos(AZ))
+    # Angle up to each sample, lowered for the Earth's curve. The skyline on a
+    # bearing is the steepest angle anywhere along it.
     ang = np.arctan2(
         zz - d.K_CURV * TS[:, None] ** 2 / (2 * d.R_EARTH) - ze, TS[:, None]
     )
@@ -117,35 +121,10 @@
     last = ok.shape[0] - 1 - np.argmax(ok[::-1], axis=0)
     edge = (j &gt;= last - 2) &amp; ~ok[-1]
     return np.degrees(ang.max(axis=0)), edge, j, ze
-
 # ...
-def fit(E, edge):
-    azd = np.degrees(AZ)
-    best = (np.inf, np.nan, np.nan, np.nan, np.nan, 0.0)
-    for s in S:
-        az = A0[:, None] + (px[None, :] - XC) / s  # (nA, nP)
-        e = np.interp(az, azd, E)
-        m = (
-            ~(np.interp(az, azd, edge.astype(float)) &gt; 0.5)
-            &amp; (az &gt;= azd[0])
-            &amp; (az &lt;= azd[-1])
-        )
-        w = m.astype(float)
-        n = w.sum(1)
-        em, ym = (e * w).sum(1) / n, (py * w).sum(1) / n
-        cov = ((e - em[:, None]) * (py - ym[:, None]) * w).sum(1)
-        var = ((e - em[:, None]) ** 2 * w).sum(1)
-        b = -cov / var  # px per degree of elevation
-        y0 = ym + b * em
-        r = np.sqrt((((py - (y0[:, None] - b[:, None] * e)) ** 2) * w).sum(1) / n)
-        v = b / s
-        r = np.where((v &gt; 0.8) &amp; (v &lt; 3) &amp; (n &gt; 0.8 * len(px)), r, np.inf)
-        k = np.argmin(r)
-        if r[k] &lt; best[0]:
-            best = (r[k], s, A0[k], v[k], y0[k], n[k])
-    return best
-
-# ...
+rows, t0 = [], time.time()
+# Try every viewpoint on the grid: model its skyline, fit it to the plate,
+# and keep the fit error. The best viewpoint sorts to the top.
 for y in ys:
     for x in xs:
         E, edge, j, ze = skyline(x, y)
@@ -189,6 +168,8 @@ def march(ter, cam, ts, chunk=480):
         )
         py = cam.py(z, ts[:, None]).astype(np.float32)
         py[~ok] = np.inf
+        # Running minimum down each column: the highest screen point seen so far,
+        # nearest first. That is the horizon each farther sample has to clear.
         run = np.minimum.accumulate(py, axis=0)
         hb[0, cs], hb[1:, cs] = np.inf, run
         vis = py &lt; hb[:-1, cs]
