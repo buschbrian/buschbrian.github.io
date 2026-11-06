@@ -145,27 +145,6 @@
           <p>The poster is two equal fields that meet at the center. Each field has the same rows: a heavy rule, two large shares, a map, a key and two smaller figures. The type is Univers Next Pro.</p>
           <p>The title runs across the seam. It splits inside two words, between letters: &ldquo;Uta&rdquo; and &ldquo;hns&rdquo;, then &ldquo;o&rdquo; and &ldquo;f&rdquo;. Each part is its own text, in the color of its field. No part is clipped, so no letter is cut.</p>
           <p>The script measures the ink edges of each part and of the two letters together. It puts the seam halfway across the natural gap between the letters, and at least 1.5 px from each.</p>
-          <figure class="code-excerpt">
-            <pre tabindex="0"><code>    for i, (a, b) in enumerate(lines):
-        base = y + 0.76 * px + i * lh * px
-        # Rendered ink extents at x = 0: each part, and the left part plus the first
-        # right letter (for the gap).
-        probes = [
-            t(ax, 0, base, s, "bold", px, "none", va="baseline")
-            for s in (a, b, a + b[0], b[0])
-        ]
-        (al, ar), (bl, br), (_, with_first), (f0, f1) = (xspan(ax, p) for p in probes)
-        for p in probes:
-            p.remove()
-        half = max(CLEAR, (with_first - (f1 - f0) - ar) / 2)
-        xa, xb = SEAM - half - ar, SEAM + half - bl
-        assert xa + al &gt;= M - 1 and xb + br &lt;= W - M + 1, (
-            f"title line {i} leaves the margins"
-        )
-        t(ax, xa, base, a, "bold", px, FIELDS["urban"]["ink"], va="baseline")
-        last = t(ax, xb, base, b, "bold", px, FIELDS["rural"]["ink"], va="baseline")</code></pre>
-            <figcaption>From <code>day09_urban_rural.py</code>. After each render, a pixel check confirms that the columns on each side of the seam hold only the two background colors.</figcaption>
-          </figure>
           <p>An earlier version drew each whole line twice and clipped each copy at the seam. Univers tucks the &ldquo;f&rdquo; under the &ldquo;o&rdquo;, so part of the &ldquo;f&rdquo; reached back across the seam.</p>
           <h2>Six palettes, checked for contrast</h2>
           <p>The first draft set the two halves in near-white and near-black. I tried six softer palettes and chose salt and juniper: pale sand for urban Utah and dark juniper green for rural Utah.</p>
