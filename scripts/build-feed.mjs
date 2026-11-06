@@ -30,6 +30,7 @@ const ORDER = [
   "utah-wildfire-starts-by-cause",
   "canyon-overlook-trail-viewshed",
   "utah-park-drive-times",
+  "zion-narrows-lidar",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
