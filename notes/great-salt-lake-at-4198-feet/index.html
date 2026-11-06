@@ -116,7 +116,8 @@
           </ul>
           <p>The scripts pass the default checks of the ruff linter and use its code format. The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
           <figure class="code-excerpt">
-            <pre tabindex="0"><code>wall = rasterize(
+            <pre tabindex="0"><code># Rail lines, causeways and dikes become wall cells that water can't cross.
+wall = rasterize(
     ((g, 1) for g in walls.geometry if g is not None),
     out_shape=shape,
     transform=tr,
@@ -124,19 +125,25 @@
     dtype="uint8",
 ).astype(bool)
 # ...
-        L = navd[level_key]
-        if L not in labels:
-            labels[L] = ndimage.label(valid &amp; ~wall &amp; ~pond &amp; (dem &lt; L))[0]
-        lab = labels[L]
-        rs, cs = box_slices(BOXES[region])
-        ids, counts = np.unique(lab[rs, cs], return_counts=True)
-        keep = ids &gt; 0
-        # ...
-        best = ids[keep][np.argmax(counts[keep])]
-        m = lab == best
-        # ...
-        out[m &amp; (out == 0)] = code
-        vol_m3 = float(((L - dem[m]) * 0.3048).sum()) * cell_km2 * 1e6</code></pre>
+level_ft = navd[level_key]
+# label() gives each patch of touching cells below the water level its
+# own number. Walls and ponds are left out, so water can't cross them.
+if level_ft not in labels:
+    labels[level_ft] = ndimage.label(
+        valid &amp; ~wall &amp; ~pond &amp; (dem &lt; level_ft)
+    )[0]
+patches = labels[level_ft]
+rs, cs = box_slices(BOXES[region])
+ids, counts = np.unique(patches[rs, cs], return_counts=True)
+keep = ids &gt; 0
+# ...
+# The largest patch inside the arm's search box is the lake itself.
+best = ids[keep][np.argmax(counts[keep])]
+lake = patches == best
+# ...
+out[lake &amp; (out == 0)] = code
+# Depth in feet, times 0.3048 for meters, times each cell's area in m².
+vol_m3 = float(((level_ft - dem[lake]) * 0.3048).sum()) * cell_km2 * 1e6</code></pre>
             <figcaption>From <code>day08_flood_gate.py</code>. <code>L</code> is the level in NAVD 88 feet. <code>all_touched</code> burns every cell that a wall touches. <code>ndimage.label</code> joins cells through shared edges only, so a wall one cell wide holds on a diagonal too.</figcaption>
           </figure>
           <p>The first run walled off Bear River Bay behind the railroad crossing to Little Mountain. The South Arm came up 4.8% short of its table. The low ground behind that crossing measured exactly the table&rsquo;s 85.4 km² for Bear River Bay. So the crossing is the edge of the bay in the USGS tables, not a wall. Now the bay floods from its own seed at the South Arm level.</p>
@@ -161,8 +168,10 @@ win = water[r0 : r + HALF, c0 : c + HALF]
 if win[r - r0, c - c0]:
     rec[case] = {"km": 0.0, "bearing": None, "in_water": True}
     continue
+# For every dry cell, the row and column of the nearest water cell.
 _, (ir, ic) = ndimage.distance_transform_edt(~win, return_indices=True)
 tr_r, tr_c = ir[r - r0, c - c0] + r0, ic[r - r0, c - c0] + c0
+# The raster's transform turns that cell's center into map coordinates.
 wx, wy = tr * (tr_c + 0.5, tr_r + 0.5)
 km = math.hypot(wx - x, wy - y) / 1000</code></pre>
             <figcaption>From <code>day08_anchors.py</code>. The distance transform gives the nearest water cell for each dry cell. The script measures to the center of that cell, inside a 50 km window around each place.</figcaption>
