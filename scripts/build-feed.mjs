@@ -33,6 +33,7 @@ const ORDER = [
   "wasatch-front-walk-to-transit",
   "great-salt-lake-at-4198-feet",
   "the-mighty-five-by-decibel",
+  "a-field-guide-to-the-megawatt",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
