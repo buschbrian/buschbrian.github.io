@@ -180,6 +180,7 @@ p { line-height: 1.6; color: var(--body); }
   aspect-ratio: 4 / 3; border-radius: 16px; background: #0e1a42;
   box-shadow: 0 18px 48px rgba(7, 14, 38, .45);
 }
+.band-art picture { width: 100%; height: 100%; min-height: 0; }
 .band-art img { width: 100%; height: 100%; object-fit: contain; transition: transform .4s ease; }
 .band-art:hover img { transform: scale(1.03); }
 .band-art:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
@@ -193,18 +194,12 @@ p { line-height: 1.6; color: var(--body); }
 .band-action a:hover { color: var(--white); }
 
 .band-recent { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: clamp(20px, 2.6vw, 28px); }
-.tile { position: relative; display: block; aspect-ratio: 1; min-width: 0; overflow: hidden; border-radius: 12px; background: #0e1a42; color: var(--white); }
-.tile picture, .tile img { display: block; width: 100%; height: 100%; }
-.tile img { object-fit: cover; transition: transform .3s ease; }
+.tile { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 12px; background: #0e1a42; color: var(--white); }
+.tile img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; transition: transform .3s ease; }
 .tile:hover img { transform: scale(1.04); }
 .tile:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
-/* One scrim on every tile, so a label over a bright map reads as well as one over a dark map. */
-.tile::after {
-  content: ""; position: absolute; inset: auto 0 0 0; height: 60%; pointer-events: none;
-  background: linear-gradient(to top, rgba(10, 20, 52, .92) 0%, rgba(10, 20, 52, .55) 45%, rgba(10, 20, 52, 0) 100%);
-}
 .tile-day {
-  position: absolute; z-index: 1; left: 10px; right: 10px; bottom: 9px;
+  display: block; padding: 10px;
   color: var(--white); font-size: 11.5px; line-height: 1.3; font-variant-numeric: tabular-nums;
 }
 
@@ -252,7 +247,7 @@ p { line-height: 1.6; color: var(--body); }
 .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 36px; align-items: start; }
 .work-card { min-width: 0; }
 .work-art { display: block; margin-bottom: 20px; }
-.work-art img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 14px; }
+.work-art img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; padding: 12px; background: #f4f6fa; border: 1px solid var(--line); border-radius: 14px; }
 .work-card h3 { font-size: clamp(24px, 2.7vw, 32px); font-weight: 400; line-height: 1.15; margin: 0 0 12px; }
 .work-card > p:not(.project-meta) { margin: 0 0 12px; max-width: 50ch; }
 .work-card .project-meta { margin: 0 0 10px; }
@@ -264,7 +259,7 @@ p { line-height: 1.6; color: var(--body); }
 /* The challenge leads Selected work while the month is running. */
 .work-card-wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 3.5vw, 44px); align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
 .work-card-wide .collection-preview { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 0; }
-.work-card-wide .collection-preview img { aspect-ratio: 1; object-fit: cover; }
+.work-card-wide .collection-preview img { aspect-ratio: 1; object-fit: contain; background: #f4f6fa; }
 .work-card-wide h3 { font-size: clamp(28px, 3.2vw, 38px); }
 .work-card-text { min-width: 0; }
 
@@ -384,8 +379,8 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 }
 .project-feature-image { display: block; }
 .project-feature-image img {
-  width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: var(--r); background: var(--white); object-fit: contain;
+  width: 100%; height: auto; aspect-ratio: 4 / 3; padding: 12px; border: 1px solid var(--line);
+  border-radius: var(--r); background: #f4f6fa; object-fit: contain;
 }
 .project-feature-image:hover img { border-color: var(--line-strong); }
 .project-meta { margin: 0 0 var(--gap-el); }
@@ -400,20 +395,23 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 
 /* --- map challenge gallery --- */
 .map-grid {
-  display: grid; align-items: start;
-  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  display: grid; align-items: stretch;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(28px, 3vw, 40px);
 }
-.map-card { display: block; color: inherit; scroll-margin-top: 96px; }
+.map-card { display: flex; flex-direction: column; min-width: 0; color: inherit; scroll-margin-top: 96px; }
+.map-card picture { aspect-ratio: 4 / 5; margin-bottom: var(--gap-el); }
 .map-card img {
-  width: 100%; height: auto; object-fit: contain;
+  width: 100%; height: auto; aspect-ratio: 4 / 5; padding: 12px; object-fit: contain;
   border: 1px solid var(--line); border-radius: var(--r);
-  background: var(--white); margin-bottom: var(--gap-el);
+  background: #f4f6fa;
 }
 .map-card:hover img { border-color: var(--line-strong); }
 .map-card .project-meta,
 .card .project-meta { letter-spacing: 0; }
-.map-card .project-meta { margin: 0 0 10px; min-height: 2.8em; }
+.map-card .project-meta { margin: 0 0 10px; }
+.map-card > .project-meta:first-of-type { min-height: 2.8em; }
+.map-card > .project-meta ~ .project-meta { margin-top: auto; padding-top: 14px; }
 .map-card h3 { font-size: var(--fs-subheading); line-height: 1.2; margin: 0 0 10px; }
 .map-card:hover h3 { color: var(--indigo); }
 .map-card p:last-child { margin: 0; font-size: var(--fs-body); line-height: 1.55; }
@@ -453,6 +451,7 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 .post-meta-grid strong { display: block; font-weight: 400; font-size: var(--fs-body); line-height: 1.45; color: var(--cosmic); }
 
 .post-hero-image { margin: 0 0 clamp(32px, 5vw, 48px); }
+.post-hero-image.is-phone { max-width: 360px; margin-inline: auto; }
 .post-hero-image img {
   width: 100%; height: auto; margin: 0 auto;
   border: 1px solid var(--line); border-radius: var(--r); background: var(--white);
@@ -562,7 +561,8 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 /* prose tables reuse the post-content treatment */
 .prose table { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: var(--fs-body); line-height: 1.45; }
 .prose caption { text-align: left; color: var(--muted); font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: var(--track-label); font-weight: 500; padding-bottom: 14px; }
-.prose th, .prose td { text-align: left; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose th, .prose td { text-align: left; padding: 12px clamp(4px, 2vw, 14px) 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose th:last-child, .prose td:last-child { padding-right: 0; }
 .prose thead th { font-size: var(--fs-caption); line-height: 1.4; text-transform: uppercase; letter-spacing: var(--track-label); color: var(--muted); font-weight: 500; }
 .prose h3 { font-size: var(--fs-subheading); line-height: 1.25; font-weight: 400; letter-spacing: var(--track-heading); margin: clamp(28px, 3vw, 36px) 0 6px; }
 .prose h3 + .meta { margin: 0 0 12px; }
@@ -713,15 +713,11 @@ body.lightbox-open { overflow: hidden; }
 .code-details summary { padding: 14px 18px; cursor: pointer; color: var(--cosmic); font-size: 14px; }
 .code-details pre { border: 0; border-top: 1px solid var(--line); border-radius: 0; }
 .is-challenge-2026 .post-header h1 { font-size: clamp(2rem, 5.4vw, 3.75rem); text-wrap: balance; }
-.collection-2026 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.collection-2026 .map-card picture { display: grid; place-items: center; aspect-ratio: 4 / 5; margin-bottom: 20px; padding: 12px; background: #f4f6fa; border: 1px solid var(--line); border-radius: 12px; transition: border-color .2s ease; }
-.collection-2026 .map-card img { max-height: 100%; margin: 0; border: 0; border-radius: 0; }
-.collection-2026 .map-card:hover picture { border-color: var(--cosmic); }
 .map-card-action { display: block; margin-top: 14px; font-size: 13px; color: var(--cerulean-text); }
 .post-hero-image figcaption a, .post-gallery figcaption a { text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 480px) { .series-bar { margin-bottom: 20px; } .series-steps { gap: 16px; } }
-@media (max-width: 1024px) { .collection-2026 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .collection-2026 { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 1024px) { .map-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .map-grid { grid-template-columns: minmax(0, 1fr); } }
 
 @media (max-width: 860px) {
   .project-feature { grid-template-columns: minmax(0, 1fr); gap: 24px; }
