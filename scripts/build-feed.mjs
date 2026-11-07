@@ -30,6 +30,7 @@ const ORDER = [
   "utah-wildfire-starts-by-cause",
   "canyon-overlook-trail-viewshed",
   "holmes-zion-panorama",
+  "wasatch-front-walk-to-transit",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
