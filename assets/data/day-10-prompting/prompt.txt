@@ -1,0 +1,153 @@
+Create a finished, professional cartographic poster for Day 10,
+“Prompting,” of the 2026 #30DayMapChallenge.
+
+This is a one-shot assignment. Make the map autonomously from this brief,
+without clarification questions or human feedback. You may inspect and
+revise your own work within the time limit.
+
+TIME LIMIT
+
+You have a maximum of 30 minutes of total elapsed time from submission
+of this prompt. Planning, research, downloads, tool execution, rendering,
+inspection, and delivery all count. Record the start time immediately
+and monitor the deadline.
+
+Aim to produce a usable export by minute 20. Reserve the final five
+minutes for inspection, corrections, and delivery. At 30 minutes, stop
+all work and deliver the best existing result, stating any omissions.
+Do not continue background work beyond the deadline.
+
+Use any available tools. Keep the model selected for this session;
+do not switch to or consult another model.
+
+THE MAP
+
+Title: “Beneath Japan”
+
+Create a map answering:
+Where did earthquakes occur around Japan in 2025, and what does their
+depth reveal that a surface map alone would hide?
+
+Audience: an interested general reader without specialist geological
+knowledge. The result should be suitable for a professional cartography
+portfolio and understandable as a social-media image.
+
+Create one original composition at 2160 × 2700 pixels, portrait.
+The geographic map must be the dominant element.
+
+FIXED DATA AND SCOPE
+
+Use the USGS earthquake catalog:
+https://earthquake.usgs.gov/fdsnws/event/1/
+
+Retrieve GeoJSON or CSV from its /query endpoint with:
+- starttime: 2025-01-01T00:00:00
+- endtime: 2026-01-01T00:00:00
+- minmagnitude: 4.5
+- minlatitude: 29
+- maxlatitude: 46
+- minlongitude: 128
+- maxlongitude: 147
+- eventtype: earthquake
+- orderby: time-asc
+
+Retain events from the start of 2025 through, but excluding, the start
+of 2026, in UTC. Use unique event IDs and verify that the response is
+complete. Preserve the downloaded data and retrieval time.
+
+These bounds define the analytical area. You may add geographic context
+outside it, but make the coverage boundary clear and calculate all
+summary statistics from the defined selection.
+
+Use the catalog’s reported magnitude and hypocentral depth. Label
+magnitude “M”; the catalog can contain different magnitude types.
+Document any excluded or missing records.
+
+Use real geographic data for coastlines and contextual features.
+Natural Earth is a suitable starting point:
+https://www.naturalearthdata.com/
+
+Geographic positions, data values, and scientific claims must be
+traceable to sources. Any generated decorative imagery must remain
+separate from the geographic and analytical content.
+
+REQUIRED CONTENT
+
+1. Main map
+Show earthquake epicenters with graduated circles indicating magnitude
+and a perceptually ordered color scheme indicating depth in kilometers.
+Make overlapping events readable. Use identical encodings in the
+legend and supporting graphic. Explain the symbol sizes without
+implying that they represent shaking intensity or energy.
+
+Include enough geographic labels to orient an unfamiliar reader:
+Japan’s principal islands, surrounding waters, and a restrained
+selection of cities or other reference places.
+
+2. Supporting depth graphic
+Show longitude against earthquake depth for the subset between
+36°N and 40°N, across the same longitude range as the main map.
+
+Put west on the left, east on the right, and increasing depth downward.
+Mark this latitude band on the main map. Label both axes and explain
+that events across the band are combined into this view. Show the
+observed points; do not invent a continuous slab surface.
+
+3. Story
+Write a concise subtitle and two short annotations that help readers
+interpret specific patterns visible in the data. Include at least one
+computed numerical finding. Distinguish observations from geological
+interpretation, and support any explanation of subduction with an
+authoritative source.
+
+Let the actual data determine the claims.
+
+CARTOGRAPHY AND DESIGN
+
+Include:
+- A clear title, geographic scope, date range, and magnitude threshold.
+- Complete magnitude and depth legends with units.
+- A suitable regional projection, identified in the credits.
+- An accurate kilometer scale bar and north indicator.
+- Restrained coordinate references and a clear map boundary.
+- A small locator inset showing the region’s global context.
+- Readable source credits, retrieval date, and software credits.
+- “#30DayMapChallenge · Day 10 · Prompting”
+- “AI-generated from a single prompt”
+
+Use sans-serif typography only. Choose the palette, composition,
+background, visual hierarchy, and annotation treatment yourself.
+Build a coherent visual theme around the subject. Make deliberate
+use of whitespace and keep supporting information subordinate to
+the map. Additional layers must improve the story enough to justify
+their acquisition and visual complexity.
+
+Create a new design for this assignment. Keep the artwork model-neutral
+so the two results can be compared without their model names.
+
+CHECK BEFORE DELIVERY
+
+Inspect the actual exported image at full resolution and at 540 pixels
+wide. Check label collisions, clipping, legibility, symbol visibility,
+legend consistency, geographic alignment, scale, and orientation.
+
+Verify that counts, extrema, annotations, and the supporting graphic
+agree with the saved data. Correct consequential problems within the
+remaining time. State any unresolved limitations honestly.
+
+DELIVERABLES
+
+Save everything in a new output folder:
+- map.png — 2160 × 2700 pixels.
+- preview.png — 540 × 675 pixels.
+- map.pdf or map.svg — a matching print/vector export, preserving
+  vector text and graphics where practical.
+- The script or editable project used to create the map.
+- The downloaded analytical data.
+- README.md with source URLs, retrieval time, projection, processing
+  choices, reproduction instructions, actual elapsed time, and any
+  limitations.
+
+Prioritize a complete, accurate, visually resolved map over additional
+features. Finish by displaying the map and linking to the deliverables.
+Keep your final explanation under 150 words.
