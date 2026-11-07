@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Sat, 07 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>UGEM Hub</title>
       <link>https://buschbrian.github.io/notes/ugem-hub/</link>
@@ -134,6 +134,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/holmes-zion-panorama/</guid>
       <description>A new drawing of W. H. Holmes's 1882 Zion panorama, using USGS elevation data and an estimated viewpoint.</description>
       <pubDate>Fri, 06 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>A 10-Minute Walk to Transit on the Wasatch Front</title>
+      <link>https://buschbrian.github.io/notes/wasatch-front-walk-to-transit/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/wasatch-front-walk-to-transit/</guid>
+      <description>Using 2020 Census counts and UTA’s published schedule, this model estimates walking access to transit in four Wasatch Front counties.</description>
+      <pubDate>Sat, 07 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>One Prompt, Six Maps of Japan</title>
