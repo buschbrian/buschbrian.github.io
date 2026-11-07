@@ -106,9 +106,13 @@
           <p>The fit searches two numbers and solves for two more. The outer loops try each horizontal scale and center bearing. For each pair, a weighted linear regression gives the vertical scale and the horizon row directly. The ratio of the two scales is the height stretch. The search rejects any stretch outside 0.8 to 3.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>def skyline(x, y, eye=1.7):
+    # Eye height: the ground under the viewpoint plus a standing person.
     z0, ok = ter_s.sample(np.array([x]), np.array([y]))
     ze = z0[0] + eye
+    # Sample the terrain along every bearing (columns) at every distance (rows).
     zz, ok = ter_s.sample(x + TS[:, None] * np.sin(AZ), y + TS[:, None] * np.cos(AZ))
+    # Angle up to each sample, lowered for the Earth's curve. The skyline on a
+    # bearing is the steepest angle anywhere along it.
     ang = np.arctan2(
         zz - d.K_CURV * TS[:, None] ** 2 / (2 * d.R_EARTH) - ze, TS[:, None]
     )
@@ -117,35 +121,10 @@
     last = ok.shape[0] - 1 - np.argmax(ok[::-1], axis=0)
     edge = (j &gt;= last - 2) &amp; ~ok[-1]
     return np.degrees(ang.max(axis=0)), edge, j, ze
-
 # ...
-def fit(E, edge):
-    azd = np.degrees(AZ)
-    best = (np.inf, np.nan, np.nan, np.nan, np.nan, 0.0)
-    for s in S:
-        az = A0[:, None] + (px[None, :] - XC) / s  # (nA, nP)
-        e = np.interp(az, azd, E)
-        m = (
-            ~(np.interp(az, azd, edge.astype(float)) &gt; 0.5)
-            &amp; (az &gt;= azd[0])
-            &amp; (az &lt;= azd[-1])
-        )
-        w = m.astype(float)
-        n = w.sum(1)
-        em, ym = (e * w).sum(1) / n, (py * w).sum(1) / n
-        cov = ((e - em[:, None]) * (py - ym[:, None]) * w).sum(1)
-        var = ((e - em[:, None]) ** 2 * w).sum(1)
-        b = -cov / var  # px per degree of elevation
-        y0 = ym + b * em
-        r = np.sqrt((((py - (y0[:, None] - b[:, None] * e)) ** 2) * w).sum(1) / n)
-        v = b / s
-        r = np.where((v &gt; 0.8) &amp; (v &lt; 3) &amp; (n &gt; 0.8 * len(px)), r, np.inf)
-        k = np.argmin(r)
-        if r[k] &lt; best[0]:
-            best = (r[k], s, A0[k], v[k], y0[k], n[k])
-    return best
-
-# ...
+rows, t0 = [], time.time()
+# Try every viewpoint on the grid: model its skyline, fit it to the plate,
+# and keep the fit error. The best viewpoint sorts to the top.
 for y in ys:
     for x in xs:
         E, edge, j, ze = skyline(x, y)
@@ -189,6 +168,8 @@ def march(ter, cam, ts, chunk=480):
         )
         py = cam.py(z, ts[:, None]).astype(np.float32)
         py[~ok] = np.inf
+        # Running minimum down each column: the highest screen point seen so far,
+        # nearest first. That is the horizon each farther sample has to clear.
         run = np.minimum.accumulate(py, axis=0)
         hb[0, cs], hb[1:, cs] = np.inf, run
         vis = py &lt; hb[:-1, cs]
@@ -243,6 +224,23 @@ def tier_of(t, k, tiers=TIERS):
             <li>Labels name Smithsonian Butte, West Temple, Zion Canyon, East Temple and Eagle Crags at their GNIS bearings.</li>
             <li>The drawing stretches heights by a quarter. The render on the board uses true heights.</li>
           </ul>
+          <details class="post-details" id="redraw-video">
+            <summary>Watch the redraw (30 seconds)</summary>
+            <figure class="post-hero-image post-map-animation is-reel">
+              <video controls playsinline preload="none" width="1080" height="1920" poster="/assets/images/holmes-zion-panorama-reel-cover.jpg" aria-label="Holmes's Zion panorama redrawn from elevation data, with narration" aria-describedby="redraw-caption redraw-description">
+                <source src="/assets/video/holmes-zion-panorama-reel.mp4" type="video/mp4">
+                <track kind="captions" src="/assets/video/holmes-zion-panorama-reel.en.vtt" srclang="en" label="English">
+                <p><a href="/assets/video/holmes-zion-panorama-reel.mp4">Download the narrated reel</a>.</p>
+              </video>
+              <figcaption id="redraw-caption">The redraw in 30 seconds. English captions are available in the player. Narration: HeyGen. <a href="/assets/video/holmes-zion-panorama-reel.mp4" download>Download the reel</a>.</figcaption>
+            </figure>
+            <p id="redraw-description">The plate fades while lines draw the view from the skyline forward. A wipe compares the two views. The drawing then stretches heights by a quarter. A pale tint marks shaded faces, and place names appear. The ending shows Holmes’s plate above the finished redraw.</p>
+            <h3>Narration transcript</h3>
+            <p>I redrew Holmes’s eighteen eighty-two view of Zion using modern elevation data.</p>
+            <p>It starts with the skyline, then works forward, line by line.</p>
+            <p>Look at how closely the ridgelines match. He drew the temples about a quarter taller.</p>
+            <p>I kept that stretch and added a pale tint to bring out the shaded faces.</p>
+          </details>
           <h2>Data notes</h2>
           <ul>
             <li>The elevation data is bare earth. It does not resolve the plate's junipers or individual rock blocks.</li>
@@ -253,7 +251,7 @@ def tier_of(t, k, tiers=TIERS):
           </ul>
           <h2>Data and credit</h2>
           <p>The U.S. Geological Survey provides the 3DEP elevation data: the 10 m DEM and 1 m lidar flown from 2017 to 2020. Peak names come from the USGS Geographic Names Information System (GNIS).</p>
-          <p>The plate is W. H. Holmes, "The Temples and Towers of the Virgen," Atlas Sheet IV, in C. E. Dutton, <cite>Atlas to Accompany the Monograph on the Tertiary History of the Grand Cañon District</cite> (Julius Bien &amp; Co., 1882). The scan is from the David Rumsey Map Collection, David Rumsey Map Center, Stanford University Libraries, list no. 4713.003, under CC BY-NC-SA 3.0. The then-and-now board is shared under the same license.</p>
+          <p>The plate is W. H. Holmes, "The Temples and Towers of the Virgen," Atlas Sheet IV, in C. E. Dutton, <cite>Atlas to Accompany the Monograph on the Tertiary History of the Grand Cañon District</cite> (Julius Bien &amp; Co., 1882). The scan is from the David Rumsey Map Collection, David Rumsey Map Center, Stanford University Libraries, list no. 4713.003, under CC BY-NC-SA 3.0. The then-and-now board and the narrated reel share that license.</p>
           <ul>
             <li><a href="https://www.usgs.gov/3d-elevation-program">Open the USGS 3D Elevation Program</a>.</li>
             <li><a href="https://www.davidrumsey.com/about/copyright-and-permissions">Read the David Rumsey Map Collection terms of use</a>.</li>

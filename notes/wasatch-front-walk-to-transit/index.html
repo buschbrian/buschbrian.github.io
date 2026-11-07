@@ -104,14 +104,10 @@
     return max(b - a for a, b in itertools.pairwise(seq)) if len(seq) &gt; 1 else 0
 
 # ...
-        rows.sort()
-        for (_, sid, dep, pick), nxt in itertools.pairwise(rows):
-            if pick == "1":
-                dropped["no pickup"] += 1
-                continue
-            # ...
-            groups["single"][(sid, rid, did)].append(dep)
-            groups["next_stop"][(sid, nxt[1])].append(dep)</code></pre>
+# Each departure counts once per rule: by its own route and direction,
+# and with every route heading to the same next stop.
+groups["single"][(sid, rid, did)].append(dep)
+groups["next_stop"][(sid, nxt[1])].append(dep)</code></pre>
             <figcaption>From <code>day07_frequency.py</code>. Pairing each stop with the next stop on its trip leaves out the trip's last stop.</figcaption>
           </figure>
           <p>At 15 minutes, each route alone gives 1,010 frequent stops, and departures combined toward the same next stop give 1,022. The grouping matters little at 15 minutes. It matters at 10: each route alone gives 44 stops, all on OGX and UVX, and combined departures give 73, including 25 TRAX platforms on the shared trunk.</p>
@@ -188,39 +184,27 @@ def service_area(nd, name, where, overlap):
           <p>Residents come from 2020 Census blocks. A Census block is the smallest area the Census Bureau counts, often one city block. The four counties recorded 2,469,539 residents in the 2020 Census.</p>
           <p><code>day07_population.py</code> solves one dissolved 800 m Service Area polygon for all stops and one for frequent stops. It intersects each polygon with the blocks. Then it spreads each block's residents evenly over the block's area.</p>
           <figure class="code-excerpt">
-            <pre tabindex="0"><code>def catchment(name, where, trim):
-    lyr = arcpy.na.MakeServiceAreaAnalysisLayer(
-        str(ND),
-        name,
-        json.dumps(walk.TRAVEL_MODE),
-        "TO_FACILITIES",
-        [CUTOFF_M],
-        output_type="POLYGONS",
-        polygon_detail="HIGH",
-        geometry_at_overlaps="DISSOLVE",
-        geometry_at_cutoffs="DISKS",
-        polygon_trim_distance=f"{trim} Meters",
-    ).getOutput(0)
-    # ...
-
-# ...
-def allocate(blocks, catch, denom):
+            <pre tabindex="0"><code>def allocate(blocks, catch, denom):
     tmp = f"{GDB}\\x_{catch}"
     arcpy.analysis.PairwiseIntersect(
         [f"{GDB}\\blocks", f"{GDB}\\{catch}"], tmp, "ONLY_FID"
     )
+    # Square meters of each block that fall inside the walkshed.
     inside = collections.Counter()
     with arcpy.da.SearchCursor(tmp, ["FID_blocks", "SHAPE@AREA"]) as c:
         for fid, a in c:
             inside[fid] += a or 0.0
+    arcpy.management.Delete(tmp)
     # ...
     for oid, a in inside.items():
         b = blocks[oid]
         if not b["area"] or not b["pop"]:
             continue
-        f = min(1.0, a / b["area"])
-        p = b["pop"] * f
-        est += p</code></pre>
+        # Areal weighting: a block 40% inside the walkshed adds 40% of its people.
+        share = min(1.0, a / b["area"])
+        people = b["pop"] * share
+        est += people
+        county[COUNTIES[b["county"]]] += people</code></pre>
             <figcaption>From <code>day07_population.py</code>. The headline uses Pro's default 100 m polygon trim.</figcaption>
           </figure>
           <h2>Checks</h2>
