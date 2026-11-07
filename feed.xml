@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Wed, 11 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>UGEM Hub</title>
       <link>https://buschbrian.github.io/notes/ugem-hub/</link>
@@ -148,6 +148,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/great-salt-lake-at-4198-feet/</guid>
       <description>Great Salt Lake at 4,198 feet, the low end of the range the Great Salt Lake Strike Team calls healthy. At that level, the lake would cover about 474 square miles (1,227 km²) more than on November 3, a 51% gain.</description>
       <pubDate>Sun, 08 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>The Mighty Five, by Decibel</title>
+      <link>https://buschbrian.github.io/notes/the-mighty-five-by-decibel/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/the-mighty-five-by-decibel/</guid>
+      <description>The NPS sound model compares existing and natural sound across Utah. Five park meters show the share at 6 dB or more.</description>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
