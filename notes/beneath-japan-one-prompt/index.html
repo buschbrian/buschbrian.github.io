@@ -253,21 +253,41 @@ features. Finish by displaying the map and linking to the deliverables.
 Keep your final explanation under 150 words.</code></pre><figcaption>The same prompt went to all six models. Astra wrote it for two models, so its text says “the two results”. The four later runs received it unchanged. <a href="/assets/data/day-10-prompting/prompt.txt" download>Download the prompt</a>.</figcaption></figure>
           </details>
           <h2>The runs</h2>
-          <table>
-            <caption>Six runs of one brief, each with a 30-minute limit</caption>
-            <thead><tr><th scope="col">Model</th><th scope="col">Date</th><th scope="col">Setting and app</th><th scope="col">Elapsed time</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Claude Opus 5.5</th><td>November 5</td><td>High<br>Claude Code</td><td>10 min 10 s</td></tr>
-              <tr><th scope="row">GPT-6.1 Sol</th><td>November 5</td><td>Extra High<br>Codex Desktop</td><td>About 13 min 28 s</td></tr>
-              <tr><th scope="row">GPT-6.1 Terra</th><td>November 6</td><td>Extra High<br>Codex Desktop</td><td>7 min 14 s</td></tr>
-              <tr><th scope="row">Claude Sonnet 5.5</th><td>November 6</td><td>App default, not recorded<br>Claude desktop app</td><td>15 min 0 s</td></tr>
-              <tr><th scope="row">Claude Haiku 5.5</th><td>November 6</td><td>App default, not recorded<br>Claude desktop app</td><td>11 min 26 s</td></tr>
-              <tr><th scope="row">GPT-6 Luna</th><td>November 6</td><td>Extra High<br>Codex Desktop</td><td>27 min 40 s</td></tr>
-            </tbody>
-          </table>
+          <section class="post-chart-scroll" aria-label="Run times table" tabindex="0">
+            <table>
+              <caption>Six runs of one brief, each with a 30-minute limit</caption>
+              <thead><tr><th scope="col">Model</th><th scope="col">Date</th><th scope="col">Setting and app</th><th scope="col">Elapsed time</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Claude Opus 5.5</th><td>November 5</td><td>High<br>Claude Code</td><td>10 min 10 s</td></tr>
+                <tr><th scope="row">GPT-6.1 Sol</th><td>November 5</td><td>Extra High<br>Codex Desktop</td><td>About 13 min 28 s</td></tr>
+                <tr><th scope="row">GPT-6.1 Terra</th><td>November 6</td><td>Extra High<br>Codex Desktop</td><td>7 min 14 s</td></tr>
+                <tr><th scope="row">Claude Sonnet 5.5</th><td>November 6</td><td>App default, not recorded<br>Claude desktop app</td><td>15 min 0 s</td></tr>
+                <tr><th scope="row">Claude Haiku 5.5</th><td>November 6</td><td>App default, not recorded<br>Claude desktop app</td><td>11 min 26 s</td></tr>
+                <tr><th scope="row">GPT-6 Luna</th><td>November 6</td><td>Extra High<br>Codex Desktop</td><td>27 min 40 s</td></tr>
+              </tbody>
+            </table>
+          </section>
           <p>Elapsed time runs from the submission of the brief to the final response, read from each transcript. The Sol end time is approximate. Each model’s own clock reported a slightly shorter span, because it started a few seconds after submission.</p>
           <p>Luna ran twice. Its first session stopped after 2 min 47 s because the USGS download failed. It wrote nothing and said so, rather than make a map from invented data. I submitted the same brief again in a fresh session. The 27 min 40 s is that second session.</p>
-          <p>All six finished within the limit. This is six runs of one brief, not a controlled comparison. The apps and effort settings differed. Opus and Terra ran from a folder with my project instructions in context. Luna had my general instruction file. Sonnet and Haiku ran in empty workspaces with no project instructions. Two runs overlapped on one Mac. I did not measure cost.</p>
+          <p>All six finished within the limit. This is six runs of one brief, not a controlled comparison. The apps and effort settings differed. Opus and Terra ran from a folder with my project instructions in context. Luna had my general instruction file. Sonnet and Haiku ran in empty workspaces with no project instructions. Two runs overlapped on one Mac.</p>
+          <h3>Tokens and cost</h3>
+          <p>I ran all six on subscriptions, so no run had a per-token bill. The table shows what the same tokens would cost at standard API list prices on November 7, 2026. The counts come from each run’s transcript, from the brief to the final response.</p>
+          <section class="post-chart-scroll" aria-label="Tokens and cost table" tabindex="0">
+            <table>
+              <caption>Model requests, tokens, and the API list-price equivalent for each run</caption>
+              <thead><tr><th scope="col">Model</th><th scope="col">Requests</th><th scope="col">Tokens</th><th scope="col">Output tokens</th><th scope="col">API equivalent</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Claude Opus 5.5</th><td>30</td><td>5.18 million</td><td>50,172</td><td>$3.66</td></tr>
+                <tr><th scope="row">GPT-6.1 Sol</th><td>24</td><td>2.13 million</td><td>35,551</td><td>$0.75</td></tr>
+                <tr><th scope="row">GPT-6.1 Terra</th><td>27</td><td>1.65 million</td><td>19,869</td><td>$0.24</td></tr>
+                <tr><th scope="row">Claude Sonnet 5.5</th><td>34</td><td>6.62 million</td><td>99,719</td><td>$2.63</td></tr>
+                <tr><th scope="row">Claude Haiku 5.5</th><td>21</td><td>4.25 million</td><td>115,493</td><td>$0.74</td></tr>
+                <tr><th scope="row">GPT-6 Luna</th><td>64</td><td>6.47 million</td><td>79,290</td><td>$0.12</td></tr>
+              </tbody>
+            </table>
+          </section>
+          <p>Most tokens are context that the model reads again on each request. The provider caches that context and bills it at a lower rate. The Claude apps started each session with 111,000 to 121,000 tokens of instructions and tool definitions. Codex started with 30,000 to 36,000. Haiku 5.5 bills more for any request over 100,000 tokens, so every Haiku request paid the higher rate. Luna’s failed first session added about $0.02.</p>
+          <p>These figures do not compare the models fairly. The apps, effort settings, and context differed. The prices are from the <a href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic pricing page</a> and the <a href="https://developers.openai.com/api/docs/pricing">OpenAI pricing page</a>.</p>
         </div>
         <section class="post-gallery is-portrait" aria-label="The six posters">
           <div class="post-gallery-intro">
@@ -349,25 +369,36 @@ Keep your final explanation under 150 words.</code></pre><figcaption>The same pr
           <p><strong>A factual credit error.</strong> Opus named “Tarr et al.” for a USGS report whose first author is Susan Rhea. The correct citation is Rhea et al. (2010). The mistake appears in the poster and its documentation. The other five posters cite the subduction explanation by URL or DOI, by an exact author list, or by agency name alone.</p>
           <p><strong>Text that needed more room, on every poster.</strong> Each poster has body text under 6 px at the required preview size. Haiku’s subtitle and Terra’s “449 of 515” are the only observations that read at phone size among the four later runs. A full-resolution export cannot substitute for a phone-size check.</p>
           <p><strong>A rendering defect.</strong> Luna’s projected clip polygon does not fill its frame. A slanted wedge of bare paper shows at the top left and a triangle at the top right.</p>
+          <p><strong>A legend that does not match its symbols.</strong> Luna’s depth legend turns fully yellow at about 300 km and stays yellow to 600 km. Its map symbols use the full 0 to 600 km range, so only the deepest event, at 561 km, is yellow. Astra found this in its blind review. Fable did not.</p>
           <p><strong>Missing annotations.</strong> The brief asked for two annotations at specific patterns in the data. Luna put three statistics in its legend column and none on the map or the depth section.</p>
           <p><strong>A source not named on the poster.</strong> Haiku credits its subduction interpretation as “USGS; see README”. Its README cites a USGS event page and a USGS poster, both real, read only through search excerpts.</p>
           <p><strong>A portability gap.</strong> Opus’s script used basemaps, plate boundaries, and fonts outside its delivered folder. It ran on the original machine, but the folder alone was insufficient for a clean-machine rebuild. The other five folders are self-contained.</p>
           <p><strong>A narrow geographic description.</strong> Opus described deep events as south of Honshu and near Vladivostok. Some also lay beneath Honshu and west of the Noto Peninsula. The explanation needed broader wording.</p>
           <p><strong>Design tradeoffs.</strong> Sol and Luna used a simpler coastline that omits small islands near the Tokara cluster. Sol, Haiku, and Luna used continuous depth scales that group most shallow earthquakes into similar colors. Terra hedged its interpretation to “one explanation”. Sonnet used a typeface that renders differently outside macOS. Each scale bar is true at a stated latitude and within 2.3% across Japan. These are improvements to consider, rather than failed requirements.</p>
-          <h2>The reviewer’s cartography scores</h2>
-          <p>The review scored each poster for cartography on a five-point scale. The scores are one reviewer’s judgment, made after it had read every run’s files. They are not a ranking of the models.</p>
-          <table>
-            <caption>Cartography scores, 1 to 5, with the reviewer’s reasoning</caption>
-            <thead><tr><th scope="col">Model</th><th scope="col">Score</th><th scope="col">Reasoning</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Claude Opus 5.5</th><td>4</td><td>Rich context from trenches, plate boundaries, and fine coastlines, with a strong hierarchy. A sidebar and profile set too small to read.</td></tr>
-              <tr><th scope="row">GPT-6.1 Sol</th><td>4</td><td>A cohesive dark theme and clear callouts. Small legends and generalized islands.</td></tr>
-              <tr><th scope="row">GPT-6.1 Terra</th><td>4</td><td>Restrained and cohesive, with a clear 515, one callout, four well separated depth classes, and fine coastlines. The band shading named in the legend is invisible, the legend has no counts, and only three cities are named.</td></tr>
-              <tr><th scope="row">Claude Sonnet 5.5</th><td>5</td><td>The most resolved composition: six depth classes with counts, two numbered findings tied to map markers, a profile with a land and sea strip, and the fixed-depth caveat stated on the poster. The deductions are the phone-size text and a macOS-only typeface.</td></tr>
-              <tr><th scope="row">Claude Haiku 5.5</th><td>3</td><td>Plentiful correct labels and the most legible headline, but a default plotting-library look. A continuous 0 to 600 km ramp leaves 87% of the symbols near black. The depth section is small, and the band shading runs past the analysis area.</td></tr>
-              <tr><th scope="row">GPT-6 Luna</th><td>2</td><td>The frame spans 115 to 163°E, so Japan and its 515 symbols are small in the middle. The clip polygon leaves bare paper at two corners of the frame. The coastline drops the Tokara and Izu islands. No annotation sits at a pattern.</td></tr>
-            </tbody>
-          </table>
+          <h2>Three sets of scores</h2>
+          <p>Three reviewers scored each poster for cartography on a five-point scale:</p>
+          <ul>
+            <li>Claude Fable 5.1 scored after it had read every run’s files.</li>
+            <li>GPT-6 Astra scored a renumbered set of the posters, with no model names and no other files. It wrote the brief, so it was blind to the models but not to the experiment.</li>
+            <li>I gave the third score.</li>
+          </ul>
+          <p>All three of us picked the Sonnet poster. Without model names, Astra also questioned the Opus citation. These scores rank six maps from one brief. They do not rank the models in general.</p>
+          <section class="post-chart-scroll" aria-label="Scores table" tabindex="0">
+            <table>
+              <caption>Cartography scores, 1 to 5, with Fable’s reasoning</caption>
+              <thead><tr><th scope="col">Model</th><th scope="col">Fable’s reasoning</th><th scope="col">Fable</th><th scope="col">Astra, blind</th><th scope="col">Mine</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Claude Opus 5.5</th><td>Rich context from trenches, plate boundaries, and fine coastlines, with a strong hierarchy. A sidebar and profile set too small to read.</td><td>4</td><td>4</td><td>4.5</td></tr>
+                <tr><th scope="row">GPT-6.1 Sol</th><td>A cohesive dark theme and clear callouts. Small legends and generalized islands.</td><td>4</td><td>4</td><td>4</td></tr>
+                <tr><th scope="row">GPT-6.1 Terra</th><td>Restrained and cohesive, with a clear 515, one callout, four well separated depth classes, and fine coastlines. The band shading named in the legend is invisible, the legend has no counts, and only three cities are named.</td><td>4</td><td>3</td><td>3.5</td></tr>
+                <tr><th scope="row">Claude Sonnet 5.5</th><td>The most resolved composition: six depth classes with counts, two numbered findings tied to map markers, a profile with a land and sea strip, and the fixed-depth caveat stated on the poster. The deductions are the phone-size text and a macOS-only typeface.</td><td>5</td><td>4</td><td>5</td></tr>
+                <tr><th scope="row">Claude Haiku 5.5</th><td>Plentiful correct labels and the most legible headline, but a default plotting-library look. A continuous 0 to 600 km ramp leaves 87% of the symbols near black. The depth section is small, and the band shading runs past the analysis area.</td><td>3</td><td>3</td><td>2</td></tr>
+                <tr><th scope="row">GPT-6 Luna</th><td>The frame spans 115 to 163°E, so Japan and its 515 symbols are small in the middle. The clip polygon leaves bare paper at two corners of the frame. The coastline drops the Tokara and Izu islands. No annotation sits at a pattern.</td><td>2</td><td>2</td><td>1</td></tr>
+              </tbody>
+            </table>
+          </section>
+          <p>The totals put Sonnet first with 14 of 15. Opus has 12.5, Sol 12, Terra 10.5, Haiku 8, and Luna 5. I put Opus ahead of Sol for its legend and layout, even with the wrong citation.</p>
+          <p>My scores also weigh the order of the depth colors. The usual order runs light at the surface to dark at depth. Opus, Sonnet, and Terra follow it. Sol, Haiku, and Luna reverse it, so their deepest earthquakes are the lightest marks.</p>
           <h2>The reviews needed checking too</h2>
           <p>Fable questioned Sol’s 500 km scale bar after measuring about 498.1 km in projected coordinates. A projection converts the curved Earth to a flat map. Its coordinate distances can differ from ground distances.</p>
           <p>The follow-up measured the bar on Earth: its two segments totalled 500.0003 km. The local ground scale was correct. Opus’s 400 km bar measured about 399.6 km, a negligible difference for this poster.</p>
@@ -377,13 +408,13 @@ Keep your final explanation under 150 words.</code></pre><figcaption>The same pr
           <p>AI helped compare records, recompute statistics, inspect coordinate transforms, measure scale, and rerun the code. These tasks had saved inputs and observable results.</p>
           <p>Human review still needs to ask whether the map tells a supported story. The reader must be able to find the main point, read the symbols, and understand the limits. Credits and packaging also need verification.</p>
           <p>A second AI review can help find omissions. It does not replace the mapmaker’s decision to publish. In this experiment, the reviewers performed the technical audits; I set the task and asked for the follow-up checks.</p>
-          <h2>The first two runs in 98 seconds</h2>
+          <h2>The review in 70 seconds</h2>
           <figure class="post-hero-image post-map-animation is-four-five">
-            <video controls playsinline preload="none" width="1080" height="1350" poster="/assets/images/day-10-feed-cover.jpg" aria-label="Caption-led comparison of the first two AI-generated earthquake maps" aria-describedby="process-caption">
-              <source src="/assets/video/day-10-feed.mp4" type="video/mp4">
-              <p><a href="/assets/video/day-10-feed.mp4">Download the process video</a>.</p>
+            <video controls playsinline preload="none" width="1080" height="1350" poster="/assets/images/day-10-review-cover.jpg" aria-label="Silent review video of the six AI-generated earthquake maps" aria-describedby="review-video-caption">
+              <source src="/assets/video/day-10-review.mp4" type="video/mp4">
+              <p><a href="/assets/video/day-10-review.mp4">Download the review video</a>.</p>
             </video>
-            <figcaption id="process-caption">A silent, caption-led edit made on November 5, before the four later runs. It covers Opus and Sol only. The article covers all six. <a href="/assets/video/day-10-feed.mp4" download>Download the 4:5 edit</a> or <a href="/assets/video/day-10-reel.mp4" download>the 9:16 Reel</a>.</figcaption>
+            <figcaption id="review-video-caption">A silent video with all text on screen. It summarizes the prompt and shows each poster still, with my comment, the three scores, and the run’s tokens and cost. Each reviewer has a color: Fable is orange, Astra is white, and I am blue. The Sonnet poster stays on screen while each reviewer’s reason appears. <a href="/assets/video/day-10-review.mp4" download>Download the video</a>.</figcaption>
           </figure>
           <p>I expected more problems from a single prompt. All six maps were coherent, their numbers held up, and all six finished within the limit. The problems that remained were about reading, not arithmetic: text too small for a phone on every poster, one wrong author list, one bare corner. A strong brief reduced the work needed after delivery. It did not remove the need for review.</p>
           <h2>Sources and scope</h2>
