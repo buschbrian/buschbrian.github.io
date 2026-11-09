@@ -18,15 +18,27 @@ noindex line, so the page does not reach `feed.xml`. It is also not in
 `notes/index.html`, or add it to `sitemap.xml` until every item below is
 done.
 
-- Record the DEM tile identifier(s) and download date for the Skyline run
-  this note describes. The vault source note does not have them yet, even
-  though a similarly named tile appears in the related ArcGIS Pro procedure
-  note for a different run at the same general site. Confirm they are the
-  same tile before citing it here.
-- Reconcile the roughly 21-meter disagreement between the observer latitude
-  the Skyline run actually used and the latitude recorded in the trip's GPS
-  table. A coordinate measured on site (a Gaia pin from the trip) is the
-  tie-breaker; neither existing record has been checked against one.
+Resolved on 2026-11-09:
+
+- The DEM tile. The sunrise run used one tile, `USGS_13_n39w110_20260630.tif`,
+  downloaded on 2026-09-04. The page now names it. A second tile, `n39w111`,
+  was used only for a separate 360-degree run that the page does not cite.
+- The 21-meter disagreement. The owner confirmed that the GPS table position
+  is the campsite. The Skyline observer point sits about 21 meters south of
+  it. The page now says so.
+- Island Park. The owner dropped it as a second worked example. The page is a
+  one-site note, and the "Next: a second site" section is removed.
+
+Still open:
+
+- Re-run Skyline from the GPS table position, then update the horizon angle
+  and the validation table if the numbers move. Remove the "observer point"
+  item from "What is not verified yet" after the re-run.
+- Re-derive the "2.6 to 3.4 degrees" range for how far the near rim stands
+  above both distant peaks. A check from the DEM on 2026-11-09 gave about
+  2.9 degrees over Mount Peale and about 3.6 degrees over Mount
+  Tukuhnikivatz. Do not change the sentence until the numbers come from a
+  run in ArcGIS Pro.
 - Check the claim that the near rim hides the distant peaks against the
   camera frames shot 6:20 to 7:00 a.m. on the trip. Any frame in that window
   showing the eastern skyline should show the rim standing above both peaks.
@@ -37,9 +49,6 @@ done.
   validation table, and one sunrise photograph. Add each image to
   `assets/images/`, with responsive WebP variants in `assets/images/r/`,
   following the pattern in the other note pages.
-- Decide whether the Island Park trip (2026-09-19 to 2026-09-21) becomes a
-  second worked example on this same page or a separate note, once that
-  data exists. The current draft only names it as planned.
 - Once the items above are resolved: remove the `noindex` meta tag, add a
   card to `notes/index.html`, add the slug to the `ORDER` list in
   `scripts/build-feed.mjs`, and add the URL to `sitemap.xml`.

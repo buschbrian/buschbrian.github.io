@@ -73,7 +73,7 @@
             This page is live early so the write-up and the figures can
             develop in place. It carries a <code>noindex</code> tag and does
             not appear in <a href="/notes/">Notes</a> or
-            <a href="/feed.xml">the feed</a>. Three inputs still need
+            <a href="/feed.xml">the feed</a>. Two items still need
             confirmation; see &ldquo;What is not verified yet&rdquo; below.
           </p>
         </div>
@@ -104,6 +104,8 @@
             The elevation data is a USGS 3DEP digital elevation model at
             10-meter resolution, downloaded from The National Map and
             covering the horizon out past the distant peaks in question. The
+            sunrise run used one tile, <code>n39w110</code>, in the release
+            dated June 30, 2026. I downloaded it on September 4, 2026. The
             main tool is <strong>Skyline</strong>, in the 3D Analyst
             extension of ArcGIS Pro. Skyline reads a DEM and an observer
             point, then traces the terrain&rsquo;s horizon angle in every
@@ -249,23 +251,17 @@
 
           <h2>What is not verified yet</h2>
           <p>
-            This page stays a draft because three items are still open.
+            This page stays a draft because two items are still open.
             Stating them here rather than leaving them out:
           </p>
           <ul class="open-items">
             <li>
-              <strong>The DEM tile identifiers for this Skyline run are not
-              recorded.</strong> The tool ran against a downloaded 10 m
-              tile, but the exact tile name and download date for this
-              specific run were not written down at the time.
-            </li>
-            <li>
-              <strong>The observer latitude used in the Skyline run
-              disagrees with the latitude in the trip&rsquo;s GPS log by
-              about 21 meters.</strong> At the rim distances involved, that
-              gap barely moves the horizon angle, but the two records still
-              disagree, and neither has been checked against a coordinate
-              measured standing at the site.
+              <strong>The observer point in the Skyline run sits about
+              21 meters south of the campsite position in the trip&rsquo;s
+              GPS log.</strong> The GPS log position is the correct one. At
+              the rim distances involved, the gap should barely move the
+              horizon angle. I have not yet re-run Skyline from the logged
+              position to confirm that.
             </li>
             <li>
               <strong>The claim that the near rim hides the distant peaks
@@ -275,15 +271,6 @@
               check has not been run yet.
             </li>
           </ul>
-
-          <h2>Next: a second site</h2>
-          <p>
-            A trip to Island Park, Idaho, from September 19 to 21, 2026, is
-            planned as a second worked example of the same method. Running
-            the same five steps at a different site, with a different rim
-            and a different sunrise bearing, is the real test of whether
-            this method generalizes past one campsite.
-          </p>
 
           <p class="source-note">
             Draft note. Elevation data from the USGS 3D Elevation Program,
