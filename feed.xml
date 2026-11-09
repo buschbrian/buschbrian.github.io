@@ -14,6 +14,13 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 09 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
+      <title>Reading First Light Off a DEM</title>
+      <link>https://buschbrian.github.io/notes/white-rim-sunrise-skyline/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/white-rim-sunrise-skyline/</guid>
+      <description>A DEM-based method in ArcGIS Pro for predicting when the sun clears a desert rim, checked against a known landmark before trusting the result.</description>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
       <title>UGEM Hub</title>
       <link>https://buschbrian.github.io/notes/ugem-hub/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/ugem-hub/</guid>
