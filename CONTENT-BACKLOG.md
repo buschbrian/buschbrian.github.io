@@ -8,15 +8,12 @@ This file lists work that needs more facts or an owner decision. Do not change a
 
 Resolved on 2026-08-15: the dark-sky note no longer claims a high concentration of parks. The vintage atlas note names the Esri Living Atlas as the data source. The scenic byways note states that the mileage total is the sum of the UDOT route lengths, calculated in ArcGIS Pro.
 
-## White Rim sunrise skyline note (draft)
+## White Rim sunrise skyline note
 
-Added on 2026-09-18. `notes/white-rim-sunrise-skyline/` is a scaffolded draft.
-It carries `<meta name="robots" content="noindex">`, has no entry in
-`notes/index.html`, and `scripts/build-feed.mjs` now skips any note with that
-noindex line, so the page does not reach `feed.xml`. It is also not in
-`sitemap.xml`. Do not remove the noindex line, add the slug to
-`notes/index.html`, or add it to `sitemap.xml` until every item below is
-done.
+Added on 2026-09-18 as a `noindex` draft. Published on 2026-11-09 at
+`notes/white-rim-sunrise-skyline/`. The page is in `notes/index.html`, in the
+`ORDER` list in `scripts/build-feed.mjs`, and in `sitemap.xml`. GitHub Actions
+adds it to `feed.xml` after the merge. Nothing is open for this note.
 
 Resolved on 2026-11-09:
 
@@ -48,15 +45,8 @@ of the project:
   limit. No frame looks at the rim at 7:19 a.m.
 - The four placeholder figures are replaced: an HTML table, a chart of the sun
   against the rim, a hillshade map, and the sunrise photograph.
-
-Still open before the note goes live:
-
-- Owner review of the finished page.
-- Then remove the `noindex` meta tag, the draft notice, the "Draft:" title
-  prefix, and the draft wording in the description and the status line. Add a
-  card and a dated `<time>` element to `notes/index.html` and to the note
-  header. Add the slug to the `ORDER` list in `scripts/build-feed.mjs`. Add the
-  URL to `sitemap.xml`.
+- The go-live changes are made: the `noindex` tag, the draft notice, and the
+  draft wording are removed, and the note has a publication date.
 
 ## Contact information
 

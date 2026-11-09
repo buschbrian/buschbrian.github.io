@@ -12,6 +12,7 @@ const OUT = "feed.xml";
 // The reading order of the notes index. A note that is not in this list
 // goes after these, in alphabetical order.
 const ORDER = [
+  "white-rim-sunrise-skyline",
   "ugem-hub",
   "utah-water-dashboard-rebuild",
   "agentic-ai-lessons",
@@ -86,8 +87,7 @@ function readNote(slug) {
   if (!existsSync(file)) return null;
   const source = readFileSync(file, "utf8");
   // A note marked noindex is a draft. Leave it out of the feed until the
-  // noindex line is removed. See notes/white-rim-sunrise-skyline/index.html
-  // for the pattern.
+  // noindex line is removed.
   if (/<meta name="robots" content="noindex">/.test(source)) return null;
   const title =
     match(source, /"headline":\s*"([^"]*)"/) ||
