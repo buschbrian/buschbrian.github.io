@@ -29,29 +29,34 @@ Resolved on 2026-11-09:
 - Island Park. The owner dropped it as a second worked example. The page is a
   one-site note, and the "Next: a second site" section is removed.
 
-Still open:
+Also resolved on 2026-11-09, from a corrected run in ArcGIS Pro 3.7 on a copy
+of the project:
 
-- Re-run Skyline from the GPS table position, then update the horizon angle
-  and the validation table if the numbers move. Remove the "observer point"
-  item from "What is not verified yet" after the re-run.
-- Re-derive the "2.6 to 3.4 degrees" range for how far the near rim stands
-  above both distant peaks. A check from the DEM on 2026-11-09 gave about
-  2.9 degrees over Mount Peale and about 3.6 degrees over Mount
-  Tukuhnikivatz. Do not change the sentence until the numbers come from a
-  run in ArcGIS Pro.
-- Check the claim that the near rim hides the distant peaks against the
-  camera frames shot 6:20 to 7:00 a.m. on the trip. Any frame in that window
-  showing the eastern skyline should show the rim standing above both peaks.
-  Confirm before the claim stays worded as settled.
-- Replace all four placeholder figure blocks with real images once they are
-  exported from the ArcGIS Pro project: the Skyline graph with the 82.6°
-  bearing marked, the horizon polyline over the DEM, the Candlestick Tower
-  validation table, and one sunrise photograph. Add each image to
-  `assets/images/`, with responsive WebP variants in `assets/images/r/`,
-  following the pattern in the other note pages.
-- Once the items above are resolved: remove the `noindex` meta tag, add a
-  card to `notes/index.html`, add the slug to the `ORDER` list in
-  `scripts/build-feed.mjs`, and add the URL to `sitemap.xml`.
+- Skyline now runs from the GPS table position. A control run from the old
+  observer point reproduced the original table exactly. First light moved by
+  7 seconds.
+- Skyline reports bearings from grid north, not true north. At the camp the two
+  differ by 0.64 degrees. The page now says so and converts the bearings.
+- The first-light time now comes from a trace of the sun along the horizon
+  table, not from one horizon angle. The result is about 7:19 a.m., about
+  26 minutes after flat-horizon sunrise at about 6:54 a.m. The sun positions
+  agree with a second method within 0.01 degrees.
+- The rim stands about 2.9 to 3.7 degrees above the distant La Sal terrain
+  along the sun's path. The old range of 2.6 to 3.4 degrees is replaced.
+- The camera frames from 6:53 to 6:55 a.m. show no distant peak above the near
+  rim. That fits the model, but cloud limits the test. The page states this
+  limit. No frame looks at the rim at 7:19 a.m.
+- The four placeholder figures are replaced: an HTML table, a chart of the sun
+  against the rim, a hillshade map, and the sunrise photograph.
+
+Still open before the note goes live:
+
+- Owner review of the finished page.
+- Then remove the `noindex` meta tag, the draft notice, the "Draft:" title
+  prefix, and the draft wording in the description and the status line. Add a
+  card and a dated `<time>` element to `notes/index.html` and to the note
+  header. Add the slug to the `ORDER` list in `scripts/build-feed.mjs`. Add the
+  URL to `sitemap.xml`.
 
 ## Contact information
 
