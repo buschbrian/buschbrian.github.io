@@ -31,14 +31,14 @@
       <title>One place to see the water in the West</title>
       <link>https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</guid>
-      <description>How a job-interview map became the Western Water Dashboard: reservoir storage, snowpack, and drought for eleven western states in one ArcGIS 5.1 application, rebuilt with AI agents under written rules.</description>
+      <description>How a job-interview map became the Western Water Dashboard: reservoirs, snow, and drought for eleven western states, rebuilt with AI agents.</description>
       <pubDate>Mon, 17 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>No test goes red on a misleading name</title>
       <link>https://buschbrian.github.io/notes/agentic-ai-lessons/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/agentic-ai-lessons/</guid>
-      <description>Most of the Western Water Dashboard was written by AI agents under written rules. The failures that mattered were about meaning, not about code, and the test suite stayed green through all of them.</description>
+      <description>AI agents wrote most of the Western Water Dashboard under written rules. The failures that mattered were about meaning, and the tests stayed green.</description>
       <pubDate>Mon, 24 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
@@ -59,14 +59,14 @@
       <title>Turning sidewalk gaps into a connected trail network</title>
       <link>https://buschbrian.github.io/notes/sidewalk-trails-master-plan/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/sidewalk-trails-master-plan/</guid>
-      <description>How Millcreek turned a fragmented set of sidewalk and trail studies into one citywide map that a director can act on, with sidewalk data built from aerial imagery.</description>
+      <description>How Millcreek turned scattered sidewalk and trail studies into one citywide map a department director can act on, with sidewalk data from aerial imagery.</description>
       <pubDate>Fri, 07 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Turning a General Plan into a public map</title>
       <link>https://buschbrian.github.io/notes/future-land-use-millcreek/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/future-land-use-millcreek/</guid>
-      <description>Millcreek planners lost meeting time flipping through a six-page General Plan appendix. This work turned that appendix into one four foot by six foot wall map of all 13 future land use categories.</description>
+      <description>Millcreek planners lost meeting time to a six-page General Plan appendix. This work made it one 4 ft by 6 ft wall map of all 13 future land use categories.</description>
     </item>
     <item>
       <title>Millcreek Redistricting</title>
@@ -118,7 +118,7 @@
       <title>Drought in 75 Western Basins</title>
       <link>https://buschbrian.github.io/notes/drought-in-western-basins/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/drought-in-western-basins/</guid>
-      <description>The U.S. Drought Monitor's October 27, 2026 map across 75 western drainage basins, then ten years of weekly maps as each basin's share of land in severe drought or worse.</description>
+      <description>The U.S. Drought Monitor map for October 27, 2026 across 75 western basins, then ten years of each basin's share of land in severe drought or worse.</description>
       <pubDate>Tue, 03 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
@@ -153,14 +153,14 @@
       <title>Great Salt Lake at 4,198 Feet</title>
       <link>https://buschbrian.github.io/notes/great-salt-lake-at-4198-feet/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/great-salt-lake-at-4198-feet/</guid>
-      <description>Great Salt Lake at 4,198 feet, the low end of the range the Great Salt Lake Strike Team calls healthy. At that level, the lake would cover about 474 square miles (1,227 km²) more than on November 3, a 51% gain.</description>
+      <description>Great Salt Lake at 4,198 feet, the low end of the Strike Team's healthy range: about 474 square miles more lake than on November 3, a 51% gain.</description>
       <pubDate>Sun, 08 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Nine in Ten Utahns Live on About 1% of the Land</title>
       <link>https://buschbrian.github.io/notes/utah-urban-and-rural/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-urban-and-rural/</guid>
-      <description>In the 2020 Census, 89.8% of Utahns lived in the state's 25 urban areas. Those areas cover 1.1% of its land. The rest of Utah held 10.2% of residents on 98.9% of the land.</description>
+      <description>In the 2020 Census, 89.8% of Utahns lived in 25 urban areas on 1.1% of the land. The rest of Utah held 10.2% of residents on 98.9% of the land.</description>
       <pubDate>Mon, 09 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
