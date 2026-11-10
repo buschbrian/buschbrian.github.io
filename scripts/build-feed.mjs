@@ -31,6 +31,7 @@ const ORDER = [
   "canyon-overlook-trail-viewshed",
   "utah-park-drive-times",
   "zion-narrows-lidar",
+  "western-reservoir-sources",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nine public sources report the storage of 408 reservoirs in 11 western states. Select a source to light its reservoirs on a 3D map.">
+    <meta name="theme-color" content="#ffffff">
+    <title>Who Measures the West's Reservoirs? | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/western-reservoir-sources/">
+    <meta property="og:title" content="Who Measures the West's Reservoirs? | Brian Busch, GISP">
+    <meta property="og:description" content="Nine public sources report the storage of 408 reservoirs in 11 western states. Select a source to light its reservoirs on a 3D map.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/western-reservoir-sources.jpg">
+    <meta property="og:image:alt" content="A dark 3D map of eleven western states pulled apart, with a small dam on each reservoir, colored by the source that reports it. Four plaques above the map, for USGS, the Corps of Engineers, NRCS and Reclamation, send pipes down to the states. Amber dams for California's state service fill California. Margin labels give each state's total, from California with 166 to New Mexico with 1. A panel at the bottom lists why reservoirs are on the map and why 38 were left off.">
+    <meta property="og:image:width" content="2160">
+    <meta property="og:image:height" content="2700">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-15T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/western-reservoir-sources/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Who Measures the West's Reservoirs?",
+  "description": "Nine public sources report the storage of 408 reservoirs in 11 western states. Select a source to light its reservoirs on a 3D map.",
+  "image": "https://buschbrian.github.io/assets/images/western-reservoir-sources.jpg",
+  "datePublished": "2026-11-15",
+  "dateModified": "2026-11-15",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/western-reservoir-sources/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 15: Inside out</p>
+          <h1>Who Measures the West's Reservoirs?</h1>
+          <p class="post-deck">Nine public sources report the storage of 408 reservoirs in 11 western states. Select a source to light its reservoirs.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 15: Inside out</strong></div>
+            <div><span>Subject</span><strong>Where the Western Water Dashboard gets its reservoir data</strong></div>
+            <div><span>Made with</span><strong>Blender, Python (NumPy, pyproj, Shapely, GeoPandas, Matplotlib), JavaScript</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-15">November 15, 2026</time></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image">
+          <picture><source type="image/webp" srcset="/assets/images/r/western-reservoir-sources-480.webp 480w, /assets/images/r/western-reservoir-sources-960.webp 960w, /assets/images/r/western-reservoir-sources-1440.webp 1440w, /assets/images/r/western-reservoir-sources-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/western-reservoir-sources.jpg" alt="A dark 3D map of eleven western states pulled apart, with a small dam on each reservoir, colored by the source that reports it. Four plaques above the map, for USGS, the Corps of Engineers, NRCS and Reclamation, send pipes down to the states. Amber dams for California's state service fill California. Margin labels give each state's total, from California with 166 to New Mexico with 1. A panel at the bottom lists why reservoirs are on the map and why 38 were left off." width="2160" height="2700"></picture>
+          <figcaption>The map of all nine sources. <a href="/assets/images/western-reservoir-sources.jpg">Open the still</a>. <a href="/notes/western-reservoir-sources/map/">Open the interactive map</a>.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>Inside the dashboard</h2>
+          <p>The Western Water Dashboard shows how full the West's reservoirs are. This map looks inside it. Each dam is one reservoir. Its color shows the public source that reports its storage.</p>
+          <p>Dams are sized by capacity. The smallest holds 429 acre-feet. Lake Mead holds 28.3 million acre-feet (34.9 km³).</p>
+          <h2>Four sources reach across states</h2>
+          <p>Four federal sources report reservoirs in more than one state. Pipes carry each source's reservoirs, state by state, to a plaque above the map.</p>
+          <ul>
+            <li>NRCS: 168 reservoirs in 11 states.</li>
+            <li>Reclamation: 55 reservoirs in 8 states.</li>
+            <li>U.S. Army Corps of Engineers: 14 reservoirs in 3 states, in the Columbia Basin.</li>
+            <li>USGS: 7 reservoirs in 3 states.</li>
+          </ul>
+          <h2>Five sources report at home</h2>
+          <p>Five state and local sources report reservoirs in their own state. The map names each one under its state's total.</p>
+          <ul>
+            <li>California CDEC: 148 reservoirs.</li>
+            <li>Colorado DWR: 10 reservoirs.</li>
+            <li>Salt River Project: 4 reservoirs.</li>
+            <li>Montana DNRC: 1 reservoir.</li>
+            <li>Central Arizona Project: 1 reservoir.</li>
+          </ul>
+          <p>One reservoir is an exception. California's service reports Lake Mohave, on the Colorado River. The map draws it in Arizona.</p>
+          <h2>Explore the map</h2>
+          <p>Select a source to light its reservoirs. The other sources turn gray. The side card shows how many reservoirs the source reports in each state. <a href="/notes/western-reservoir-sources/map/">Open the full map</a>.</p>
+          <figure class="post-hero-image post-embed">
+            <iframe src="/notes/western-reservoir-sources/map/?embed" title="Interactive 3D map of the sources of western reservoir data" width="720" height="900" loading="lazy"></iframe>
+            <figcaption>Each image is a Blender render of the same scene. <a href="/notes/western-reservoir-sources/map/">Open the map on its own page</a>.</figcaption>
+          </figure>
+          <h2>Why a reservoir is on the map</h2>
+          <ul>
+            <li>The source reports its current storage on a public feed.</li>
+            <li>It has a full level on record. For 338 reservoirs, the level comes from the National Inventory of Dams. For 70, it comes from the operator's own record.</li>
+            <li>No earlier source published it. When two sources report the same dam, the first keeps it. A later source adds only what is missing.</li>
+          </ul>
+          <p>The match uses the dam record, or a position within 3 km (1.9 mi). The dashboard set aside 99 repeats: 73 from the Corps of Engineers, 23 from USGS and 3 from Salt River Project.</p>
+          <p>The map places 378 reservoirs on the dam's inventory point. It places 30 on the point that the source publishes.</p>
+          <h2>How the map uses USGS data</h2>
+          <ul>
+            <li>USGS reports storage at 34 gauges. The dashboard compared each gauge with the other sources. 23 measure a reservoir that is already on the map. 11 were new: 7 are published, 3 are held back and 1 was withdrawn.</li>
+            <li>The dashboard checked 42 published points against four USGS layers of names and water bodies, and one layer from Esri. 35 points were confirmed, 5 went to a person for review and 2 are suspect.</li>
+            <li>The USGS 3D Elevation Program provides the terrain. The USGS Watershed Boundary Dataset sets the drawn drainages.</li>
+          </ul>
+          <p>Aerial imagery helps a person review a reservoir's point. No imagery test adds or drops a reservoir.</p>
+          <h2>Why 38 reservoirs are held back</h2>
+          <ul>
+            <li>15 do not report a recent reading.</li>
+            <li>9 are natural lakes or river pools.</li>
+            <li>8 read above their full level.</li>
+            <li>3 have no matching dam record.</li>
+            <li>2 have a full level under review.</li>
+            <li>1 repeats another source's reading.</li>
+          </ul>
+          <p>A reservoir that has held more than 10% above the largest pool in its dam record is held back. The dam inventory matched Flathead Lake to an 84 acre-foot lagoon. The service reports about 1.87 million acre-feet.</p>
+          <p>Two more reservoirs, Lake Hemet and Alder Reservoir, were withdrawn after 60 days without a reading. The records of held-back reservoirs have no location, so the map does not draw them.</p>
+          <h2>What currently complete means</h2>
+          <p>A state marked currently complete has no further public source of current storage that the dashboard knows of. It does not mean that every reservoir in the state is on the map. Idaho, Nevada, New Mexico, Oregon, Utah and Wyoming are currently complete.</p>
+          <p>A state marked more to add has known reservoirs that the map does not carry yet. Arizona, California, Colorado, Montana and Washington have more to add. About 95 more reservoirs in Colorado and 9 more in Montana drain east, outside the drawn drainages.</p>
+          <h2>How to read the map</h2>
+          <ul>
+            <li>Each dam is one reservoir. Its size follows its capacity.</li>
+            <li>Thin pipes gather a source's dams in each state. The trunk gets thicker as the count grows.</li>
+            <li>The states are pulled apart. The map draws only their western drainages.</li>
+            <li>The terrain is raised 12 times.</li>
+            <li>The counts are the reservoirs published on November 8, 2026.</li>
+          </ul>
+          <h2>Data and credit</h2>
+          <p>These are public data sources, and you can see the code on <a href="https://github.com/buschbrian/western-water-dashboard">GitHub</a>. The readings come from NRCS, Reclamation, the U.S. Army Corps of Engineers, USGS, California CDEC, Colorado DWR, Montana DNRC, Salt River Project and Central Arizona Project. The National Inventory of Dams provides the dam records. The USGS 3D Elevation Program provides the terrain, and the USGS Watershed Boundary Dataset provides the drainages. The U.S. Census Bureau provides the state outlines.</p>
+          <p class="source-note"><a href="/assets/data/day-15-sources.json">Read the figure values</a>.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/drought-in-western-basins/">Day 3: Polygons</a>
+            <a href="/notes/utah-wildfire-starts-by-cause/">Day 4: Clusters</a>
+            <a href="/notes/canyon-overlook-trail-viewshed/">Day 5: Sight</a>
+            <a href="/notes/utah-park-drive-times/">Day 13: Interactions</a>
+            <a href="/notes/zion-narrows-lidar/">Day 14: Borgesian Map</a>
+            <a href="/notes/western-reservoir-sources/" aria-current="page">Day 15: Inside out</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.instagram.com/brianbusch1/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

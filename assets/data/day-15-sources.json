@@ -1,0 +1,266 @@
+{
+ "read": "2026-11-08",
+ "total": 408,
+ "plaques": {
+  "usgs": {
+   "x": 0.1976,
+   "y": 0.2058,
+   "w": 0.1774,
+   "h": 0.0419
+  },
+  "cwms": {
+   "x": 0.3992,
+   "y": 0.2058,
+   "w": 0.1774,
+   "h": 0.0419
+  },
+  "awdb": {
+   "x": 0.6008,
+   "y": 0.2058,
+   "w": 0.1774,
+   "h": 0.0419
+  },
+  "rise": {
+   "x": 0.8024,
+   "y": 0.2058,
+   "w": 0.1774,
+   "h": 0.0419
+  }
+ },
+ "sources": [
+  {
+   "key": "awdb",
+   "name": "NRCS",
+   "color": "#6fd0c4",
+   "kind": "federal",
+   "count": 168,
+   "held_back": 0,
+   "already_published": 0,
+   "states": {
+    "OR": 44,
+    "UT": 31,
+    "CO": 27,
+    "ID": 20,
+    "WA": 14,
+    "MT": 9,
+    "CA": 8,
+    "WY": 6,
+    "NV": 5,
+    "AZ": 3,
+    "NM": 1
+   },
+   "why": "NRCS reports storage in 11 states. It fills drainages that had no other tracked reservoir."
+  },
+  {
+   "key": "cdec",
+   "name": "California CDEC",
+   "color": "#f4b63f",
+   "kind": "state",
+   "count": 148,
+   "held_back": 10,
+   "already_published": 0,
+   "states": {
+    "CA": 147,
+    "AZ": 1
+   },
+   "why": "California's water data service reports 148 reservoirs. Each has a confirmed dam. 10 are held back."
+  },
+  {
+   "key": "rise",
+   "name": "Reclamation",
+   "color": "#f0736a",
+   "kind": "federal",
+   "count": 55,
+   "held_back": 0,
+   "already_published": 0,
+   "states": {
+    "UT": 27,
+    "CA": 11,
+    "WA": 4,
+    "ID": 4,
+    "WY": 3,
+    "CO": 3,
+    "OR": 2,
+    "NV": 1
+   },
+   "why": "Reclamation reports daily storage in 8 states. The map adds the reservoirs that no earlier source published."
+  },
+  {
+   "key": "cwms",
+   "name": "Corps of Engineers",
+   "color": "#86b2ff",
+   "kind": "federal",
+   "count": 14,
+   "held_back": 22,
+   "already_published": 73,
+   "states": {
+    "WA": 10,
+    "OR": 3,
+    "ID": 1
+   },
+   "why": "The Corps of Engineers reports Columbia Basin reservoirs in 3 states. 73 were already published. 22 are held back."
+  },
+  {
+   "key": "cdss",
+   "name": "Colorado DWR",
+   "color": "#c690f2",
+   "kind": "state",
+   "count": 10,
+   "held_back": 3,
+   "already_published": 0,
+   "states": {
+    "CO": 10
+   },
+   "why": "Colorado reports 10 reservoirs on the western slope. 3 are held back. About 95 more drain east and are not drawn."
+  },
+  {
+   "key": "usgs",
+   "name": "USGS",
+   "color": "#a9d65a",
+   "kind": "federal",
+   "count": 7,
+   "held_back": 3,
+   "already_published": 23,
+   "states": {
+    "WA": 3,
+    "AZ": 2,
+    "NV": 2
+   },
+   "why": "USGS storage gauges were compared with the other sources. 23 were already on the map. 7 new reservoirs were added. 3 are held back."
+  },
+  {
+   "key": "srp",
+   "name": "Salt River Project",
+   "color": "#ff9fca",
+   "kind": "state",
+   "count": 4,
+   "held_back": 0,
+   "already_published": 3,
+   "states": {
+    "AZ": 4
+   },
+   "why": "Salt River Project adds 4 reservoirs. 3 stay with an earlier source."
+  },
+  {
+   "key": "cap",
+   "name": "Central Arizona Project",
+   "color": "#ffe0a8",
+   "kind": "state",
+   "count": 1,
+   "held_back": 0,
+   "already_published": 0,
+   "states": {
+    "AZ": 1
+   },
+   "why": "Central Arizona Project reports Lake Pleasant, its one storage reservoir."
+  },
+  {
+   "key": "dnrc",
+   "name": "Montana DNRC",
+   "color": "#e6ead6",
+   "kind": "state",
+   "count": 1,
+   "held_back": 0,
+   "already_published": 0,
+   "states": {
+    "MT": 1
+   },
+   "why": "Montana reports one storage sensor inside the drawn drainages. Nine more drain east and are not drawn."
+  }
+ ],
+ "states": {
+  "AZ": {
+   "total": 11,
+   "status": "more to add",
+   "note": "Read since 2026-08-29 for the four additive Salt River Project reservoirs, and since 2026-08-30 for Lake Pleasant from the Central Arizona Project. Alamo Lake is published by the Corps of Engineers under a district office this site does not yet read."
+  },
+  "CA": {
+   "total": 166,
+   "status": "more to add",
+   "note": "Read since 2026-08-20. The candidates admitted over or held behind a screen are named, with their findings, in admitted_cdec_reservoirs.json."
+  },
+  "CO": {
+   "total": 40,
+   "status": "more to add",
+   "note": "Read since 2026-08-21 for the ten storage stations inside the drawn drainages. About 95 further reservoirs report on the eastern slope, whose drainages reach the Mississippi basin and are not drawn."
+  },
+  "ID": {
+   "total": 26,
+   "status": "complete",
+   "note": "The state water department points every reservoir at a federal source. The Corps' Columbia Basin service is read since 2026-08-30; every location it holds that is not published is named with its finding in admitted_cwms_reservoirs.json."
+  },
+  "MT": {
+   "total": 10,
+   "status": "more to add",
+   "note": "Read since 2026-08-29 for East Fork Rock Creek, the one storage sensor of the state department inside the drawn drainages, and the Corps of Engineers is read for the Columbia side since 2026-08-30. The Corps also covers large Missouri River reservoirs, and nine further state sensors drain east outside the drawn areas."
+  },
+  "NM": {
+   "total": 1,
+   "status": "complete",
+   "note": "The state water office publishes stream measurements rather than reservoir storage."
+  },
+  "NV": {
+   "total": 8,
+   "status": "complete",
+   "note": "No state source of reservoir storage was found. The search was made properly once on 2026-08-29 and is recorded in docs/WESTERN-SOURCE-CANDIDATES.md: what remains in this state is terminal lakes, which are a roster-rule question rather than a source question."
+  },
+  "OR": {
+   "total": 49,
+   "status": "complete",
+   "note": "The state water department publishes no feed a program can read. The Corps' Columbia Basin service is read since 2026-08-30, and most of its Oregon locations were already published through the Conservation Service."
+  },
+  "UT": {
+   "total": 58,
+   "status": "complete",
+   "note": "No other public source of current storage was found."
+  },
+  "WA": {
+   "total": 30,
+   "status": "more to add",
+   "note": "No independent state source was found. The Corps' Columbia Basin service is read since 2026-08-30 and brings the largest reservoir in the state. Several utility-owned reservoirs remain: three answer nothing through that service and others are published by their operators in no form a program can read."
+  },
+  "WY": {
+   "total": 9,
+   "status": "complete",
+   "note": "The state water service was found to republish federal readings rather than add its own. The Corps of Engineers carries this state's other large reservoirs on the Missouri side, which drains east outside the drawn areas."
+  }
+ },
+ "left_off": {
+  "already published by another source": 99,
+  "not reporting": 15,
+  "natural lake or river pool": 9,
+  "reads above full level": 8,
+  "no matching dam record": 3,
+  "full level under review": 2,
+  "another source's reading": 1
+ },
+ "withdrawn": [
+  "Lake Hemet",
+  "Alder Reservoir"
+ ],
+ "checks": {
+  "full_level": {
+   "inventory": 338,
+   "operator": 70
+  },
+  "location": {
+   "dam_point": 378,
+   "published_point": 30
+  },
+  "frequency": {
+   "daily": 296,
+   "monthly": 112
+  },
+  "usgs_sites": {
+   "reviewed": 34,
+   "duplicate": 23,
+   "new": 11
+  },
+  "points": {
+   "reviewed": 42,
+   "confirmed": 35,
+   "person": 5,
+   "suspect": 2
+  }
+ }
+}
