@@ -181,9 +181,11 @@ p { line-height: 1.6; color: var(--body); }
   box-shadow: 0 18px 48px rgba(7, 14, 38, .45);
 }
 .band-art picture { width: 100%; height: 100%; min-height: 0; }
-.band-art img { width: 100%; height: 100%; object-fit: contain; transition: transform .4s ease; }
+.band-art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 53%; transition: transform .4s ease; }
 .band-art:hover img { transform: scale(1.03); }
 .band-art:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+.band-art img[src*="great-salt-lake-at-4198-feet"] { object-position: 50% 18%; }
+.band-art img[src*="day-10-six-maps"] { object-fit: contain; }
 .band-day { margin: 0 0 12px; color: var(--teal); font-size: 12px; letter-spacing: var(--track-label); text-transform: uppercase; font-variant-numeric: tabular-nums; }
 .band-title { margin: 0 0 16px; font-size: clamp(1.75rem, 3vw, 2.7rem); line-height: 1.08; font-weight: 500; letter-spacing: var(--track-display); text-wrap: balance; }
 .band-title a { color: var(--white); }
@@ -195,7 +197,9 @@ p { line-height: 1.6; color: var(--body); }
 
 .band-recent { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: clamp(20px, 2.6vw, 28px); }
 .tile { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 12px; background: #0e1a42; color: var(--white); }
-.tile img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; transition: transform .3s ease; }
+.tile img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; transition: transform .3s ease; }
+/* 4:5 posters carry their headline at the top; show the map below it. */
+.tile img[height="2700"] { object-position: 50% 100%; }
 .tile:hover img { transform: scale(1.04); }
 .tile:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 .tile-day {
@@ -259,7 +263,7 @@ p { line-height: 1.6; color: var(--body); }
 /* The challenge leads Selected work while the month is running. */
 .work-card-wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 3.5vw, 44px); align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
 .work-card-wide .collection-preview { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 0; }
-.work-card-wide .collection-preview img { aspect-ratio: 1; object-fit: contain; background: #f4f6fa; }
+.work-card-wide .collection-preview img { aspect-ratio: 1; object-fit: cover; }
 .work-card-wide h3 { font-size: clamp(28px, 3.2vw, 38px); }
 .work-card-text { min-width: 0; }
 
@@ -270,6 +274,7 @@ p { line-height: 1.6; color: var(--body); }
 @media (max-width: 900px) {
   .band-feature { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .band-art { aspect-ratio: 16 / 10; }
+  .band-art img { object-position: 50% 55%; }
   .work-card-wide { grid-template-columns: minmax(0, 1fr); gap: 22px; }
 }
 @media (max-width: 720px) {
@@ -618,8 +623,10 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
   width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain;
   border: 1px solid var(--line); border-radius: var(--r); background: var(--white);
 }
+.post-gallery.is-four-five img { aspect-ratio: 4 / 5; height: auto; object-fit: cover; padding: 0; }
 .post-gallery figcaption { margin-top: 10px; font-size: var(--fs-caption); line-height: 1.5; letter-spacing: .04em; color: var(--muted); }
 @media (max-width: 640px) { .post-gallery-grid { grid-template-columns: minmax(0, 1fr); } }
+.post-gallery.is-portrait img { aspect-ratio: 4 / 5; }
 
 /* --- image viewer --- */
 .zoomable { position: relative; display: block; width: 100%; padding: 0; border: 0; background: transparent; border-radius: var(--r); cursor: zoom-in; }
@@ -713,6 +720,7 @@ body.lightbox-open { overflow: hidden; }
 .code-details summary { padding: 14px 18px; cursor: pointer; color: var(--cosmic); font-size: 14px; }
 .code-details pre { border: 0; border-top: 1px solid var(--line); border-radius: 0; }
 .is-challenge-2026 .post-header h1 { font-size: clamp(2rem, 5.4vw, 3.75rem); text-wrap: balance; }
+.collection-2026 .map-card img { padding: 0; object-fit: cover; }
 .map-card-action { display: block; margin-top: 14px; font-size: 13px; color: var(--cerulean-text); }
 .post-hero-image figcaption a, .post-gallery figcaption a { text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 480px) { .series-bar { margin-bottom: 20px; } .series-steps { gap: 16px; } }
