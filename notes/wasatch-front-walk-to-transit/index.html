@@ -83,7 +83,7 @@
           <p>This map measures a 10-minute walk to transit along streets and paths. It covers Weber, Davis, Salt Lake and Utah counties, from Ogden to Provo.</p>
           <p>The model combines 2020 Census counts with the Utah Transit Authority (UTA) schedule for Thursday, November 5, 2026. It estimates that 1.35 million people, 55% of the four counties’ residents, are within a 10-minute walk of a scheduled stop.</p>
           <p>About 530,000 people, 21%, are that close to service scheduled every 15 minutes or better at weekday midday. About 92,000 people, 4%, are that close to service scheduled every 10 minutes or better in the same window.</p>
-          <p>The 10-minute tier runs along three corridors: the TRAX trunk in Salt Lake City, OGX in Ogden, and UVX in Provo and Orem. This is an independent analysis of UTA's published schedule.</p>
+          <p>The 10-minute tier runs along three corridors: the TRAX trunk in Salt Lake City, the Ogden Express (OGX) bus rapid transit line in Ogden, and the Utah Valley Express (UVX) bus rapid transit line in Provo and Orem. This is an independent analysis of UTA's published schedule.</p>
           <p>For the “10 minute map” theme, 10 minutes describes the modeled walk. The analysis and map took longer to make.</p>
           <h2>What counts as frequent</h2>
           <p>The General Transit Feed Specification (GTFS) is the standard format for published transit schedules. UTA publishes its schedule in that format. The first script, <code>day07_frequency.py</code>, reads the GTFS text files with the Python standard library only. The scripts pass the default checks of the ruff linter and use its code format. The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
@@ -238,7 +238,7 @@ def service_area(nd, name, where, overlap):
           <h2>Data and credit</h2>
           <p>The Utah Transit Authority publishes the GTFS schedule. This map uses the feed of October 8, 2026. The walk network comes from OpenStreetMap. The U.S. Census Bureau provides the 2020 TIGER/Line blocks and their counts. ArcGIS Pro Network Analyst solves the walks, and Python draws the map.</p>
           <ul>
-            <li><a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">Open the Census TIGER/Line files</a>.</li>
+            <li><a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">Open the Census Topologically Integrated Geographic Encoding and Referencing (TIGER)/Line files</a>.</li>
           </ul>
           <p class="source-note">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">

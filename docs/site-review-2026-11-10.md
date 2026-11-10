@@ -45,10 +45,10 @@ After these fixes, axe reports no violations. All internal links and anchors res
 - Day 5 theme: the official name is "Senses: Sight". Pages use the short label.
 - CodePen: the editor URL opens read-only without an account.
 
-## Still open
+## Resolved later on 2026-11-10
 
-- `notes/ugem-hub/`: the role for Emma Hollinger.
-- `notes/agentic-ai-lessons/`: say what was 175 percent too large in Detroit.
-- `notes/alcohol-spacing-regulations/`: names for the zone codes, and which buffer applies to which place.
-- Optional: define GNSS, MS4, AEC/BIM, and sUAS on `about/`, and NIMS and ICS on `involvement/`.
-- Optional: say how the notes index is ordered.
+- `notes/ugem-hub/`: Emma Hollinger is a Hub Architect.
+- `notes/agentic-ai-lessons/`: Detroit's recorded storage was 175 percent larger than the capacity the tool gave it.
+- `notes/alcohol-spacing-regulations/`: the five zones are listed by full name. The 300-foot and 600-foot distances come from Utah Code 32B-1-202: 300 feet for restaurant licenses, 600 feet for bars and other outlets, along the walking route. Zone names are from a third-party copy of the Millcreek code (Zoneomics), Chapters 18.41, 18.44, 18.46, 18.47, and 18.50.
+- Acronyms: each page spells out each acronym at its first use in body text, as "full term (ACR)". Product names, course codes, license names, place labels, headings, and the footer keep the short form.
+- The notes index says that the most useful notes come first.
