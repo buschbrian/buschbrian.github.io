@@ -95,12 +95,32 @@
           <p>
             The community-asset data covers places of worship, schools, and
             parks. It comes from Millcreek's 2022 Digital Divide Index
-            mapping and from UGRC datasets. The map draws two buffers around
-            each asset, at 300 feet and 600 feet. The zoning layer combines
-            several zone queries with spatial joins against the relevant
-            overlay zones (C, M, and MD zones, plus CCOZ and OHW-VCSD) and
-            parcels. That combination decides where a new alcohol-serving
-            business can locate.
+            mapping and from Utah Geospatial Resource Center (UGRC) datasets.
+            The map draws two buffers around each asset, at 300 feet and
+            600 feet.
+          </p>
+          <p>
+            The distances come from
+            <a href="https://abs.utah.gov/licenses-permits/applications-renewals/proximity-restrictions" target="_blank" rel="noreferrer">Utah Code 32B-1-202</a>.
+            A restaurant license needs 300 feet from a community location.
+            A bar or other outlet needs 600 feet. The law measures the
+            shortest walking route, so a buffer is a first check, not a
+            final answer.
+          </p>
+          <p>
+            The zoning layer combines zone queries with spatial joins against
+            parcels and these zones:
+          </p>
+          <ul>
+            <li>Commercial (C)</li>
+            <li>Light Manufacturing (M)</li>
+            <li>Mixed Development (MD)</li>
+            <li>City Center Overlay Zone (CCOZ)</li>
+            <li>Olympus Hills West Village Center Special District (OHW-VCSD)</li>
+          </ul>
+          <p>
+            That combination decides where a new alcohol-serving business
+            can locate.
           </p>
 
           <h2>From static rule to interactive tool</h2>
@@ -114,7 +134,7 @@
 
           <h2>Designed to be found</h2>
           <p>
-            A QR code on the printed map links to the live application, so
+            A quick response (QR) code on the printed map links to the live application, so
             the reference map and the interactive tool stay connected.
           </p>
 
