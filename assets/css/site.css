@@ -366,6 +366,7 @@ dd { margin: 10px 0 0; font-size: var(--fs-heading-sm); line-height: 1.1; font-w
 .page-heading .eyebrow { margin-bottom: var(--gap-el); }
 .page-heading h1 { font-size: clamp(2.5rem, 6vw, 3.75rem); line-height: 1.05; font-weight: 300; letter-spacing: var(--track-display); margin: 0 0 22px; }
 .page-heading p:not(.eyebrow) { font-size: var(--fs-subheading); line-height: 1.5; margin: 0; max-width: 50ch; color: var(--muted); text-wrap: pretty; }
+.page-heading p a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
 .section-heading { max-width: var(--measure); padding-top: clamp(48px, 6vw, 60px); border-top: 0; margin-bottom: clamp(32px, 5vw, 48px); }
 .section-heading .eyebrow { margin-bottom: 18px; }
