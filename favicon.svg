@@ -1,13 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="A star above the curve of the earth">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2978"/><stop offset="1" stop-color="#19366c"/></linearGradient>
-    <clipPath id="c"><rect width="32" height="32" rx="7"/></clipPath>
-  </defs>
-  <rect width="32" height="32" rx="7" fill="url(#g)"/>
-  <g clip-path="url(#c)">
-    <path d="M-4 34C-4 22 6 18.5 16 18.5S36 22 36 34z" fill="#75cdd6" opacity=".22"/>
-    <path d="M-4 34C-4 22 6 18.5 16 18.5S36 22 36 34" fill="none" stroke="#75cdd6" stroke-width="2.2"/>
-    <path d="M-4 34C-4 25.5 6 23.5 16 23.5S36 25.5 36 34" fill="none" stroke="#75cdd6" stroke-width="1.6" opacity=".5"/>
-  </g>
-  <path d="M16 6.2l1.5 3.8 3.8 1.5-3.8 1.5-1.5 3.8-1.5-3.8-3.8-1.5 3.8-1.5z" fill="#fff"/>
-</svg>
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A star above mountains at night"><defs><clipPath id="bb-mark"><circle cx="150.0" cy="150.0" r="145.04"/></clipPath></defs><circle cx="150.0" cy="150.0" r="150.0" fill="#131318"/><g clip-path="url(#bb-mark)"><path d="M -15.76,229.92 L 16.80,212.16 L 46.40,221.04 L 78.96,201.80 L 111.52,213.64 L 144.08,197.36 L 170.72,206.24 L 194.40,175.16 L 209.20,184.04 L 226.96,169.24 L 244.72,187.00 L 268.40,178.12 L 292.08,195.88 L 315.76,212.16 L 315.76,342.40 L -15.76,342.40 Z" fill="#F4F1EA" opacity="0.32"/><path d="M -15.76,244.72 L 9.40,228.44 L 22.72,234.36 L 40.48,216.60 L 58.24,224.00 L 76.00,195.88 L 87.84,204.76 L 99.68,189.96 L 117.44,158.88 L 127.80,167.76 L 136.68,163.32 L 151.48,187.00 L 163.32,181.08 L 178.12,201.80 L 195.88,195.88 L 216.60,216.60 L 234.36,209.20 L 255.08,225.48 L 278.76,219.56 L 315.76,241.76 L 315.76,342.40 L -15.76,342.40 Z" fill="#F4F1EA"/></g><circle cx="64.16" cy="76.00" r="5.03" fill="#F4F1EA" opacity="0.85"/><circle cx="99.68" cy="52.32" r="3.85" fill="#F4F1EA" opacity="0.85"/><circle cx="129.28" cy="84.88" r="3.26" fill="#F4F1EA" opacity="0.85"/><circle cx="158.88" cy="52.32" r="4.44" fill="#F4F1EA" opacity="0.85"/><circle cx="235.84" cy="67.12" r="3.85" fill="#F4F1EA" opacity="0.85"/><circle cx="40.48" cy="114.48" r="3.55" fill="#F4F1EA" opacity="0.85"/><circle cx="241.76" cy="120.40" r="3.26" fill="#F4F1EA" opacity="0.85"/><path d="M 195.88,49.36 Q 195.88,87.84 234.36,87.84 Q 195.88,87.84 195.88,126.32 Q 195.88,87.84 157.40,87.84 Q 195.88,87.84 195.88,49.36 Z" fill="#75cdd6"/><circle cx="150.0" cy="150.0" r="145.04" fill="none" stroke="#F4F1EA" stroke-width="5.92"/></svg>
