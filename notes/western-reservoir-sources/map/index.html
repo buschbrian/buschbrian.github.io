@@ -53,6 +53,11 @@
       .bars li { display: grid; grid-template-columns: 28px 1fr 28px; align-items: center; gap: 8px; }
       .bars i { display: block; height: 8px; border-radius: 2px; background: var(--bar, #c8d0d4); }
       .bars em { font-style: normal; text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+      .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+      .mode { padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: transparent; cursor: pointer; font-weight: 600; }
+      .mode:hover { background: rgba(255, 255, 255, 0.05); }
+      .mode[aria-pressed="true"] { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.4); }
+      [hidden] { display: none !important; }
       .clear { justify-self: start; padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px; background: transparent; cursor: pointer; }
       .clear:hover { background: rgba(255, 255, 255, 0.05); }
       .note { margin: 0; color: var(--muted); font-size: 13px; }
@@ -79,17 +84,23 @@
         <img id="img-b" class="hidden" alt="" src="/assets/images/day-15-lit-all.webp" width="1440" height="1800">
       </figure>
       <div class="side">
+        <div class="modes" role="group" aria-label="Map view">
+          <button class="mode" type="button" data-mode="sources" aria-pressed="true">Reservoir sources</button>
+          <button class="mode" type="button" data-mode="snotel" aria-pressed="false">SNOTEL stations</button>
+        </div>
         <div class="card" id="card" aria-live="polite"></div>
-        <div class="group"><h2 id="h-fed">Federal sources</h2><ul class="list" id="fed" aria-labelledby="h-fed"></ul></div>
-        <div class="group"><h2 id="h-state">State and local sources</h2><ul class="list" id="state" aria-labelledby="h-state"></ul></div>
+        <div class="group" data-for="sources"><h2 id="h-fed">Federal sources</h2><ul class="list" id="fed" aria-labelledby="h-fed"></ul></div>
+        <div class="group" data-for="sources"><h2 id="h-state">State and local sources</h2><ul class="list" id="state" aria-labelledby="h-state"></ul></div>
+        <div class="group" data-for="snotel" hidden><h2 id="h-snotel">What a station measures</h2><ul class="list" id="snotel" aria-labelledby="h-snotel"></ul></div>
         <button class="clear" type="button" id="clear">Show all sources</button>
-        <p class="note">Each image is a Blender render of the same scene. Dams are sized by capacity. States are pulled apart, and only their western drainages are drawn. <a href="/notes/western-reservoir-sources/">Read the article</a>.</p>
+        <p class="note" id="note-snotel" hidden>NRCS SNOTEL stations report snow, precipitation and soil moisture. The dashboard draws them as three streams. This view merges them, with one pin for each of the 636 stations that have coordinates. <a href="/notes/western-reservoir-sources/">Read the article</a>.</p>
+        <p class="note" id="note">Each image is a Blender render of the same scene. Dams are sized by capacity. States are pulled apart, and only their western drainages are drawn. <a href="/notes/western-reservoir-sources/">Read the article</a>.</p>
       </div>
     </main>
     <script>
       (function () {
         "use strict";
-        var base = "/assets/images/day-15-lit-";
+        var base = "/assets/images/day-15-lit-", snotelBase = "/assets/images/day-15-snotel-", mode = "sources";
         var data, current = "all", front = document.getElementById("img-a"), back = document.getElementById("img-b");
         var card = document.getElementById("card");
 
@@ -109,9 +120,52 @@
             back = front;
             front = next;
           };
-          next.src = base + key + ".webp";
+          next.src = (mode === "sources" ? base : snotelBase) + key + ".webp";
           document.querySelectorAll("[data-key]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.key === key)); });
-          fill(key);
+          document.querySelectorAll("[data-view]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.view === key)); });
+          if (mode === "sources") fill(key); else fillSnotel(key);
+        }
+
+        var ITEMS = { all: ["All stations", "stations", "Every station reports snow."], precipitation: ["Precipitation", "precipitation", ""], soil: ["Soil moisture", "soil", ""] };
+
+        function fillSnotel(view) {
+          card.replaceChildren();
+          var sn = data.snotel, names = Object.keys(sn.by_state);
+          var field = ITEMS[view][1], count = view === "all" ? sn.total : sn.counts[field];
+          var rows = names.map(function (n) { return [n, sn.by_state[n][field]]; }).filter(function (r) { return r[1] > 0; })
+            .sort(function (a, b) { return b[1] - a[1]; });
+          card.append(el("h2", {}, ITEMS[view][0]), el("div", { "class": "big" }, String(count)),
+            el("div", { "class": "sub" }, view === "all" ? "SNOTEL stations on the map" : "stations report " + ITEMS[view][0].toLowerCase()));
+          if (view === "all") {
+            card.append(el("p", {}, "Every station reports snow. " + sn.counts.precipitation + " also report precipitation. " + sn.counts.soil +
+              " also report soil moisture. " + sn.all_three + " report all three. A pin's height is the number of items the station reports."));
+          } else {
+            var without = names.filter(function (n) { return sn.by_state[n][field] < sn.by_state[n].stations; })
+              .map(function (n) { return n + " " + (sn.by_state[n].stations - sn.by_state[n][field]); });
+            card.append(el("p", {}, sn.total - count + " of " + sn.total + " stations do not report this. " + (without.length ? "By state: " + without.join(", ") + "." : "")));
+          }
+          var top = rows[0][1], bars = el("ul", { "class": "bars", "aria-label": "Stations by state" });
+          rows.forEach(function (x) {
+            var li = el("li"), bar = el("i"), cell = el("span");
+            bar.style.width = (100 * x[1] / top) + "%";
+            bar.style.setProperty("--bar", "#6fd0c4");
+            cell.append(bar);
+            li.append(el("span", {}, x[0]), cell, el("em", {}, String(x[1])));
+            bars.append(li);
+          });
+          card.append(bars);
+        }
+
+        function setMode(next) {
+          mode = next;
+          document.querySelectorAll("[data-mode]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.mode === mode)); });
+          document.querySelectorAll("[data-for]").forEach(function (g) { g.hidden = g.dataset.for !== mode; });
+          document.querySelectorAll(".tag").forEach(function (t) { t.hidden = mode !== "sources"; });
+          document.getElementById("clear").textContent = mode === "sources" ? "Show all sources" : "Show all stations";
+          document.getElementById("note").hidden = mode !== "sources";
+          document.getElementById("note-snotel").hidden = mode !== "snotel";
+          current = "all";
+          show("all");
         }
 
         function fill(key) {
@@ -174,10 +228,22 @@
             t.addEventListener("click", function () { show(current === s.key ? "all" : s.key); });
             stage.append(t);
           });
+          var snotel = document.getElementById("snotel");
+          Object.keys(ITEMS).forEach(function (view) {
+            var count = view === "all" ? d.snotel.total : d.snotel.counts[ITEMS[view][1]];
+            var li = el("li"), b = el("button", { "class": "pick", type: "button", "aria-pressed": "false", "data-view": view });
+            var sw = el("span", { "class": "swatch", "aria-hidden": "true" });
+            sw.style.background = "#6fd0c4";
+            b.append(sw, el("span", {}, view === "all" ? "All stations" : "Also " + ITEMS[view][0].toLowerCase()), el("b", {}, String(count)));
+            b.addEventListener("click", function () { show(current === view ? "all" : view); });
+            li.append(b);
+            snotel.append(li);
+          });
+          document.querySelectorAll("[data-mode]").forEach(function (b) { b.addEventListener("click", function () { setMode(b.dataset.mode); }); });
           document.getElementById("clear").addEventListener("click", function () { show("all"); });
-          document.querySelectorAll("[data-key]").forEach(function (b) { if (b.dataset.key === "all") b.setAttribute("aria-pressed", "true"); });
           fill("all");
           d.sources.forEach(function (s) { new Image().src = base + s.key + ".webp"; });
+          Object.keys(ITEMS).forEach(function (view) { new Image().src = snotelBase + view + ".webp"; });
         });
       })();
     </script>

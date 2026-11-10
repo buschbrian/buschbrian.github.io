@@ -1,6 +1,72 @@
 {
  "read": "2026-11-08",
  "total": 408,
+ "snotel": {
+  "total": 636,
+  "counts": {
+   "snow": 636,
+   "precipitation": 633,
+   "soil": 368
+  },
+  "all_three": 366,
+  "by_state": {
+   "AZ": {
+    "stations": 23,
+    "precipitation": 23,
+    "soil": 10
+   },
+   "CA": {
+    "stations": 36,
+    "precipitation": 36,
+    "soil": 32
+   },
+   "CO": {
+    "stations": 72,
+    "precipitation": 72,
+    "soil": 36
+   },
+   "ID": {
+    "stations": 88,
+    "precipitation": 88,
+    "soil": 46
+   },
+   "MT": {
+    "stations": 35,
+    "precipitation": 35,
+    "soil": 7
+   },
+   "NM": {
+    "stations": 5,
+    "precipitation": 5,
+    "soil": 0
+   },
+   "NV": {
+    "stations": 48,
+    "precipitation": 48,
+    "soil": 48
+   },
+   "OR": {
+    "stations": 82,
+    "precipitation": 82,
+    "soil": 21
+   },
+   "UT": {
+    "stations": 140,
+    "precipitation": 140,
+    "soil": 139
+   },
+   "WA": {
+    "stations": 76,
+    "precipitation": 73,
+    "soil": 16
+   },
+   "WY": {
+    "stations": 31,
+    "precipitation": 31,
+    "soil": 13
+   }
+  }
+ },
  "plaques": {
   "usgs": {
    "x": 0.1976,
