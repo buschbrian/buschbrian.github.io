@@ -22,7 +22,7 @@
     <meta property="og:image:height" content="2088">
     <meta property="article:author" content="Brian Busch">
     <meta property="article:published_time" content="2026-11-05T12:00:00-07:00">
-    <meta property="article:modified_time" content="2026-11-06T12:00:00-07:00">
+    <meta property="article:modified_time" content="2026-11-09T12:00:00-07:00">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://buschbrian.github.io/notes/beneath-japan-one-prompt/">
     <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -35,7 +35,7 @@
   "description": "One shared prompt, six earthquake maps, and a 30-minute limit for each. What six models produced from the same brief, and what one review found.",
   "image": "https://buschbrian.github.io/assets/images/day-10-six-maps.jpg",
   "datePublished": "2026-11-05",
-  "dateModified": "2026-11-06",
+  "dateModified": "2026-11-09",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://buschbrian.github.io/notes/beneath-japan-one-prompt/"
@@ -74,6 +74,7 @@
             <div><span>Models</span><strong>Claude Opus 5.5, GPT-6.1 Sol, GPT-6.1 Terra, Claude Sonnet 5.5, Claude Haiku 5.5, and GPT-6 Luna</strong></div>
             <div><span>Reviewer</span><strong>Claude Fable 5.1, which made none of the maps</strong></div>
             <div><span>Challenge date</span><strong><time datetime="2026-11-10">November 10, 2026</time></strong></div>
+            <div><span>Bonus</span><strong><a href="#day-10-bonus">Grok 4.7 and Claude Fable 5.2</a></strong></div>
           </div>
         </header>
         <figure class="post-hero-image">
@@ -428,6 +429,57 @@ Keep your final explanation under 150 words.</code></pre><figcaption>The same pr
             <li><a href="https://github.com/fraxen/tectonicplates">PB2002 plate boundaries</a>, used by Opus for tectonic context.</li>
           </ul>
           <p>The original PNG downloads preserve all six results, including the documented errors. The prompt is also available above. Raw chat transcripts remain private.</p>
+          <section class="challenge-bonus" id="day-10-bonus" aria-labelledby="day-10-bonus-title">
+            <p class="eyebrow">Day 10 bonus</p>
+            <h2 id="day-10-bonus-title">Two More Runs of the Same Brief</h2>
+            <p>On November 9, I gave the same brief to two more models. Claude Fable 5.2 ran on the day of its release. Grok 4.7 ran entirely in its terminal app. Each session had one human message and the same 30-minute limit. These two runs are not part of the three sets of scores above.</p>
+            <section class="post-chart-scroll" aria-label="Bonus run times table" tabindex="0">
+              <table>
+                <caption>Two more runs of one brief, each with a 30-minute limit</caption>
+                <thead><tr><th scope="col">Model</th><th scope="col">Date</th><th scope="col">Setting and app</th><th scope="col">Elapsed time</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Claude Fable 5.2</th><td>November 9</td><td>Extra High<br>Claude desktop app</td><td>18 min 48 s</td></tr>
+                  <tr><th scope="row">Grok 4.7</th><td>November 9</td><td>High<br>Grok terminal app</td><td>24 min 35 s</td></tr>
+                </tbody>
+              </table>
+            </section>
+            <p>Both runs got the same 515 earthquake records as the six earlier runs. Every number printed on these two posters recomputes from the saved data. Both posters credit the USGS report to Rhea et al. (2010). Body text on both is about 8 px at the preview size. Credits on both are still too small for a phone.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-fable-480.webp 480w, /assets/images/r/day-10-fable-960.webp 960w, /assets/images/r/day-10-fable-1440.webp 1440w, /assets/images/r/day-10-fable-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-fable.jpg" alt="Claude Fable 5.2 poster titled Beneath Japan, on pale paper. A white and blue map of Japan shows earthquakes as circles, from yellow for shallow to near black for deep. Gray lines mark the Japan Trench, the Izu-Bonin Trench, and the Nankai Trough. A column at right holds two legends and an explanation. A side view of the 36 to 40 degrees north band runs below the map." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>Claude Fable 5.2, Extra High.</strong> Named trenches let the map show the pattern by itself. Shallow earthquakes follow the trenches, and the deepest lie far to the west. The subtitle states an interpretation before the evidence. A label also collides with the 130°E grid label. <a href="/assets/images/day-10-fable-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-grok-480.webp 480w, /assets/images/r/day-10-grok-960.webp 960w, /assets/images/r/day-10-grok-1440.webp 1440w, /assets/images/r/day-10-grok-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-grok.jpg" alt="Grok 4.7 poster titled Beneath Japan, on a dark navy page. The main map is cream across both land and sea, so coastlines show only as faint white lines. Gold to purple circles mark earthquakes. A small locator map at top right shows cream land and navy water. A wide dark depth plot and four lines of findings sit below the map." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>Grok 4.7, High.</strong> The analysis is careful. It prints median depths with the number of earthquakes behind each one. The main map has one large defect: the ocean has the land color. <a href="/assets/images/day-10-grok-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+            <h3>Why the ocean is cream</h3>
+            <p>The Grok script meant to draw navy water and cream land. The small locator map shows those colors. On the main map, the water is cream.</p>
+            <p>The script keeps each Natural Earth land record that touches the map area. One record also holds Antarctica. The poster uses a Lambert conic projection, which flattens the Earth onto a cone. That projection spreads the Antarctica shape across the whole frame, and the land color covers the sea.</p>
+            <p>Grok inspected its export and did not report the problem. Its documentation does not mention it.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-grok-repaired-480.webp 480w, /assets/images/r/day-10-grok-repaired-960.webp 960w, /assets/images/r/day-10-grok-repaired-1440.webp 1440w, /assets/images/r/day-10-grok-repaired-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-grok-repaired.jpg" alt="The Grok 4.7 poster after one change to a copy of its script. The main map now has navy water and cream land, so Japan, Korea, and Russia are clear. The circles, labels, depth plot, and text match the original poster." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>A revised edition, not a ninth run.</strong> Claude Opus 5.5 removed the Antarctica shape in a copy of the script and made no other change. The poster text still says “AI-generated from a single prompt” because that text did not change. This edition is not ranked. <a href="/assets/images/day-10-grok-repaired-original.png">Open the revised PNG</a>.</figcaption>
+            </figure>
+            <h3>One more review, all eight posters</h3>
+            <p>Claude Opus 5.5 reviewed these two runs and ranked all eight original posters. Opus made one of the eight, and it could see the model names. This ranking is one reviewer’s opinion. It does not rank the models in general.</p>
+            <section class="post-chart-scroll" aria-label="Eight-poster ranking table" tabindex="0">
+              <table>
+                <caption>Opus 5.5 ranking of the eight original posters, scored 1 to 5</caption>
+                <thead><tr><th scope="col">Rank</th><th scope="col">Poster</th><th scope="col">Score</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><th scope="row">Claude Fable 5.2</th><td>4.6</td></tr>
+                  <tr><td>2</td><th scope="row">Claude Sonnet 5.5</th><td>4.5</td></tr>
+                  <tr><td>3</td><th scope="row">Claude Opus 5.5</th><td>4.0</td></tr>
+                  <tr><td>4</td><th scope="row">GPT-6.1 Sol</th><td>3.7</td></tr>
+                  <tr><td>5</td><th scope="row">GPT-6.1 Terra</th><td>3.4</td></tr>
+                  <tr><td>6</td><th scope="row">Claude Haiku 5.5</th><td>2.5</td></tr>
+                  <tr><td>7</td><th scope="row">Grok 4.7</th><td>2.0</td></tr>
+                  <tr><td>8</td><th scope="row">GPT-6 Luna</th><td>1.5</td></tr>
+                </tbody>
+              </table>
+            </section>
+            <p>The review put Fable slightly ahead of Sonnet for its trenches and its text size at phone width. Sonnet has the more restrained design and the stronger citation.</p>
+          </section>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
             <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
             <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
