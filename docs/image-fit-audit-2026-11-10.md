@@ -24,6 +24,7 @@ not listed.
 | UGEM Hub | `/projects/` feature | 20% empty bands | New 4:3 screenshot, `ugem-hub-card` |
 | Western Water Dashboard map | Home work card, `/projects/` feature | 20% empty bands | New 4:3 screenshot, `western-water-dashboard-map-card` |
 | Millcreek Planning Map | `/projects/` feature | 20% empty bands | New 4:3 screenshot, `millcreek-planning-map-card` |
+| Challenge strip | Home | Square tiles cropped the 4:5 posters 20%. Titles on Day 08 and Day 09 were cut. | Tiles are now 4:5 (`.tile img`). |
 
 The original files stay. Note pages and `og:image` tags still use them.
 
@@ -61,7 +62,6 @@ cartography decision.
 
 | Item | Where | Problem | Possible fix |
 | --- | --- | --- | --- |
-| Challenge strip | Home | Square tiles crop the 4:5 card images 20% at the top and bottom. Titles on Day 08 and Day 09 are cut. | Make the tiles 4:5. |
 | Band color | `/projects/` features | Empty bands use `#f4f6fa`, so dark screenshots float in a light box. | Fixed when each image is 4:3. |
 | Note hero images | 6 note pages | Shown at 864 px from a 720 px source (1.2×). | Add a 1440 px source to `srcset`. |
 | Gallery `sizes` | `/projects/` gallery | `sizes` says 345 px. Cards show at 381 px. | Correct the `sizes` value. |
