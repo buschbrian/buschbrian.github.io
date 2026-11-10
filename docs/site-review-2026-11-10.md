@@ -22,44 +22,33 @@
 
 After these fixes, axe reports no violations. All internal links and anchors resolve. External links return 200, or a bot block (403 or 999) from sites that refuse scripts.
 
-## Needs Brian
+## Decisions, 2026-11-10
 
-### Facts
-
-| Page | Question |
+| Item | Decision |
 | --- | --- |
-| `projects/` | The card says 404 reservoirs and 639 snow sites. The live dashboard shows 409 reservoirs. The rebuild note says 637 sites in two places. Update to the current counts? |
-| `notes/western-reservoir-storage/` | 405 reservoirs is the Day 1 snapshot. Say "snapshot" so it does not look like an error next to 404 or 409? |
-| `notes/millcreek-redistricting/` | "Published February 18, 2022" is before the May 9, 2022 adoption that the page reports. |
-| `notes/wasatch-front-walk-to-transit/` | 44 stops plus 25 TRAX platforms is 69, not 73. |
-| `notes/white-rim-sunrise-skyline/` | 25 or 26 minutes; 6:50 or 6:54. |
-| `notes/utah-urban-and-rural/` | Panel 6 says "Rural" at 27.4% on 99.2%. The Census rural figure on the page is 10.2% on 98.9%. |
-| `notes/agentic-ai-lessons/` | What are the "69 reservoirs"? What was "175 percent" too large in Detroit? |
-| `notes/alcohol-spacing-regulations/` | Names for the zone codes (C, M, MD, CCOZ, OHW-VCSD). Which buffer distance applies to which place? |
-| `notes/utah-avalanche-paths/` | The source for "one of the most avalanche-prone corridors". |
-| `notes/utah-vintage-atlas/` | The link text says David Rumsey Map Collection. The link goes to an Esri styles gallery. |
-| `notes/millcreek-planning-map/`, `notes/millcreek-property-lookup/` | Are "no viewer numbers yet" and "screen reader test not complete" still true? |
-| `notes/sidewalk-trails-master-plan/` | One line says the city built the sidewalk data. Another says "I built the GIS data." |
-| `notes/ugem-hub/` | The role for Emma Hollinger. |
-| `involvement/` | Add the 2025 UGEM WUI talk to the speaking table? The WUI page names it. |
-| Home, Day 5 | Theme name: "Senses: Sight" or "Sight". For 2024: "Line Features" or "Lines". |
-| `notes/` (CodePen) | The link uses a CodePen editor URL. Visitors usually need the public `/pen/` URL. |
+| Dashboard reservoir count on `projects/` | "More than 400". The live data has 409 reservoirs and 639 snow sites. Dated notes keep their counts. |
+| "I" for city work | Keep. The owner did this work. |
+| Redistricting date | February 18, 2022 is when the story map was published. The field now says "Story map published". |
+| Planning Map and Property Lookup status lines | Still true. No change. |
+| 2025 UGEM WUI talk | Added to the speaking table on `involvement/`. |
+| About page, Western Water Dashboard | Now says it was built with AI coding agents. |
+| Avalanche Paths claims | Removed. The caption and text now describe the mapped paths only. |
+| Home page lede | "Maps and code by day." |
+| Vintage atlas link | The link is now on the Esri style name, where it goes. |
 
-### Voice (rule 4: name the people in shared work)
+## Checked, no change needed
 
-These sentences use "I" for city work. Name the people and roles, or use "helped".
+- Walk to transit: 73 is all stops at 10 minutes. 25 of them are TRAX platforms.
+- Urban and rural: panel 6 compares the three largest urban areas with everywhere else. It is not the Census rural class.
+- White Rim: 6:50 is the hand estimate. The text labels it.
+- Agentic AI note: the 69 reservoirs are the earlier, smaller set.
+- Day 5 theme: the official name is "Senses: Sight". Pages use the short label.
+- CodePen: the editor URL opens read-only without an account.
 
-- `index.html`: "Earlier I set up the city's GNSS field program".
-- `about/`: "I built the city's first public ArcGIS Hub".
-- `about/`: "I built the Western Water Dashboard with TypeScript". The projects page says AI agents wrote most of the code.
-- `notes/millcreek-planning-map/`, `notes/millcreek-property-lookup/`: "I designed and built the application."
-- `notes/millcreek-redistricting/`: "I developed six initial alternatives."
-- `notes/wui-boundary-mapping/`: "I developed it with the Unified Fire Authority".
+## Still open
 
-### Optional clarity
-
-- `index.html`: "Maps and computer science by day."
-- Define on first use: GNSS, MS4, AEC/BIM, sUAS (about); NIMS, ICS (involvement); UGEM, UGIC (WUI note).
-- The notes index is not in date order. Say what the order is, or sort by date.
-- "Explore the collection" does not say where it goes.
-- The 2026 finalist submission has two URL forms on two pages.
+- `notes/ugem-hub/`: the role for Emma Hollinger.
+- `notes/agentic-ai-lessons/`: say what was 175 percent too large in Detroit.
+- `notes/alcohol-spacing-regulations/`: names for the zone codes, and which buffer applies to which place.
+- Optional: define GNSS, MS4, AEC/BIM, and sUAS on `about/`, and NIMS and ICS on `involvement/`.
+- Optional: say how the notes index is ordered.
