@@ -22,21 +22,23 @@ not listed.
 | --- | --- | --- | --- |
 | Millcreek Property Lookup | `/projects/` feature | 52% empty bands | New 4:3 screenshot, `millcreek-property-lookup-card` |
 | UGEM Hub | `/projects/` feature | 20% empty bands | New 4:3 screenshot, `ugem-hub-card` |
+| Western Water Dashboard map | Home work card, `/projects/` feature | 20% empty bands | New 4:3 screenshot, `western-water-dashboard-map-card` |
+| Millcreek Planning Map | `/projects/` feature | 20% empty bands | New 4:3 screenshot, `millcreek-planning-map-card` |
 
 The original files stay. Note pages and `og:image` tags still use them.
 
 ## Needs a new screenshot
 
-Each of these apps draws its map with WebGL. A headless browser did not
-draw the maps. Take these screenshots in a normal browser window at
-1400 × 1050 pixels (4:3). Save them as `<name>-card` files.
-
 | Image | Where | Problem | Notes |
 | --- | --- | --- | --- |
-| Western Water Dashboard map | Home work card, `/projects/` feature | 20% empty bands | Add `?shot=1` to the URL to skip the opening chooser. |
-| Millcreek Planning Map | `/projects/` feature | 20% empty bands | Any query string skips the welcome dialog. Turn on zoning. |
-| Alcohol spacing map | `/projects/` feature | 14% empty bands | ArcGIS Instant app. |
 | Millcreek redistricting | `/projects/` feature | 25% empty bands | The 2022 app may not be live. The story map is the source. |
+
+### How to take a map screenshot
+
+A headless browser does not draw WebGL maps. Use a normal Chrome window
+with its own profile and the remote debugging port. Set the viewport to
+1400 × 1050 pixels and wait until the map stops loading. Add any query
+string to skip the welcome dialog on the dashboard and the Planning Map.
 
 ## Needs a card version of a map
 
@@ -51,6 +53,7 @@ cartography decision.
 | Utah avalanche paths | `/projects/` gallery | 38% empty bands | 4:5 |
 | Day 10 six maps | `/projects/` gallery | 30% cropped at the sides | 4:5 |
 | Day 10 six maps | Home challenge feature | 14% (desktop) to 28% (phone) empty bands | 4:3 |
+| Alcohol spacing map | `/projects/` feature | 14% empty bands (print layout, not an app) | 4:3 |
 | Polygon neighbor coloring | `/projects/` feature | 14% empty bands | 4:3 |
 | Future Land Use | Home, `/projects/` feature | 11% empty bands | 4:3 |
 
