@@ -408,8 +408,10 @@ from the post. The run details on the page are quoted from the post.
 
 Open:
 
-- Confirm that xiongbiao agrees to the poster on this site.
 - Ask for the original `map.png`, the 540-pixel preview, and the `README.md`.
   With those files the page can check the text size and the source credit.
 - The post names "DSH". The page does not explain the term because no source
   defines it.
+
+Resolved on 2026-11-11: the owner confirmed that xiongbiao agrees to the poster
+on this site.
