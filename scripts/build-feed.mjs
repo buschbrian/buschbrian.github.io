@@ -36,6 +36,7 @@ const ORDER = [
   "utah-urban-and-rural",
   "beneath-japan-one-prompt",
   "the-mighty-five-by-decibel",
+  "a-field-guide-to-the-megawatt",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",

@@ -72,6 +72,7 @@
             <div><span>Subject</span><strong>Existing and natural sound in Utah and its five national parks</strong></div>
             <div><span>Made with</span><strong>Python (Rasterio, GeoPandas, NumPy, Matplotlib)</strong></div>
             <div><span>Challenge date</span><strong><time datetime="2026-11-11">November 11, 2026</time></strong></div>
+            <div><span>Bonus</span><strong><a href="#day-11-bonus">Tornado sirens in Oklahoma City and Tulsa</a></strong></div>
           </div>
         </header>
         <figure class="post-hero-image">
@@ -136,6 +137,100 @@ share_at_or_above = {
             <picture><source type="image/webp" srcset="/assets/images/r/day-11-sound-night-480.webp 480w, /assets/images/r/day-11-sound-night-960.webp 960w, /assets/images/r/day-11-sound-night-1440.webp 1440w, /assets/images/r/day-11-sound-night-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-11-sound-night.jpg" alt="Night version of the same Utah sound map, on dark blue terrain with purple, orange and gold sound bands. The park outlines, decibel key and six level meters show the same data as Ember. Bryce Canyon has the largest park share at 6 dB or more, 11%. Utah overall is 17%." width="2160" height="2700" loading="lazy"></picture>
             <figcaption>The same map in Night. <a href="/assets/images/day-11-sound-night.jpg">Open the full map</a>.</figcaption>
           </figure>
+          <section class="challenge-bonus" id="day-11-bonus" aria-labelledby="day-11-bonus-title">
+            <p class="eyebrow">Day 11 bonus</p>
+            <h2 id="day-11-bonus-title">Within a Mile of a Tornado Siren</h2>
+            <p>For Day 11, Brooks Groves mapped the tsunami sirens of Washington. He drew each siren with the one-mile circle that it is designed to be heard in. This bonus asks the same question about tornado sirens in Oklahoma. Oklahoma City and Tulsa publish where their outdoor warning sirens stand, and tornadoes have crossed both cities many times.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-11-sound-bonus-480.webp 480w, /assets/images/r/day-11-sound-bonus-960.webp 960w, /assets/images/r/day-11-sound-bonus-1440.webp 1440w, /assets/images/r/day-11-sound-bonus-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-11-sound-bonus.jpg" alt="Poster titled Within a mile, on a dark background, with two maps at the same scale. The upper map shows the Tulsa area and the lower map shows the Oklahoma City area. Amber rings spread from each outdoor warning siren every quarter mile, and a bright amber edge marks one mile. Each city sits on lighter ground inside a thin light outline of its limits. In the Tulsa map, the 97 city sirens are bright and 147 suburban sirens are dim. Soft pale streaks under the rings show tornado paths since 1950. Two callouts near Moore mark the May 3, 1999 F5 and the May 20, 2013 EF5. Large figures read 74 percent of Oklahoma City is within a mile of a siren, and 81 percent of the city of Tulsa is within a mile of one of its 97. A small map of Oklahoma shows where the two maps sit, about 100 miles apart." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption>Bright amber is the coverage that each percentage counts. Dim amber is the suburban sirens around Tulsa. Pale streaks are tornado paths since 1950. <a href="/assets/images/day-11-sound-bonus.jpg">Open the full map</a>.</figcaption>
+            </figure>
+            <p>74% of Oklahoma City is within 1 mile (1.6 km) of one of its 182 sirens. 81% of the city of Tulsa is within 1 mile of one of its 97 sirens. These figures are shares of the land inside the city limits. They are not shares of people.</p>
+            <h3>The siren data</h3>
+            <p>Oklahoma does not publish one statewide layer of siren locations. Two metro areas publish their own, so the poster maps those two areas.</p>
+            <ul>
+              <li>Oklahoma City publishes 182 sirens in a city feature service. The layer has no date and no metadata. Its count matches the 182 sirens that the city gives on its website.</li>
+              <li>The Tulsa Area Emergency Management Agency (TAEMA) file has 244 sirens in Tulsa and nine nearby towns. 97 of the sirens belong to the City of Tulsa. The file is dated April 10, 2012. The City of Tulsa serves it in its hazard mitigation map service.</li>
+              <li>The TAEMA file gives a range for each siren, in feet. I checked that unit against the agency&rsquo;s own range circles, and they agree to within 0.1%. Most ranges are 6,000 or 6,100 feet (about 1.1 miles, or 1.8 km).</li>
+              <li>Moore, Edmond and other cities near Oklahoma City have their own sirens. I did not find their locations as open data, so the Oklahoma City map shows only the city&rsquo;s sirens.</li>
+            </ul>
+            <h3>Distance, not sound</h3>
+            <p>Sirens are built to warn people outdoors. Wind, terrain, buildings and background noise change how far a siren carries. The Washington map uses a published one-mile design range. Oklahoma City publishes no range, so this poster does not use the TAEMA ranges either. It makes no claim about what people can hear. The rings mark distance from the nearest siren every quarter mile (0.4 km), and the bright edge is 1 mile.</p>
+            <p>The city limits come from the Census Bureau&rsquo;s 2024 TIGER/Line places. For each city, the script makes a circle around each of the city&rsquo;s own sirens, joins the circles, and divides the covered area by the area of the city.</p>
+            <section class="storage-table-wrap" aria-label="Land within each distance of a city siren" tabindex="0">
+              <table>
+                <caption>Share of the land inside each city&rsquo;s limits, by distance from the nearest city siren.</caption>
+                <thead><tr><th scope="col">Distance</th><th scope="col">Oklahoma City, 182 sirens</th><th scope="col">Tulsa, 97 city sirens</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">½ mile (0.8 km)</th><td>22.8%</td><td>32.4%</td></tr>
+                  <tr><th scope="row">1 mile (1.6 km)</th><td>73.9%</td><td>80.6%</td></tr>
+                  <tr><th scope="row">1½ miles (2.4 km)</th><td>94.1%</td><td>89.6%</td></tr>
+                </tbody>
+              </table>
+            </section>
+            <p>When all 244 TAEMA sirens count, 82.5% of the city of Tulsa is within 1 mile of a siren. Suburban sirens near the city line cover that extra land. This excerpt calculates the shares. It passes Ruff checks and formatting.</p>
+            <figure class="code-excerpt">
+              <pre tabindex="0"><code>within = {
+    r: city.intersection(own.buffer(r * MI).union_all()).area / city.area
+    for r in (0.5, 1, 1.5)
+}</code></pre>
+              <figcaption>From <code>day11_bonus.py</code>. <code>own</code> holds the city&rsquo;s own sirens, and <code>MI</code> is one mile in meters.</figcaption>
+            </figure>
+            <p><a href="/assets/data/day-11-bonus-figures.json">Read the saved figures</a>.</p>
+            <h3>Tornado paths</h3>
+            <p>The NOAA Storm Prediction Center (SPC) publishes each recorded tornado path since 1950 as GIS data. From 1950 to 2024, 142 Oklahoma tornado records cross or touch the Oklahoma City limits. 34 records cross or touch the Tulsa limits. No record repeats. Some older records have only a touchdown point and no end point. Those records still count.</p>
+            <p>SPC draws each path as a straight line from start to end. The map widens each line to its recorded width in yards and softens the edges. Where paths overlap, the streaks get brighter. Ratings use the F scale before 2007 and the EF scale after, as SPC records them.</p>
+            <h3>Coverage on top</h3>
+            <p>The first drafts drew the tornado paths as solid gray bands. The paths drew the eye before the sirens. That is the wrong order for a map about sound. In the final poster, the coverage is the top layer and the other layers sit under it.</p>
+            <ul>
+              <li>An amber wash fills the land within 1 mile of a siren. A bright amber edge marks the mile. Land outside the edge stays dark, so the gaps show at once.</li>
+              <li>Quarter-mile rings are faint inside the mile and fade out soon after it.</li>
+              <li>Tornado paths are soft, translucent streaks under the coverage.</li>
+              <li>Place names sit in small clearings cut from the rings, with no boxes and no halos.</li>
+              <li>The lighter ground is the city that each percentage measures. A thin light line traces its limits.</li>
+            </ul>
+            <p>This excerpt from <code>amber()</code> makes the coverage layer. For each pixel, <code>d</code> is the distance in miles to the nearest siren. It passes Ruff checks and formatting.</p>
+            <figure class="code-excerpt">
+              <pre tabindex="0"><code>inside = d &lt;= 1
+wash = np.where(inside, 0.15, 0.0)
+rings = (
+    ring(d, 0.25, 1.2, ppm)
+    * (d &gt; 0.125)
+    * np.where(inside, 0.45, np.clip(1 - (d - 1) / 0.6, 0, 1) * 0.22)
+)
+edge = ring(d, 1.0, 2.6, ppm) * (np.abs(d - 1) &lt; 0.5)
+return 1 - (1 - wash) * (1 - rings * (1 - clear)) * (1 - edge * (1 - clear))</code></pre>
+              <figcaption>From <code>day11_bonus.py</code>. <code>ring()</code> draws a line of a set pixel width at each step. <code>clear</code> is 1 under a label, so the rings stop there.</figcaption>
+            </figure>
+            <h3>Three ways to draw the city limits</h3>
+            <p>In an early version, the lighter ground meant different things in the two maps. In Oklahoma City it was the city. In Tulsa it was ten towns. The Tulsa amber also included suburban sirens that the 81% does not count. I drew three versions with one rule for both maps.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-11-sound-bonus-concepts-480.webp 480w, /assets/images/r/day-11-sound-bonus-concepts-960.webp 960w, /assets/images/r/day-11-sound-bonus-concepts-1440.webp 1440w, /assets/images/r/day-11-sound-bonus-concepts-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-11-sound-bonus-concepts.jpg" alt="Three versions of the tornado siren poster side by side. Version A, labeled Suburbs dimmed (chosen), shows the 97 Tulsa city sirens bright and the suburban sirens dim. Version B, labeled City sirens only, shows only the city sirens in each map, and the upper map is titled Tulsa. Version C, labeled All sirens equal, draws all 244 Tulsa-area sirens in full amber, and its Tulsa figure reads 82 percent. The Oklahoma City map is the same in all three." width="3400" height="1490" loading="lazy"></picture>
+              <figcaption>A dims the suburban sirens around Tulsa. B shows only the sirens of each city. C draws all sirens alike, and the Tulsa figure becomes 82%. A is the final poster. <a href="/assets/images/day-11-sound-bonus-concepts.jpg">Open the comparison</a>.</figcaption>
+            </figure>
+            <p>Version A keeps the area maps and shows which sirens each figure counts.</p>
+            <h3>One scale</h3>
+            <p>Both maps use 33 pixels per mile in the 2,160-pixel poster. I checked this on the finished image, not only in the code. The 2-mile circle of an isolated siren measures 67 pixels across in each map, against 66 expected. The two downtowns are about 98 miles (157 km) apart, so a small map of Oklahoma shows where each map sits.</p>
+            <h3>Limits</h3>
+            <ul>
+              <li>The Oklahoma City siren layer has no date. Sirens may have moved or been added since it was made.</li>
+              <li>The Tulsa file is from 2012.</li>
+              <li>The Oklahoma City map leaves out the suburban sirens.</li>
+              <li>The percentages are shares of land, not of people. Large parts of Oklahoma City are rural.</li>
+              <li>SPC paths are straight lines, and the recorded width applies along the whole path.</li>
+            </ul>
+            <h3>Data and credit</h3>
+            <p>Sirens: City of Oklahoma City, and TAEMA through the City of Tulsa. Tornado paths: NOAA Storm Prediction Center. City limits and state outline: U.S. Census Bureau TIGER/Line, 2024. The idea comes from Brooks Groves&rsquo;s Day 11 map of the tsunami sirens of Washington.</p>
+            <ul>
+              <li><a href="https://services5.arcgis.com/2mOVdIcRtNH2JsSF/arcgis/rest/services/OMNI/FeatureServer/0">Oklahoma City outdoor warning siren layer</a>.</li>
+              <li><a href="https://meshekgis.com/agsrv/rest/services/City_of_Tulsa/Tulsa_HMP_Siren_Locations/MapServer">TAEMA siren locations, City of Tulsa map service</a>.</li>
+              <li><a href="https://www.okc.gov/News-articles/How-to-prepare-for-tornadoes-in-Oklahoma-City">Oklahoma City tornado preparation page, with the siren count</a>.</li>
+              <li><a href="https://www.spc.noaa.gov/gis/svrgis/">SPC severe weather GIS data</a>.</li>
+              <li><a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">Census TIGER/Line files</a>.</li>
+              <li><a href="https://github.com/bdgroves/30DayMapChallenge/tree/main/2026/day-11-sound">Brooks Groves&rsquo;s Day 11 map and code</a>.</li>
+            </ul>
+            <p class="source-note">Made with Python (GeoPandas, SciPy, NumPy, Matplotlib).</p>
+          </section>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
             <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
             <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
@@ -148,6 +243,7 @@ share_at_or_above = {
             <a href="/notes/utah-urban-and-rural/">Day 9: Urban-rural</a>
             <a href="/notes/beneath-japan-one-prompt/">Day 10: Prompting</a>
             <a href="/notes/the-mighty-five-by-decibel/" aria-current="page">Day 11: Sound</a>
+            <a href="/notes/a-field-guide-to-the-megawatt/">Day 12: Power</a>
           </nav>
         </div>
       </article>

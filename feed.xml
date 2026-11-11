@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>Reading First Light Off a DEM</title>
       <link>https://buschbrian.github.io/notes/white-rim-sunrise-skyline/</link>
@@ -176,6 +176,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/the-mighty-five-by-decibel/</guid>
       <description>The NPS sound model compares existing and natural sound across Utah. Five park meters show the share at 6 dB or more.</description>
       <pubDate>Wed, 11 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>A Field Guide to the Megawatt</title>
+      <link>https://buschbrian.github.io/notes/a-field-guide-to-the-megawatt/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/a-field-guide-to-the-megawatt/</guid>
+      <description>48 Utah solar farms, each scaled to one megawatt at one ground scale. The median footprint is 5.9 acres of panels per MW AC.</description>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
