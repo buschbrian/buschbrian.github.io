@@ -22,7 +22,7 @@
     <meta property="og:image:height" content="2088">
     <meta property="article:author" content="Brian Busch">
     <meta property="article:published_time" content="2026-11-10T12:00:00-07:00">
-    <meta property="article:modified_time" content="2026-11-09T12:00:00-07:00">
+    <meta property="article:modified_time" content="2026-11-11T12:00:00-07:00">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://buschbrian.github.io/notes/beneath-japan-one-prompt/">
     <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -35,7 +35,7 @@
   "description": "One shared prompt, six earthquake maps, and a 30-minute limit for each. What six models produced from the same brief, and what one review found.",
   "image": "https://buschbrian.github.io/assets/images/day-10-six-maps.jpg",
   "datePublished": "2026-11-10",
-  "dateModified": "2026-11-10",
+  "dateModified": "2026-11-11",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://buschbrian.github.io/notes/beneath-japan-one-prompt/"
@@ -74,7 +74,7 @@
             <div><span>Models</span><strong>Claude Opus 5.5, GPT-6.1 Sol, GPT-6.1 Terra, Claude Sonnet 5.5, Claude Haiku 5.5, and GPT-6 Luna</strong></div>
             <div><span>Reviewer</span><strong>Claude Fable 5.1, which made none of the maps</strong></div>
             <div><span>Challenge date</span><strong><time datetime="2026-11-10">November 10, 2026</time></strong></div>
-            <div><span>Bonus</span><strong><a href="#day-10-bonus">Grok 4.7 and Claude Fable 5.2</a></strong></div>
+            <div><span>Bonus</span><strong><a href="#day-10-bonus">Grok 4.7, Claude Fable 5.2, and a reader’s DeepSeek run</a></strong></div>
           </div>
         </header>
         <figure class="post-hero-image">
@@ -479,6 +479,20 @@ Keep your final explanation under 150 words.</code></pre><figcaption>The same pr
               </table>
             </section>
             <p>The review put Fable slightly ahead of Sonnet for its trenches and its text size at phone width. Sonnet has the more restrained design and the stronger citation.</p>
+            <h3 id="reader-run-deepseek">A reader’s run with DeepSeek</h3>
+            <p>On November 11, xiongbiao (<a href="https://x.com/BiaoXiong73311">@BiaoXiong73311</a>) ran the same brief with a DeepSeek model and <a href="https://x.com/BiaoXiong73311/status/2120424014539874768">posted the poster on X</a>. I did not run this session, and I do not have its files. The post gives these run details: “DSH + Deepseek-v4.1-Flash Max, 22 min 22 s, ¥1.51, 9.25M tok (output 127,936 tok), 80 steps”.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-deepseek-480.webp 480w, /assets/images/r/day-10-deepseek-960.webp 960w, /assets/images/r/day-10-deepseek-1440.webp 1440w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-deepseek.jpg" alt="DeepSeek poster titled Beneath Japan, on a dark navy page. Dark green land and navy sea show Japan inside a dashed coverage box. Circles run from pale yellow for shallow earthquakes to purple for deep earthquakes. Two boxed callouts sit east of Honshu. A depth plot for the 36 to 40 degrees north band and two legends with counts sit below the map." width="1600" height="2000" loading="lazy"></picture>
+              <figcaption><strong>DeepSeek, run by xiongbiao.</strong> Both legends give counts. The depth plot states a computed finding for the 36–40°N band: the median longitude of the deeper earthquakes is 2.6° west of the shallow median. The two callout boxes cover earthquakes east of Honshu. The poster puts six deep earthquakes “under Honshu”; the catalog places two of the six 160 to 202 km offshore. This image is the 1600 by 2000 pixel copy from the post.</figcaption>
+            </figure>
+            <p>Claude Fable 5.2 compared the numbers on the poster with a new download of the same USGS query on November 11. All of them agree:</p>
+            <ul>
+              <li>515 earthquakes, with 449 shallower than 70 km.</li>
+              <li>14 deeper than 300 km, and the deepest at 561 km.</li>
+              <li>The counts for the six depth classes.</li>
+              <li>165 earthquakes in the 36–40°N band, and the two median longitudes.</li>
+            </ul>
+            <p>That check covers the poster only. The code, the saved data, the documentation, and the 540-pixel preview were not available. This run is not in the tables or the scores above.</p>
           </section>
           <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
             <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
