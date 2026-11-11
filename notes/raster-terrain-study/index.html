@@ -6,18 +6,18 @@
     <meta name="description" content="An Imhof-inspired hillshade of Utah's terrain, built for the Raster theme of the 2024 30 Day Map Challenge using Esri's Terrain Service.">
     <meta name="theme-color" content="#ffffff">
     <title>Shading terrain the Imhof way | Brian Busch, GISP</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/raster-terrain-study/">
     <meta property="og:title" content="Shading terrain the Imhof way | Brian Busch, GISP">
     <meta property="og:description" content="An Imhof-inspired hillshade of Utah's terrain, built for the Raster theme of the 2024 30 Day Map Challenge using Esri's Terrain Service.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/raster1110624v2.jpg">
-    <meta property="og:image:alt" content="Raster terrain and analysis map.">
+    <meta property="og:image:alt" content="Imhof-inspired hillshade of Utah's terrain.">
     <meta property="og:image:width" content="1545">
     <meta property="og:image:height" content="2000">
     <meta property="article:author" content="Brian Busch">
@@ -63,7 +63,7 @@
     <main id="main" class="post-page">
       <article class="post-article">
         <header class="post-header">
-          <p class="eyebrow">30 Day Map Challenge 2024 &mdash; Raster</p>
+          <p class="eyebrow">30 Day Map Challenge 2024 | Raster</p>
           <h1>Shading terrain the Imhof way</h1>
           <p class="post-deck">
             A hand-tuned hillshade of Utah in the style of Eduard Imhof. It
@@ -79,7 +79,7 @@
         </header>
 
         <figure class="post-hero-image">
-          <picture><source type="image/webp" srcset="/assets/images/r/raster1110624v2-480.webp 480w, /assets/images/r/raster1110624v2-960.webp 960w, /assets/images/r/raster1110624v2-1545.webp 1545w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/raster1110624v2.jpg" alt="Raster terrain and analysis map." width="1545" height="2000"></picture>
+          <picture><source type="image/webp" srcset="/assets/images/r/raster1110624v2-480.webp 480w, /assets/images/r/raster1110624v2-960.webp 960w, /assets/images/r/raster1110624v2-1545.webp 1545w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/raster1110624v2.jpg" alt="Imhof-inspired hillshade of Utah's terrain." width="1545" height="2000"></picture>
           <figcaption>Raster Terrain Study. An Imhof-style hillshade of Utah built on Esri's Terrain Service.</figcaption>
         </figure>
 
@@ -98,13 +98,13 @@
             of one flat light-angle calculation. Ridgelines and valleys get
             more depth than a default hillshade gives them. The technique was
             made for paper maps in the 1960s, and it still looks better on a
-            screen than most default GIS renderers.
+            screen than most default geographic information system (GIS) renderers.
           </p>
 
           <h2>Building it in ArcGIS Pro</h2>
           <p>
             The elevation surface comes from Esri's Terrain Service in Living
-            Atlas, so there was no local DEM to manage. The symbology follows
+            Atlas, so there was no local digital elevation model (DEM) to manage. The symbology follows
             John Nelson's modern version of the Imhof technique. I adjusted
             the color ramp and light angle against Utah's terrain until the
             Wasatch Range, the Basin and Range country, and the Colorado

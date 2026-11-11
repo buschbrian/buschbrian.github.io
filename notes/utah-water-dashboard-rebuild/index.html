@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="How a job-interview map became the Western Water Dashboard: reservoir storage, snowpack, and drought for eleven western states in one ArcGIS 5.1 application, rebuilt with AI agents under written rules.">
+    <meta name="description" content="How a job-interview map became the Western Water Dashboard: reservoirs, snow, and drought for eleven western states, rebuilt with AI agents.">
     <meta name="theme-color" content="#ffffff">
     <title>One place to see the water in the West | Brian Busch, GISP</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/">
     <meta property="og:title" content="One place to see the water in the West | Brian Busch, GISP">
-    <meta property="og:description" content="How a job-interview map became the Western Water Dashboard: reservoir storage, snowpack, and drought for eleven western states in one ArcGIS 5.1 application, rebuilt with AI agents under written rules.">
+    <meta property="og:description" content="How a job-interview map became the Western Water Dashboard: reservoirs, snow, and drought for eleven western states, rebuilt with AI agents.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/western-water-dashboard-map.jpg">
     <meta property="og:image:alt" content="The Western Water Dashboard storage map, covering eleven western states. Circle size shows capacity and circle color shows percent full.">
     <meta property="og:image:width" content="1400">
@@ -30,7 +30,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "One place to see the water in the West",
-      "description": "How a job-interview map became the Western Water Dashboard: reservoir storage, snowpack, and drought for eleven western states in one ArcGIS 5.1 application, rebuilt with AI agents under written rules.",
+      "description": "How a job-interview map became the Western Water Dashboard: reservoirs, snow, and drought for eleven western states, rebuilt with AI agents.",
       "image": "https://buschbrian.github.io/assets/images/western-water-dashboard-map.jpg",
       "datePublished": "2026-08-17",
       "dateModified": "2026-09-03",
@@ -69,7 +69,8 @@
             Reservoir storage, mountain snow, and drought are published by
             different federal agencies in different applications. This project
             puts all three in one map, for eleven western states, and rebuilds
-            the map with AI agents that work under written rules.
+            the map with artificial intelligence (AI) agents that work under
+            written rules.
           </p>
           <div class="post-meta-grid">
             <div><span>Reservoirs</span><strong>404, from nine sources</strong></div>
@@ -107,7 +108,7 @@
             None of them let you filter across all three.
           </p>
           <p>
-            In winter, most of us see one image. A static PDF of Utah snowpack
+            In winter, most of us see one image. A static Portable Document Format (PDF) of Utah snowpack
             goes through the social media feed about once a week. It shows six
             levels of detail. That is the whole picture for many skiers and
             many voters. I wanted to ask better questions than that image can
@@ -230,7 +231,7 @@
 
           <figure class="post-hero-image">
             <picture><source type="image/webp" srcset="/assets/images/r/western-water-dashboard-table-480.webp 480w, /assets/images/r/western-water-dashboard-table-960.webp 960w, /assets/images/r/western-water-dashboard-table-1400.webp 1400w" sizes="(max-width: 820px) 100vw, 1112px"><img src="/assets/images/western-water-dashboard-table.jpg" alt="The reservoir table below the map. It lists each reservoir with percent full, stored volume, full level, and drainage area, next to a bar chart of the same values." width="1400" height="840" loading="lazy"></picture>
-            <figcaption>All 382 reservoirs, in a sortable table under the map. The download gives you those rows, in the order on screen, as a CSV file.</figcaption>
+            <figcaption>All 382 reservoirs, in a sortable table under the map. The download gives you those rows, in the order on screen, as a comma-separated values (CSV) file.</figcaption>
           </figure>
 
           <p>
@@ -382,7 +383,7 @@
           <p>
             The site is static. The data is not. Python scripts use pandas,
             NumPy, and the ArcGIS API for Python to read each agency service,
-            validate the values, and write one JSON file for each subject. A
+            validate the values, and write one JavaScript Object Notation (JSON) file for each subject. A
             GitHub Actions workflow runs the refresh each morning. That commit
             is the deployment.
           </p>
@@ -439,13 +440,13 @@
             It cannot see that two labels overlap, or that a map feels wrong.
             Those problems came back to a person every time. The project wiki
             records them, because they are the limit of this method for
-            GIS applications today.
+            geographic information system (GIS) applications today.
           </p>
 
           <h2>Open data, and a warning</h2>
           <p>
             The same checked JSON files the dashboard reads are published as a
-            public data API, with field definitions and examples. A methods page
+            public data application programming interface (API), with field definitions and examples. A methods page
             names every source, every identifier, and the rule used to work out
             each value. Nothing on the site is modeled, predicted, or smoothed.
           </p>

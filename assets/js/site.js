@@ -18,7 +18,15 @@ if (navToggle && navMenu) {
   });
 
   document.addEventListener("keydown", event => {
-    if (event.key === "Escape") setNavOpen(false);
+    if (event.key !== "Escape" || !document.body.classList.contains("nav-open")) return;
+    setNavOpen(false);
+    navToggle.focus();
+  });
+
+  document.addEventListener("click", event => {
+    if (!document.body.classList.contains("nav-open")) return;
+    if (navMenu.contains(event.target) || navToggle.contains(event.target)) return;
+    setNavOpen(false);
   });
 }
 
