@@ -35,6 +35,7 @@ const ORDER = [
   "great-salt-lake-at-4198-feet",
   "utah-urban-and-rural",
   "beneath-japan-one-prompt",
+  "the-mighty-five-by-decibel",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",

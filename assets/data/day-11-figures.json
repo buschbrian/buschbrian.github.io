@@ -1,0 +1,114 @@
+{
+ "source": {
+  "existing": "CONUS_L50dBA_sumDay_exi.tif",
+  "natural": "CONUS_sumDay_L50dBA_nat.tif",
+  "parks": "nps_boundary_utah_parks.geojson",
+  "boundary_commit": "f2a99037a3158ef538bbaab3cf76ed0f9d504d8f",
+  "nodata_tags": [
+   -9999.0,
+   -9999.0
+  ]
+ },
+ "anchors": {
+  "3": 0.5011872336272722,
+  "10": 0.1
+ },
+ "utah": {
+  "cells": 3016210,
+  "cell_km2": 219881.7,
+  "polygon_km2": 219881.4,
+  "natural_median_dba": 23.75,
+  "existing_median_dba": 28.66,
+  "increment_median_db": 3.43,
+  "increment_max_db": 33.19,
+  "share_at_or_above": {
+   "3": 0.6025,
+   "6": 0.1718,
+   "10": 0.0405,
+   "20": 0.0038
+  },
+  "cells_existing_below_natural": 0
+ },
+ "parks": {
+  "CANY": {
+   "cells": 18560,
+   "cell_km2": 1353.0,
+   "polygon_km2": 1352.7,
+   "natural_median_dba": 21.59,
+   "existing_median_dba": 24.32,
+   "increment_median_db": 2.6,
+   "increment_max_db": 5.33,
+   "share_at_or_above": {
+    "3": 0.2656,
+    "6": 0.0,
+    "10": 0.0,
+    "20": 0.0
+   },
+   "cells_existing_below_natural": 0
+  },
+  "ARCH": {
+   "cells": 4246,
+   "cell_km2": 309.5,
+   "polygon_km2": 309.4,
+   "natural_median_dba": 21.35,
+   "existing_median_dba": 24.38,
+   "increment_median_db": 3.02,
+   "increment_max_db": 14.66,
+   "share_at_or_above": {
+    "3": 0.5163,
+    "6": 0.0502,
+    "10": 0.0073,
+    "20": 0.0
+   },
+   "cells_existing_below_natural": 0
+  },
+  "BRCA": {
+   "cells": 1996,
+   "cell_km2": 145.5,
+   "polygon_km2": 145.6,
+   "natural_median_dba": 27.69,
+   "existing_median_dba": 29.95,
+   "increment_median_db": 2.27,
+   "increment_max_db": 14.49,
+   "share_at_or_above": {
+    "3": 0.2951,
+    "6": 0.1142,
+    "10": 0.013,
+    "20": 0.0
+   },
+   "cells_existing_below_natural": 0
+  },
+  "CARE": {
+   "cells": 13595,
+   "cell_km2": 991.1,
+   "polygon_km2": 990.7,
+   "natural_median_dba": 22.74,
+   "existing_median_dba": 25.3,
+   "increment_median_db": 2.38,
+   "increment_max_db": 7.87,
+   "share_at_or_above": {
+    "3": 0.1516,
+    "6": 0.0055,
+    "10": 0.0,
+    "20": 0.0
+   },
+   "cells_existing_below_natural": 0
+  },
+  "ZION": {
+   "cells": 8255,
+   "cell_km2": 601.8,
+   "polygon_km2": 601.8,
+   "natural_median_dba": 27.75,
+   "existing_median_dba": 29.19,
+   "increment_median_db": 1.7,
+   "increment_max_db": 11.37,
+   "share_at_or_above": {
+    "3": 0.1673,
+    "6": 0.0224,
+    "10": 0.0004,
+    "20": 0.0
+   },
+   "cells_existing_below_natural": 0
+  }
+ }
+}
