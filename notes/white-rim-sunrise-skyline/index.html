@@ -6,11 +6,11 @@
     <meta name="description" content="A DEM-based method in ArcGIS Pro for predicting when the sun clears a desert rim, checked against a known landmark before trusting the result.">
     <meta name="theme-color" content="#ffffff">
     <title>Reading First Light Off a DEM | Brian Busch, GISP</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/white-rim-sunrise-skyline/">
@@ -106,8 +106,8 @@
 
           <h2>The data and the tool</h2>
           <p>
-            The elevation data is a USGS 3DEP digital elevation model at
-            10-meter resolution, downloaded from The National Map and
+            The elevation data is a U.S. Geological Survey (USGS) 3D Elevation Program (3DEP) digital
+            elevation model at 10-meter resolution, downloaded from The National Map and
             covering the horizon out past the distant peaks in question. The
             sunrise run used one tile, <code>n39w110</code>, in the release
             dated June 30, 2026. I downloaded it on September 4, 2026. The
@@ -125,11 +125,11 @@
               Download the 10 m DEM and project it to a metric coordinate
               system. Skyline needs elevation and ground distance in the
               same units, and a DEM left in geographic degrees gives wrong
-              angles with no warning. I used NAD83(2011) UTM zone 12N.
+              angles with no warning. I used NAD83(2011) Universal Transverse Mercator (UTM) zone 12N.
             </li>
             <li>
               Place an observer point at the campsite, using the position in
-              the trip&rsquo;s GPS log. Raise it 6.6 feet (2 m) above the
+              the trip&rsquo;s Global Positioning System (GPS) log. Raise it 6.6 feet (2 m) above the
               surface. Without that offset, the point can read as sitting
               just below the terrain and gets silently dropped from the run.
             </li>
@@ -167,8 +167,8 @@
             bearing along a rim that falls by about one degree.
           </p>
           <p>
-            The sun positions come from the NOAA solar-position equations. I
-            checked them against a second method, the Astronomical Almanac
+            The sun positions come from the National Oceanic and Atmospheric Administration
+            (NOAA) solar-position equations. I checked them against a second method, the Astronomical Almanac
             low-precision formulas. The two agree within 0.01&deg; of altitude
             and bearing, which is about two seconds of time.
           </p>

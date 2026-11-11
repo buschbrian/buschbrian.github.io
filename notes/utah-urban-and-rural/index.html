@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="In the 2020 Census, 89.8% of Utahns lived in the state's 25 urban areas. Those areas cover 1.1% of its land. The rest of Utah held 10.2% of residents on 98.9% of the land.">
+    <meta name="description" content="In the 2020 Census, 89.8% of Utahns lived in 25 urban areas on 1.1% of the land. The rest of Utah held 10.2% of residents on 98.9% of the land.">
     <meta name="theme-color" content="#ffffff">
     <title>Nine in Ten Utahns Live on About 1% of the Land | Brian Busch, GISP</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/utah-urban-and-rural/">
     <meta property="og:title" content="Nine in Ten Utahns Live on About 1% of the Land | Brian Busch, GISP">
-    <meta property="og:description" content="In the 2020 Census, 89.8% of Utahns lived in the state's 25 urban areas. Those areas cover 1.1% of its land. The rest of Utah held 10.2% of residents on 98.9% of the land.">
+    <meta property="og:description" content="In the 2020 Census, 89.8% of Utahns lived in 25 urban areas on 1.1% of the land. The rest of Utah held 10.2% of residents on 98.9% of the land.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/utah-urban-and-rural.jpg">
     <meta property="og:image:alt" content="Split poster of urban and rural Utah in the 2020 Census. The left half maps only the 25 urban areas, as small brick-red shapes along the Wasatch Front and near St. George. The right half maps the rest of the state in pale tan at the same scale, with the urban areas cut out as small dark holes. Large figures read 89.8 percent of Utahns on 1.1 percent of the land, and 10.2 percent on 98.9 percent.">
     <meta property="og:image:width" content="2160">
@@ -31,7 +31,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Nine in Ten Utahns Live on About 1% of the Land",
-  "description": "In the 2020 Census, 89.8% of Utahns lived in the state's 25 urban areas. Those areas cover 1.1% of its land. The rest of Utah held 10.2% of residents on 98.9% of the land.",
+  "description": "In the 2020 Census, 89.8% of Utahns lived in 25 urban areas on 1.1% of the land. The rest of Utah held 10.2% of residents on 98.9% of the land.",
   "image": "https://buschbrian.github.io/assets/images/utah-urban-and-rural.jpg",
   "datePublished": "2026-11-09",
   "dateModified": "2026-11-09",
@@ -136,7 +136,7 @@
           <h2>What counts as urban</h2>
           <p>A Census block is the smallest area the Census Bureau counts, often one city block. For the 2020 Census, the Bureau classed every block as urban or rural.</p>
           <p>Urban areas include densely developed blocks and nearby land that meets the Census criteria. In 2020, each qualifying area needed at least 2,000 housing units or 5,000 residents. Land outside those areas was classified as rural. Each urban block carries the code of its urban area.</p>
-          <p>The script, <code>day09_urban_rural.py</code>, reads the Utah block file from the Census TIGER/Line files. It adds up residents and land area by block. The script passes the default checks of the ruff linter and uses its code format. The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
+          <p>The script, <code>day09_urban_rural.py</code>, reads the Utah block file from the Census Topologically Integrated Geographic Encoding and Referencing (TIGER)/Line files. It adds up residents and land area by block. The script passes the default checks of the ruff linter and uses its code format. The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>    pop, land = int(b.POP20.sum()), int(b.ALAND20.sum())
     u = b[b.UR20 == "U"]
@@ -257,7 +257,7 @@ def check_palettes(names):
           <ul>
             <li><a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">Open the Census TIGER/Line files</a>.</li>
             <li><a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/urban-rural.html">Read the Census Bureau's urban and rural definitions</a>.</li>
-            <li><a href="https://d36oiwf74r1rap.cloudfront.net/wp-content/uploads/2024/11/Utah-Urban-Areas-Oct2024.pdf">Open the Gardner fact sheet (PDF)</a>.</li>
+            <li><a href="https://d36oiwf74r1rap.cloudfront.net/wp-content/uploads/2024/11/Utah-Urban-Areas-Oct2024.pdf">Open the Gardner fact sheet, a Portable Document Format (PDF) file</a>.</li>
           </ul>
           <section class="challenge-bonus" id="day-9-bonus" aria-labelledby="day-9-bonus-title">
             <p class="eyebrow">Day 9 bonus</p>

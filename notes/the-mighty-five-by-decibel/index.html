@@ -66,7 +66,7 @@
         <header class="post-header">
           <p class="eyebrow">30 Day Map Challenge 2026 | Day 11: Senses: Sound</p>
           <h1>The Mighty Five, by Decibel</h1>
-          <p class="post-deck">Across 17% of Utah, people add at least 6 decibels of background sound in the NPS model. The five national parks range from 0% to 11%.</p>
+          <p class="post-deck">Across 17% of Utah, people add at least 6 decibels of background sound in the National Park Service (NPS) model. The five national parks range from 0% to 11%.</p>
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>Day 11: Senses: Sound</strong></div>
             <div><span>Subject</span><strong>Existing and natural sound in Utah and its five national parks</strong></div>
@@ -82,7 +82,7 @@
           <h2>Sound added by people</h2>
           <p>The National Park Service (NPS) modeled sound twice: under existing conditions and with human inputs minimized. This map shows the difference.</p>
           <p>The metric is A-weighted L50, the sound level exceeded half the time. A-weighting reflects how human hearing responds to different frequencies. The predictions describe a typical summer daytime hour in calm weather.</p>
-          <p>Decibels use a logarithmic scale. NPS relates a 3 dB rise in background sound to half the listening area. At 10 dB, one tenth remains. At 6 dB, about 25.1% remains, rounded to a quarter on the map. This explains the key; the mapped quantity stays in decibels.</p>
+          <p>Decibels (dB) use a logarithmic scale. NPS relates a 3 dB rise in background sound to half the listening area. At 10 dB, one tenth remains. At 6 dB, about 25.1% remains, rounded to a quarter on the map. This explains the key; the mapped quantity stays in decibels.</p>
           <h2>The five parks</h2>
           <p>The meters rank each park by its share of cells at 6 dB or more. Utah provides statewide context.</p>
           <section class="storage-table-wrap" aria-label="Area at 6 dB or more" tabindex="0">
@@ -102,7 +102,7 @@
           <p>Canyonlands has no cell at 6 dB or more. Its highest modeled increment is 5.33 dB. That does not mean the park has no human sound.</p>
           <h2>Count on the source grid</h2>
           <p><code>day11_sound.py</code> checks that the existing and natural rasters share a grid. It subtracts natural from existing sound on the original 270 m cells.</p>
-          <p>Cells count when their centers fall inside the UGRC state boundary or an NPS park boundary. Utah contains 3,016,210 cells, including lakes. The script found no invalid cells inside the state. The display uses nearest-neighbor resampling into a Utah-centered Albers equal-area projection. Display pixels do not determine the figures.</p>
+          <p>Cells count when their centers fall inside the Utah Geospatial Resource Center (UGRC) state boundary or an NPS park boundary. Utah contains 3,016,210 cells, including lakes. The script found no invalid cells inside the state. The display uses nearest-neighbor resampling into a Utah-centered Albers equal-area projection. Display pixels do not determine the figures.</p>
           <p>This excerpt from <code>summary()</code> calculates the share for each band. It passes Ruff checks and formatting.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>inc = g["inc"][m]
@@ -125,7 +125,7 @@ share_at_or_above = {
           <p>The statewide map sits above a row of park level meters. This layout joins a geographic overview with an area comparison. The vertical key pairs sound bands with NPS&rsquo;s listening-area relation.</p>
           <p>Ember uses a pale terrain base and warm bands. Night uses dark terrain and brighter bands. Both approved finals carry the same model, boundaries and figures.</p>
           <h2>Data and credit</h2>
-          <p>Sound model: NPS Natural Sounds and Night Skies Division (Mennitt). Park boundaries: NPS Land Resources Division. State boundary: Utah Geospatial Resource Center (UGRC). Terrain: USGS 3DEP. Place names: USGS GNIS.</p>
+          <p>Sound model: NPS Natural Sounds and Night Skies Division (Mennitt). Park boundaries: NPS Land Resources Division. State boundary: UGRC. Terrain: U.S. Geological Survey (USGS) 3D Elevation Program (3DEP). Place names: USGS Geographic Names Information System (GNIS).</p>
           <ul>
             <li><a href="https://irma.nps.gov/DataStore/Reference/Profile/2217356">NPS geospatial sound model and data</a>.</li>
             <li><a href="https://www.nps.gov/subjects/sound/mapfaq.htm">NPS sound-map methods, listening area and accuracy</a>.</li>
