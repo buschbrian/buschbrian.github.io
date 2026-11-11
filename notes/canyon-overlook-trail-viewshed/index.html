@@ -6,11 +6,11 @@
     <meta name="description" content="A modeled walk along Zion’s Canyon Overlook Trail. Nearly half the visible ground first appears in the final 15 m. Bare earth, with no trees or buildings.">
     <meta name="theme-color" content="#ffffff">
     <title>What the Canyon Overlook Trail Sees | Brian Busch, GISP</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/canyon-overlook-trail-viewshed/">
@@ -103,8 +103,8 @@
           <h2>How the model works</h2>
           <p>A viewshed is the area that is visible from one point. The model runs a viewshed every 5 m along the trail, 155 positions in all.</p>
           <ul>
-            <li>The terrain is a digital elevation model (DEM), a grid of ground heights. The base is the USGS 3DEP 10 m DEM, resampled to 2 m cells.</li>
-            <li>Near the viewpoint, the model uses 1 m lidar from a 2016 survey of Zion. Lidar is a laser survey flown from an aircraft.</li>
+            <li>The terrain is a digital elevation model (DEM), a grid of ground heights. The base is the U.S. Geological Survey (USGS) 3D Elevation Program (3DEP) 10 m DEM, resampled to 2 m cells.</li>
+            <li>Near the viewpoint, the model uses 1 m light detection and ranging (lidar) from a 2016 survey of Zion. Lidar is a laser survey flown from an aircraft.</li>
             <li>The coarser 10 m grid smooths the cliff below the viewpoint. The lidar preserves more of its shape.</li>
             <li>The elevation data is bare earth. It shows the ground with no trees or buildings.</li>
             <li>The trail line comes from the National Park Service's archived 2014 trail dataset. The eye sits 1.7 m above the lidar ground at each position.</li>
@@ -192,8 +192,8 @@ seen = np.isfinite(first)</code></pre>
             <figcaption>GDAL and the sampler agree almost everywhere. The few differences are thin fringes on edges. <a href="/assets/images/canyon-overlook-trail-viewshed-gdal-check.jpg">Open the image</a>.</figcaption>
           </figure>
           <figure class="post-hero-image">
-            <picture><source type="image/webp" srcset="/assets/images/r/canyon-overlook-trail-viewshed-skyline-check-480.webp 480w, /assets/images/r/canyon-overlook-trail-viewshed-skyline-check-960.webp 960w, /assets/images/r/canyon-overlook-trail-viewshed-skyline-check-1440.webp 1440w, /assets/images/r/canyon-overlook-trail-viewshed-skyline-check-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/canyon-overlook-trail-viewshed-skyline-check.jpg" alt="Four frames from a phone video taken at the Canyon Overlook viewpoint, side by side, looking west over Pine Creek and the highway switchbacks toward Zion Canyon. A thin teal line marks the modeled skyline. In the first, second and fourth panels it follows the ridgeline. In the third panel, a rock fin beside the railing forms the skyline, and the line runs above it." width="2160" height="960" loading="lazy"></picture>
-            <figcaption>The modeled skyline in teal over frames from my phone video. In the third panel, a rock fin beside the railing forms the skyline. The 10 m DEM does not hold that fin. <a href="/assets/images/canyon-overlook-trail-viewshed-skyline-check.jpg">Open the image</a>.</figcaption>
+            <picture><source type="image/webp" srcset="/assets/images/r/canyon-overlook-trail-viewshed-skyline-check-480.webp 480w, /assets/images/r/canyon-overlook-trail-viewshed-skyline-check-960.webp 960w, /assets/images/r/canyon-overlook-trail-viewshed-skyline-check-1440.webp 1440w, /assets/images/r/canyon-overlook-trail-viewshed-skyline-check-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/canyon-overlook-trail-viewshed-skyline-check.jpg" alt="Three frames from a phone video taken at the Canyon Overlook viewpoint, side by side, looking west over Pine Creek and the highway switchbacks toward Zion Canyon. The camera pans right from frame to frame. A label on each frame gives the time and the camera heading: 3.5 s at 257°, 4.5 s at 266° and 5.5 s at 274°. In each frame, a teal line marks the modeled skyline and follows the ridgeline." width="2160" height="704" loading="lazy"></picture>
+            <figcaption>The modeled skyline in teal over three frames from my phone video. The frames are in time order as the camera pans right. Each label gives the time and the camera heading. At 6.5 s, a rock fin beside the railing forms the skyline. The 10 m DEM does not hold that fin, so that frame is not shown. <a href="/assets/images/canyon-overlook-trail-viewshed-skyline-check.jpg">Open the image</a>.</figcaption>
           </figure>
           <h2>Symbol guide</h2>
           <ul>
@@ -216,7 +216,7 @@ seen = np.isfinite(first)</code></pre>
           <p>The U.S. Geological Survey provides the 3DEP elevation data. The National Park Service provides the trail line and the park map that the labels follow. Peak names come from that map and from the USGS Geographic Names Information System (GNIS). Roads, creeks and rivers come from OpenStreetMap. Narration uses a HeyGen voice.</p>
           <ul>
             <li><a href="https://www.usgs.gov/3d-elevation-program">Open the USGS 3D Elevation Program</a>.</li>
-            <li><a href="https://catalog.data.gov/dataset/zion-national-park-trail-and-trailhead-gis-datasets">Open the NPS Zion trail data</a>.</li>
+            <li><a href="https://catalog.data.gov/dataset/zion-national-park-trail-and-trailhead-gis-datasets">Open the National Park Service (NPS) Zion trail data</a>.</li>
             <li><a href="https://www.nps.gov/zion/planyourvisit/maps.htm">Open the NPS Zion maps</a>.</li>
           </ul>
           <section class="challenge-bonus" id="day-5-bonus" aria-labelledby="day-5-bonus-title">
@@ -259,6 +259,15 @@ seen = np.isfinite(first)</code></pre>
             <a href="/notes/drought-in-western-basins/">Day 3: Polygons</a>
             <a href="/notes/utah-wildfire-starts-by-cause/">Day 4: Clusters</a>
             <a href="/notes/canyon-overlook-trail-viewshed/" aria-current="page">Day 5: Sight</a>
+            <a href="/notes/holmes-zion-panorama/">Day 6: Vintage</a>
+            <a href="/notes/wasatch-front-walk-to-transit/">Day 7: 10 minute map</a>
+            <a href="/notes/great-salt-lake-at-4198-feet/">Day 8: Utopia</a>
+            <a href="/notes/utah-urban-and-rural/">Day 9: Urban-rural</a>
+            <a href="/notes/beneath-japan-one-prompt/">Day 10: Prompting</a>
+            <a href="/notes/the-mighty-five-by-decibel/">Day 11: Sound</a>
+            <a href="/notes/a-field-guide-to-the-megawatt/">Day 12: Power</a>
+            <a href="/notes/utah-park-drive-times/">Day 13: Interactions</a>
+            <a href="/notes/zion-narrows-lidar/">Day 14: Borgesian map</a>
           </nav>
         </div>
       </article>

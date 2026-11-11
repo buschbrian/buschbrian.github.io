@@ -1,0 +1,53 @@
+{
+ "source": "uspvdb_v4_0_20260414.zip",
+ "all_utah": {
+  "sites": 53,
+  "mw_ac": 2117.7,
+  "acres": 13987
+ },
+ "kept": {
+  "sites": 48,
+  "mw_ac": 1804.4,
+  "acres": 11760,
+  "median_acres_mw": 5.87,
+  "median_ha_mw": 2.37,
+  "min": [
+   "SF Auto O1",
+   3.02
+  ],
+  "max": [
+   "Three Peaks",
+   8.96
+  ]
+ },
+ "by_mount": {
+  "fixed-tilt": {
+   "sites": 11,
+   "median_acres_mw": 4.85
+  },
+  "single-axis": {
+   "sites": 36,
+   "median_acres_mw": 6.26
+  },
+  "dual-axis": {
+   "sites": 1,
+   "median_acres_mw": 3.39
+  }
+ },
+ "corridor": {
+  "counties": [
+   "Beaver",
+   "Iron"
+  ],
+  "sites": 28,
+  "mw_ac": 1017.5,
+  "share_mw": 0.564
+ },
+ "left_out": {
+  "Appaloosa Solar I": "digitizing confidence 3",
+  "Red Mesa Solar Project": "imaged 2023-01-12, at the start of its operating year",
+  "Salt Palace Solar Gen Plant": "rooftop array",
+  "Castle Solar, LLC": "imaged 20231127 before its 2024 start",
+  "Elektron Solar, LLC": "digitizing confidence 3"
+ }
+}

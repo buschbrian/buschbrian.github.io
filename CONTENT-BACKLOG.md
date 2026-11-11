@@ -8,41 +8,45 @@ This file lists work that needs more facts or an owner decision. Do not change a
 
 Resolved on 2026-08-15: the dark-sky note no longer claims a high concentration of parks. The vintage atlas note names the Esri Living Atlas as the data source. The scenic byways note states that the mileage total is the sum of the UDOT route lengths, calculated in ArcGIS Pro.
 
-## White Rim sunrise skyline note (draft)
+## White Rim sunrise skyline note
 
-Added on 2026-09-18. `notes/white-rim-sunrise-skyline/` is a scaffolded draft.
-It carries `<meta name="robots" content="noindex">`, has no entry in
-`notes/index.html`, and `scripts/build-feed.mjs` now skips any note with that
-noindex line, so the page does not reach `feed.xml`. It is also not in
-`sitemap.xml`. Do not remove the noindex line, add the slug to
-`notes/index.html`, or add it to `sitemap.xml` until every item below is
-done.
+Added on 2026-09-18 as a `noindex` draft. Published on 2026-11-09 at
+`notes/white-rim-sunrise-skyline/`. The page is in `notes/index.html`, in the
+`ORDER` list in `scripts/build-feed.mjs`, and in `sitemap.xml`. GitHub Actions
+adds it to `feed.xml` after the merge. Nothing is open for this note.
 
-- Record the DEM tile identifier(s) and download date for the Skyline run
-  this note describes. The vault source note does not have them yet, even
-  though a similarly named tile appears in the related ArcGIS Pro procedure
-  note for a different run at the same general site. Confirm they are the
-  same tile before citing it here.
-- Reconcile the roughly 21-meter disagreement between the observer latitude
-  the Skyline run actually used and the latitude recorded in the trip's GPS
-  table. A coordinate measured on site (a Gaia pin from the trip) is the
-  tie-breaker; neither existing record has been checked against one.
-- Check the claim that the near rim hides the distant peaks against the
-  camera frames shot 6:20 to 7:00 a.m. on the trip. Any frame in that window
-  showing the eastern skyline should show the rim standing above both peaks.
-  Confirm before the claim stays worded as settled.
-- Replace all four placeholder figure blocks with real images once they are
-  exported from the ArcGIS Pro project: the Skyline graph with the 82.6°
-  bearing marked, the horizon polyline over the DEM, the Candlestick Tower
-  validation table, and one sunrise photograph. Add each image to
-  `assets/images/`, with responsive WebP variants in `assets/images/r/`,
-  following the pattern in the other note pages.
-- Decide whether the Island Park trip (2026-09-19 to 2026-09-21) becomes a
-  second worked example on this same page or a separate note, once that
-  data exists. The current draft only names it as planned.
-- Once the items above are resolved: remove the `noindex` meta tag, add a
-  card to `notes/index.html`, add the slug to the `ORDER` list in
-  `scripts/build-feed.mjs`, and add the URL to `sitemap.xml`.
+Resolved on 2026-11-09:
+
+- The DEM tile. The sunrise run used one tile, `USGS_13_n39w110_20260630.tif`,
+  downloaded on 2026-09-04. The page now names it. A second tile, `n39w111`,
+  was used only for a separate 360-degree run that the page does not cite.
+- The 21-meter disagreement. The owner confirmed that the GPS table position
+  is the campsite. The Skyline observer point sits about 21 meters south of
+  it. The page now says so.
+- Island Park. The owner dropped it as a second worked example. The page is a
+  one-site note, and the "Next: a second site" section is removed.
+
+Also resolved on 2026-11-09, from a corrected run in ArcGIS Pro 3.7 on a copy
+of the project:
+
+- Skyline now runs from the GPS table position. A control run from the old
+  observer point reproduced the original table exactly. First light moved by
+  7 seconds.
+- Skyline reports bearings from grid north, not true north. At the camp the two
+  differ by 0.64 degrees. The page now says so and converts the bearings.
+- The first-light time now comes from a trace of the sun along the horizon
+  table, not from one horizon angle. The result is about 7:19 a.m., about
+  26 minutes after flat-horizon sunrise at about 6:54 a.m. The sun positions
+  agree with a second method within 0.01 degrees.
+- The rim stands about 2.9 to 3.7 degrees above the distant La Sal terrain
+  along the sun's path. The old range of 2.6 to 3.4 degrees is replaced.
+- The camera frames from 6:53 to 6:55 a.m. show no distant peak above the near
+  rim. That fits the model, but cloud limits the test. The page states this
+  limit. No frame looks at the rim at 7:19 a.m.
+- The four placeholder figures are replaced: an HTML table, a chart of the sun
+  against the rim, a hillshade map, and the sunrise photograph.
+- The go-live changes are made: the `noindex` tag, the draft notice, and the
+  draft wording are removed, and the note has a publication date.
 
 ## Contact information
 

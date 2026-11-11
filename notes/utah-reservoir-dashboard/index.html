@@ -6,11 +6,11 @@
     <meta name="description" content="A Utah reservoir drought dashboard built on the ArcGIS Maps SDK for JS, then rebuilt in MapLibre GL JS as an open-source parity comparison.">
     <meta name="theme-color" content="#ffffff">
     <title>One drought dashboard, two WebGL renderers | Brian Busch, GISP</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/utah-reservoir-dashboard/">
@@ -89,7 +89,8 @@
           <p class="source-note">
             Update, August 20, 2026. This note describes the first version of
             the dashboard. That version used 28 Utah reservoirs, the Reclamation
-            RISE API alone, and a MapLibre GL JS comparison build. The project
+            Information Sharing Environment (RISE) application programming
+            interface (API) alone, and a MapLibre GL JS comparison build. The project
             has since moved to the ArcGIS Maps SDK for JavaScript 5.1, and it
             now covers snow and drought as well. It also covers eleven western
             states instead of Utah, and it is called the Western Water
@@ -106,7 +107,7 @@
             is drawn so that its depletion reads as a shape as well as a
             color. It was a personal project with no framework and no build
             step. It also served as a side-by-side test of a commercial
-            mapping SDK against an open-source one.
+            mapping software development kit (SDK) against an open-source one.
           </p>
 
           <h2>Two ways to measure "low"</h2>
@@ -154,7 +155,7 @@
           <h2>Built twice: Esri vs. MapLibre</h2>
           <p>
             The first build used the ArcGIS Maps SDK for JavaScript, loaded
-            from Esri's CDN with plain script tags. There was no npm and no
+            from Esri's content delivery network (CDN) with plain script tags. There was no npm and no
             webpack. Two <code>FeatureLayer</code>s carried the symbology,
             driven by Arcade <code>valueExpression</code>s. The popup was a
             <code>PopupTemplate</code> that turned the raw percentage into a
@@ -167,8 +168,8 @@
             same dual-circle symbology, and the same popup wording. Both are
             WebGL vector renderers, so the comparison is fair. It replaced an
             earlier Leaflet attempt, which was not a like-for-like test
-            because Leaflet paints raster tiles in the DOM. With both engines
-            drawing vector data on the GPU, the results matched. Flaming
+            because Leaflet paints raster tiles in the Document Object Model (DOM). With both engines
+            drawing vector data on the graphics processing unit (GPU), the results matched. Flaming
             Gorge, for example, agreed exactly on 2,669,060 acre-feet current
             against a 3,557,090 record max.
           </p>
@@ -176,7 +177,7 @@
             The difference is in the tooling, not the rendering. Esri's
             <code>PopupTemplate</code> and Arcade expressions are declarative
             and fast to work with once you know them. MapLibre's popups are
-            plain HTML you assemble yourself, and its data-driven styling
+            plain HyperText Markup Language (HTML) you assemble yourself, and its data-driven styling
             uses <code>interpolate</code>, <code>step</code>, and
             <code>sqrt</code> expressions in place of Arcade. For this
             dashboard, MapLibre's model of one shared source and two layers
