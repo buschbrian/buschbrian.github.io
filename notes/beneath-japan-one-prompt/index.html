@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="One shared prompt, six earthquake maps, and a 30-minute limit for each. What six models produced from the same brief, and what one review found.">
+    <meta name="theme-color" content="#ffffff">
+    <title>One Prompt, Six Maps of Japan | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/beneath-japan-one-prompt/">
+    <meta property="og:title" content="One Prompt, Six Maps of Japan | Brian Busch, GISP">
+    <meta property="og:description" content="One shared prompt, six earthquake maps, and a 30-minute limit for each. What six models produced from the same brief, and what one review found.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/day-10-six-maps.jpg">
+    <meta property="og:image:alt" content="Six original earthquake posters in two rows of three, each titled Beneath Japan and labeled with its model: Opus 5.5, Sol 6.1, Terra 6.1, Sonnet 5.5, Haiku 5.5, and Luna 6. Each shows Japan with circles colored by depth and a depth profile.">
+    <meta property="og:image:width" content="2400">
+    <meta property="og:image:height" content="2088">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-10T12:00:00-07:00">
+    <meta property="article:modified_time" content="2026-11-09T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/beneath-japan-one-prompt/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "One Prompt, Six Maps of Japan",
+  "description": "One shared prompt, six earthquake maps, and a 30-minute limit for each. What six models produced from the same brief, and what one review found.",
+  "image": "https://buschbrian.github.io/assets/images/day-10-six-maps.jpg",
+  "datePublished": "2026-11-10",
+  "dateModified": "2026-11-10",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/beneath-japan-one-prompt/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 10: Prompting</p>
+          <h1>One Prompt, Six Maps of Japan</h1>
+          <p class="post-deck">A shared brief gave six models 30 minutes each to make a complete map. All six finished within the limit. One review of all six found one factual error, and text too small for a phone on every poster.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 10: Prompting</strong></div>
+            <div><span>Subject</span><strong>2025 earthquakes around Japan</strong></div>
+            <div><span>Models</span><strong>Claude Opus 5.5, GPT-6.1 Sol, GPT-6.1 Terra, Claude Sonnet 5.5, Claude Haiku 5.5, and GPT-6 Luna</strong></div>
+            <div><span>Reviewer</span><strong>Claude Fable 5.1, which made none of the maps</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-10">November 10, 2026</time></strong></div>
+            <div><span>Bonus</span><strong><a href="#day-10-bonus">Grok 4.7 and Claude Fable 5.2</a></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image">
+          <picture><source type="image/webp" srcset="/assets/images/r/day-10-six-maps-480.webp 480w, /assets/images/r/day-10-six-maps-960.webp 960w, /assets/images/r/day-10-six-maps-1440.webp 1440w, /assets/images/r/day-10-six-maps-2400.webp 2400w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-six-maps.jpg" alt="Six original earthquake posters in two rows of three, each titled Beneath Japan and labeled with its model. Top row: Opus 5.5, a pale map of Japan with orange, red, and purple circles and a dense explanation column; Sol 6.1, a dark navy map with pink dots; Terra 6.1, a dark green map on cream with a white legend column. Bottom row: Sonnet 5.5, a pale map with yellow to purple circles and two numbered findings; Haiku 5.5, a pale blue and tan map with mostly dark purple dots under a large subtitle; Luna 6, a wide cream map with small purple dots and a legend column. Every poster has a depth profile below the map." width="2400" height="2088" fetchpriority="high"></picture>
+          <figcaption>The six original outputs, reduced, in the order they ran. Top row: Opus 5.5, Sol 6.1, and Terra 6.1. Bottom row: Sonnet 5.5, Haiku 5.5, and Luna 6. The first two ran on November 5 and the other four on November 6.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>From scripts to the whole map</h2>
+          <p>Claude and Codex had helped with scripts, Python, and downloads on earlier challenge days. Those prompts usually took several attempts.</p>
+          <p>For Day 10, I asked GPT-6 Astra, on Extra High, to write one prompt. Each model had to make a professional map within 30 minutes. On November 5 the brief went to Claude Opus 5.5 on High and GPT-6.1 Sol on Extra High. On November 6 the same text went, unchanged, to GPT-6.1 Terra, Claude Sonnet 5.5, Claude Haiku 5.5, and GPT-6 Luna.</p>
+          <p>I gave no follow-up instructions during any run. Each session had one human message: the pasted brief. The models could inspect and revise their own work. “One shot” describes the human input, not a ban on internal revisions.</p>
+          <h2>The brief: Beneath Japan</h2>
+          <p>The question was specific: where did earthquakes occur around Japan in 2025, and what does their depth reveal?</p>
+          <ul>
+            <li>Use U.S. Geological Survey (USGS) earthquakes of magnitude 4.5 or greater, within 128–147°E and 29–46°N.</li>
+            <li>Use the 2025 calendar year in Coordinated Universal Time (UTC). Exclude January 1, 2026.</li>
+            <li>Pair a map with a longitude-versus-depth plot for the 36–40°N band. This shows where earthquakes lie below the surface.</li>
+            <li>Include a title, legends, scale, orientation, projection, sources, and a clear explanation.</li>
+            <li>Deliver a 2160 × 2700 poster, a 540 × 675 preview, an editable vector export, code, data, and documentation.</li>
+            <li>Count planning, downloads, rendering, checks, and delivery within the 30-minute limit.</li>
+          </ul>
+          <p>The brief fixed the question and evidence. Each model chose its tools, visual hierarchy, colors, and supporting context.</p>
+          <details>
+            <summary>Read the exact prompt</summary>
+            <figure class="code-excerpt"><pre tabindex="0"><code>Create a finished, professional cartographic poster for Day 10,
+“Prompting,” of the 2026 #30DayMapChallenge.
+
+This is a one-shot assignment. Make the map autonomously from this brief,
+without clarification questions or human feedback. You may inspect and
+revise your own work within the time limit.
+
+TIME LIMIT
+
+You have a maximum of 30 minutes of total elapsed time from submission
+of this prompt. Planning, research, downloads, tool execution, rendering,
+inspection, and delivery all count. Record the start time immediately
+and monitor the deadline.
+
+Aim to produce a usable export by minute 20. Reserve the final five
+minutes for inspection, corrections, and delivery. At 30 minutes, stop
+all work and deliver the best existing result, stating any omissions.
+Do not continue background work beyond the deadline.
+
+Use any available tools. Keep the model selected for this session;
+do not switch to or consult another model.
+
+THE MAP
+
+Title: “Beneath Japan”
+
+Create a map answering:
+Where did earthquakes occur around Japan in 2025, and what does their
+depth reveal that a surface map alone would hide?
+
+Audience: an interested general reader without specialist geological
+knowledge. The result should be suitable for a professional cartography
+portfolio and understandable as a social-media image.
+
+Create one original composition at 2160 × 2700 pixels, portrait.
+The geographic map must be the dominant element.
+
+FIXED DATA AND SCOPE
+
+Use the USGS earthquake catalog:
+https://earthquake.usgs.gov/fdsnws/event/1/
+
+Retrieve GeoJSON or CSV from its /query endpoint with:
+- starttime: 2025-01-01T00:00:00
+- endtime: 2026-01-01T00:00:00
+- minmagnitude: 4.5
+- minlatitude: 29
+- maxlatitude: 46
+- minlongitude: 128
+- maxlongitude: 147
+- eventtype: earthquake
+- orderby: time-asc
+
+Retain events from the start of 2025 through, but excluding, the start
+of 2026, in UTC. Use unique event IDs and verify that the response is
+complete. Preserve the downloaded data and retrieval time.
+
+These bounds define the analytical area. You may add geographic context
+outside it, but make the coverage boundary clear and calculate all
+summary statistics from the defined selection.
+
+Use the catalog’s reported magnitude and hypocentral depth. Label
+magnitude “M”; the catalog can contain different magnitude types.
+Document any excluded or missing records.
+
+Use real geographic data for coastlines and contextual features.
+Natural Earth is a suitable starting point:
+https://www.naturalearthdata.com/
+
+Geographic positions, data values, and scientific claims must be
+traceable to sources. Any generated decorative imagery must remain
+separate from the geographic and analytical content.
+
+REQUIRED CONTENT
+
+1. Main map
+Show earthquake epicenters with graduated circles indicating magnitude
+and a perceptually ordered color scheme indicating depth in kilometers.
+Make overlapping events readable. Use identical encodings in the
+legend and supporting graphic. Explain the symbol sizes without
+implying that they represent shaking intensity or energy.
+
+Include enough geographic labels to orient an unfamiliar reader:
+Japan’s principal islands, surrounding waters, and a restrained
+selection of cities or other reference places.
+
+2. Supporting depth graphic
+Show longitude against earthquake depth for the subset between
+36°N and 40°N, across the same longitude range as the main map.
+
+Put west on the left, east on the right, and increasing depth downward.
+Mark this latitude band on the main map. Label both axes and explain
+that events across the band are combined into this view. Show the
+observed points; do not invent a continuous slab surface.
+
+3. Story
+Write a concise subtitle and two short annotations that help readers
+interpret specific patterns visible in the data. Include at least one
+computed numerical finding. Distinguish observations from geological
+interpretation, and support any explanation of subduction with an
+authoritative source.
+
+Let the actual data determine the claims.
+
+CARTOGRAPHY AND DESIGN
+
+Include:
+- A clear title, geographic scope, date range, and magnitude threshold.
+- Complete magnitude and depth legends with units.
+- A suitable regional projection, identified in the credits.
+- An accurate kilometer scale bar and north indicator.
+- Restrained coordinate references and a clear map boundary.
+- A small locator inset showing the region’s global context.
+- Readable source credits, retrieval date, and software credits.
+- “#30DayMapChallenge · Day 10 · Prompting”
+- “AI-generated from a single prompt”
+
+Use sans-serif typography only. Choose the palette, composition,
+background, visual hierarchy, and annotation treatment yourself.
+Build a coherent visual theme around the subject. Make deliberate
+use of whitespace and keep supporting information subordinate to
+the map. Additional layers must improve the story enough to justify
+their acquisition and visual complexity.
+
+Create a new design for this assignment. Keep the artwork model-neutral
+so the two results can be compared without their model names.
+
+CHECK BEFORE DELIVERY
+
+Inspect the actual exported image at full resolution and at 540 pixels
+wide. Check label collisions, clipping, legibility, symbol visibility,
+legend consistency, geographic alignment, scale, and orientation.
+
+Verify that counts, extrema, annotations, and the supporting graphic
+agree with the saved data. Correct consequential problems within the
+remaining time. State any unresolved limitations honestly.
+
+DELIVERABLES
+
+Save everything in a new output folder:
+- map.png — 2160 × 2700 pixels.
+- preview.png — 540 × 675 pixels.
+- map.pdf or map.svg — a matching print/vector export, preserving
+  vector text and graphics where practical.
+- The script or editable project used to create the map.
+- The downloaded analytical data.
+- README.md with source URLs, retrieval time, projection, processing
+  choices, reproduction instructions, actual elapsed time, and any
+  limitations.
+
+Prioritize a complete, accurate, visually resolved map over additional
+features. Finish by displaying the map and linking to the deliverables.
+Keep your final explanation under 150 words.</code></pre><figcaption>The same prompt went to all six models. Astra wrote it for two models, so its text says “the two results”. The four later runs received it unchanged. <a href="/assets/data/day-10-prompting/prompt.txt" download>Download the prompt</a>.</figcaption></figure>
+          </details>
+          <h2>The runs</h2>
+          <section class="post-chart-scroll" aria-label="Run times table" tabindex="0">
+            <table>
+              <caption>Six runs of one brief, each with a 30-minute limit</caption>
+              <thead><tr><th scope="col">Model</th><th scope="col">Date</th><th scope="col">Setting and app</th><th scope="col">Elapsed time</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Claude Opus 5.5</th><td>November 5</td><td>High<br>Claude Code</td><td>10 min 10 s</td></tr>
+                <tr><th scope="row">GPT-6.1 Sol</th><td>November 5</td><td>Extra High<br>Codex Desktop</td><td>About 13 min 28 s</td></tr>
+                <tr><th scope="row">GPT-6.1 Terra</th><td>November 6</td><td>Extra High<br>Codex Desktop</td><td>7 min 14 s</td></tr>
+                <tr><th scope="row">Claude Sonnet 5.5</th><td>November 6</td><td>App default, not recorded<br>Claude desktop app</td><td>15 min 0 s</td></tr>
+                <tr><th scope="row">Claude Haiku 5.5</th><td>November 6</td><td>App default, not recorded<br>Claude desktop app</td><td>11 min 26 s</td></tr>
+                <tr><th scope="row">GPT-6 Luna</th><td>November 6</td><td>Extra High<br>Codex Desktop</td><td>27 min 40 s</td></tr>
+              </tbody>
+            </table>
+          </section>
+          <p>Elapsed time runs from the submission of the brief to the final response, read from each transcript. The Sol end time is approximate. Each model’s own clock reported a slightly shorter span, because it started a few seconds after submission.</p>
+          <p>Luna ran twice. Its first session stopped after 2 min 47 s because the USGS download failed. It wrote nothing and said so, rather than make a map from invented data. I submitted the same brief again in a fresh session. The 27 min 40 s is that second session.</p>
+          <p>All six finished within the limit. This is six runs of one brief, not a controlled comparison. The apps and effort settings differed. Opus and Terra ran from a folder with my project instructions in context. Luna had my general instruction file. Sonnet and Haiku ran in empty workspaces with no project instructions. Two runs overlapped on one Mac.</p>
+          <h3>Tokens and cost</h3>
+          <p>I ran all six on subscriptions, so no run had a per-token bill. The table shows what the same tokens would cost at standard application programming interface (API) list prices on November 7, 2026. The counts come from each run’s transcript, from the brief to the final response.</p>
+          <section class="post-chart-scroll" aria-label="Tokens and cost table" tabindex="0">
+            <table>
+              <caption>Model requests, tokens, and the API list-price equivalent for each run</caption>
+              <thead><tr><th scope="col">Model</th><th scope="col">Requests</th><th scope="col">Tokens</th><th scope="col">Output tokens</th><th scope="col">API equivalent</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Claude Opus 5.5</th><td>30</td><td>5.18 million</td><td>50,172</td><td>$3.66</td></tr>
+                <tr><th scope="row">GPT-6.1 Sol</th><td>24</td><td>2.13 million</td><td>35,551</td><td>$0.75</td></tr>
+                <tr><th scope="row">GPT-6.1 Terra</th><td>27</td><td>1.65 million</td><td>19,869</td><td>$0.24</td></tr>
+                <tr><th scope="row">Claude Sonnet 5.5</th><td>34</td><td>6.62 million</td><td>99,719</td><td>$2.63</td></tr>
+                <tr><th scope="row">Claude Haiku 5.5</th><td>21</td><td>4.25 million</td><td>115,493</td><td>$0.74</td></tr>
+                <tr><th scope="row">GPT-6 Luna</th><td>64</td><td>6.47 million</td><td>79,290</td><td>$0.12</td></tr>
+              </tbody>
+            </table>
+          </section>
+          <p>Most tokens are context that the model reads again on each request. The provider caches that context and bills it at a lower rate. The Claude apps started each session with 111,000 to 121,000 tokens of instructions and tool definitions. Codex started with 30,000 to 36,000. Haiku 5.5 bills more for any request over 100,000 tokens, so every Haiku request paid the higher rate. Luna’s failed first session added about $0.02.</p>
+          <p>These figures do not compare the models fairly. The apps, effort settings, and context differed. The prices are from the <a href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic pricing page</a> and the <a href="https://developers.openai.com/api/docs/pricing">OpenAI pricing page</a>.</p>
+        </div>
+        <section class="post-gallery is-portrait" aria-label="The six posters">
+          <div class="post-gallery-intro">
+            <h2>Six posters</h2>
+            <p>The original outputs, in the order they ran. Select any poster to view it full size. The captions summarize what the review found; the next section gives the detail.</p>
+          </div>
+          <div class="post-gallery-grid">
+            <figure>
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-opus-480.webp 480w, /assets/images/r/day-10-opus-960.webp 960w, /assets/images/r/day-10-opus-1440.webp 1440w, /assets/images/r/day-10-opus-2160.webp 2160w" sizes="(max-width: 640px) 100vw, 448px"><img data-full="/assets/images/day-10-opus-original.png" src="/assets/images/day-10-opus.jpg" alt="Original Opus map. Pale land and sea, six depth classes, named plate boundaries, and a depth profile. Dense explanation fills a narrow right column. The source credit incorrectly names Tarr as first author." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>Claude Opus 5.5, High.</strong> Trenches, plate boundaries, and fine coastlines give rich context. The sidebar and profile text are too small to read. Its “Tarr et al.” credit is incorrect; the report is by Rhea et al. (2010). <a href="/assets/images/day-10-opus-original.png">Open the original Portable Network Graphics (PNG)</a>.</figcaption>
+            </figure>
+            <figure>
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-sol-480.webp 480w, /assets/images/r/day-10-sol-960.webp 960w, /assets/images/r/day-10-sol-1440.webp 1440w, /assets/images/r/day-10-sol-2160.webp 2160w" sizes="(max-width: 640px) 100vw, 448px"><img data-full="/assets/images/day-10-sol-original.png" src="/assets/images/day-10-sol.jpg" alt="Original Sol map. Pink shallow earthquakes and lighter deep earthquakes on a dark blue map of Japan. Large observations sit within the map and depth profile. A local scale bar is labeled 500 kilometers at 32 degrees north." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>GPT-6.1 Sol, Extra High.</strong> A cohesive dark theme with clear callouts. The legends are small, and the simpler coastline drops the small islands near the Tokara cluster. Its 500 km scale bar checks out on the ground. <a href="/assets/images/day-10-sol-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+            <figure>
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-terra-480.webp 480w, /assets/images/r/day-10-terra-960.webp 960w, /assets/images/r/day-10-terra-1440.webp 1440w, /assets/images/r/day-10-terra-2160.webp 2160w" sizes="(max-width: 640px) 100vw, 448px"><img data-full="/assets/images/day-10-terra-original.png" src="/assets/images/day-10-terra.jpg" alt="Original Terra map. A dark green map of Japan on cream paper, with cream, orange, pink, and purple circles for four depth classes. A legend column at right reads 449 of 515. A depth profile sits below the map." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>GPT-6.1 Terra, Extra High.</strong> The fastest run, built as a hand-written Scalable Vector Graphics (SVG). Four well separated depth classes and a clear “449 of 515” callout. The band shading named in the legend does not appear, and the legend has no counts. <a href="/assets/images/day-10-terra-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+            <figure>
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-sonnet-480.webp 480w, /assets/images/r/day-10-sonnet-960.webp 960w, /assets/images/r/day-10-sonnet-1440.webp 1440w, /assets/images/r/day-10-sonnet-2160.webp 2160w" sizes="(max-width: 640px) 100vw, 448px"><img data-full="/assets/images/day-10-sonnet-original.png" src="/assets/images/day-10-sonnet.jpg" alt="Original Sonnet map. A pale map of Japan with yellow, orange, pink, purple, and dark blue circles for six depth classes. Two numbered findings sit in a right column. A depth profile with a land and sea strip runs along the bottom." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>Claude Sonnet 5.5, app default.</strong> Six depth classes with counts, two numbered findings tied to markers on the map, and the only citation of a peer-reviewed source (Hayes et al., 2018). The finding text is 5.8 px at phone size, and the typeface is a macOS system font. <a href="/assets/images/day-10-sonnet-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+            <figure>
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-haiku-480.webp 480w, /assets/images/r/day-10-haiku-960.webp 960w, /assets/images/r/day-10-haiku-1440.webp 1440w, /assets/images/r/day-10-haiku-2160.webp 2160w" sizes="(max-width: 640px) 100vw, 448px"><img data-full="/assets/images/day-10-haiku-original.png" src="/assets/images/day-10-haiku.jpg" alt="Original Haiku map. A pale blue and tan map of Japan on a white page, with a dashed grid, mostly dark purple circles, and a few green and yellow deep events. A large subtitle says 87% were shallower than 70 km. A small depth section sits at lower left." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>Claude Haiku 5.5, app default.</strong> The most legible poster at phone size, because a large subtitle carries the main observation. A continuous 0 to 600 km color ramp leaves most symbols near black, and the depth section is small. <a href="/assets/images/day-10-haiku-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+            <figure>
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-luna-480.webp 480w, /assets/images/r/day-10-luna-960.webp 960w, /assets/images/r/day-10-luna-1440.webp 1440w, /assets/images/r/day-10-luna-2160.webp 2160w" sizes="(max-width: 640px) 100vw, 448px"><img data-full="/assets/images/day-10-luna-original.png" src="/assets/images/day-10-luna.jpg" alt="Original Luna map. A wide cream map from Taiwan to the Sea of Okhotsk, with Japan and its small purple circles in the middle inside an orange query extent box. A legend column and a depth section sit below. A white wedge of bare paper shows at the top left of the frame." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>GPT-6 Luna, Extra High.</strong> A frame so wide that Japan and its 515 symbols are small in the middle. The clip polygon leaves a wedge of bare paper at the top left, and no annotation sits at a pattern on the map. <a href="/assets/images/day-10-luna-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+          </div>
+        </section>
+        <section class="post-gallery is-portrait" aria-label="The six previews at phone size">
+          <div class="post-gallery-intro">
+            <h2>At phone size</h2>
+            <p>The brief required a 540 by 675 pixel preview and asked each model to check it. These are the six previews, unchanged, shown near phone width. On every poster the body text is under 6 px tall at this size.</p>
+          </div>
+          <div class="post-gallery-grid">
+            <figure>
+              <img src="/assets/images/day-10-opus-preview.png" alt="The 540-pixel preview of the Opus poster. The title and the largest numbers are readable. The sidebar and profile text are not." width="540" height="675" loading="lazy">
+              <figcaption><strong>Opus 5.5.</strong> The subtitle is marginal, and the legend and sidebar are not readable.</figcaption>
+            </figure>
+            <figure>
+              <img src="/assets/images/day-10-sol-preview.png" alt="The 540-pixel preview of the Sol poster. The title and the two large callouts are readable. The legends and credits are not." width="540" height="675" loading="lazy">
+              <figcaption><strong>Sol 6.1.</strong> The callouts read at 8 px. The legend is marginal at 7 px.</figcaption>
+            </figure>
+            <figure>
+              <img src="/assets/images/day-10-terra-preview.png" alt="The 540-pixel preview of the Terra poster. The title, the 515, and the 449 of 515 callout are readable. The rest of the legend column is not." width="540" height="675" loading="lazy">
+              <figcaption><strong>Terra 6.1.</strong> “449 of 515” is marginal at 7.5 px. The rest of the body text is 5 to 6 px.</figcaption>
+            </figure>
+            <figure>
+              <img src="/assets/images/day-10-sonnet-preview.png" alt="The 540-pixel preview of the Sonnet poster. The title and subtitle are readable. The two findings and the legend are not." width="540" height="675" loading="lazy">
+              <figcaption><strong>Sonnet 5.5.</strong> The subtitle reads. The findings are 5.8 px and the legend 6 px.</figcaption>
+            </figure>
+            <figure>
+              <img src="/assets/images/day-10-haiku-preview.png" alt="The 540-pixel preview of the Haiku poster. The title and the large subtitle are readable. The annotations are marginal, and the legend is not readable." width="540" height="675" loading="lazy">
+              <figcaption><strong>Haiku 5.5.</strong> The subtitle reads at 10 px. The annotations are marginal at 7 px, and the legend is not readable.</figcaption>
+            </figure>
+            <figure>
+              <img src="/assets/images/day-10-luna-preview.png" alt="The 540-pixel preview of the Luna poster. The title is readable. The small map symbols, the legend column, and the depth section are not." width="540" height="675" loading="lazy">
+              <figcaption><strong>Luna 6.</strong> The three bold statistics are marginal at 6 px. The legend is not readable, and the symbols are tiny.</figcaption>
+            </figure>
+          </div>
+        </section>
+        <div class="post-content">
+          <h2>What the checks supported</h2>
+          <p>Claude Fable 5.1 reviewed all six posters on one rubric. It made none of the maps. It recomputed every number from each run’s saved data, re-ran the four November 6 scripts, and measured text heights in the previews. It had read every run’s files before it scored the posters, so the scoring was informed rather than blind.</p>
+          <p>For Opus and Sol, two earlier reviews also apply. Astra, which wrote the brief, reviewed both on November 5. Fable then reviewed them without relying on that audit, and a Codex follow-up checked Fable’s findings against the files.</p>
+          <ul>
+            <li>All six runs used the same 515 earthquake records. Every number printed on every poster recomputes from the saved data.</li>
+            <li>449 earthquakes, about 87%, were shallower than 70 km. Fourteen were at least 300 km deep. The deepest was 561 km below the surface. The largest was magnitude 7.6, on December 8, 2025.</li>
+            <li>Every poster has the required elements. Two are partial: Luna has no annotation at a pattern, and the band shading named in Terra’s legend does not appear.</li>
+            <li>The four November 6 runs render their posters again pixel for pixel from their own folders. Sol’s folder does the same. The Opus run needed files outside its folder.</li>
+            <li>No factual error appears on the four November 6 posters. The one error class from November 5, a misattributed citation, did not recur.</li>
+          </ul>
+          <p>Matching a saved image proves repeatability in that environment. It does not prove the science, design, or delivery package is complete.</p>
+          <h2>The issues that remained</h2>
+          <p><strong>A factual credit error.</strong> Opus named “Tarr et al.” for a USGS report whose first author is Susan Rhea. The correct citation is Rhea et al. (2010). The mistake appears in the poster and its documentation. The other five posters cite the subduction explanation by uniform resource locator (URL) or digital object identifier (DOI), by an exact author list, or by agency name alone.</p>
+          <p><strong>Text that needed more room, on every poster.</strong> Each poster has body text under 6 px at the required preview size. Haiku’s subtitle and Terra’s “449 of 515” are the only observations that read at phone size among the four later runs. A full-resolution export cannot substitute for a phone-size check.</p>
+          <p><strong>A rendering defect.</strong> Luna’s projected clip polygon does not fill its frame. A slanted wedge of bare paper shows at the top left and a triangle at the top right.</p>
+          <p><strong>A legend that does not match its symbols.</strong> Luna’s depth legend turns fully yellow at about 300 km and stays yellow to 600 km. Its map symbols use the full 0 to 600 km range, so only the deepest event, at 561 km, is yellow. Astra found this in its blind review. Fable did not.</p>
+          <p><strong>Missing annotations.</strong> The brief asked for two annotations at specific patterns in the data. Luna put three statistics in its legend column and none on the map or the depth section.</p>
+          <p><strong>A source not named on the poster.</strong> Haiku credits its subduction interpretation as “USGS; see README”. Its README cites a USGS event page and a USGS poster, both real, read only through search excerpts.</p>
+          <p><strong>A portability gap.</strong> Opus’s script used basemaps, plate boundaries, and fonts outside its delivered folder. It ran on the original machine, but the folder alone was insufficient for a clean-machine rebuild. The other five folders are self-contained.</p>
+          <p><strong>A narrow geographic description.</strong> Opus described deep events as south of Honshu and near Vladivostok. Some also lay beneath Honshu and west of the Noto Peninsula. The explanation needed broader wording.</p>
+          <p><strong>Design tradeoffs.</strong> Sol and Luna used a simpler coastline that omits small islands near the Tokara cluster. Sol, Haiku, and Luna used continuous depth scales that group most shallow earthquakes into similar colors. Terra hedged its interpretation to “one explanation”. Sonnet used a typeface that renders differently outside macOS. Each scale bar is true at a stated latitude and within 2.3% across Japan. These are improvements to consider, rather than failed requirements.</p>
+          <h2>Three sets of scores</h2>
+          <p>Three reviewers scored each poster for cartography on a five-point scale:</p>
+          <ul>
+            <li>Claude Fable 5.1 scored after it had read every run’s files.</li>
+            <li>GPT-6 Astra scored a renumbered set of the posters, with no model names and no other files. It wrote the brief, so it was blind to the models but not to the experiment.</li>
+            <li>I gave the third score.</li>
+          </ul>
+          <p>All three of us picked the Sonnet poster. Without model names, Astra also questioned the Opus citation. These scores rank six maps from one brief. They do not rank the models in general.</p>
+          <section class="post-chart-scroll" aria-label="Scores table" tabindex="0">
+            <table>
+              <caption>Cartography scores, 1 to 5, with Fable’s reasoning</caption>
+              <thead><tr><th scope="col">Model</th><th scope="col">Fable’s reasoning</th><th scope="col">Fable</th><th scope="col">Astra, blind</th><th scope="col">Mine</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Claude Opus 5.5</th><td>Rich context from trenches, plate boundaries, and fine coastlines, with a strong hierarchy. A sidebar and profile set too small to read.</td><td>4</td><td>4</td><td>4.5</td></tr>
+                <tr><th scope="row">GPT-6.1 Sol</th><td>A cohesive dark theme and clear callouts. Small legends and generalized islands.</td><td>4</td><td>4</td><td>4</td></tr>
+                <tr><th scope="row">GPT-6.1 Terra</th><td>Restrained and cohesive, with a clear 515, one callout, four well separated depth classes, and fine coastlines. The band shading named in the legend is invisible, the legend has no counts, and only three cities are named.</td><td>4</td><td>3</td><td>3.5</td></tr>
+                <tr><th scope="row">Claude Sonnet 5.5</th><td>The most resolved composition: six depth classes with counts, two numbered findings tied to map markers, a profile with a land and sea strip, and the fixed-depth caveat stated on the poster. The deductions are the phone-size text and a macOS-only typeface.</td><td>5</td><td>4</td><td>5</td></tr>
+                <tr><th scope="row">Claude Haiku 5.5</th><td>Plentiful correct labels and the most legible headline, but a default plotting-library look. A continuous 0 to 600 km ramp leaves 87% of the symbols near black. The depth section is small, and the band shading runs past the analysis area.</td><td>3</td><td>3</td><td>2</td></tr>
+                <tr><th scope="row">GPT-6 Luna</th><td>The frame spans 115 to 163°E, so Japan and its 515 symbols are small in the middle. The clip polygon leaves bare paper at two corners of the frame. The coastline drops the Tokara and Izu islands. No annotation sits at a pattern.</td><td>2</td><td>2</td><td>1</td></tr>
+              </tbody>
+            </table>
+          </section>
+          <p>The totals put Sonnet first with 14 of 15. Opus has 12.5, Sol 12, Terra 10.5, Haiku 8, and Luna 5. I put Opus ahead of Sol for its legend and layout, even with the wrong citation.</p>
+          <p>My scores also weigh the order of the depth colors. The usual order runs light at the surface to dark at depth. Opus, Sonnet, and Terra follow it. Sol, Haiku, and Luna reverse it, so their deepest earthquakes are the lightest marks.</p>
+          <h2>The reviews needed checking too</h2>
+          <p>Fable questioned Sol’s 500 km scale bar after measuring about 498.1 km in projected coordinates. A projection converts the curved Earth to a flat map. Its coordinate distances can differ from ground distances.</p>
+          <p>The follow-up measured the bar on Earth: its two segments totalled 500.0003 km. The local ground scale was correct. Opus’s 400 km bar measured about 399.6 km, a negligible difference for this poster.</p>
+          <p>Other criticisms were preferences rather than broken requirements. The brief did not mandate a particular Python package manager. A valid depth scale did not have to make deeper events darker. Neither issue warranted a failure.</p>
+          <p>That distinction matters. A confident review is another claim to check, especially when it alleges a technical error.</p>
+          <h2>What AI can check, and what people still decide</h2>
+          <p>Artificial intelligence (AI) helped compare records, recompute statistics, inspect coordinate transforms, measure scale, and rerun the code. These tasks had saved inputs and observable results.</p>
+          <p>Human review still needs to ask whether the map tells a supported story. The reader must be able to find the main point, read the symbols, and understand the limits. Credits and packaging also need verification.</p>
+          <p>A second AI review can help find omissions. It does not replace the mapmaker’s decision to publish. In this experiment, the reviewers performed the technical audits; I set the task and asked for the follow-up checks.</p>
+          <h2>The review in 70 seconds</h2>
+          <figure class="post-hero-image post-map-animation is-four-five">
+            <video controls playsinline preload="none" width="1080" height="1350" poster="/assets/images/day-10-review-cover.jpg" aria-label="Silent review video of the six AI-generated earthquake maps" aria-describedby="review-video-caption">
+              <source src="/assets/video/day-10-review.mp4" type="video/mp4">
+              <p><a href="/assets/video/day-10-review.mp4">Download the review video</a>.</p>
+            </video>
+            <figcaption id="review-video-caption">A silent video with all text on screen. It summarizes the prompt and shows each poster still, with my comment, the three scores, and the run’s tokens and cost. Each reviewer has a color: Fable is orange, Astra is white, and I am blue. The Sonnet poster stays on screen while each reviewer’s reason appears. <a href="/assets/video/day-10-review.mp4" download>Download the video</a>.</figcaption>
+          </figure>
+          <p>I expected more problems from a single prompt. All six maps were coherent, their numbers held up, and all six finished within the limit. The problems that remained were about reading, not arithmetic: text too small for a phone on every poster, one wrong author list, one bare corner. A strong brief reduced the work needed after delivery. It did not remove the need for review.</p>
+          <h2>Sources and scope</h2>
+          <p>This is a selected earthquake catalog, not a hazard forecast or a map of every earthquake. The magnitude threshold, geographic bounds, year, and profile band limit the story.</p>
+          <ul>
+            <li><a href="https://earthquake.usgs.gov/fdsnws/event/1/">USGS earthquake catalog and query service</a>. All six runs saved the source records used in their maps.</li>
+            <li><a href="https://www.usgs.gov/publications/seismicity-earth-1900-2007-japan-and-vicinity">Rhea et al. (2010), Seismicity of the Earth 1900–2007, Japan and vicinity</a>. USGS Open-File Report 2010–1083–D, DOI 10.3133/ofr20101083D. Cited by Opus, Sol, Terra, and Luna.</li>
+            <li><a href="https://doi.org/10.1126/science.aat4723">Hayes et al. (2018), Slab2, a comprehensive subduction zone geometry model</a>. Science 362(6410):58–61. Cited by Sonnet, with the <a href="https://doi.org/10.5066/F7PV6JNV">USGS Slab2 data release</a>.</li>
+            <li><a href="https://www.usgs.gov/faqs/what-depth-do-earthquakes-occur-what-significance-depth">USGS explanation of earthquake depth</a>.</li>
+            <li><a href="https://www.naturalearthdata.com/">Natural Earth</a> provides basemap data. Sol and Luna used the simpler 1:50m coastline, which drops small islands.</li>
+            <li><a href="https://github.com/fraxen/tectonicplates">PB2002 plate boundaries</a>, used by Opus for tectonic context.</li>
+          </ul>
+          <p>The original PNG downloads preserve all six results, including the documented errors. The prompt is also available above. Raw chat transcripts remain private.</p>
+          <section class="challenge-bonus" id="day-10-bonus" aria-labelledby="day-10-bonus-title">
+            <p class="eyebrow">Day 10 bonus</p>
+            <h2 id="day-10-bonus-title">Two More Runs of the Same Brief</h2>
+            <p>On November 9, I gave the same brief to two more models. Claude Fable 5.2 ran on the day of its release. Grok 4.7 ran entirely in its terminal app. Each session had one human message and the same 30-minute limit. These two runs are not part of the three sets of scores above.</p>
+            <section class="post-chart-scroll" aria-label="Bonus run times table" tabindex="0">
+              <table>
+                <caption>Two more runs of one brief, each with a 30-minute limit</caption>
+                <thead><tr><th scope="col">Model</th><th scope="col">Date</th><th scope="col">Setting and app</th><th scope="col">Elapsed time</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Claude Fable 5.2</th><td>November 9</td><td>Extra High<br>Claude desktop app</td><td>18 min 48 s</td></tr>
+                  <tr><th scope="row">Grok 4.7</th><td>November 9</td><td>High<br>Grok terminal app</td><td>24 min 35 s</td></tr>
+                </tbody>
+              </table>
+            </section>
+            <p>Both runs got the same 515 earthquake records as the six earlier runs. Every number printed on these two posters recomputes from the saved data. Both posters credit the USGS report to Rhea et al. (2010). Body text on both is about 8 px at the preview size. Credits on both are still too small for a phone.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-fable-480.webp 480w, /assets/images/r/day-10-fable-960.webp 960w, /assets/images/r/day-10-fable-1440.webp 1440w, /assets/images/r/day-10-fable-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-fable.jpg" alt="Claude Fable 5.2 poster titled Beneath Japan, on pale paper. A white and blue map of Japan shows earthquakes as circles, from yellow for shallow to near black for deep. Gray lines mark the Japan Trench, the Izu-Bonin Trench, and the Nankai Trough. A column at right holds two legends and an explanation. A side view of the 36 to 40 degrees north band runs below the map." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>Claude Fable 5.2, Extra High.</strong> Named trenches let the map show the pattern by itself. Shallow earthquakes follow the trenches, and the deepest lie far to the west. The subtitle states an interpretation before the evidence. A label also collides with the 130°E grid label. <a href="/assets/images/day-10-fable-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-grok-480.webp 480w, /assets/images/r/day-10-grok-960.webp 960w, /assets/images/r/day-10-grok-1440.webp 1440w, /assets/images/r/day-10-grok-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-grok.jpg" alt="Grok 4.7 poster titled Beneath Japan, on a dark navy page. The main map is cream across both land and sea, so coastlines show only as faint white lines. Gold to purple circles mark earthquakes. A small locator map at top right shows cream land and navy water. A wide dark depth plot and four lines of findings sit below the map." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>Grok 4.7, High.</strong> The analysis is careful. It prints median depths with the number of earthquakes behind each one. The main map has one large defect: the ocean has the land color. <a href="/assets/images/day-10-grok-original.png">Open the original PNG</a>.</figcaption>
+            </figure>
+            <h3>Why the ocean is cream</h3>
+            <p>The Grok script meant to draw navy water and cream land. The small locator map shows those colors. On the main map, the water is cream.</p>
+            <p>The script keeps each Natural Earth land record that touches the map area. One record also holds Antarctica. The poster uses a Lambert conic projection, which flattens the Earth onto a cone. That projection spreads the Antarctica shape across the whole frame, and the land color covers the sea.</p>
+            <p>Grok inspected its export and did not report the problem. Its documentation does not mention it.</p>
+            <figure class="post-hero-image">
+              <picture><source type="image/webp" srcset="/assets/images/r/day-10-grok-repaired-480.webp 480w, /assets/images/r/day-10-grok-repaired-960.webp 960w, /assets/images/r/day-10-grok-repaired-1440.webp 1440w, /assets/images/r/day-10-grok-repaired-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/day-10-grok-repaired.jpg" alt="The Grok 4.7 poster after one change to a copy of its script. The main map now has navy water and cream land, so Japan, Korea, and Russia are clear. The circles, labels, depth plot, and text match the original poster." width="2160" height="2700" loading="lazy"></picture>
+              <figcaption><strong>A revised edition, not a ninth run.</strong> Claude Opus 5.5 removed the Antarctica shape in a copy of the script and made no other change. The poster text still says “AI-generated from a single prompt” because that text did not change. This edition is not ranked. <a href="/assets/images/day-10-grok-repaired-original.png">Open the revised PNG</a>.</figcaption>
+            </figure>
+            <h3>One more review, all eight posters</h3>
+            <p>Claude Opus 5.5 reviewed these two runs and ranked all eight original posters. Opus made one of the eight, and it could see the model names. This ranking is one reviewer’s opinion. It does not rank the models in general.</p>
+            <section class="post-chart-scroll" aria-label="Eight-poster ranking table" tabindex="0">
+              <table>
+                <caption>Opus 5.5 ranking of the eight original posters, scored 1 to 5</caption>
+                <thead><tr><th scope="col">Rank</th><th scope="col">Poster</th><th scope="col">Score</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><th scope="row">Claude Fable 5.2</th><td>4.6</td></tr>
+                  <tr><td>2</td><th scope="row">Claude Sonnet 5.5</th><td>4.5</td></tr>
+                  <tr><td>3</td><th scope="row">Claude Opus 5.5</th><td>4.0</td></tr>
+                  <tr><td>4</td><th scope="row">GPT-6.1 Sol</th><td>3.7</td></tr>
+                  <tr><td>5</td><th scope="row">GPT-6.1 Terra</th><td>3.4</td></tr>
+                  <tr><td>6</td><th scope="row">Claude Haiku 5.5</th><td>2.5</td></tr>
+                  <tr><td>7</td><th scope="row">Grok 4.7</th><td>2.0</td></tr>
+                  <tr><td>8</td><th scope="row">GPT-6 Luna</th><td>1.5</td></tr>
+                </tbody>
+              </table>
+            </section>
+            <p>The review put Fable slightly ahead of Sonnet for its trenches and its text size at phone width. Sonnet has the more restrained design and the stronger citation.</p>
+          </section>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/drought-in-western-basins/">Day 3: Polygons</a>
+            <a href="/notes/utah-wildfire-starts-by-cause/">Day 4: Clusters</a>
+            <a href="/notes/canyon-overlook-trail-viewshed/">Day 5: Sight</a>
+            <a href="/notes/holmes-zion-panorama/">Day 6: Vintage</a>
+            <a href="/notes/wasatch-front-walk-to-transit/">Day 7: 10 minute map</a>
+            <a href="/notes/great-salt-lake-at-4198-feet/">Day 8: Utopia</a>
+            <a href="/notes/utah-urban-and-rural/">Day 9: Urban-rural</a>
+            <a href="/notes/beneath-japan-one-prompt/" aria-current="page">Day 10: Prompting</a>
+            <a href="/notes/the-mighty-five-by-decibel/">Day 11: Sound</a>
+            <a href="/notes/a-field-guide-to-the-megawatt/">Day 12: Power</a>
+            <a href="/notes/utah-park-drive-times/">Day 13: Interactions</a>
+            <a href="/notes/zion-narrows-lidar/">Day 14: Borgesian map</a>
+            <a href="/notes/western-reservoir-sources/">Day 15: Inside out</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.instagram.com/brianbusch1/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

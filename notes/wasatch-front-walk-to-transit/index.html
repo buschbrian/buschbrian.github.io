@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Using 2020 Census counts and UTA’s published schedule, this model estimates walking access to transit in four Wasatch Front counties.">
+    <meta name="theme-color" content="#ffffff">
+    <title>A 10-Minute Walk to Transit on the Wasatch Front | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/wasatch-front-walk-to-transit/">
+    <meta property="og:title" content="A 10-Minute Walk to Transit on the Wasatch Front | Brian Busch, GISP">
+    <meta property="og:description" content="Using 2020 Census counts and UTA’s published schedule, this model estimates walking access to transit in four Wasatch Front counties.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/wasatch-front-walk-to-transit.jpg">
+    <meta property="og:image:alt" content="Map of walking access to transit on the Wasatch Front in Utah. Gold streets within a 10-minute walk of any bus or train stop cover most of the urban valley from Ogden to Provo. Navy to teal streets near service scheduled every 15 minutes or better at weekday midday follow the main corridors. Rose streets near service scheduled every 10 minutes or better at weekday midday cluster along the TRAX trunk in Salt Lake City, OGX in Ogden and UVX in Provo and Orem.">
+    <meta property="og:image:width" content="2160">
+    <meta property="og:image:height" content="2700">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-07T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/wasatch-front-walk-to-transit/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "A 10-Minute Walk to Transit on the Wasatch Front",
+  "description": "Using 2020 Census counts and UTA’s published schedule, this model estimates walking access to transit in four Wasatch Front counties.",
+  "image": "https://buschbrian.github.io/assets/images/wasatch-front-walk-to-transit.jpg",
+  "datePublished": "2026-11-07",
+  "dateModified": "2026-11-07",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/wasatch-front-walk-to-transit/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 7: 10 minute map</p>
+          <h1>A 10-Minute Walk to Transit on the Wasatch Front</h1>
+          <p class="post-deck">Using 2020 Census counts, the model places more than half of residents within a 10-minute walk of a scheduled stop. About 21% live that close to frequent service at weekday midday.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 7: 10 minute map</strong></div>
+            <div><span>Subject</span><strong>Walking access to transit in Weber, Davis, Salt Lake and Utah counties</strong></div>
+            <div><span>Made with</span><strong>ArcGIS Pro (Network Analyst), Python (GeoPandas, Matplotlib)</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-07">November 7, 2026</time></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image">
+          <picture><source type="image/webp" srcset="/assets/images/r/wasatch-front-walk-to-transit-480.webp 480w, /assets/images/r/wasatch-front-walk-to-transit-960.webp 960w, /assets/images/r/wasatch-front-walk-to-transit-1440.webp 1440w, /assets/images/r/wasatch-front-walk-to-transit-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/wasatch-front-walk-to-transit.jpg" alt="Map of walking access to transit on the Wasatch Front in Utah. A tall overview of Weber, Davis, Salt Lake and Utah counties shows gold streets within a 10-minute walk of any bus or train stop, covering most of the urban valley from Ogden to Provo. Navy lines mark frequent service along the main corridors. Three street-scale panels at one scale show the TRAX trunk in Salt Lake City, OGX in Ogden and UVX between UVU and BYU in Provo and Orem. In each panel, streets within a 10-minute walk of a stop with service scheduled every 15 minutes or better are shaded from navy to pale teal by walking time. Streets within a 10-minute walk of a stop with service scheduled every 10 minutes or better are shaded from dark to pale rose. Both sit over gold streets near any stop. Large figures read 55 percent, 1.35 million residents within a 10-minute walk of a stop; 21 percent, 530,000 with service scheduled every 15 minutes or better; and 4 percent, about 92,000 with service scheduled every 10 minutes or better." width="2160" height="2700" fetchpriority="high"></picture>
+          <figcaption>Gold streets are within a 10-minute walk of any stop. Navy to teal streets are within 10 minutes of service scheduled every 15 minutes or better. Rose streets are within 10 minutes of service scheduled every 10 minutes or better. <a href="/assets/images/wasatch-front-walk-to-transit.jpg">Open the still</a>.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>Near a stop, and near frequent service</h2>
+          <p>This map measures a 10-minute walk to transit along streets and paths. It covers Weber, Davis, Salt Lake and Utah counties, from Ogden to Provo.</p>
+          <p>The model combines 2020 Census counts with the Utah Transit Authority (UTA) schedule for Thursday, November 5, 2026. It estimates that 1.35 million people, 55% of the four counties’ residents, are within a 10-minute walk of a scheduled stop.</p>
+          <p>About 530,000 people, 21%, are that close to service scheduled every 15 minutes or better at weekday midday. About 92,000 people, 4%, are that close to service scheduled every 10 minutes or better in the same window.</p>
+          <p>The 10-minute tier runs along three corridors: the TRAX trunk in Salt Lake City, the Ogden Express (OGX) bus rapid transit line in Ogden, and the Utah Valley Express (UVX) bus rapid transit line in Provo and Orem. This is an independent analysis of UTA's published schedule.</p>
+          <p>For the “10 minute map” theme, 10 minutes describes the modeled walk. The analysis and map took longer to make.</p>
+          <h2>What counts as frequent</h2>
+          <p>The General Transit Feed Specification (GTFS) is the standard format for published transit schedules. UTA publishes its schedule in that format. The first script, <code>day07_frequency.py</code>, reads the GTFS text files with the Python standard library only. The scripts pass the default checks of the ruff linter and use its code format. The excerpts below are trimmed. A <code># ...</code> line marks a cut.</p>
+          <ul>
+            <li>A stop is frequent when its departures leave no gap over 15 minutes between 11:00 and 14:00. This cutoff follows the frequency in <a href="https://www.rideuta.com/Services/Go-Route">UTA’s frequent-service network</a>. This map checks weekday midday only.</li>
+            <li>The map shows a second tier, with no gap over 10 minutes, in its own color.</li>
+            <li>The count includes the last departure before that window and the first one after it.</li>
+            <li>The script counts a departure where boarding is allowed and the trip continues to another stop.</li>
+          </ul>
+          <p>Each TRAX line runs every 15 minutes on its own. Where lines share track, a rider sees a train more often. So the script counts departures toward the same next stop together, across all routes. That rule splits where lines diverge, so some branch stations count in one direction only.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>def max_gap(times, w0, w1):
+    before = [t for t in times if t &lt;= w0]
+    after = [t for t in times if t &gt;= w1]
+    if not before or not after:
+        return None
+    seq = sorted({max(before), min(after), *[t for t in times if w0 &lt; t &lt; w1]})
+    return max(b - a for a, b in itertools.pairwise(seq)) if len(seq) &gt; 1 else 0
+
+# ...
+# Each departure counts once per rule: by its own route and direction,
+# and with every route heading to the same next stop.
+groups["single"][(sid, rid, did)].append(dep)
+groups["next_stop"][(sid, nxt[1])].append(dep)</code></pre>
+            <figcaption>From <code>day07_frequency.py</code>. Pairing each stop with the next stop on its trip leaves out the trip's last stop.</figcaption>
+          </figure>
+          <p>At 15 minutes, each route alone gives 1,010 frequent stops, and departures combined toward the same next stop give 1,022. The grouping matters little at 15 minutes. It matters at 10: each route alone gives 44 stops, all on OGX and UVX, and combined departures give 73, including 25 TRAX platforms on the shared trunk.</p>
+          <p>The first version of this map used 10 minutes. That line is a sharp edge: 13 of the 25 TRAX platforms sit at exactly 10.0 minutes. The final map uses a 15-minute cutoff at weekday midday and keeps the 10-minute tier as its own color.</p>
+          <h2>Walking on the street network</h2>
+          <p>The walk network comes from OpenStreetMap (OSM), a map that volunteers build. <code>day07_walk_network.py</code> reads the OSM extract and keeps the ways a person can walk on: sidewalks, paths, streets and plazas.</p>
+          <ul>
+            <li>It drops freeways and their ramps, and any way tagged <code>foot=no</code> or <code>access=no</code>.</li>
+            <li>It keeps private roads, including apartment and business-park roads. Their mapped access rules may be incomplete.</li>
+            <li>It splits each way only at nodes it shares with another kept way. A sidewalk on a bridge does not join the road below it.</li>
+            <li>OSM leaves some TRAX platforms unconnected to any walkway. Platforms stay out of the network, and rail stops snap to the nearest walkway.</li>
+          </ul>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/wasatch-front-walk-to-transit-meadowbrook-480.webp 480w, /assets/images/r/wasatch-front-walk-to-transit-meadowbrook-960.webp 960w, /assets/images/r/wasatch-front-walk-to-transit-meadowbrook-1069.webp 1069w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/wasatch-front-walk-to-transit-meadowbrook.jpg" alt="Proof map of Meadowbrook TRAX station from a test run with platforms in the network. The station's walkshed is only a short purple stub along the platform outline, because the platform shares no node with any walkway in OpenStreetMap." width="1069" height="1111" loading="lazy"></picture>
+            <figcaption>With platforms in the network, Meadowbrook's walkshed was only its platform outline, 172 m long. <a href="/assets/images/wasatch-front-walk-to-transit-meadowbrook.jpg">Open the image</a>.</figcaption>
+          </figure>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/wasatch-front-walk-to-transit-murray-central-480.webp 480w, /assets/images/r/wasatch-front-walk-to-transit-murray-central-838.webp 838w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/wasatch-front-walk-to-transit-murray-central.jpg" alt="Close-up of Murray Central station with the platforms left out of the network. Two TRAX stops snap a short distance to the footway beside their platform. The FrontRunner stop on an island platform between tracks snaps across a track to a service road, shown as a red line." width="838" height="866" loading="lazy"></picture>
+            <figcaption>At Murray Central, TRAX stops snap 0.3 to 2 m to the footway beside the platform. The FrontRunner stop between tracks snaps 21 m to a service road. <a href="/assets/images/wasatch-front-walk-to-transit-murray-central.jpg">Open the image</a>.</figcaption>
+          </figure>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>def verdict(t, area=False):
+    """None: not a walk candidate. '': keep. Otherwise the reason it was dropped."""
+    hw = t.get("highway", "")
+    if (
+        hw == "platform"
+        or t.get("railway") == "platform"
+        or (t.get("public_transport") == "platform" and hw not in WALK_HW)
+    ):
+        return "platform"
+    if area and hw not in AREA_HW:
+        return None
+    if not area and hw not in WALK_HW:
+        return f"highway={hw}" if hw else None
+    foot = t.get("foot", "")
+    if foot in NO_FOOT:
+        return f"foot={foot}"
+    if t.get("access") == "no" and foot not in YES_FOOT:
+        return "access=no"
+    return ""</code></pre>
+            <figcaption>From <code>day07_walk_network.py</code>. The script counts the dropped ways by reason.</figcaption>
+          </figure>
+          <p>ArcGIS Pro Network Analyst then builds a network dataset on length. A Service Area is the part of a network within a set distance of a point, here the walkshed of each stop. The script solves Service Areas out to 800 m, a 10-minute walk at 4.8 km/h.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>TRAVEL_MODE = {
+    "name": "Walk distance",
+    "type": "WALK",
+    "description": "Length only; 800 m = 10 minutes at 4.8 km/h",
+    "impedanceAttributeName": "Length",
+    "timeAttributeName": "",
+    "distanceAttributeName": "Length",
+    # ...
+}
+# ...
+def service_area(nd, name, where, overlap):
+    lyr = arcpy.na.MakeServiceAreaAnalysisLayer(
+        nd,
+        name,
+        json.dumps(TRAVEL_MODE),
+        "TO_FACILITIES",
+        BREAKS_M,
+        output_type="LINES",
+        geometry_at_overlaps=overlap,
+    ).getOutput(0)
+    names = arcpy.na.GetNAClassNames(lyr)
+    src = arcpy.management.MakeFeatureLayer(f"{GDB}\\stops", f"{name}_stops", where)[0]
+    arcpy.na.AddLocations(lyr, names["Facilities"], src, "Name Name #", "100 Meters")
+    msgs = arcpy.na.Solve(lyr, "SKIP", "CONTINUE").getMessages()
+    # ...</code></pre>
+            <figcaption>From <code>day07_walk_network.py</code>. It runs in ArcGIS Pro's own Python with <code>arcpy</code>.</figcaption>
+          </figure>
+          <p>The regional network has 1,148,031 edges from 464,460 OSM ways. All 5,402 scheduled stops snap to it within 100 m. The median snap is 2.5 m.</p>
+          <h2>Counting residents</h2>
+          <p>Residents come from 2020 Census blocks. A Census block is the smallest area the Census Bureau counts, often one city block. The four counties recorded 2,469,539 residents in the 2020 Census.</p>
+          <p><code>day07_population.py</code> solves one dissolved 800 m Service Area polygon for all stops and one for frequent stops. It intersects each polygon with the blocks. Then it spreads each block's residents evenly over the block's area.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>def allocate(blocks, catch, denom):
+    tmp = f"{GDB}\\x_{catch}"
+    arcpy.analysis.PairwiseIntersect(
+        [f"{GDB}\\blocks", f"{GDB}\\{catch}"], tmp, "ONLY_FID"
+    )
+    # Square meters of each block that fall inside the walkshed.
+    inside = collections.Counter()
+    with arcpy.da.SearchCursor(tmp, ["FID_blocks", "SHAPE@AREA"]) as c:
+        for fid, a in c:
+            inside[fid] += a or 0.0
+    arcpy.management.Delete(tmp)
+    # ...
+    for oid, a in inside.items():
+        b = blocks[oid]
+        if not b["area"] or not b["pop"]:
+            continue
+        # Areal weighting: a block 40% inside the walkshed adds 40% of its people.
+        share = min(1.0, a / b["area"])
+        people = b["pop"] * share
+        est += people
+        county[COUNTIES[b["county"]]] += people</code></pre>
+            <figcaption>From <code>day07_population.py</code>. The headline uses Pro's default 100 m polygon trim.</figcaption>
+          </figure>
+          <h2>Checks</h2>
+          <ul>
+            <li>ArcGIS Pro's Calculate Transit Service Frequency tool gives the same departure counts at every stop when it counts departures the same way. Its longest gaps match the script's to within 0.1 minute.</li>
+            <li>Counting whole blocks by their internal point gives 53.0% near any stop. "More than half" holds under every tested method.</li>
+            <li>For the 10-minute tier, splitting edge blocks by OSM building footprint instead of land area gives 91,097 people, against 92,187.</li>
+            <li>In the 10-minute run, a 50 m polygon trim moved each share by half a point at most.</li>
+            <li>In a test area around Murray Central, walksheds cross I-15 only at the Vine Street overpass. They cross the Jordan River only on bridges.</li>
+            <li>Across the region, no walkway crosses a freeway at grade in the network.</li>
+          </ul>
+          <h2>Symbol guide</h2>
+          <ul>
+            <li>Gold streets are within a 10-minute walk of any bus or train stop.</li>
+            <li>Navy to pale teal streets are within 10 minutes of a stop with service scheduled every 15 minutes or better. Darker means a shorter walk.</li>
+            <li>Dark to pale rose streets are within 10 minutes of a stop with service scheduled every 10 minutes or better.</li>
+            <li>Large dots mark stops in the 10-minute tier. Small dots mark the other frequent stops.</li>
+            <li>Faint gray lines are the other streets and paths.</li>
+            <li>The tall overview shows the four counties. Three street panels at one scale show the TRAX trunk, OGX and UVX.</li>
+            <li>The resident counts on the street panels are county totals near frequent service.</li>
+          </ul>
+          <h2>Data notes</h2>
+          <ul>
+            <li>The model uses the November 5, 2026 service day from UTA’s October 8, 2026 GTFS feed. These are scheduled departures, not observed service.</li>
+            <li>"Every 15 minutes or better" and "every 10 minutes or better" cover 11:00 to 14:00 on that weekday only.</li>
+            <li>The walk cutoff is 800 m, equivalent to 10 minutes at 4.8 km/h. Hills and waits at signals are not in the model.</li>
+            <li>Some FrontRunner stops sit on platforms between tracks. They snap to the nearest walkway, which can understate the walk by about a minute. FrontRunner is not frequent at either tier, so the frequent shares do not change.</li>
+            <li>Stops outside the four counties stay in the network. Their walksheds count only where they reach four-county blocks.</li>
+            <li>This analysis does not speak for UTA.</li>
+          </ul>
+          <h2>Data and credit</h2>
+          <p>The Utah Transit Authority publishes the GTFS schedule. This map uses the feed of October 8, 2026. The walk network comes from OpenStreetMap. The U.S. Census Bureau provides the 2020 TIGER/Line blocks and their counts. ArcGIS Pro Network Analyst solves the walks, and Python draws the map.</p>
+          <ul>
+            <li><a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">Open the Census Topologically Integrated Geographic Encoding and Referencing (TIGER)/Line files</a>.</li>
+          </ul>
+          <p class="source-note">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/drought-in-western-basins/">Day 3: Polygons</a>
+            <a href="/notes/utah-wildfire-starts-by-cause/">Day 4: Clusters</a>
+            <a href="/notes/canyon-overlook-trail-viewshed/">Day 5: Sight</a>
+            <a href="/notes/holmes-zion-panorama/">Day 6: Vintage</a>
+            <a href="/notes/wasatch-front-walk-to-transit/" aria-current="page">Day 7: 10 minute map</a>
+            <a href="/notes/great-salt-lake-at-4198-feet/">Day 8: Utopia</a>
+            <a href="/notes/utah-urban-and-rural/">Day 9: Urban-rural</a>
+            <a href="/notes/beneath-japan-one-prompt/">Day 10: Prompting</a>
+            <a href="/notes/the-mighty-five-by-decibel/">Day 11: Sound</a>
+            <a href="/notes/a-field-guide-to-the-megawatt/">Day 12: Power</a>
+            <a href="/notes/utah-park-drive-times/">Day 13: Interactions</a>
+            <a href="/notes/zion-narrows-lidar/">Day 14: Borgesian map</a>
+            <a href="/notes/western-reservoir-sources/">Day 15: Inside out</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.instagram.com/brianbusch1/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

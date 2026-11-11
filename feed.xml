@@ -12,7 +12,14 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <item>
+      <title>Reading First Light Off a DEM</title>
+      <link>https://buschbrian.github.io/notes/white-rim-sunrise-skyline/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/white-rim-sunrise-skyline/</guid>
+      <description>A DEM-based method in ArcGIS Pro for predicting when the sun clears a desert rim, checked against a known landmark before trusting the result.</description>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
     <item>
       <title>UGEM Hub</title>
       <link>https://buschbrian.github.io/notes/ugem-hub/</link>
@@ -24,14 +31,14 @@
       <title>One place to see the water in the West</title>
       <link>https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-water-dashboard-rebuild/</guid>
-      <description>How a job-interview map became the Western Water Dashboard: reservoir storage, snowpack, and drought for eleven western states in one ArcGIS 5.1 application, rebuilt with AI agents under written rules.</description>
+      <description>How a job-interview map became the Western Water Dashboard: reservoirs, snow, and drought for eleven western states, rebuilt with AI agents.</description>
       <pubDate>Mon, 17 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>No test goes red on a misleading name</title>
       <link>https://buschbrian.github.io/notes/agentic-ai-lessons/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/agentic-ai-lessons/</guid>
-      <description>Most of the Western Water Dashboard was written by AI agents under written rules. The failures that mattered were about meaning, not about code, and the test suite stayed green through all of them.</description>
+      <description>AI agents wrote most of the Western Water Dashboard under written rules. The failures that mattered were about meaning, and the tests stayed green.</description>
       <pubDate>Mon, 24 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
@@ -52,14 +59,14 @@
       <title>Turning sidewalk gaps into a connected trail network</title>
       <link>https://buschbrian.github.io/notes/sidewalk-trails-master-plan/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/sidewalk-trails-master-plan/</guid>
-      <description>How Millcreek turned a fragmented set of sidewalk and trail studies into one citywide map that a director can act on, with sidewalk data built from aerial imagery.</description>
+      <description>How Millcreek turned scattered sidewalk and trail studies into one citywide map a department director can act on, with sidewalk data from aerial imagery.</description>
       <pubDate>Fri, 07 Aug 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Turning a General Plan into a public map</title>
       <link>https://buschbrian.github.io/notes/future-land-use-millcreek/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/future-land-use-millcreek/</guid>
-      <description>Millcreek planners lost meeting time flipping through a six-page General Plan appendix. This work turned that appendix into one four foot by six foot wall map of all 13 future land use categories.</description>
+      <description>Millcreek planners lost meeting time to a six-page General Plan appendix. This work made it one 4 ft by 6 ft wall map of all 13 future land use categories.</description>
     </item>
     <item>
       <title>Millcreek Redistricting</title>
@@ -111,7 +118,7 @@
       <title>Drought in 75 Western Basins</title>
       <link>https://buschbrian.github.io/notes/drought-in-western-basins/</link>
       <guid isPermaLink="true">https://buschbrian.github.io/notes/drought-in-western-basins/</guid>
-      <description>The U.S. Drought Monitor's October 27, 2026 map across 75 western drainage basins, then ten years of weekly maps as each basin's share of land in severe drought or worse.</description>
+      <description>The U.S. Drought Monitor map for October 27, 2026 across 75 western basins, then ten years of each basin's share of land in severe drought or worse.</description>
       <pubDate>Tue, 03 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
@@ -127,6 +134,76 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/canyon-overlook-trail-viewshed/</guid>
       <description>A modeled walk along Zion’s Canyon Overlook Trail. Nearly half the visible ground first appears in the final 15 m. Bare earth, with no trees or buildings.</description>
       <pubDate>Thu, 05 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Holmes's 1882 Zion Panorama, Redrawn</title>
+      <link>https://buschbrian.github.io/notes/holmes-zion-panorama/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/holmes-zion-panorama/</guid>
+      <description>A new drawing of W. H. Holmes's 1882 Zion panorama, using USGS elevation data and an estimated viewpoint.</description>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>A 10-Minute Walk to Transit on the Wasatch Front</title>
+      <link>https://buschbrian.github.io/notes/wasatch-front-walk-to-transit/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/wasatch-front-walk-to-transit/</guid>
+      <description>Using 2020 Census counts and UTA’s published schedule, this model estimates walking access to transit in four Wasatch Front counties.</description>
+      <pubDate>Sat, 07 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Great Salt Lake at 4,198 Feet</title>
+      <link>https://buschbrian.github.io/notes/great-salt-lake-at-4198-feet/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/great-salt-lake-at-4198-feet/</guid>
+      <description>Great Salt Lake at 4,198 feet, the low end of the Strike Team's healthy range: about 474 square miles more lake than on November 3, a 51% gain.</description>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Nine in Ten Utahns Live on About 1% of the Land</title>
+      <link>https://buschbrian.github.io/notes/utah-urban-and-rural/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-urban-and-rural/</guid>
+      <description>In the 2020 Census, 89.8% of Utahns lived in 25 urban areas on 1.1% of the land. The rest of Utah held 10.2% of residents on 98.9% of the land.</description>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>One Prompt, Six Maps of Japan</title>
+      <link>https://buschbrian.github.io/notes/beneath-japan-one-prompt/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/beneath-japan-one-prompt/</guid>
+      <description>One shared prompt, six earthquake maps, and a 30-minute limit for each. What six models produced from the same brief, and what one review found.</description>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>The Mighty Five, by Decibel</title>
+      <link>https://buschbrian.github.io/notes/the-mighty-five-by-decibel/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/the-mighty-five-by-decibel/</guid>
+      <description>The NPS sound model compares existing and natural sound across Utah. Five park meters show the share at 6 dB or more.</description>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>A Field Guide to the Megawatt</title>
+      <link>https://buschbrian.github.io/notes/a-field-guide-to-the-megawatt/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/a-field-guide-to-the-megawatt/</guid>
+      <description>48 Utah solar farms, each scaled to one megawatt at one ground scale. The median footprint is 5.9 acres of panels per MW AC.</description>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Drive Times to Utah's Five National Parks</title>
+      <link>https://buschbrian.github.io/notes/utah-park-drive-times/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-park-drive-times/</guid>
+      <description>Drive times from every place in Utah to its five national parks. Within 4 h 30 min of driving, 63% of Utahns can reach all five.</description>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>The Zion Narrows in Lidar</title>
+      <link>https://buschbrian.github.io/notes/zion-narrows-lidar/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/zion-narrows-lidar/</guid>
+      <description>The Narrows of Zion National Park, drawn from USGS lidar points in Blender. A slot canyon that you walk in the river, as a Borgesian labyrinth.</description>
+      <pubDate>Sat, 14 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Who Measures the West's Reservoirs?</title>
+      <link>https://buschbrian.github.io/notes/western-reservoir-sources/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/western-reservoir-sources/</guid>
+      <description>Nine public sources report the storage of 408 reservoirs in 11 western states. Select a source to light its reservoirs on a 3D map.</description>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>

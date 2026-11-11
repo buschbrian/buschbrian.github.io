@@ -12,6 +12,7 @@ const OUT = "feed.xml";
 // The reading order of the notes index. A note that is not in this list
 // goes after these, in alphabetical order.
 const ORDER = [
+  "white-rim-sunrise-skyline",
   "ugem-hub",
   "utah-water-dashboard-rebuild",
   "agentic-ai-lessons",
@@ -29,6 +30,13 @@ const ORDER = [
   "drought-in-western-basins",
   "utah-wildfire-starts-by-cause",
   "canyon-overlook-trail-viewshed",
+  "holmes-zion-panorama",
+  "wasatch-front-walk-to-transit",
+  "great-salt-lake-at-4198-feet",
+  "utah-urban-and-rural",
+  "beneath-japan-one-prompt",
+  "the-mighty-five-by-decibel",
+  "a-field-guide-to-the-megawatt",
   "utah-park-drive-times",
   "zion-narrows-lidar",
   "western-reservoir-sources",
@@ -89,8 +97,7 @@ function readNote(slug) {
   if (!existsSync(file)) return null;
   const source = readFileSync(file, "utf8");
   // A note marked noindex is a draft. Leave it out of the feed until the
-  // noindex line is removed. See notes/white-rim-sunrise-skyline/index.html
-  // for the pattern.
+  // noindex line is removed.
   if (/<meta name="robots" content="noindex">/.test(source)) return null;
   const title =
     match(source, /"headline":\s*"([^"]*)"/) ||
