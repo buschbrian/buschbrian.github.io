@@ -69,7 +69,7 @@
           <p class="post-deck">48 Utah solar farms, each scaled to one megawatt and drawn at one ground scale. The middle value is 5.9 acres of panels per megawatt.</p>
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>Day 12: Power</strong></div>
-            <div><span>Subject</span><strong>Utah solar footprints per megawatt of AC capacity</strong></div>
+            <div><span>Subject</span><strong>Utah solar footprints per megawatt of alternating-current capacity</strong></div>
             <div><span>Made with</span><strong>Python (GeoPandas, Matplotlib)</strong></div>
             <div><span>Challenge date</span><strong><time datetime="2026-11-12">November 12, 2026</time></strong></div>
           </div>
@@ -81,7 +81,7 @@
         <div class="post-content">
           <h2>One megawatt, one ground scale</h2>
           <p>These outlines come from the U.S. Large-Scale Solar Photovoltaic Database (USPVDB). The U.S. Geological Survey (USGS) and Lawrence Berkeley National Laboratory (LBNL) publish it together.</p>
-          <p>Each farm is scaled to the footprint it would have at exactly one megawatt of alternating-current capacity, or MW AC. Every outline then uses the same ground scale. Larger shapes mean more panel area per megawatt.</p>
+          <p>Each farm is scaled to the footprint it would have at exactly one megawatt (MW) of alternating-current (AC) capacity, written MW AC. Every outline then uses the same ground scale. Larger shapes mean more panel area per megawatt.</p>
           <p>The 48 farms have a median of 5.87 acres per MW AC, shown as 5.9. The range is 3.02 at SF Auto O1 to 8.96 at Three Peaks.</p>
           <section class="storage-table-wrap" aria-label="Panel footprint by panel type" tabindex="0">
             <table>
@@ -97,7 +97,7 @@
           <p>The approved poster labels these values as 6.3, 4.8 and 3.4. The two-axis value represents one farm, Spanish Fork.</p>
           <h2>What the footprint counts</h2>
           <p>The database&rsquo;s <code>p_area</code> field counts panels and inverters. It excludes fences, roads and buildings. This is not the whole site or its total disturbed area.</p>
-          <p>The analysis uses USPVDB version 4.0, dated April 14, 2026. Capacity comes from EIA Form 860. Utah has 53 database records; five are excluded:</p>
+          <p>The analysis uses USPVDB version 4.0, dated April 14, 2026. Capacity comes from U.S. Energy Information Administration (EIA) Form 860. Utah has 53 database records; five are excluded:</p>
           <ul>
             <li>Salt Palace is a rooftop array.</li>
             <li>Appaloosa Solar I and Elektron have digitizing confidence 3, below the retained level of 4.</li>
@@ -128,7 +128,7 @@
           <ul>
             <li>Mapped imagery and reported capacity can describe different dates. The exclusions reduce that mismatch but cannot remove it.</li>
             <li>The footprints compare panel area, not whole-site land use.</li>
-            <li>The comparison uses AC capacity. It does not use DC capacity or estimate energy output.</li>
+            <li>The comparison uses AC capacity. It does not use direct-current (DC) capacity or estimate energy output.</li>
             <li>The panel-type medians describe this filtered Utah set. They do not prove why the footprints differ.</li>
           </ul>
           <h2>Data and credit</h2>
