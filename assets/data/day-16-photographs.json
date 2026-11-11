@@ -1,0 +1,174 @@
+{
+  "pinned_commit": "99d6940",
+  "pinned_date": "2026-11-10",
+  "source": "Dust & Starlight site, photo and place records",
+  "photographs_on_site_map": 205,
+  "on_utah_map": 136,
+  "in_utah": 123,
+  "just_over_the_line": {
+    "arizona": 7,
+    "nevada": 6
+  },
+  "at_spots": 66,
+  "at_place_centroids": 70,
+  "first_capture": "2024-06-01",
+  "last_capture": "2026-11-01",
+  "reel_photographs": [
+    {
+      "title": "Thor's Hammer",
+      "captured": "2024-06-01",
+      "place": "Navajo Loop Trail",
+      "id": "bryce-thors-hammer-hoodoos"
+    },
+    {
+      "title": "Bentonite Swirls",
+      "captured": "2024-06-02",
+      "place": "Bentonite Hills",
+      "id": "bentonite-swirls-aerial-factory-butte-2024"
+    },
+    {
+      "title": "Juniper Facing Turret Arch",
+      "captured": "2024-07-05",
+      "place": "Windows Section",
+      "id": "milky-way-juniper-turret-arch"
+    },
+    {
+      "title": "Lupine and Magenta Paintbrush",
+      "captured": "2024-07-28",
+      "place": "Wasatch Mountains",
+      "id": "lupine-magenta-paintbrush-alta-2024"
+    },
+    {
+      "title": "Lightning under the Milky Way",
+      "captured": "2024-08-11",
+      "place": "Temple Mountain Campground",
+      "id": "lightning-milky-way-temple-mountain-2024"
+    },
+    {
+      "title": "Horse at the Fruita Barn",
+      "captured": "2024-08-11",
+      "place": "Fruita",
+      "id": "fruita-barn-pinto-horse-2024"
+    },
+    {
+      "title": "The 4Runner on the Slickrock, from above",
+      "captured": "2025-04-06",
+      "place": "Deadman Point",
+      "id": "4runner-on-slickrock-deadman-point-aerial-2025"
+    },
+    {
+      "title": "Mesa Arch and the La Sals",
+      "captured": "2025-04-06",
+      "place": "Mesa Arch",
+      "id": "mesa-arch-la-sals-2025"
+    },
+    {
+      "title": "Spring below the Watchman",
+      "captured": "2025-04-24",
+      "place": "Pa'rus Trail",
+      "id": "zion-watchman-virgin-river-spring"
+    },
+    {
+      "title": "Temple of the Sun",
+      "captured": "2025-04-26",
+      "place": "Temple of the Sun",
+      "id": "temple-of-the-sun-cathedral-valley-2025"
+    },
+    {
+      "title": "Pink Brine, Great Salt Lake",
+      "captured": "2025-05-15",
+      "place": "Northern Utah",
+      "id": "great-salt-lake-pink-brine-aerial-2025"
+    },
+    {
+      "title": "Teepees and Wildflowers",
+      "captured": "2025-06-06",
+      "place": "Coyote Buttes South",
+      "id": "coyote-buttes-teepees-wildflowers"
+    },
+    {
+      "title": "The Wave, Reflection",
+      "captured": "2025-10-29",
+      "place": "The Wave and Wire Pass",
+      "id": "the-wave-pool-reflection-2025"
+    },
+    {
+      "title": "First Light on the Amphitheater",
+      "captured": "2025-11-01",
+      "place": "Sunset Point",
+      "id": "bryce-first-light-amphitheater-2025"
+    },
+    {
+      "title": "Red Aurora, November Storm",
+      "captured": "2025-11-11",
+      "place": "Golden Spike Drive",
+      "id": "red-aurora-golden-spike-2025"
+    },
+    {
+      "title": "Bighorn Ewe on the Slickrock",
+      "captured": "2025-12-06",
+      "place": "Zion National Park",
+      "id": "zion-desert-bighorn-2025"
+    },
+    {
+      "title": "Cloud Inversion over the Rim",
+      "captured": "2026-01-03",
+      "place": "Dead Horse Point State Park",
+      "id": "cloud-inversion-over-the-rim-2026"
+    },
+    {
+      "title": "Road into Valley of the Gods",
+      "captured": "2026-01-04",
+      "place": "Southeast Utah",
+      "id": "valley-of-the-gods-road-2026"
+    },
+    {
+      "title": "Candlestick Tower Sunrise",
+      "captured": "2026-09-06",
+      "place": "Candlestick Campsite",
+      "id": "white-rim-sunrise-2026"
+    },
+    {
+      "title": "Pronghorn Buck",
+      "captured": "2026-09-13",
+      "place": "Simpson Springs",
+      "id": "simpson-springs-pronghorn-buck-2026"
+    },
+    {
+      "title": "Two Horses Below the Butte",
+      "captured": "2026-09-13",
+      "place": "Simpson Springs",
+      "id": "simpson-springs-wild-horses-butte-2026"
+    },
+    {
+      "title": "The Greeting",
+      "captured": "2026-09-13",
+      "place": "Simpson Springs",
+      "id": "simpson-springs-wild-horses-greeting-2026"
+    },
+    {
+      "title": "Soapstone Aspens",
+      "captured": "2026-09-26",
+      "place": "Soapstone Basin",
+      "id": "soapstone-basin-aspens-2026"
+    },
+    {
+      "title": "Horse Collar Ruin",
+      "captured": "2026-10-17",
+      "place": "Horse Collar Ruin Overlook",
+      "id": "horse-collar-ruin-2026"
+    },
+    {
+      "title": "The Watchman over the High Water",
+      "captured": "2026-11-01",
+      "place": "Pa'rus Trail",
+      "id": "zion-watchman-high-water-2026"
+    },
+    {
+      "title": "Red Maple in the Rain",
+      "captured": "2026-11-01",
+      "place": "Zion National Park",
+      "id": "zion-red-maple-in-the-rain-2026"
+    }
+  ]
+}

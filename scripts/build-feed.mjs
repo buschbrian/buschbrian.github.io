@@ -32,6 +32,7 @@ const ORDER = [
   "utah-park-drive-times",
   "zion-narrows-lidar",
   "western-reservoir-sources",
+  "two-years-of-utah",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
