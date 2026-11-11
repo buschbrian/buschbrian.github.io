@@ -399,3 +399,17 @@ Added on 2026-09-21 at the owner's direction.
   Azure analytics for the two applications, and get Nearmap imagery use
   from the Nearmap API key dashboard. Then add a result line to each note.
   The earlier Experience Builder map had about 45,000 views each year.
+
+## Day 10 reader run with DeepSeek
+
+Added on 2026-11-11. The Day 10 note shows a poster that xiongbiao
+(@BiaoXiong73311) posted on X. The page uses the 1600 by 2000 pixel image
+from the post. The run details on the page are quoted from the post.
+
+Open:
+
+- Confirm that xiongbiao agrees to the poster on this site.
+- Ask for the original `map.png`, the 540-pixel preview, and the `README.md`.
+  With those files the page can check the text size and the source credit.
+- The post names "DSH". The page does not explain the term because no source
+  defines it.
