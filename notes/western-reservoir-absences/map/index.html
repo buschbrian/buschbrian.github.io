@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Select any of the West's 498 reservoirs of 10,000 acre-feet or more to see if the Western Water Dashboard shows it, and why not when it does not.">
+    <meta name="description" content="Select any of the West's 497 reservoirs of 10,000 acre-feet or more to see if the Western Water Dashboard shows it, and why not when it does not.">
     <meta name="theme-color" content="#f1efe9">
     <title>Day 18 · NULL — The reservoirs the dashboard does not show</title>
     <script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
@@ -156,7 +156,7 @@
             el("h2", {}, "Off the map"),
             el("div", { "class": "big" }, data.off + " of " + data.universe),
             el("p", { "class": "sub" }, "reservoirs of 10,000 acre-feet or more in five western water regions"),
-            el("p", {}, "Day 15 counted 69 held back. Here they are, with 127 large reservoirs that have no finding yet. 8 of the 69 reach the map through another record."),
+            el("p", {}, "Day 15 counted " + data.held + " held back. Here they are, with " + data.no_finding + " large reservoirs that have no finding yet. " + data.elsewhere + " of the " + data.held + " reach the map through another record."),
             el("p", {}, "Select a ring or a dot to see why."));
         }
 
