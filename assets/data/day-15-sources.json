@@ -1,6 +1,6 @@
 {
- "read": "2026-11-08",
- "total": 408,
+ "read": "2026-11-13",
+ "total": 424,
  "snotel": {
   "total": 636,
   "counts": {
@@ -122,14 +122,14 @@
    "name": "California CDEC",
    "color": "#f4b63f",
    "kind": "state",
-   "count": 148,
-   "held_back": 10,
+   "count": 160,
+   "held_back": 9,
    "already_published": 0,
    "states": {
-    "CA": 147,
+    "CA": 159,
     "AZ": 1
    },
-   "why": "California's water data service reports 148 reservoirs. Each has a confirmed dam. 10 are held back."
+   "why": "California's water data service reports 160 reservoirs. Each has a confirmed dam. 9 are held back."
   },
   {
    "key": "rise",
@@ -156,15 +156,16 @@
    "name": "Corps of Engineers",
    "color": "#86b2ff",
    "kind": "federal",
-   "count": 14,
-   "held_back": 22,
-   "already_published": 73,
+   "count": 17,
+   "held_back": 54,
+   "already_published": 76,
    "states": {
     "WA": 10,
     "OR": 3,
+    "CA": 3,
     "ID": 1
    },
-   "why": "The Corps of Engineers reports Columbia Basin reservoirs in 3 states. 73 were already published. 22 are held back."
+   "why": "The Corps of Engineers reports Columbia Basin and California reservoirs in 4 states. 76 were already published. 54 are held back."
   },
   {
    "key": "cdss",
@@ -184,15 +185,15 @@
    "name": "USGS",
    "color": "#a9d65a",
    "kind": "federal",
-   "count": 7,
+   "count": 8,
    "held_back": 3,
    "already_published": 23,
    "states": {
-    "WA": 3,
+    "WA": 4,
     "AZ": 2,
     "NV": 2
    },
-   "why": "USGS storage gauges were compared with the other sources. 23 were already on the map. 7 new reservoirs were added. 3 are held back."
+   "why": "USGS storage gauges were compared with the other sources. 23 were already on the map. 8 new reservoirs were added. 3 are held back."
   },
   {
    "key": "srp",
@@ -241,7 +242,7 @@
    "note": "Read since 2026-08-29 for the four additive Salt River Project reservoirs, and since 2026-08-30 for Lake Pleasant from the Central Arizona Project. Alamo Lake is published by the Corps of Engineers under a district office this site does not yet read."
   },
   "CA": {
-   "total": 166,
+   "total": 181,
    "status": "more to add",
    "note": "Read since 2026-08-20. The candidates admitted over or held behind a screen are named, with their findings, in admitted_cdec_reservoirs.json."
   },
@@ -281,7 +282,7 @@
    "note": "No other public source of current storage was found."
   },
   "WA": {
-   "total": 30,
+   "total": 31,
    "status": "more to add",
    "note": "No independent state source was found. The Corps' Columbia Basin service is read since 2026-08-30 and brings the largest reservoir in the state. Several utility-owned reservoirs remain: three answer nothing through that service and others are published by their operators in no form a program can read."
   },
@@ -292,30 +293,30 @@
   }
  },
  "left_off": {
-  "already published by another source": 99,
-  "not reporting": 15,
+  "already published by another source": 102,
+  "not reporting": 20,
+  "flood basin, empty most years": 17,
+  "reads above full level": 9,
   "natural lake or river pool": 9,
-  "reads above full level": 8,
-  "no matching dam record": 3,
-  "full level under review": 2,
-  "another source's reading": 1
+  "no matching dam record": 7,
+  "another source's reading": 5,
+  "full level under review": 2
  },
  "withdrawn": [
-  "Lake Hemet",
-  "Alder Reservoir"
+  "Lake Hemet"
  ],
  "checks": {
   "full_level": {
-   "inventory": 338,
+   "inventory": 354,
    "operator": 70
   },
   "location": {
-   "dam_point": 378,
+   "dam_point": 394,
    "published_point": 30
   },
   "frequency": {
-   "daily": 296,
-   "monthly": 112
+   "daily": 311,
+   "monthly": 113
   },
   "usgs_sites": {
    "reviewed": 34,
