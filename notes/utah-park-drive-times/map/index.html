@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en" class="calcite-mode-dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="#30DayMapChallenge 2026, Day 13. Drive times from Utah homes to the five national parks. Move the drive-time slider to see how many parks each place can reach. Pick a town to read its drive time to each park.">
+<meta name="theme-color" content="#0b0e13">
+<title>Day 13 · Interactions — Drive times to Utah's five national parks</title>
+<script>window.PEN_DATA = "/assets/data/";</script>
+<script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css">
+<script type="module" src="https://js.arcgis.com/5.1/"></script>
+<style>
+/* One system: a dark slate page, one sequential ramp that brightens with the number of parks in
+   reach, Mona Sans (the Day 1-11 face) on an 8 px grid, flat cards. */
+:root {
+  --bg: #0b0e13;
+  --card: rgba(16, 20, 27, 0.88);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --text: #e8ecf1;
+  --muted: #8d97a5;
+  --faint: #5d6774;
+  --accent: #f2d15c;
+  --warn: #ffb38a;
+  --k1: #233047;
+  --k2: #24566e;
+  --k3: #22857f;
+  --k4: #55b77a;
+  --k5: #f2d15c;
+  --side: 380px;
+  --gap: 16px;
+  --font: "Mona Sans", system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.43 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.app {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--side);
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+  grid-template-areas: ". head" ". from" ". share" "dock about";
+  gap: 12px var(--gap);
+  padding: var(--gap);
+}
+.app > .card { position: relative; z-index: 2; min-width: 0; }
+.stage { position: absolute; inset: 0; }
+.map-slot { position: absolute; inset: 0; }
+arcgis-map { display: block; height: 100%; background: var(--bg); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.eyebrow { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.card-title { margin: 0; font-size: 12px; font-weight: 600; color: var(--muted); }
+
+.loading {
+  position: absolute;
+  left: calc((100% - var(--side) - var(--gap)) / 2);
+  top: 45%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  z-index: 3;
+}
+.loading[hidden] { display: none; }
+
+.head { grid-area: head; }
+.from { grid-area: from; }
+.share { grid-area: share; }
+.about { grid-area: about; align-self: end; }
+.head { padding: 16px; }
+.head h1 { margin: 8px 0 8px; font-size: 24px; line-height: 1.15; font-weight: 760; font-stretch: 108%; letter-spacing: -0.01em; }
+.head p.sub { margin: 0; color: var(--muted); }
+
+.from { padding: 16px; }
+.from-row { display: grid; grid-template-columns: minmax(0, 1fr) 36px; gap: 8px; margin-top: 8px; }
+.field { position: relative; }
+.field svg { position: absolute; left: 10px; top: 10px; width: 16px; height: 16px; color: var(--muted); pointer-events: none; }
+#from {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px 0 34px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  font-weight: 600;
+}
+#from::placeholder { color: var(--faint); font-weight: 500; }
+#from:hover { border-color: rgba(255, 255, 255, 0.24); }
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+}
+.icon-btn:hover { border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.07); }
+.icon-btn svg { width: 16px; height: 16px; }
+.from-msg { margin: 8px 0 0; font-size: 12px; color: var(--warn); }
+.listbox {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  max-height: 272px;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+  background: #151a22;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  scrollbar-width: thin;
+}
+.listbox[hidden] { display: none; }
+.listbox li { height: 32px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 10px; border-radius: 6px; color: #c3cad3; cursor: pointer; }
+.listbox li b { color: var(--text); font-weight: 600; }
+.listbox li[aria-selected="true"] { background: rgba(255, 255, 255, 0.08); color: var(--text); }
+.listbox li[aria-disabled="true"] { color: var(--faint); cursor: default; }
+.from-msg:empty { display: none; }
+
+.rows { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.row {
+  position: relative;
+  width: 100%;
+  height: 36px;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 0 8px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+.row:hover { background: rgba(255, 255, 255, 0.04); }
+.row[aria-pressed="true"] { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.row[aria-pressed="true"]::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; border-radius: 1px; background: var(--accent); }
+.row .t { font-weight: 600; transition: color 0.2s; }
+.row.beyond .t { color: var(--muted); font-weight: 500; }
+.row .name { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.tag { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: 8px; color: var(--bg); background: var(--text); }
+.tag[hidden] { display: none; }
+.from-label { margin: 12px 0 0; font-size: 12px; color: var(--muted); }
+.from-label b { color: var(--text); font-weight: 600; }
+.farthest { margin: 8px 8px 0; font-size: 13px; color: #c3cad3; }
+.farthest b { color: var(--text); }
+.row svg { width: 16px; height: 16px; color: var(--muted); overflow: visible; }
+.row svg g { transition: transform 0.35s ease; }
+.hint { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+
+.share { padding: 16px; }
+.share h2 { margin: 0; font-size: 12px; font-weight: 600; color: var(--muted); }
+.share .sub2 { margin: 2px 0 12px; font-size: 11px; color: var(--faint); }
+.share h2 b { color: var(--text); }
+.meters { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.meter { display: grid; grid-template-columns: 10px 104px minmax(0, 1fr) 40px; gap: 8px; align-items: center; height: 20px; }
+.meter .sw { width: 10px; height: 10px; border-radius: 2px; }
+.meter .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter .bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.06); overflow: hidden; }
+.meter .bar i { display: block; height: 100%; border-radius: 3px; transition: width 0.2s ease; }
+.meter .v { text-align: right; font-weight: 600; }
+.meter.on .n, .meter.on .v { color: var(--accent); }
+
+.about { padding: 10px 16px; font-size: 11.5px; color: var(--muted); }
+.about summary { cursor: pointer; font-size: 12px; font-weight: 600; }
+.about p:first-of-type { margin-top: 8px; }
+.about p { margin: 0 0 4px; }
+.about p:last-child { margin: 0; }
+.about b { color: var(--text); font-weight: 600; }
+.handles a { color: inherit; text-decoration: none; margin-right: 10px; white-space: nowrap; }
+.handles a:hover { color: var(--text); }
+.handles i { margin-right: 4px; }
+
+/* Map key, top left. */
+.mapkey { position: absolute; top: var(--gap); left: var(--gap); width: 248px; padding: 12px 16px; z-index: 2; }
+.key-note { margin: 10px 0 0; font-size: 12px; line-height: 1.4; color: #c3cad3; }
+.key-note b { color: var(--text); }
+.key-note.faint { margin-top: 8px; color: var(--muted); }
+.chip {
+  margin-top: 10px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip:hover { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.09); }
+.chip[hidden] { display: none; }
+.mapkey summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.mapkey summary::-webkit-details-marker { display: none; }
+.mapkey summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(45deg) translateY(-2px); }
+.mapkey[open] summary::after { transform: rotate(-135deg) translateY(-2px); }
+.scale { margin-top: 12px; }
+.scale .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; height: 8px; margin-top: 8px; }
+.scale .steps span { border-radius: 1px; }
+.scale .labels-row { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 4px; font-size: 11px; color: var(--muted); text-align: center; }
+.scale .ramp { height: 8px; margin-top: 8px; border-radius: 1px; }
+.scale .ticks { position: relative; height: 16px; margin-top: 4px; font-size: 11px; color: var(--muted); }
+.scale .ticks span { position: absolute; top: 0; transform: translateX(-50%); }
+.scale[hidden] { display: none; }
+
+/* Time dock, bottom of the map. */
+.dock { grid-area: dock; align-self: end; padding: 12px 16px 8px; }
+.dock-head { display: flex; align-items: center; gap: 12px; height: 32px; }
+.dock-head output { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.chart-cap { margin: 6px 0 0 36px; font-size: 11px; color: var(--muted); }
+#play {
+  margin-left: auto;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#play:hover { border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.07); }
+#play svg { width: 12px; height: 12px; }
+.chart { width: 100%; height: 64px; display: block; margin-top: 8px; overflow: visible; touch-action: pan-y; cursor: ew-resize; }
+.axis { width: 100%; height: 22px; display: block; overflow: visible; }
+.axis text { font: 500 11px var(--font); fill: var(--muted); }
+.axis .minor { stroke: rgba(255, 255, 255, 0.16); }
+.axis .major { stroke: rgba(255, 255, 255, 0.4); }
+.chart .hour { stroke: rgba(255, 255, 255, 0.05); }
+.chart text { font: 500 11px var(--font); fill: var(--muted); }
+.chart .grid { stroke: var(--line); }
+.chart .tick { stroke: var(--line-2); }
+.chart .cursor { stroke: var(--accent); stroke-width: 1.5; }
+.chart .cursor-cap { fill: var(--accent); }
+
+/* Slider: the time control. A 6 px track fills in the accent up to a 20 px handle. The chart and the
+   axis below run from 10 px inside the track's left end to 10 px inside its right end, so all three line up. */
+#minutes {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: calc(100% - 36px);
+  height: 28px;
+  margin: 4px 0 0 36px;
+  background: transparent;
+  cursor: pointer;
+}
+#minutes::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--accent) var(--fill, 85%), rgba(255, 255, 255, 0.14) var(--fill, 85%)); }
+#minutes::-moz-range-track { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); }
+#minutes::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--accent); }
+#minutes::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 38%, transparent), 0 2px 6px rgba(0, 0, 0, 0.5); transition: box-shadow 0.15s; }
+#minutes::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 38%, transparent), 0 2px 6px rgba(0, 0, 0, 0.5); }
+#minutes:hover::-webkit-slider-thumb, #minutes:active::-webkit-slider-thumb { box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 32%, transparent), 0 2px 6px rgba(0, 0, 0, 0.5); }
+#minutes:focus-visible { outline: none; }
+#minutes:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent); }
+#minutes:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent); }
+
+/* Map labels, drawn as HTML over the map. */
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+.labels span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  white-space: nowrap;
+  line-height: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c3cad3;
+  text-shadow: 0 0 2px var(--bg), 0 0 4px var(--bg), 0 0 6px var(--bg);
+}
+.labels span[hidden] { display: none; }
+.labels .park { font-size: 13px; font-weight: 600; color: #bff0d3; }
+.labels .from { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); }
+
+/* Selection effects: rings burst from a park, and a soft halo pulses while it stays selected. */
+.fx { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+.fx span { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; }
+.fx .ring { border: 2px solid var(--c); box-shadow: 0 0 12px var(--c), inset 0 0 8px var(--c); animation: ring 1.4s cubic-bezier(0.15, 0.6, 0.3, 1) both; }
+.fx .pulse { background: radial-gradient(circle, color-mix(in srgb, var(--c) 60%, transparent), transparent 70%); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes ring { from { transform: scale(0.4); opacity: 0.95; } to { transform: scale(var(--s, 6)); opacity: 0; } }
+@keyframes pulse { 0%, 100% { transform: scale(1.6); opacity: 0.6; } 50% { transform: scale(3); opacity: 0.15; } }
+@media (prefers-reduced-motion: reduce) { .fx { display: none; } }
+.labels .route {
+  height: 16px;
+  padding: 0 5px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #171c24;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  color: #e6ebf1;
+  text-shadow: none;
+}
+.labels .route.i { border-color: rgba(255, 255, 255, 0.6); }
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  :root { --side: 320px; --gap: 12px; }
+  .meter { grid-template-columns: 10px 92px minmax(0, 1fr) 40px; }
+  .mapkey { width: 220px; }
+}
+@media (min-width: 761px) and (max-height: 860px) {
+  .head .sub { display: none; }
+  .hint { display: none; }
+}
+
+@media (max-width: 760px) {
+  :root { --side: 0px; --gap: 12px; }
+  .app { display: flex; flex-direction: column; height: auto; overflow: visible; padding: 12px; gap: 12px; }
+  .stage { position: relative; inset: auto; height: 52vh; min-height: 340px; border-radius: 12px; overflow: hidden; }
+  .dock, .about { align-self: stretch; }
+  .mapkey { top: 8px; left: 8px; width: 196px; padding: 10px 12px; }
+  .mapkey .key-note.faint { display: none; }
+  .row, #from, .icon-btn { height: 44px; }
+  .from-row { grid-template-columns: minmax(0, 1fr) 44px; }
+  .field svg { top: 14px; }
+  .listbox { top: 50px; }
+  .listbox li { height: 44px; }
+  .loading { left: 50%; }
+}
+
+/* ?embed: the article carries the title, the town lookup and the credits; the frame keeps the map,
+   its key and the time control, and fills the frame's height. */
+.embed { --side: 0px; }
+.embed .head, .embed .about, .embed .from, .embed .share { display: none; }
+.embed .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); grid-template-areas: "dock"; }
+@media (max-width: 760px) {
+  .embed .app { height: 100%; overflow: hidden; }
+  .embed .stage { height: auto; flex: 1 1 auto; min-height: 0; }
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="head card">
+    <p class="eyebrow">30 Day Map Challenge 2026 · Day 13 · Interactions</p>
+    <h1>Drive times to Utah's five national parks</h1>
+    <p class="sub">Move the drive-time slider. Type a Utah town, use your location, or select a place on the map.</p>
+  </header>
+
+  <section class="from card" aria-label="Drive time to each park">
+    <label class="card-title" for="from">From</label>
+    <div class="from-row">
+      <div class="field">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input type="text" id="from" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="town-list" autocomplete="off" spellcheck="false" placeholder="Type a Utah town" value="Salt Lake City" aria-describedby="from-msg">
+        <!-- [html-validate-disable-next prefer-native-element -- a select cannot filter 96 towns as the reader types] -->
+        <ul class="listbox" id="town-list" role="listbox" aria-label="Utah cities and towns" hidden></ul>
+      </div>
+      <button type="button" class="icon-btn" id="locate" aria-label="Use my location" title="Use my location">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/><path d="M8 .8v2.4M8 12.8v2.4M.8 8h2.4M12.8 8h2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <p class="from-msg" id="from-msg" aria-live="polite"></p>
+    <p class="from-label" id="from-label">Times from <b>Salt Lake City</b></p>
+    <ul class="rows" id="rows" role="group" aria-label="Select a park to map it"></ul>
+    <p class="farthest" id="farthest"></p>
+    <p class="hint">Separate drives to each park's main visitor center, rounded up to the next 15 minutes. Select a park to map it. Select it again to show all five.</p>
+  </section>
+
+  <div class="stage">
+    <div id="map-slot" class="map-slot"></div>
+    <div class="fx" id="fx" aria-hidden="true"></div>
+    <div class="labels" id="labels" aria-hidden="true"></div>
+    <p class="loading" id="loading">Loading the map…</p>
+    <details class="mapkey card" id="mapkey" open>
+      <summary class="card-title">Key</summary>
+      <p class="key-note" id="key-note">Colors show how many parks each place can reach within <b>4 h 30 min</b>.</p>
+      <div class="scale" id="count-key">
+        <div class="steps" id="steps" aria-hidden="true"></div>
+        <div class="labels-row" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>All 5</span></div>
+      </div>
+      <div class="scale" id="park-key" hidden>
+        <div class="ramp" id="ramp" aria-hidden="true"></div>
+        <div class="ticks" id="ticks" aria-hidden="true"></div>
+      </div>
+      <p class="key-note faint" id="key-blank">Uncolored: no park within this time.</p>
+      <button type="button" class="chip" id="show-all" hidden>Show all five parks</button>
+    </details>
+  </div>
+
+  <section class="dock card" aria-label="Drive time">
+    <div class="dock-head">
+      <label class="card-title" for="minutes">Drive time</label>
+      <output id="time-out" for="minutes">4 h 30 min</output>
+      <button type="button" id="play"><svg viewBox="0 0 12 12" aria-hidden="true"><path id="play-icon" d="M2 1 L11 6 L2 11 Z" fill="currentColor"/></svg><span id="play-text">Play</span></button>
+    </div>
+    <p class="chart-cap" id="chart-cap">Share of Utah residents who can reach 1 to 5 parks</p>
+    <svg class="chart" id="chart" role="img" aria-label="Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes."></svg>
+    <input type="range" id="minutes" min="15" max="300" step="15" value="270" aria-valuetext="4 hours 30 minutes">
+    <svg class="axis" id="axis" aria-hidden="true"></svg>
+  </section>
+
+  <section class="share card" aria-label="Share of Utahns in reach">
+    <h2 id="share-title">Utahns within <b>4 h 30 min</b> of</h2>
+    <p class="sub2" id="share-sub">Statewide. The groups overlap.</p>
+    <ul class="meters" id="meters"></ul>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+  </section>
+
+  <details class="about card">
+    <summary>About the data</summary>
+    <p><b>Data</b> Drive times from the ArcGIS Online Service Area solver, November 5, 2026 · 2020 Census blocks · park boundaries from the NPS Land Resources Division · roads, water and towns from OpenStreetMap contributors (ODbL) · relief from USGS 3DEP · UGRC Utah boundary</p>
+    <p><b>Made with</b> ArcGIS Maps SDK for JavaScript 5.1 · data prep in Python (GeoPandas, Rasterio)</p>
+    <p class="handles">Brian Busch ·
+      <a href="https://www.linkedin.com/in/brian-busch1"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>brian-busch1</a>
+      <a href="https://x.com/brianjbusch"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i>@brianjbusch</a>
+      <a href="https://github.com/buschbrian"><i class="fa-brands fa-github" aria-hidden="true"></i>buschbrian</a>
+      <a href="https://www.instagram.com/brianbusch1"><i class="fa-brands fa-instagram" aria-hidden="true"></i>@brianbusch1</a>
+    </p>
+  </details>
+</main>
+<script>
+(async () => {
+  const loadingEl = document.querySelector("#loading");
+  try {
+  performance.mark("d13-start");
+  const DATA = window.PEN_DATA ?? "https://buschbrian.github.io/assets/data/";
+  const PARKS = ["Arches", "Bryce Canyon", "Canyonlands", "Capitol Reef", "Zion"];
+  const COUNTS = [[5, "All five parks"], [4, "Four or more"], [3, "Three or more"], [2, "Two or more"], [1, "At least one"]];
+  const LABELLED = ["Logan", "Ogden", "Salt Lake City", "Provo", "Vernal", "Price", "Richfield", "Cedar City", "St. George", "Moab"];
+  const BG = "#0b0e13", TEXT = "#e8ecf1";
+  const PARK_COLOR = { Arches: "#ff4d5e", "Bryce Canyon": "#ff9442", Canyonlands: "#46b6ff", "Capitol Reef": "#9d7bff", Zion: "#f067ff" };
+  // One ramp: dark at one park, brightest where all five are in reach. A single park runs bright near, dark far.
+  const K = ["#233047", "#24566e", "#22857f", "#55b77a", "#f2d15c"];
+  const ALL_FIVE = K[4];
+  const mixHex = (a, b, t) => "#" + [1, 3, 5].map((i) => Math.round(parseInt(a.slice(i, i + 2), 16) * (1 - t) + parseInt(b.slice(i, i + 2), 16) * t)
+    .toString(16).padStart(2, "0")).join("");
+  // One park's ramp: its own color near the park, fading to the darkest reach color far away.
+  const nearRamp = (park) => [0, 0.3, 0.55, 0.78, 1].map((t) => mixHex(PARK_COLOR[park], "#1a2232", t));
+  const setAccent = (c) => document.documentElement.style.setProperty("--accent", c);
+  const calm = matchMedia("(prefers-reduced-motion: reduce)");
+  const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const rgba = (h, a) => [...hex(h), a];
+
+  const [reach, relief, townList, origins] = await Promise.all(
+    ["day-13-reach.json", "day-13-relief.json", "day-13-towns.json", "day-13-origins.geojson"]
+      .map((f) => fetch(DATA + f).then((r) => { if (!r.ok) throw new Error(f); return r.json(); })));
+  performance.mark("d13-data");
+  const town = Object.fromEntries(townList.map(([n, lat, lon, p, t]) => [n, { lat, lon, times: t }]));
+  const parkLL = Object.fromEntries(origins.features.map((f) => [f.properties.park, f.geometry.coordinates]));
+  const pop = reach.population_2020;
+  const hm = (m) => (m < 60 ? `${m} min` : m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`);
+  const spoken = (m) => hm(m).replace(" h", m >= 120 ? " hours" : " hour").replace(" min", " minutes");
+  const pct = (v) => `${Math.round(100 * v)}%`;
+  const state = { minutes: 270, park: "", times: null, from: null };
+  const map = { ready: false };
+  const cut = Object.keys(reach.share_at_least_k).map(Number);
+  const X0 = 15, X1 = 300;
+  const NS = "http://www.w3.org/2000/svg";
+  const make = (parent, tag, attrs) => {
+    const e = document.createElementNS(NS, tag);
+    for (const [a, v] of Object.entries(attrs)) e.setAttribute(a, v);
+    return parent.appendChild(e);
+  };
+  const narrow = () => matchMedia("(max-width: 760px)").matches;
+  const embedded = document.documentElement.classList.contains("embed");
+
+  // Map key.
+  const mapkey = document.querySelector("#mapkey");
+  mapkey.open = true;
+  document.querySelector("#steps").innerHTML = K.map((c) => `<span style="background:${c}"></span>`).join("");
+  document.querySelector("#ticks").innerHTML = [1, 2, 3, 4, 5]
+    .map((h) => `<span style="left:${((h * 60 - X0) / (X1 - X0)) * 100}%">${h} h</span>`).join("");
+  // From card: one row for each park (bearing arrow, name, time) and an "All five" row.
+  const rowsEl = document.querySelector("#rows");
+  const rows = {};
+  for (const park of PARKS) {
+    const li = document.createElement("li");
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "row";
+    b.dataset.park = park;
+    b.setAttribute("aria-pressed", "false");
+    const svg = make(b, "svg", { viewBox: "-8 -8 16 16", "aria-hidden": "true" });
+    if (park) svg.style.color = PARK_COLOR[park];
+    const g = make(svg, "g", {});
+    make(g, "path", { d: "M0 -6.5 L4.5 -1.5 H1.4 V6.5 H-1.4 V-1.5 H-4.5 Z", fill: "currentColor" });
+    b.insertAdjacentHTML("beforeend", `<span class="name">${park}<span class="tag" hidden>Closest</span></span><span class="t">–</span><span class="sr-only beyond-note"></span>`);
+    li.append(b);
+    rowsEl.append(li);
+    rows[park] = { b, g, t: b.querySelector(".t"), tag: b.querySelector(".tag"), note: b.querySelector(".beyond-note") };
+  }
+  const fromEl = document.querySelector("#from");
+  const fromMsg = document.querySelector("#from-msg");
+
+  // Share card: five fixed lines. Each keeps its meaning while the time moves; only the values change.
+  const meters = [];
+  for (let i = 0; i < 5; i++) {
+    const li = document.createElement("li");
+    li.className = "meter";
+    li.innerHTML = '<span class="sw"></span><span class="n"></span><span class="bar"><i></i></span><span class="v"></span>';
+    document.querySelector("#meters").append(li);
+    meters.push({ li, sw: li.querySelector(".sw"), n: li.querySelector(".n"), fill: li.querySelector("i"), v: li.querySelector(".v") });
+  }
+  function labelMeters() {
+    meters.forEach((r, i) => {
+      const color = state.park ? PARK_COLOR[PARKS[i]] : K[COUNTS[i][0] - 1];
+      r.li.style.opacity = state.park && PARKS[i] !== state.park ? "0.55" : "";
+      r.sw.style.background = color;
+      r.fill.style.background = color;
+      r.n.textContent = state.park ? PARKS[i] : COUNTS[i][1];
+      r.li.classList.toggle("on", !!state.park && PARKS[i] === state.park);
+    });
+  }
+  labelMeters();
+
+  // Chart: smooth monotone curves. The x-axis matches the slider's handle travel exactly.
+  const svg = document.querySelector("#chart");
+  const L = 36, THUMB = 20, H = 60;
+  const axis = document.querySelector("#axis");
+  let W = 600;
+  const x = (m) => L + THUMB / 2 + ((m - X0) / (X1 - X0)) * (W - L - THUMB);
+  const y = (v) => 4 + (1 - v) * (H - 4);
+  const smooth = (pts) => {
+    const n = pts.length;
+    const d = pts.slice(1).map((p, i) => (p[1] - pts[i][1]) / (p[0] - pts[i][0]));
+    const t = pts.map((_, i) => (i === 0 ? d[0] : i === n - 1 ? d[n - 2] : d[i - 1] * d[i] <= 0 ? 0 : (d[i - 1] + d[i]) / 2));
+    for (let i = 0; i < n - 1; i++) {
+      if (d[i] === 0) { t[i] = 0; t[i + 1] = 0; continue; }
+      const a = t[i] / d[i], b = t[i + 1] / d[i], s = a * a + b * b;
+      if (s > 9) { const k = 3 / Math.sqrt(s); t[i] = k * a * d[i]; t[i + 1] = k * b * d[i]; }
+    }
+    let path = `${pts[0][0]},${pts[0][1]}`;
+    for (let i = 0; i < n - 1; i++) {
+      const h = (pts[i + 1][0] - pts[i][0]) / 3;
+      path += ` C${pts[i][0] + h},${pts[i][1] + h * t[i]} ${pts[i + 1][0] - h},${pts[i + 1][1] - h * t[i + 1]} ${pts[i + 1][0]},${pts[i + 1][1]}`;
+    }
+    return path;
+  };
+  const area = (vals, fill) => make(svg, "path", { d: `M${x(X0)},${H} L${smooth(cut.map((m, i) => [x(m), y(vals[i])]))} L${x(X1)},${H} Z`, fill });
+  let cursor, cap;
+  function draw() {
+    W = Math.max(svg.clientWidth, 240);
+    svg.setAttribute("viewBox", `0 0 ${W} 64`);
+    svg.replaceChildren();
+    for (const v of [0, 0.5, 1]) {
+      make(svg, "line", { class: "grid", x1: L, x2: W, y1: y(v), y2: y(v) });
+      if (v) make(svg, "text", { x: L - 8, y: y(v) + 4, "text-anchor": "end" }).textContent = `${v * 100}%`;
+    }
+    if (state.park) {
+      const people = reach.people_within_by_park[state.park];
+      area(cut.map((m) => people[m] / pop), PARK_COLOR[state.park]);
+    } else {
+      for (let k = 1; k <= 5; k++) area(cut.map((m) => reach.share_at_least_k[m][k - 1]), K[k - 1]);
+    }
+    for (let h = 1; h <= 5; h++) make(svg, "line", { class: "hour", x1: x(h * 60), x2: x(h * 60), y1: 4, y2: H });
+    // Axis under the slider: a tick every 15 minutes, a labelled one every hour.
+    axis.setAttribute("viewBox", `0 0 ${W} 22`);
+    axis.replaceChildren();
+    for (let m = X0; m <= X1; m += 15) {
+      const hour = m % 60 === 0;
+      make(axis, "line", { class: hour ? "major" : "minor", x1: x(m), x2: x(m), y1: 0, y2: hour ? 6 : 3 });
+      if (hour) make(axis, "text", { x: x(m), y: 19, "text-anchor": "middle" }).textContent = `${m / 60} h`;
+    }
+    cursor = make(svg, "line", { class: "cursor", y1: 0, y2: H, x1: x(state.minutes), x2: x(state.minutes) });
+    cap = make(svg, "circle", { class: "cursor-cap", r: 3, cx: x(state.minutes), cy: 0 });
+    svg.setAttribute("aria-label", state.park
+      ? `Share of Utahns within each drive time of ${state.park}, from 15 minutes to 5 hours.`
+      : "Share of Utahns who can reach one to five parks, from 15 minutes to 5 hours. The share that can reach all five rises from 17% at 4 hours to 63% at 4 hours 30 minutes.");
+  }
+  draw();
+  new ResizeObserver(draw).observe(svg);
+
+  const timeOut = document.querySelector("#time-out");
+  const slider = document.querySelector("#minutes");
+  const statusEl = document.querySelector("#status");
+  const shareTitle = document.querySelector("#share-title");
+
+  function apply() {
+    const m = state.minutes;
+    const s = reach.share_at_least_k[m];
+    timeOut.textContent = hm(m);
+    slider.value = m;
+    slider.style.setProperty("--fill", `${(((m - X0) / (X1 - X0)) * (slider.clientWidth - THUMB) + THUMB / 2)}px`);
+    slider.setAttribute("aria-valuetext", spoken(m));
+    cursor.setAttribute("x1", x(m));
+    cursor.setAttribute("x2", x(m));
+    cap.setAttribute("cx", x(m));
+    shareTitle.innerHTML = `Utahns within <b>${hm(m)}</b> of`;
+    document.querySelector("#share-sub").textContent = state.park ? "Statewide share for each park." : "Statewide. The groups overlap.";
+    document.querySelector("#key-note").innerHTML = state.park
+      ? `Colors show the drive time to ${state.park}, up to <b>${hm(m)}</b>.`
+      : `Colors show how many parks each place can reach within <b>${hm(m)}</b>.`;
+    document.querySelector("#key-blank").textContent = state.park
+      ? `Uncolored: more than ${hm(m)} from ${state.park}.`
+      : "Uncolored: no park within this time.";
+    meters.forEach((r, i) => {
+      const v = state.park ? reach.people_within_by_park[PARKS[i]][m] / pop : s[COUNTS[i][0] - 1];
+      r.v.textContent = pct(v);
+      r.fill.style.width = `${100 * v}%`;
+    });
+    if (state.times) {
+      const known = PARKS.map((k) => state.times[k]).filter((t) => t !== null);
+      const best = known.length ? Math.min(...known) : null;
+      for (const [park, r] of Object.entries(rows)) {
+        const t = state.times[park];
+        const beyond = t === null || t > m;
+        r.t.textContent = t === null ? "over 5 h" : hm(t);
+        r.b.classList.toggle("beyond", beyond);
+        r.note.textContent = beyond ? ", longer than the selected drive time" : "";
+        r.tag.hidden = t === null || t !== best;
+      }
+      const far = PARKS.filter((k) => state.times[k] === null);
+      const worst = far.length ? null : Math.max(...known);
+      const farName = far.length ? far.join(" and ") : PARKS.filter((k) => state.times[k] === worst).join(" and ");
+      document.querySelector("#farthest").innerHTML = `Farthest park: <b>${farName}</b>, ${worst === null ? "over 5 h" : hm(worst)}.`;
+    }
+    if (map.ready) {
+      if (state.park) map.lv.bands.filter = { where: `park = '${state.park}' AND minutes <= ${m}` };
+      else map.lv.counts.filter = { where: `minutes = ${m}` };
+    }
+  }
+  const announce = () => {
+    const m = state.minutes;
+    statusEl.textContent = state.park
+      ? `Within ${spoken(m)}: ${pct(reach.people_within_by_park[state.park][m] / pop)} of Utahns can reach ${state.park}.`
+      : `Within ${spoken(m)}: ${pct(reach.share_at_least_k[m][4])} of Utahns can reach all five parks, ${pct(reach.share_at_least_k[m][0])} at least one.`;
+  };
+  apply();
+
+  // The From card reads from one start. Towns use drive times worked out in advance, so it fills at once.
+  const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const bearing = ([lon, lat], p) => (Math.atan2((p[0] - lon) * Math.cos((lat * Math.PI) / 180), p[1] - lat) * 180) / Math.PI;
+  function showTimes(times, ll) {
+    state.times = times;
+    for (const p of PARKS) {
+      let deg = bearing(ll, parkLL[p]);
+      const now = Number(rows[p].g.dataset.deg ?? deg);
+      while (deg - now > 180) deg -= 360;
+      while (now - deg > 180) deg += 360;
+      rows[p].g.dataset.deg = deg;
+      rows[p].g.style.transform = `rotate(${deg.toFixed(1)}deg)`;
+    }
+    fromMsg.textContent = PARKS.every((p) => times[p] === null) ? "This place is outside Utah, or more than 5 h from every park." : "";
+    document.querySelector("#from-label").innerHTML = `Times from <b>${esc(state.from.name)}</b>`;
+    apply();
+  }
+  function setTown(name) {
+    const t = town[name];
+    state.from = { name, ll: [t.lon, t.lat] };
+    fromEl.value = name;
+    showTimes(Object.fromEntries(PARKS.map((p, i) => [p, t.times[i]])), state.from.ll);
+    if (map.ready) map.mark();
+  }
+  let asked = 0;
+  async function setPlace(ll, name, point) {
+    const ask = ++asked;
+    state.from = { name, ll, point };
+    fromEl.value = name;
+    fromMsg.textContent = "Reading drive times…";
+    if (!map.ready) await map.whenReady;
+    map.mark();
+    const times = await map.timesAt(ll, point);
+    if (ask === asked) showTimes(times, ll);
+  }
+  // Town picker. Matches rank: name starts with the text, then a word starts with it, then it appears
+  // anywhere; ties go to the larger town. An empty box lists the largest towns.
+  const listEl = document.querySelector("#town-list");
+  let matches = [], active = -1;
+  function search(q) {
+    q = q.trim().toLowerCase();
+    const scored = townList.map(([n, , , p]) => {
+      const low = n.toLowerCase();
+      const score = !q ? 0 : low.startsWith(q) ? 0 : low.split(/[\s.-]+/).some((w) => w.startsWith(q)) ? 1 : low.includes(q) ? 2 : 9;
+      return { n, p, score };
+    }).filter((t) => t.score < 9);
+    return scored.sort((a, b) => a.score - b.score || b.p - a.p).slice(0, 8);
+  }
+  function renderList(q) {
+    matches = search(q);
+    active = matches.length ? 0 : -1;
+    const ql = q.trim().toLowerCase();
+    const mark = (n) => {
+      const i = ql ? n.toLowerCase().indexOf(ql) : -1;
+      return i < 0 ? esc(n) : `${esc(n.slice(0, i))}<b>${esc(n.slice(i, i + ql.length))}</b>${esc(n.slice(i + ql.length))}`;
+    };
+    listEl.innerHTML = matches.length
+      ? matches.map((t, i) => `<li role="option" id="town-opt-${i}" aria-selected="${i === active}" data-name="${esc(t.n)}"><span>${mark(t.n)}</span></li>`).join("")
+      : '<li role="option" aria-disabled="true" aria-selected="false">No Utah town matches. Try another name, or select a place on the map.</li>';
+    listEl.hidden = false;
+    fromEl.setAttribute("aria-expanded", "true");
+    highlight();
+  }
+  function highlight() {
+    listEl.querySelectorAll("[data-name]").forEach((li, i) => li.setAttribute("aria-selected", String(i === active)));
+    const li = listEl.querySelector(`#town-opt-${active}`);
+    if (li) { fromEl.setAttribute("aria-activedescendant", li.id); li.scrollIntoView({ block: "nearest" }); }
+    else fromEl.removeAttribute("aria-activedescendant");
+  }
+  function closeList(revert) {
+    listEl.hidden = true;
+    fromEl.setAttribute("aria-expanded", "false");
+    fromEl.removeAttribute("aria-activedescendant");
+    if (revert) fromEl.value = state.from?.name ?? "";
+  }
+  function pick(name) {
+    closeList(false);
+    fromMsg.textContent = "";
+    setTown(name);
+    statusEl.textContent = `Drive times from ${name}: ` + PARKS.map((k) => `${k} ${state.times[k] === null ? "over 5 hours" : spoken(state.times[k])}`).join(", ") + ".";
+  }
+  fromEl.addEventListener("focus", () => { fromEl.select(); renderList(""); });
+  fromEl.addEventListener("input", () => renderList(fromEl.value));
+  fromEl.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      if (listEl.hidden) return renderList(fromEl.value);
+      if (matches.length) active = (active + (e.key === "ArrowDown" ? 1 : -1) + matches.length) % matches.length;
+      highlight();
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (active >= 0 && matches[active]) pick(matches[active].n);
+      else fromMsg.textContent = "Pick a Utah city or town from the list.";
+    } else if (e.key === "Escape") {
+      closeList(true);
+      fromEl.blur();
+    }
+  });
+  fromEl.addEventListener("blur", () => closeList(true));
+  listEl.addEventListener("mousedown", (e) => {
+    e.preventDefault();  // keep focus in the box until the pick is made
+    const li = e.target.closest("[data-name]");
+    if (li) pick(li.dataset.name);
+  });
+  document.querySelector("#locate").addEventListener("click", () => {
+    if (!navigator.geolocation) return (fromMsg.textContent = "This browser cannot share a location.");
+    fromMsg.textContent = "Finding your location…";
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => setPlace([coords.longitude, coords.latitude], "Your location"),
+      () => (fromMsg.textContent = "Your browser did not share your location. Type a town instead."),
+      { timeout: 10000, maximumAge: 600000 },
+    );
+  });
+
+  const countKey = document.querySelector("#count-key");
+  const parkKey = document.querySelector("#park-key");
+  const showAll = document.querySelector("#show-all");
+  showAll.addEventListener("click", () => choose(""));
+  function choose(park) {
+    state.park = park;
+    showAll.hidden = !park;
+    for (const r of Object.values(rows)) r.b.setAttribute("aria-pressed", String(r.b.dataset.park === park));
+    setAccent(park ? PARK_COLOR[park] : ALL_FIVE);
+    if (park) document.querySelector("#ramp").style.background = `linear-gradient(90deg, ${nearRamp(park).join(", ")})`;
+    if (map.ready) {
+      if (park) tintBands(park);
+      map.select(park);
+      map.counts.visible = !park;
+      map.bands.visible = !!park;
+    }
+    countKey.hidden = !!park;
+    parkKey.hidden = !park;
+    document.querySelector("#chart-cap").textContent = park ? `Share of Utah residents within each drive time of ${park}` : "Share of Utah residents who can reach 1 to 5 parks";
+    labelMeters();
+    draw();
+    apply();
+    if (map.ready) map.reveal();
+    announce();
+  }
+  for (const r of Object.values(rows)) {
+    r.b.addEventListener("click", () => choose(state.park === r.b.dataset.park ? "" : r.b.dataset.park));
+    // Hovering a park row sends one ring out from that park, so the reader can find it.
+    r.b.addEventListener("mouseenter", () => map.ready && map.ripple(r.b.dataset.park, 1, 4));
+  }
+  slider.addEventListener("input", () => { stop(); map.ready && map.stopReveal(); state.minutes = Number(slider.value); apply(); });
+  slider.addEventListener("change", announce);
+  new ResizeObserver(apply).observe(slider);
+
+  const fromChart = (e) => {
+    const r = svg.getBoundingClientRect();
+    const m = X0 + Math.round((((e.clientX - r.left - L - THUMB / 2) / (r.width - L - THUMB)) * (X1 - X0)) / 15) * 15;
+    state.minutes = Math.min(X1, Math.max(X0, m));
+    apply();
+  };
+  svg.addEventListener("pointerdown", (e) => { stop(); svg.setPointerCapture(e.pointerId); fromChart(e); });
+  svg.addEventListener("pointermove", (e) => svg.hasPointerCapture(e.pointerId) && fromChart(e));
+  svg.addEventListener("pointerup", announce);
+
+  const play = document.querySelector("#play");
+  const playIcon = document.querySelector("#play-icon");
+  const playText = document.querySelector("#play-text");
+  let timer = null;
+  const setPlaying = (on) => {
+    playText.textContent = on ? "Pause" : "Play";
+    playIcon.setAttribute("d", on ? "M2 1 H5 V11 H2 Z M7 1 H10 V11 H7 Z" : "M2 1 L11 6 L2 11 Z");
+  };
+  function stop() { if (timer) { clearInterval(timer); timer = null; setPlaying(false); announce(); } }
+  play.addEventListener("click", () => {
+    if (timer) return stop();
+    if (state.minutes >= X1) state.minutes = X0 - 15;
+    // Each step is clamped to 5 h, and the timer starts only if there is a step left to take.
+    const step = () => { state.minutes = Math.min(X1, state.minutes + 15); apply(); return state.minutes < X1; };
+    if (!step()) return announce();
+    setPlaying(true);
+    timer = setInterval(() => { if (!step()) stop(); }, 450);
+  });
+
+  setTown("Salt Lake City");
+  announce();
+
+  // The map. Everything above works before it loads. All vector layers arrive already in Utah Albers,
+  // in whole metres, so the browser never reprojects them while it draws.
+  let readyResolve;
+  map.whenReady = new Promise((r) => (readyResolve = r));
+  const albersFiles = ["reach-by-count", "park-reach", "roads", "lakes", "rivers", "parks", "origins", "utah", "points"];
+  const albers = Object.fromEntries(await Promise.all(albersFiles.map((f) =>
+    fetch(`${DATA}day-13-${f}.json`).then((r) => { if (!r.ok) throw new Error(f); return r.json(); }).then((j) => [f, j]))));
+  await customElements.whenDefined("arcgis-map");
+  const load = (m) => $arcgis.import(`@arcgis/core/${m}.js`);
+  const [Map, FeatureLayer, Graphic, GraphicsLayer, MediaLayer, ImageElement, ExtentAndRotationGeoreference, Extent,
+    Polygon, Point, SpatialReference, reactiveUtils] = await Promise.all([
+    "Map", "layers/FeatureLayer", "Graphic", "layers/GraphicsLayer", "layers/MediaLayer", "layers/support/ImageElement",
+    "layers/support/ExtentAndRotationGeoreference", "geometry/Extent", "geometry/Polygon", "geometry/Point",
+    "geometry/SpatialReference", "core/reactiveUtils"].map(load));
+
+  // Albers centred on Utah, the same projection as the Day 4 map.
+  const sr = new SpatialReference({ wkt:
+    'PROJCS["Utah Albers (NAD83)",GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",' +
+    'SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],' +
+    'PROJECTION["Albers"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],' +
+    'PARAMETER["Central_Meridian",-111.5],PARAMETER["Standard_Parallel_1",37.5],' +
+    'PARAMETER["Standard_Parallel_2",41.5],PARAMETER["Latitude_Of_Origin",39.5],UNIT["Meter",1.0]]' });
+  const pt = ([px, py]) => new Point({ x: px, y: py, spatialReference: sr });
+  // The projection engine loads only when a reader shares a location or selects the map.
+  let projector = null;
+  const projection = async () => {
+    if (!projector) {
+      projector = await load("geometry/operators/projectOperator");
+      await projector.load();
+    }
+    return projector;
+  };
+
+  const FIELD = { minutes: "integer", at_least: "integer" };
+  const layerFrom = (name, props) => {
+    const { geometry, fields, rows: data } = albers[name];
+    const geom = (g) => (geometry === "polygon" ? { type: "polygon", rings: g, spatialReference: sr }
+      : geometry === "polyline" ? { type: "polyline", paths: g, spatialReference: sr } : { type: "point", x: g[0], y: g[1], spatialReference: sr });
+    return new FeatureLayer({
+      source: data.map((r, i) => new Graphic({
+        geometry: geom(r[fields.length]),
+        attributes: { oid: i + 1, ...Object.fromEntries(fields.map((f, j) => [f, r[j]])) },
+      })),
+      objectIdField: "oid",
+      fields: [{ name: "oid", type: "oid" }, ...fields.map((f) => ({ name: f, type: FIELD[f] ?? "string" }))],
+      geometryType: geometry,
+      spatialReference: sr,
+      popupEnabled: false,
+      outFields: ["*"],
+      ...props,
+    });
+  };
+  const fill = (color, outline) => ({ type: "simple-fill", color, outline });
+  const lineSym = (color, width, style = "solid") => ({ type: "simple-line", color, width, style });
+
+  const credit = "Drive times: ArcGIS Online Service Area (Esri), solved 2026-11-05";
+  const counts = layerFrom("reach-by-count", {
+    title: "Parks within reach",
+    copyright: credit,
+    orderBy: [{ field: "at_least", order: "descending" }],
+    visible: false,
+    renderer: {
+      type: "unique-value",
+      field: "at_least",
+      uniqueValueInfos: K.map((c, i) => ({ value: i + 1, label: `${i + 1}`, symbol: fill(c, { color: rgba(BG, 0.45), width: 0.6 }) })),
+    },
+  });
+  const bands = layerFrom("park-reach", {
+    title: "Drive time to one park",
+    copyright: credit,
+    visible: false,
+    orderBy: [{ field: "minutes", order: "ascending" }],
+    renderer: {
+      type: "unique-value",
+      valueExpression: "IIf($feature.minutes % 60 == 0, 'hour', 'quarter')",
+      uniqueValueInfos: [
+        { value: "hour", symbol: fill(K[2], { color: rgba(BG, 0.7), width: 1 }) },
+        { value: "quarter", symbol: fill(K[2], { color: rgba(BG, 0.25), width: 0.4 }) },
+      ],
+      visualVariables: [{ type: "color", field: "minutes", stops: nearRamp(PARKS[0]).map((color, i) => ({ value: 15 + (i * 285) / 4, color })) }],
+    },
+  });
+  const tintBands = (park) => {
+    const r = bands.renderer.clone();
+    r.visualVariables = [{ type: "color", field: "minutes", stops: nearRamp(park).map((color, i) => ({ value: 15 + (i * 285) / 4, color })) }];
+    bands.renderer = r;
+  };
+  // Day 4's hillshade on the Day 11 terrain, centred on 50% grey and soft-light blended over everything below.
+  const shade = new MediaLayer({
+    title: "Relief",
+    copyright: "USGS 3DEP",
+    blendMode: "soft-light",
+    opacity: 0.9,
+    source: [new ImageElement({
+      image: DATA + "day-13-relief-dark.jpg",
+      georeference: new ExtentAndRotationGeoreference({ extent: new Extent({ ...relief, spatialReference: sr }) }),
+    })],
+  });
+  const lakes = layerFrom("lakes", { title: "Lakes", copyright: "OpenStreetMap contributors", renderer: { type: "simple", symbol: fill("#16304a", { color: "#2c5a80", width: 0.6 }) } });
+  const rivers = layerFrom("rivers", { title: "Rivers", copyright: "OpenStreetMap contributors", renderer: { type: "simple", symbol: lineSym("#3d77a6", 0.9) } });
+  const parkShapes = layerFrom("parks", {
+    title: "National parks",
+    copyright: "NPS Land Resources Division",
+    renderer: {
+      type: "unique-value",
+      field: "park",
+      uniqueValueInfos: PARKS.map((k) => ({ value: k, symbol: fill(rgba(PARK_COLOR[k], 0.14), { color: PARK_COLOR[k], width: 1.3 }) })),
+    },
+  });
+  const roads = layerFrom("roads", {
+    title: "Roads",
+    copyright: "OpenStreetMap contributors",
+    orderBy: [{ valueExpression: "Decode($feature.cls, 'interstate', 3, 'us', 2, 1)", order: "ascending" }],
+    renderer: {
+      type: "unique-value",
+      field: "cls",
+      uniqueValueInfos: [
+        { value: "interstate", symbol: lineSym([220, 228, 236, 0.85], 1.4) },
+        { value: "us", symbol: lineSym([200, 208, 218, 0.6], 0.9) },
+        { value: "state", symbol: lineSym([170, 180, 190, 0.3], 0.5) },
+      ],
+    },
+  });
+  const utah = layerFrom("utah", { title: "Utah", copyright: "UGRC", renderer: { type: "simple", symbol: fill([0, 0, 0, 0], { color: [255, 255, 255, 0.55], width: 1, style: "dash" }) } });
+  const townPoint = Object.fromEntries(Object.entries(albers.points.towns).map(([n, xy]) => [n, pt(xy)]));
+  const towns = new GraphicsLayer({ title: "Towns" });
+  for (const name of LABELLED) {
+    if (!townPoint[name]) continue;
+    towns.add(new Graphic({
+      geometry: townPoint[name],
+      symbol: name === "Salt Lake City"
+        ? { type: "simple-marker", size: 7, color: BG, outline: { color: TEXT, width: 1.6 } }
+        : { type: "simple-marker", size: 4.5, color: TEXT, outline: { color: BG, width: 1 } },
+    }));
+  }
+  const fromLayer = new GraphicsLayer({ title: "Start" });
+  const originLayer = layerFrom("origins", {
+    title: "Visitor centers",
+    effect: "bloom(1.3, 0.6px, 0.1)",
+    renderer: {
+      type: "unique-value",
+      field: "park",
+      uniqueValueInfos: PARKS.map((k) => ({ value: k, symbol: { type: "simple-marker", size: 10, color: PARK_COLOR[k], outline: { color: BG, width: 2 } } })),
+    },
+  });
+
+  const xs = albers.utah.rows[0][0].flat(2).filter((_, i) => i % 2 === 0);
+  const ys = albers.utah.rows[0][0].flat(2).filter((_, i) => i % 2 === 1);
+  const extent = new Extent({ xmin: Math.min(...xs), ymin: Math.min(...ys), xmax: Math.max(...xs), ymax: Math.max(...ys), spatialReference: sr });
+  const home = () => extent.clone().expand(narrow() ? 1.32 : 1.06);
+  const page = Polygon.fromExtent(extent.clone().expand(5));
+
+  const slot = document.querySelector("#map-slot");
+  const sized = () => slot.clientWidth > 100 && slot.clientHeight > 100;
+  if (!sized()) await new Promise((resolve) => {
+    const watcher = new ResizeObserver(() => sized() && (watcher.disconnect(), resolve()));
+    watcher.observe(slot);
+  });
+  const el = document.createElement("arcgis-map");
+  el.setAttribute("aria-label", "Map of drive times from Utah to its five national parks");
+  el.innerHTML = '<arcgis-zoom slot="top-right"></arcgis-zoom><arcgis-home slot="top-right"></arcgis-home>';
+  el.spatialReference = sr;
+  el.extent = home();
+  el.map = new Map({ layers: [counts, bands, lakes, rivers, shade, parkShapes, roads, utah, towns, fromLayer, originLayer] });
+  slot.append(el);
+  await el.viewOnReady();
+  performance.mark("d13-view");
+  const view = el.view;
+  view.background = { color: BG };
+  view.constraints = { rotationEnabled: false, minScale: 20e6, maxScale: 20000, geometry: page };
+  const gap = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gap")) || 16;
+  // Keep Utah clear of the cards: the column on the right, the dock below, the key on the left.
+  const pad = () => {
+    if (narrow()) {
+      view.padding = { top: mapkey.open ? mapkey.offsetHeight + 8 : 0, right: 0, bottom: 0, left: 0 };
+      view.ui.padding = { top: 12, right: 12, bottom: 12, left: 12 };
+      return;
+    }
+    const g = gap();
+    const right = embedded ? 0 : document.querySelector(".from").offsetWidth + 2 * g;
+    const bottom = document.querySelector(".dock").offsetHeight + 2 * g;
+    const left = mapkey.open ? mapkey.offsetWidth + 2 * g : 0;
+    view.padding = { top: g, right, bottom, left };
+    view.ui.padding = { top: g, right, bottom, left: g };
+  };
+  pad();
+  el.querySelector("arcgis-home").viewpoint = { targetGeometry: home() };
+  let touched = false;
+  view.on(["drag", "mouse-wheel", "double-click", "key-down"], () => (touched = true));
+  el.querySelector("arcgis-zoom").addEventListener("click", () => (touched = true));
+  const fit = () => view.width > 100 && view.height > 100 && view.goTo(home(), { animate: false }).catch(() => {});
+  mapkey.addEventListener("toggle", () => { pad(); touched || fit(); });
+
+  // Labels and route numbers as HTML. Sizes are measured once; a greedy pass in priority order
+  // (parks, start, towns, routes) hides any label that would overlap one placed before it.
+  const PLACE = { Arches: [10, -12], Canyonlands: [10, 12], "Capitol Reef": [-10, -12, "end"], "Bryce Canyon": [10, 0], Zion: [10, 0] };
+  const labelsEl = document.querySelector("#labels");
+  const labelled = [];
+  const label = (html, cls, point, dx, dy, align, rank) => {
+    const e = document.createElement("span");
+    e.className = cls;
+    e.innerHTML = html;
+    labelsEl.append(e);
+    const l = { el: e, point, dx, dy, align, rank, w: 0, h: 0 };
+    labelled.push(l);
+    return l;
+  };
+  for (const [, park, xy] of albers.origins.rows) {
+    const [dx, dy, end] = PLACE[park];
+    const l = label(park, "park", pt(xy), dx, dy, end ? "end" : "start", 0);
+    l.el.style.color = mixHex(PARK_COLOR[park], "#ffffff", 0.35);
+    l.alts = [[-dx, dy, end ? "start" : "end"], [0, 16, "center"], [0, -16, "center"]];  // tried in turn when the first spot is taken
+  }
+  const fromTag = label("Start", "from", null, 0, 16, "center", 1);
+  for (const name of LABELLED) if (townPoint[name]) label(name, "town", townPoint[name], name === "Salt Lake City" ? 8 : 6, 0, "start", 2);
+  for (const [kind, num, px, py] of albers.points.shields) {
+    label(kind === "I" ? `I-${num}` : `US ${num}`, `route${kind === "I" ? " i" : ""}`, pt([px, py]), 0, 0, "center", 3);
+  }
+  labelled.sort((a, b) => a.rank - b.rank);
+  const measure = () => { for (const l of labelled) { l.w = l.el.offsetWidth; l.h = l.el.offsetHeight; } };
+  const place = () => {
+    const boxes = [];
+    const fits = (box) => box[0] >= 0 && box[2] <= view.width && box[1] >= 0 && box[3] <= view.height &&
+      !boxes.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1]);
+    for (const l of labelled) {
+      const p = l.point && view.toScreen(l.point);
+      if (!p) { l.el.hidden = true; continue; }
+      let spot = null;
+      for (const [dx, dy, align] of [[l.dx, l.dy, l.align], ...(l.alts ?? [])]) {
+        const left = Math.round(p.x + dx - (align === "end" ? l.w : align === "center" ? l.w / 2 : 0));
+        const top = Math.round(p.y + dy - l.h / 2);
+        const box = [left - 3, top - 3, left + l.w + 3, top + l.h + 3];
+        if (fits(box)) { spot = { left, top, box }; break; }
+      }
+      l.el.hidden = !spot;
+      if (!spot) continue;
+      boxes.push(spot.box);
+      l.el.style.transform = `translate(${spot.left}px, ${spot.top}px)`;
+    }
+  };
+  // Effects. Rings and the halo are HTML over the map, placed from the visitor center's map point.
+  const fxEl = document.querySelector("#fx");
+  const parkPt = Object.fromEntries(albers.origins.rows.map(([, park, xy]) => [park, pt(xy)]));
+  let halo = null;
+  map.ripple = (park, rings = 3, scale = 6, delay = 0) => {
+    if (calm.matches) return;
+    const p = view.toScreen(parkPt[park]);
+    if (!p) return;
+    for (let i = 0; i < rings; i++) {
+      const d = document.createElement("span");
+      d.className = "ring";
+      d.style.left = `${p.x}px`;
+      d.style.top = `${p.y}px`;
+      d.style.setProperty("--c", PARK_COLOR[park]);
+      d.style.setProperty("--s", scale);
+      d.style.animationDelay = `${delay + i * 200}ms`;
+      d.addEventListener("animationend", () => d.remove());
+      fxEl.append(d);
+    }
+  };
+  const placeHalo = () => {
+    if (!halo) return;
+    const p = view.toScreen(parkPt[halo.dataset.park]);
+    if (p) { halo.style.left = `${p.x}px`; halo.style.top = `${p.y}px`; }
+  };
+  map.select = (park) => {
+    halo?.remove();
+    halo = null;
+    // The chosen park's marker and boundary glow; the others dim.
+    const fx = park ? { filter: { where: `park = '${park}'` }, includedEffect: "bloom(2.2, 1px, 0)", excludedEffect: "opacity(35%)" } : null;
+    originLayer.featureEffect = fx;
+    parkShapes.featureEffect = fx && { ...fx, includedEffect: "bloom(1.4, 0.8px, 0) brightness(1.2)", excludedEffect: "opacity(40%)" };
+    if (park) {
+      halo = document.createElement("span");
+      halo.className = "pulse";
+      halo.dataset.park = park;
+      halo.style.setProperty("--c", PARK_COLOR[park]);
+      fxEl.append(halo);
+      placeHalo();
+      map.ripple(park, 3, 7);
+    } else {
+      PARKS.forEach((k, i) => map.ripple(k, 1, 5, i * 120));
+    }
+  };
+  // The reach grows outward from the park (or across Utah for all five) up to the slider's time.
+  let revealTimer = null;
+  map.stopReveal = () => { clearInterval(revealTimer); revealTimer = null; };
+  map.reveal = () => {
+    map.stopReveal();
+    if (calm.matches) return;
+    const target = state.minutes;
+    let t = X0;
+    const step = () => {
+      const where = state.park ? `park = '${state.park}' AND minutes <= ${t}` : `minutes = ${t}`;
+      (state.park ? map.lv.bands : map.lv.counts).filter = { where };
+      if (t >= target) return map.stopReveal();
+      t += 15;
+    };
+    step();
+    revealTimer = setInterval(step, 22);
+  };
+  measure();
+  reactiveUtils.watch(() => [view.extent?.xmin, view.extent?.ymax, view.scale, view.size.join()], () => { place(); placeHalo(); });
+  reactiveUtils.watch(() => view.size.join(), () => { pad(); touched || fit(); });
+  document.fonts.ready.then(() => { measure(); pad(); touched || fit(); place(); });
+  fit();
+
+  map.mark = async () => {
+    const p = state.from.point ?? townPoint[state.from.name] ?? (await projection()).execute(new Point({ longitude: state.from.ll[0], latitude: state.from.ll[1] }), sr);
+    fromLayer.removeAll();
+    fromLayer.add(new Graphic({ geometry: p, symbol: { type: "simple-marker", size: 11, color: BG, outline: { color: TEXT, width: 2.5 } } }));
+    fromTag.point = LABELLED.includes(state.from.name) ? null : p;
+    place();
+  };
+  map.timesAt = async (ll, point) => {
+    const p = point ?? (await projection()).execute(new Point({ longitude: ll[0], latitude: ll[1] }), sr);
+    const { features } = await bands.queryFeatures({ geometry: p, spatialRelationship: "intersects", outFields: ["park", "minutes"], returnGeometry: false });
+    const times = Object.fromEntries(PARKS.map((k) => [k, null]));
+    for (const f of features) {
+      const { park, minutes } = f.attributes;
+      if (times[park] === null || minutes < times[park]) times[park] = minutes;
+    }
+    return times;
+  };
+
+  // Select a park's visitor center to map that park. Select anywhere else to read the From card from there.
+  view.on("click", async (event) => {
+    const near16 = PARKS.find((k) => { const q = view.toScreen(parkPt[k]); return q && Math.hypot(q.x - event.x, q.y - event.y) < 16; });
+    const hit = near16 ? null : await view.hitTest(event, { include: [originLayer] });
+    const park = near16 ?? hit?.results[0]?.graphic.attributes.park;
+    if (park) return choose(state.park === park ? "" : park);
+    const p = event.mapPoint;
+    const near = Object.entries(townPoint).map(([n, q]) => [n, Math.hypot(q.x - p.x, q.y - p.y)]).sort((a, b) => a[1] - b[1])[0];
+    if (near[1] < 6000) return setTown(near[0]);
+    const ll = (await projection()).execute(p, new SpatialReference({ wkid: 4326 }));
+    setPlace([ll.x, ll.y], "Selected place", p);
+  });
+
+  const [lvCounts, lvBands] = await Promise.all([view.whenLayerView(counts), view.whenLayerView(bands)]);
+  performance.mark("d13-layers");
+  Object.assign(map, { counts, bands, lv: { counts: lvCounts, bands: lvBands }, ready: true });
+  readyResolve();
+  map.mark();
+  counts.visible = !state.park;
+  bands.visible = !!state.park;
+  apply();
+  reactiveUtils.when(() => !view.updating, () => {
+    loadingEl.hidden = true;
+    performance.mark("d13-drawn");
+    PARKS.forEach((k, i) => map.ripple(k, 1, 5, i * 150));
+  }, { once: true });
+  } catch (err) {
+    loadingEl.hidden = false;
+    loadingEl.textContent = "The map did not load. Reload the page.";
+    throw err;
+  }
+})();
+</script>
+</body>
+</html>

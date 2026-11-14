@@ -37,6 +37,8 @@ const ORDER = [
   "beneath-japan-one-prompt",
   "the-mighty-five-by-decibel",
   "a-field-guide-to-the-megawatt",
+  "utah-park-drive-times",
+  "zion-narrows-lidar",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",

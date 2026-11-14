@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Sat, 14 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>Reading First Light Off a DEM</title>
       <link>https://buschbrian.github.io/notes/white-rim-sunrise-skyline/</link>
@@ -183,6 +183,20 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/a-field-guide-to-the-megawatt/</guid>
       <description>48 Utah solar farms, each scaled to one megawatt at one ground scale. The median footprint is 5.9 acres of panels per MW AC.</description>
       <pubDate>Thu, 12 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Drive Times to Utah's Five National Parks</title>
+      <link>https://buschbrian.github.io/notes/utah-park-drive-times/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-park-drive-times/</guid>
+      <description>Drive times from every place in Utah to its five national parks. Within 4 h 30 min of driving, 63% of Utahns can reach all five.</description>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>The Zion Narrows in Lidar</title>
+      <link>https://buschbrian.github.io/notes/zion-narrows-lidar/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/zion-narrows-lidar/</guid>
+      <description>The Narrows of Zion National Park, drawn from USGS lidar points in Blender. A slot canyon that you walk in the river, as a Borgesian labyrinth.</description>
+      <pubDate>Sat, 14 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
