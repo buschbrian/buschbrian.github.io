@@ -34,6 +34,7 @@ const ORDER = [
   "western-reservoir-sources",
   "two-years-of-utah",
   "left-fork-light-and-dark",
+  "western-reservoir-absences",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
