@@ -56,7 +56,8 @@
       .kinds { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
       .kind { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 10px; width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); text-align: left; cursor: pointer; }
       .kind:hover { background: #f4f1ea; }
-      .kind[aria-pressed="false"] { opacity: 0.45; }
+      .kind[aria-pressed="false"] { border-style: dashed; background: transparent; color: var(--muted); }
+      .kind[aria-pressed="false"] img { opacity: 0.3; }
       .kind b { font-weight: 600; font-variant-numeric: tabular-nums; }
       .kind img { width: 24px; height: 24px; }
       .search { display: grid; gap: 6px; }
@@ -253,7 +254,7 @@
         function layer(title, keep, order) {
           return new FeatureLayer({
             title: title, copyright: "National Inventory of Dams (USACE), Western Water Dashboard", spatialReference: sr,
-            geometryType: "point", objectIdField: "oid", popupEnabled: false,
+            geometryType: "point", objectIdField: "oid", popupEnabled: false, outFields: ["*"],
             fields: [{ name: "oid", type: "oid" }, { name: "rid", type: "string" }, { name: "kind", type: "integer" },
               { name: "small", type: "integer" }, { name: "size_af", type: "double" }],
             source: rows.filter(keep).map(function (r, i) {

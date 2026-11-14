@@ -75,15 +75,15 @@
         </figure>
         <div class="post-content">
           <h2>A sequel to Day 15</h2>
-          <p>Day 15 counted 69 held back. Here they are, with 126 large reservoirs that have no finding yet.</p>
+          <p>Day 15 counted 69 held back. Here they are, with 122 large reservoirs that have no finding yet.</p>
           <p>The Western Water Dashboard shows how full the West's reservoirs are. A reservoir gets on its map only when a public source reports its storage and the record passes the dashboard's checks. This map looks at the other side: the large reservoirs that are not on the dashboard, and the reason for each.</p>
           <h2>151 of 497</h2>
           <p>The National Inventory of Dams lists 497 reservoirs of 10,000 acre-feet (12.3 million m³) or more in the dashboard's five water regions. The dashboard shows 346 of them. The other 151 fall into four kinds of absence:</p>
           <ul>
-            <li><strong>Reviewed, held back: 25.</strong> The dashboard reviewed a record and wrote down why it does not show it. 23 are held back, 1 is retired and 1 is withdrawn.</li>
-            <li><strong>Feed, not reviewed: 2.</strong> A source publishes storage, but the dashboard has no finding yet. Pinecrest Lake, on California's CDEC, is one. Priest Lake, on NRCS, is the other.</li>
+            <li><strong>Reviewed, held back: 29.</strong> The dashboard reviewed a record and wrote down why it does not show it. 23 are held back, 1 is retired and 1 is withdrawn. For 4 more, the finding is in the dashboard's own audit notes: Priest Lake, Crane Creek, Silver Lake in Montana and Olivenhain.</li>
+            <li><strong>Feed, not reviewed: 1.</strong> A source publishes storage, but the dashboard has no finding yet. It is Pinecrest Lake, which California's CDEC reports every day.</li>
             <li><strong>Level, not volume: 8.</strong> A source publishes the water level, but not the volume. Lake Washington, Lake Billy Chinook and C.J. Strike are examples. A volume needs a reviewed table that converts level to storage.</li>
-            <li><strong>No storage series found: 116.</strong> None of six sources that the dashboard already reads lists a storage series for the reservoir.</li>
+            <li><strong>No storage series found: 113.</strong> None of six sources that the dashboard already reads lists a storage series for the reservoir.</li>
           </ul>
           <p>The 151 reservoirs hold about 10.9 million acre-feet in the dam inventory. The 497 hold about 179.4 million. These totals mix storage bases, so they show size, not a share of water.</p>
           <h2>Where the 69 held-back records are</h2>
@@ -118,7 +118,7 @@
           </ul>
           <h2>Inside the scripts</h2>
           <p>Four Python scripts build the map from the dashboard's own files at one commit. They read the files with <code>git show</code>, so every count comes from code, not from a note. The scripts pass the default checks of the ruff linter and use its code format. The excerpt below is trimmed. A <code># ...</code> line marks a cut.</p>
-          <p>Each reservoir takes its kind from the first rule that applies. The dashboard's own status comes first. A short table of hand searches, each with its source, comes next. Then comes a current storage series from the catalog check. Everything else has no storage series found.</p>
+          <p>Each reservoir takes its kind from the first rule that applies. The dashboard's own status comes first, then a finding in the dashboard's own audit notes. A short table of hand searches, each with its source, comes next. Then comes a current storage series from the catalog check. Everything else has no storage series found.</p>
           <figure class="code-excerpt">
             <pre tabindex="0"><code>for u in universe:
     nid, status = u["nid_id"], u["status"]
@@ -127,6 +127,12 @@
     elif status in REVIEWED:
         kind = "reviewed, held back"
         # ...
+    elif nid in DOC_REVIEWED:
+        kind, why, status = (
+            "reviewed, held back",
+            DOC_REVIEWED[nid],
+            "audit finding",
+        )
     elif nid in HAND:
         kind, why = HAND[nid]
     elif nid in feeds:
