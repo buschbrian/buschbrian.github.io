@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>Reading First Light Off a DEM</title>
       <link>https://buschbrian.github.io/notes/white-rim-sunrise-skyline/</link>
@@ -197,6 +197,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/zion-narrows-lidar/</guid>
       <description>The Narrows of Zion National Park, drawn from USGS lidar points in Blender. A slot canyon that you walk in the river, as a Borgesian labyrinth.</description>
       <pubDate>Sat, 14 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Who Measures the West's Reservoirs?</title>
+      <link>https://buschbrian.github.io/notes/western-reservoir-sources/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/western-reservoir-sources/</guid>
+      <description>Nine public sources report the storage of 408 reservoirs in 11 western states. Select a source to light its reservoirs on a 3D map.</description>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>

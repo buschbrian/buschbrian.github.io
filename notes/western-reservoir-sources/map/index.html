@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Select a source to light its reservoirs on the map. Nine public sources report 408 reservoirs in 11 western states.">
+    <meta name="theme-color" content="#0b0e13">
+    <title>Day 15 · Inside out — Who measures the West's reservoirs?</title>
+    <script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..800&display=swap">
+    <style>
+      :root {
+        --bg: #0b0e13;
+        --card: rgba(16, 20, 27, 0.92);
+        --line: rgba(255, 255, 255, 0.1);
+        --text: #e8ecf1;
+        --muted: #8d97a5;
+        --font: "Mona Sans", system-ui, sans-serif;
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+      a { color: inherit; }
+      button { font: inherit; color: inherit; }
+      :focus-visible { outline: 2px solid #f2d15c; outline-offset: 2px; }
+      .app { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 24px; max-width: 1280px; margin: 0 auto; padding: 24px 16px; }
+      .head { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+      .head h1 { margin: 0; font-size: 28px; font-stretch: 75%; font-weight: 600; line-height: 1.1; }
+      .head p { margin: 0; color: var(--muted); }
+      .stage { position: relative; margin: 0; align-self: start; max-height: calc(100vh - 120px); aspect-ratio: 4 / 5; background: #0d1116; container-type: inline-size; }
+      .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.25s ease; }
+      .stage img.hidden { opacity: 0; }
+      .tag { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; padding: 0; border: 0; border-radius: 6px; background: transparent; color: #10161b; font-weight: 600; font-stretch: 75%; cursor: pointer; line-height: 1.05; text-align: center; }
+      .tag span { font-size: 2.1cqw; }
+      .tag[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
+      .side { display: grid; gap: 16px; align-content: start; }
+      .group h2 { margin: 0 0 8px; font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+      .list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+      .pick { display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 10px; width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: transparent; text-align: left; cursor: pointer; }
+      .pick:hover { background: rgba(255, 255, 255, 0.05); }
+      .pick[aria-pressed="true"] { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.35); }
+      .swatch { width: 14px; height: 14px; border-radius: 3px; }
+      .pick b { font-weight: 600; font-variant-numeric: tabular-nums; }
+      .card { padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+      .card h2 { margin: 0 0 4px; font-size: 20px; font-stretch: 75%; font-weight: 600; }
+      .card p { margin: 0 0 12px; }
+      .card .big { font-size: 40px; line-height: 1; font-weight: 600; font-stretch: 75%; font-variant-numeric: tabular-nums; }
+      .card .sub { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+      .bars { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 13px; }
+      .bars li { display: grid; grid-template-columns: 28px 1fr 28px; align-items: center; gap: 8px; }
+      .bars i { display: block; height: 8px; border-radius: 2px; background: var(--bar, #c8d0d4); }
+      .bars em { font-style: normal; text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+      .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+      .mode { padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: transparent; cursor: pointer; font-weight: 600; }
+      .mode:hover { background: rgba(255, 255, 255, 0.05); }
+      .mode[aria-pressed="true"] { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.4); }
+      [hidden] { display: none !important; }
+      .clear { justify-self: start; padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px; background: transparent; cursor: pointer; }
+      .clear:hover { background: rgba(255, 255, 255, 0.05); }
+      .note { margin: 0; color: var(--muted); font-size: 13px; }
+      .embed .head { display: none; }
+      .embed .app { padding: 8px; }
+      @media (max-width: 860px) {
+        .app { grid-template-columns: minmax(0, 1fr); }
+        .stage { max-height: none; }
+      }
+      @media (min-width: 600px) and (max-width: 860px) {
+        .embed .app { grid-template-columns: minmax(0, 1fr) 280px; gap: 16px; }
+      }
+      @media (prefers-reduced-motion: reduce) { .stage img { transition: none; } }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="head">
+        <h1>Who measures the West's reservoirs?</h1>
+        <p>30 Day Map Challenge 2026, Day 15: Inside out</p>
+      </header>
+      <figure class="stage" id="stage" data-stage>
+        <img id="img-a" alt="" src="/assets/images/day-15-lit-all.webp" width="1440" height="1800">
+        <img id="img-b" class="hidden" alt="" src="/assets/images/day-15-lit-all.webp" width="1440" height="1800">
+      </figure>
+      <div class="side">
+        <div class="modes" role="group" aria-label="Map view">
+          <button class="mode" type="button" data-mode="sources" aria-pressed="true">Reservoir sources</button>
+          <button class="mode" type="button" data-mode="snotel" aria-pressed="false">SNOTEL stations</button>
+        </div>
+        <div class="card" id="card" aria-live="polite"></div>
+        <div class="group" data-for="sources"><h2 id="h-fed">Federal sources</h2><ul class="list" id="fed" aria-labelledby="h-fed"></ul></div>
+        <div class="group" data-for="sources"><h2 id="h-state">State and local sources</h2><ul class="list" id="state" aria-labelledby="h-state"></ul></div>
+        <div class="group" data-for="snotel" hidden><h2 id="h-snotel">What a station measures</h2><ul class="list" id="snotel" aria-labelledby="h-snotel"></ul></div>
+        <button class="clear" type="button" id="clear">Show all sources</button>
+        <p class="note" id="note-snotel" hidden>NRCS SNOTEL stations report snow, precipitation and soil moisture. The dashboard draws them as three streams. This view merges them, with one pin for each of the 636 stations that have coordinates. <a href="/notes/western-reservoir-sources/">Read the article</a>.</p>
+        <p class="note" id="note">Each image is a Blender render of the same scene. Dams are sized by capacity. States are pulled apart, and only their western drainages are drawn. <a href="/notes/western-reservoir-sources/">Read the article</a>.</p>
+      </div>
+    </main>
+    <script>
+      (function () {
+        "use strict";
+        var base = "/assets/images/day-15-lit-", snotelBase = "/assets/images/day-15-snotel-", mode = "sources";
+        var data, current = "all", front = document.getElementById("img-a"), back = document.getElementById("img-b");
+        var card = document.getElementById("card");
+
+        function el(tag, attrs, text) {
+          var node = document.createElement(tag);
+          Object.keys(attrs || {}).forEach(function (k) { node.setAttribute(k, attrs[k]); });
+          if (text !== undefined) node.textContent = text;
+          return node;
+        }
+
+        function show(key) {
+          current = key;
+          var next = back;
+          next.onload = function () {
+            next.classList.remove("hidden");
+            front.classList.add("hidden");
+            back = front;
+            front = next;
+          };
+          next.src = (mode === "sources" ? base : snotelBase) + key + ".webp";
+          document.querySelectorAll("[data-key]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.key === key)); });
+          document.querySelectorAll("[data-view]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.view === key)); });
+          if (mode === "sources") fill(key); else fillSnotel(key);
+        }
+
+        var ITEMS = { all: ["All stations", "stations", "Every station reports snow."], precipitation: ["Precipitation", "precipitation", ""], soil: ["Soil moisture", "soil", ""] };
+
+        function fillSnotel(view) {
+          card.replaceChildren();
+          var sn = data.snotel, names = Object.keys(sn.by_state);
+          var field = ITEMS[view][1], count = view === "all" ? sn.total : sn.counts[field];
+          var rows = names.map(function (n) { return [n, sn.by_state[n][field]]; }).filter(function (r) { return r[1] > 0; })
+            .sort(function (a, b) { return b[1] - a[1]; });
+          card.append(el("h2", {}, ITEMS[view][0]), el("div", { "class": "big" }, String(count)),
+            el("div", { "class": "sub" }, view === "all" ? "SNOTEL stations on the map" : "stations report " + ITEMS[view][0].toLowerCase()));
+          if (view === "all") {
+            card.append(el("p", {}, "Every station reports snow. " + sn.counts.precipitation + " also report precipitation. " + sn.counts.soil +
+              " also report soil moisture. " + sn.all_three + " report all three. A pin's height is the number of items the station reports."));
+          } else {
+            var without = names.filter(function (n) { return sn.by_state[n][field] < sn.by_state[n].stations; })
+              .map(function (n) { return n + " " + (sn.by_state[n].stations - sn.by_state[n][field]); });
+            card.append(el("p", {}, sn.total - count + " of " + sn.total + " stations do not report this. " + (without.length ? "By state: " + without.join(", ") + "." : "")));
+          }
+          var top = rows[0][1], bars = el("ul", { "class": "bars", "aria-label": "Stations by state" });
+          rows.forEach(function (x) {
+            var li = el("li"), bar = el("i"), cell = el("span");
+            bar.style.width = (100 * x[1] / top) + "%";
+            bar.style.setProperty("--bar", "#6fd0c4");
+            cell.append(bar);
+            li.append(el("span", {}, x[0]), cell, el("em", {}, String(x[1])));
+            bars.append(li);
+          });
+          card.append(bars);
+        }
+
+        function setMode(next) {
+          mode = next;
+          document.querySelectorAll("[data-mode]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.mode === mode)); });
+          document.querySelectorAll("[data-for]").forEach(function (g) { g.hidden = g.dataset.for !== mode; });
+          document.querySelectorAll(".tag").forEach(function (t) { t.hidden = mode !== "sources"; });
+          document.getElementById("clear").textContent = mode === "sources" ? "Show all sources" : "Show all stations";
+          document.getElementById("note").hidden = mode !== "sources";
+          document.getElementById("note-snotel").hidden = mode !== "snotel";
+          current = "all";
+          show("all");
+        }
+
+        function fill(key) {
+          card.replaceChildren();
+          if (key === "all") {
+            card.append(el("h2", {}, "All nine sources"), el("div", { "class": "big" }, String(data.total)),
+              el("div", { "class": "sub" }, "reservoirs on the map, read " + data.read));
+            card.append(el("p", {}, "Select a source to light its reservoirs. The others turn gray."));
+            card.append(el("div", { "class": "sub" }, "Left off the map"));
+            var list = el("ul", { "class": "bars" });
+            var rows = Object.entries(data.left_off).sort(function (a, b) { return b[1] - a[1]; });
+            rows.forEach(function (r) {
+              var li = el("li");
+              li.append(el("em", {}, String(r[1])), el("span", {}, r[0]), el("span"));
+              list.append(li);
+            });
+            card.append(list);
+            return;
+          }
+          var s = data.sources.find(function (x) { return x.key === key; });
+          card.append(el("h2", {}, s.name), el("div", { "class": "big" }, String(s.count)),
+            el("div", { "class": "sub" }, s.count === 1 ? "reservoir on the map" : "reservoirs on the map"), el("p", {}, s.why));
+          var extra = [];
+          if (s.held_back) extra.push(s.held_back + " held back");
+          if (s.already_published) extra.push(s.already_published + " already published by another source");
+          if (extra.length) card.append(el("div", { "class": "sub" }, extra.join(". ") + "."));
+          var states = Object.entries(s.states), top = Math.max.apply(null, states.map(function (x) { return x[1]; }));
+          var bars = el("ul", { "class": "bars", "aria-label": "Reservoirs by state" });
+          states.forEach(function (x) {
+            var li = el("li"), bar = el("i");
+            bar.style.width = (100 * x[1] / top) + "%";
+            bar.style.setProperty("--bar", s.color);
+            var cell = el("span");
+            cell.append(bar);
+            li.append(el("span", {}, x[0]), cell, el("em", {}, String(x[1])));
+            bars.append(li);
+          });
+          card.append(bars);
+        }
+
+        function pick(s) {
+          var li = el("li"), b = el("button", { "class": "pick", type: "button", "aria-pressed": "false", "data-key": s.key });
+          var sw = el("span", { "class": "swatch", "aria-hidden": "true" });
+          sw.style.background = s.color;
+          b.append(sw, el("span", {}, s.name), el("b", {}, String(s.count)));
+          b.addEventListener("click", function () { show(current === s.key ? "all" : s.key); });
+          li.append(b);
+          return li;
+        }
+
+        fetch("/assets/data/day-15-sources.json").then(function (r) { return r.json(); }).then(function (d) {
+          data = d;
+          var fed = document.getElementById("fed"), state = document.getElementById("state"), stage = document.getElementById("stage");
+          d.sources.forEach(function (s) { (s.kind === "federal" ? fed : state).append(pick(s)); });
+          d.sources.filter(function (s) { return d.plaques[s.key]; }).forEach(function (s) {
+            var p = d.plaques[s.key];
+            var t = el("button", { "class": "tag", type: "button", "aria-pressed": "false", "data-key": s.key, "aria-label": "Light " + s.name });
+            t.style.cssText = "left:" + (100 * p.x) + "%;top:" + (100 * p.y) + "%;width:" + (100 * p.w) + "%;height:" + (100 * p.h) + "%";
+            t.append(el("span", {}, s.name));
+            t.addEventListener("click", function () { show(current === s.key ? "all" : s.key); });
+            stage.append(t);
+          });
+          var snotel = document.getElementById("snotel");
+          Object.keys(ITEMS).forEach(function (view) {
+            var count = view === "all" ? d.snotel.total : d.snotel.counts[ITEMS[view][1]];
+            var li = el("li"), b = el("button", { "class": "pick", type: "button", "aria-pressed": "false", "data-view": view });
+            var sw = el("span", { "class": "swatch", "aria-hidden": "true" });
+            sw.style.background = "#6fd0c4";
+            b.append(sw, el("span", {}, view === "all" ? "All stations" : "Also " + ITEMS[view][0].toLowerCase()), el("b", {}, String(count)));
+            b.addEventListener("click", function () { show(current === view ? "all" : view); });
+            li.append(b);
+            snotel.append(li);
+          });
+          document.querySelectorAll("[data-mode]").forEach(function (b) { b.addEventListener("click", function () { setMode(b.dataset.mode); }); });
+          document.getElementById("clear").addEventListener("click", function () { show("all"); });
+          fill("all");
+          d.sources.forEach(function (s) { new Image().src = base + s.key + ".webp"; });
+          Object.keys(ITEMS).forEach(function (view) { new Image().src = snotelBase + view + ".webp"; });
+        });
+      })();
+    </script>
+  </body>
+</html>
