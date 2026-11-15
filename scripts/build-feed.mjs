@@ -39,6 +39,7 @@ const ORDER = [
   "a-field-guide-to-the-megawatt",
   "utah-park-drive-times",
   "zion-narrows-lidar",
+  "western-reservoir-sources",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
