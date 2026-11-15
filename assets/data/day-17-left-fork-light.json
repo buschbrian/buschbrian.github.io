@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-12",
+  "time_zone": "MST (UTC-7)",
+  "legs": {
+    "walk_in": {
+      "start_mst": "08:49",
+      "end_mst": "11:49",
+      "from_mi": 0.9,
+      "to_mi": 3.46,
+      "minutes": 180,
+      "model_sun_minutes_eye_1_7_m": 0,
+      "model_sun_minutes_feet_0_1_m": 0
+    },
+    "at_the_subway": {
+      "start_mst": "11:49",
+      "end_mst": "12:30",
+      "from_mi": 3.46,
+      "to_mi": 3.42,
+      "minutes": 41,
+      "model_sun_minutes_eye_1_7_m": 0,
+      "model_sun_minutes_feet_0_1_m": 0
+    },
+    "walk_out": {
+      "start_mst": "12:30",
+      "end_mst": "14:48",
+      "from_mi": 3.42,
+      "to_mi": 0.82,
+      "minutes": 138,
+      "model_sun_minutes_eye_1_7_m": 68,
+      "model_sun_minutes_feet_0_1_m": 54
+    }
+  },
+  "farthest_mi": 3.46,
+  "camera_frames": {
+    "total": 181,
+    "by_camera": {
+      "Sony a7 III": 130,
+      "GoPro HERO13": 51
+    },
+    "first_mst": "10:00",
+    "last_mst": "12:59",
+    "classified_shade": 181
+  },
+  "walk_out_check": {
+    "frames": 65,
+    "scored": 58,
+    "agree": 51,
+    "within": 7,
+    "disagree": 0,
+    "method": "iPhone video frames classified sun or shade blind, then joined to the model at eye height",
+    "tolerance": "same state within +-10 min and +-0.1 mi, set before any walk-out frame was seen"
+  },
+  "sun_peak": {
+    "elevation_deg": 34.86,
+    "mst": "12:15"
+  },
+  "model": {
+    "terrain": "USGS 3DEP 3 m DEM, 30 m DEM beyond its edge",
+    "creek_line": "USGS NHD, Left Fork North Creek, points every 25 m",
+    "eye_height_m": 1.7,
+    "time_step_min": 5,
+    "map_grid_m": 6,
+    "rule": "sunlit when the apparent sun center is above the highest terrain angle toward the sun"
+  }
+}
