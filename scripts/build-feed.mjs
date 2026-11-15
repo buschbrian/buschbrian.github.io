@@ -45,6 +45,7 @@ const ORDER = [
   "western-reservoir-absences",
   "grand-staircase-scent-strata",
   "forty-years-of-ground",
+  "utah-ski-runs-rated-and-measured",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
