@@ -101,12 +101,10 @@
           <h2>Most runs face north</h2>
           <p>OpenStreetMap has 719 miles (1,157 km) of downhill line at the 14 resorts. About 58 percent of that length faces northwest, north or northeast. About 17 percent faces southeast, south or southwest.</p>
           <p>Each plate has a compass rose for its resort. A longer wedge means that more of the run length faces that direction.</p>
+          <h2>The 14 plates, north to south</h2>
+          <p>Each plate has the same parts. Select a plate to see it at full size.</p>
         </div>
         <section class="post-gallery post-gallery-portrait" aria-label="Resort plates">
-          <div class="post-gallery-intro">
-            <h2>The 14 plates, north to south</h2>
-            <p>Each plate has the same parts. Select a plate to see it at full size.</p>
-          </div>
           <div class="post-gallery-grid">
             <figure>
               <picture><source type="image/webp" srcset="/assets/images/r/utah-ski-runs-beaver-mountain-480.webp 480w, /assets/images/r/utah-ski-runs-beaver-mountain-960.webp 960w, /assets/images/r/utah-ski-runs-beaver-mountain-1600.webp 1600w" sizes="(max-width: 640px) 100vw, 448px"><img src="/assets/images/utah-ski-runs-beaver-mountain.jpg" alt="Plate titled Beaver Mountain. A map shows the ski runs and lifts of Beaver Mountain on shaded winter terrain. Runs are green, blue, black and red lines by rating, and lifts are gold lines with names. A label marks Robinson&#x27;s Rim at 30 degrees at its steepest. A chart at the right places 52 runs by steepest pitch: 14 green, 13 blue, 19 black and 6 double black. A compass rose shows that 35 percent of the run length faces northeast, the largest share. The lifts go from 7,154 to 8,761 ft (2,180 to 2,670 m)." width="2160" height="2700" loading="lazy"></picture>
@@ -225,10 +223,10 @@
           <h2>Method</h2>
           <ul>
             <li>The runs, lifts, ratings, resort areas and peaks come from OpenStreetMap. I used the Geofabrik extract for Utah of November 2, 2026, and read it with GDAL.</li>
-            <li>A resort is a winter sports area in OpenStreetMap. The set has 14 resorts. Woodward Park City is not in the set, because only two of its runs pass the rule below.</li>
+            <li>I chose 14 resorts. Each one is a winter sports area in OpenStreetMap. Woodward Park City is not in the set, because only two of its runs pass the rule below.</li>
             <li>A run is all the mapped lines at one resort that have the same name and rating. A line that has no name is a run by itself. The set has 1,533 runs with names and 75 lines without names.</li>
             <li>OpenStreetMap has more rating values than four. Novice and easy are green here. Intermediate is blue. Advanced is black. Expert, freeride and extreme are double black.</li>
-            <li>A run must be at least 500 feet (152 m) long and must drop at least 100 feet (30 m). This rule removes flat trails that connect other runs. The rule and the ratings remove 316 of 1,924 runs: 173 are too short, 71 drop too little, 56 are closed outlines and 16 have no rating.</li>
+            <li>A run must be at least 500 feet (152 m) long and must drop at least 100 feet (30 m). This rule removes flat trails that connect other runs. The rule and the ratings remove 316 of 1,924 runs: 229 are too short, 71 drop too little and 16 have no rating.</li>
             <li>The elevation is from the USGS 3D Elevation Program, on a 5 m (16 ft) grid in UTM zone 12 north.</li>
             <li>The terrain uses a multidirectional hillshade with winter colors, after the relief methods of Eduard Imhof and John Nelson. Shadows are blue-violet and sunlit slopes are cream.</li>
             <li>The run colors are multiplied into the terrain, so the shading shows through the lines. The lifts are drawn on top.</li>
@@ -243,7 +241,7 @@
             <li>The ratings are a record of each resort's signs by volunteer mappers. Some ratings can be old or wrong.</li>
             <li>The counts of runs and lifts are the mapped counts. They are different from the counts that the resorts publish.</li>
             <li>I did not compare the measured angles with published slope angles. The highest value is 48.9° for Mt. Ogden Chute at Snowbasin.</li>
-            <li>Eagle Point is closed for the 2026 to 2027 winter after the Cottonwood Fire. Its plate shows the runs and lifts as mapped before the closure.</li>
+            <li>Eagle Point is closed for the 2026 to 2027 winter after the Cottonwood Fire. Its plate shows the runs and lifts that OpenStreetMap had on November 2, 2026.</li>
             <li>The green and the red lines can look alike to a person with red-green color blindness. The charts also use a different shape for green, blue and black.</li>
           </ul>
           <h2>Data and credit</h2>
