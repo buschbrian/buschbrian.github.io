@@ -36,6 +36,7 @@ const ORDER = [
   "left-fork-light-and-dark",
   "western-reservoir-absences",
   "grand-staircase-scent-strata",
+  "forty-years-of-ground",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
