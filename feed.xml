@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Sat, 21 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>Reading First Light Off a DEM</title>
       <link>https://buschbrian.github.io/notes/white-rim-sunrise-skyline/</link>
@@ -204,6 +204,48 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/western-reservoir-sources/</guid>
       <description>Nine public sources report the storage of 424 reservoirs in 11 western states. Select a source to light its reservoirs on a 3D map.</description>
       <pubDate>Sun, 15 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>2 Years of Utah in 136 Photographs</title>
+      <link>https://buschbrian.github.io/notes/two-years-of-utah/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/two-years-of-utah/</guid>
+      <description>A Reel of 136 edited Dust &amp; Starlight photographs landing on a map of Utah in the order of their capture dates. The Reel shows 24 in full.</description>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Sun and Shade on the Walk to the Subway</title>
+      <link>https://buschbrian.github.io/notes/left-fork-light-and-dark/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/left-fork-light-and-dark/</guid>
+      <description>A terrain model of direct sun in the Left Fork of North Creek, Zion National Park, with a GPS track from a hike to the Subway on November 12, 2026.</description>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>The Reservoirs the Dashboard Does Not Show</title>
+      <link>https://buschbrian.github.io/notes/western-reservoir-absences/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/western-reservoir-absences/</guid>
+      <description>151 of 497 reservoirs of 10,000 acre-feet or more in five western water regions are not on the Western Water Dashboard. A map sorts them by kind of absence.</description>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Scent Strata</title>
+      <link>https://buschbrian.github.io/notes/grand-staircase-scent-strata/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/grand-staircase-scent-strata/</guid>
+      <description>Twelve plant communities of Utah's five national parks on one elevation scale, each with its published smell, under a 3D block of the Grand Staircase colored by plant community.</description>
+      <pubDate>Thu, 19 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Forty Years of Ground</title>
+      <link>https://buschbrian.github.io/notes/forty-years-of-ground/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/forty-years-of-ground/</guid>
+      <description>Utah's land cover in 1,023 hexagons, 10 miles across, each raised to its mean elevation, with close-ups of six hexagons from 1985 to 2025.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Utah Ski Runs, Rated and Measured</title>
+      <link>https://buschbrian.github.io/notes/utah-ski-runs-rated-and-measured/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-ski-runs-rated-and-measured/</guid>
+      <description>One plate for each of 14 Utah ski resorts, from OpenStreetMap's runs and lifts, with each run measured at its steepest 330 feet on USGS elevation.</description>
+      <pubDate>Sat, 21 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
