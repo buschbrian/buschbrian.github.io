@@ -30,9 +30,10 @@
       .head { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
       .head h1 { margin: 0; font-size: 28px; font-stretch: 75%; font-weight: 600; line-height: 1.1; }
       .head p { margin: 0; color: var(--muted); }
-      .stage { position: relative; margin: 0; align-self: start; max-height: calc(100vh - 120px); aspect-ratio: 4 / 5; background: #0d1116; container-type: inline-size; }
-      .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.25s ease; }
-      .stage img.hidden { opacity: 0; }
+      .stage { position: relative; margin: 0; align-self: start; justify-self: center; width: min(100%, calc((100vh - 120px) * 1.04)); aspect-ratio: 26 / 25; overflow: hidden; background: #0d1116; }
+      .view { position: absolute; left: -5.556%; top: -20.22%; width: 111.11%; aspect-ratio: 4 / 5; container-type: inline-size; }
+      .view img { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity 0.25s ease; }
+      .view img.hidden { opacity: 0; }
       .tag { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; padding: 0; border: 0; border-radius: 6px; background: transparent; color: #10161b; font-weight: 600; font-stretch: 75%; cursor: pointer; line-height: 1.05; text-align: center; }
       .tag span { font-size: 2.1cqw; }
       .tag[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
@@ -61,16 +62,30 @@
       .clear { justify-self: start; padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px; background: transparent; cursor: pointer; }
       .clear:hover { background: rgba(255, 255, 255, 0.05); }
       .note { margin: 0; color: var(--muted); font-size: 13px; }
-      .embed .head { display: none; }
-      .embed .app { padding: 8px; }
       @media (max-width: 860px) {
         .app { grid-template-columns: minmax(0, 1fr); }
-        .stage { max-height: none; }
+        .stage { width: 100%; }
       }
-      @media (min-width: 600px) and (max-width: 860px) {
-        .embed .app { grid-template-columns: minmax(0, 1fr) 280px; gap: 16px; }
+      .embed .head, .embed .modes, .embed .note { display: none; }
+      .embed .app { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 8px; }
+      .embed .stage { width: 100%; aspect-ratio: 72 / 65; }
+      .embed .view { top: -21.54%; }
+      .embed .side { display: contents; }
+      .embed .card { order: 1; }
+      .embed .group h2 { margin-bottom: 6px; }
+      .embed .list { gap: 4px; }
+      .embed .pick { padding: 5px 10px; font-size: 13px; }
+      .embed .clear { align-self: start; font-size: 13px; }
+      @media (min-width: 600px) {
+        .embed .app { grid-template-columns: minmax(0, 1fr) 240px; grid-template-rows: auto auto 1fr; }
+        .embed .stage { grid-row: 1 / span 3; }
+        .embed .card { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 24px; align-items: start; min-height: 284px; }
       }
-      @media (prefers-reduced-motion: reduce) { .stage img { transition: none; } }
+      @media (min-width: 800px) {
+        .embed .list { gap: 6px; }
+        .embed .pick { padding: 8px 12px; font-size: 15px; }
+      }
+      @media (prefers-reduced-motion: reduce) { .view img { transition: none; } }
     </style>
   </head>
   <body>
@@ -80,8 +95,10 @@
         <p>30 Day Map Challenge 2026, Day 15: Inside out</p>
       </header>
       <figure class="stage" id="stage" data-stage>
-        <img id="img-a" alt="" src="/assets/images/day-15-lit-all.webp" width="1440" height="1800">
-        <img id="img-b" class="hidden" alt="" src="/assets/images/day-15-lit-all.webp" width="1440" height="1800">
+        <div class="view" id="view">
+          <img id="img-a" alt="" src="/assets/images/day-15-lit-all.webp" width="1440" height="1800">
+          <img id="img-b" class="hidden" alt="" src="/assets/images/day-15-lit-all.webp" width="1440" height="1800">
+        </div>
       </figure>
       <div class="side">
         <div class="modes" role="group" aria-label="Map view">
@@ -129,20 +146,21 @@
         var ITEMS = { all: ["All stations", "stations", "Every station reports snow."], precipitation: ["Precipitation", "precipitation", ""], soil: ["Soil moisture", "soil", ""] };
 
         function fillSnotel(view) {
-          card.replaceChildren();
+          var text = el("div"), detail = el("div");
+          card.replaceChildren(text, detail);
           var sn = data.snotel, names = Object.keys(sn.by_state);
           var field = ITEMS[view][1], count = view === "all" ? sn.total : sn.counts[field];
           var rows = names.map(function (n) { return [n, sn.by_state[n][field]]; }).filter(function (r) { return r[1] > 0; })
             .sort(function (a, b) { return b[1] - a[1]; });
-          card.append(el("h2", {}, ITEMS[view][0]), el("div", { "class": "big" }, String(count)),
+          text.append(el("h2", {}, ITEMS[view][0]), el("div", { "class": "big" }, String(count)),
             el("div", { "class": "sub" }, view === "all" ? "SNOTEL stations on the map" : "stations report " + ITEMS[view][0].toLowerCase()));
           if (view === "all") {
-            card.append(el("p", {}, "Every station reports snow. " + sn.counts.precipitation + " also report precipitation. " + sn.counts.soil +
+            text.append(el("p", {}, "Every station reports snow. " + sn.counts.precipitation + " also report precipitation. " + sn.counts.soil +
               " also report soil moisture. " + sn.all_three + " report all three. A pin's height is the number of items the station reports."));
           } else {
             var without = names.filter(function (n) { return sn.by_state[n][field] < sn.by_state[n].stations; })
               .map(function (n) { return n + " " + (sn.by_state[n].stations - sn.by_state[n][field]); });
-            card.append(el("p", {}, sn.total - count + " of " + sn.total + " stations do not report this. " + (without.length ? "By state: " + without.join(", ") + "." : "")));
+            text.append(el("p", {}, sn.total - count + " of " + sn.total + " stations do not report this. " + (without.length ? "By state: " + without.join(", ") + "." : "")));
           }
           var top = rows[0][1], bars = el("ul", { "class": "bars", "aria-label": "Stations by state" });
           rows.forEach(function (x) {
@@ -153,7 +171,7 @@
             li.append(el("span", {}, x[0]), cell, el("em", {}, String(x[1])));
             bars.append(li);
           });
-          card.append(bars);
+          detail.append(bars);
         }
 
         function setMode(next) {
@@ -169,12 +187,13 @@
         }
 
         function fill(key) {
-          card.replaceChildren();
+          var text = el("div"), detail = el("div");
+          card.replaceChildren(text, detail);
           if (key === "all") {
-            card.append(el("h2", {}, "All nine sources"), el("div", { "class": "big" }, String(data.total)),
+            text.append(el("h2", {}, "All nine sources"), el("div", { "class": "big" }, String(data.total)),
               el("div", { "class": "sub" }, "reservoirs on the map, read " + data.read));
-            card.append(el("p", {}, "Select a source to light its reservoirs. The others turn gray."));
-            card.append(el("div", { "class": "sub" }, "Left off the map"));
+            text.append(el("p", {}, "Select a source to light its reservoirs. The others turn gray."));
+            detail.append(el("div", { "class": "sub" }, "Left off the map"));
             var list = el("ul", { "class": "bars" });
             var rows = Object.entries(data.left_off).sort(function (a, b) { return b[1] - a[1]; });
             rows.forEach(function (r) {
@@ -182,16 +201,16 @@
               li.append(el("em", {}, String(r[1])), el("span", {}, r[0]), el("span"));
               list.append(li);
             });
-            card.append(list);
+            detail.append(list);
             return;
           }
           var s = data.sources.find(function (x) { return x.key === key; });
-          card.append(el("h2", {}, s.name), el("div", { "class": "big" }, String(s.count)),
+          text.append(el("h2", {}, s.name), el("div", { "class": "big" }, String(s.count)),
             el("div", { "class": "sub" }, s.count === 1 ? "reservoir on the map" : "reservoirs on the map"), el("p", {}, s.why));
           var extra = [];
           if (s.held_back) extra.push(s.held_back + " held back");
           if (s.already_published) extra.push(s.already_published + " already published by another source");
-          if (extra.length) card.append(el("div", { "class": "sub" }, extra.join(". ") + "."));
+          if (extra.length) text.append(el("div", { "class": "sub" }, extra.join(". ") + "."));
           var states = Object.entries(s.states), top = Math.max.apply(null, states.map(function (x) { return x[1]; }));
           var bars = el("ul", { "class": "bars", "aria-label": "Reservoirs by state" });
           states.forEach(function (x) {
@@ -203,7 +222,7 @@
             li.append(el("span", {}, x[0]), cell, el("em", {}, String(x[1])));
             bars.append(li);
           });
-          card.append(bars);
+          detail.append(bars);
         }
 
         function pick(s) {
@@ -218,7 +237,7 @@
 
         fetch("/assets/data/day-15-sources.json").then(function (r) { return r.json(); }).then(function (d) {
           data = d;
-          var fed = document.getElementById("fed"), state = document.getElementById("state"), stage = document.getElementById("stage");
+          var fed = document.getElementById("fed"), state = document.getElementById("state"), view = document.getElementById("view");
           d.sources.forEach(function (s) { (s.kind === "federal" ? fed : state).append(pick(s)); });
           d.sources.filter(function (s) { return d.plaques[s.key]; }).forEach(function (s) {
             var p = d.plaques[s.key];
@@ -226,7 +245,7 @@
             t.style.cssText = "left:" + (100 * p.x) + "%;top:" + (100 * p.y) + "%;width:" + (100 * p.w) + "%;height:" + (100 * p.h) + "%";
             t.append(el("span", {}, s.name));
             t.addEventListener("click", function () { show(current === s.key ? "all" : s.key); });
-            stage.append(t);
+            view.append(t);
           });
           var snotel = document.getElementById("snotel");
           Object.keys(ITEMS).forEach(function (view) {
@@ -245,6 +264,13 @@
           d.sources.forEach(function (s) { new Image().src = base + s.key + ".webp"; });
           Object.keys(ITEMS).forEach(function (view) { new Image().src = snotelBase + view + ".webp"; });
         });
+
+        var host = window.frameElement;
+        if (host && window.ResizeObserver) {
+          new ResizeObserver(function () {
+            host.style.height = document.documentElement.offsetHeight + host.offsetHeight - host.clientHeight + "px";
+          }).observe(document.documentElement);
+        }
       })();
     </script>
   </body>
