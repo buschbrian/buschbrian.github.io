@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="151 of 497 reservoirs of 10,000 acre-feet or more in five western water regions are not on the Western Water Dashboard. A map sorts them by kind of absence.">
+    <meta name="theme-color" content="#ffffff">
+    <title>The Reservoirs the Dashboard Does Not Show | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/western-reservoir-absences/">
+    <meta property="og:title" content="The Reservoirs the Dashboard Does Not Show | Brian Busch, GISP">
+    <meta property="og:description" content="151 of 497 reservoirs of 10,000 acre-feet or more in five western water regions are not on the Western Water Dashboard. A map sorts them by kind of absence.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/western-reservoir-absences.jpg">
+    <meta property="og:image:alt" content="A map of the five western water regions, from Washington and Montana to California and Arizona. Gray dots mark the 346 large reservoirs that the Western Water Dashboard shows. Hollow rings mark the 151 that it does not show: plain rings for reviewed and kept off, a ring with a bar for a level without a volume, and grainy dotted rings for no reviewed storage series. The smallest rings mark 38 reviewed records outside the 497. Labels name Pinecrest Lake, five mid-Columbia pools, Swift, Yale and Merwin, Bonneville Pool, Lake Washington, Prado Dam, Little Dell and Lower Willow Creek. Below the map, 151 of 497 in large type, and a strip of 497 units sorted by kind.">
+    <meta property="og:image:width" content="2160">
+    <meta property="og:image:height" content="2700">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-18T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/western-reservoir-absences/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Reservoirs the Dashboard Does Not Show",
+  "description": "151 of 497 reservoirs of 10,000 acre-feet or more in five western water regions are not on the Western Water Dashboard. A map sorts them by kind of absence.",
+  "image": "https://buschbrian.github.io/assets/images/western-reservoir-absences.jpg",
+  "datePublished": "2026-11-18",
+  "dateModified": "2026-11-18",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/western-reservoir-absences/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 18: NULL</p>
+          <h1>The Reservoirs the Dashboard Does Not Show</h1>
+          <p class="post-deck">151 of 497 reservoirs of 10,000 acre-feet or more in five western water regions are not on the Western Water Dashboard. A map sorts them by kind of absence.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 18: NULL</strong></div>
+            <div><span>Subject</span><strong>Large western reservoirs that the Western Water Dashboard does not show, and why</strong></div>
+            <div><span>Made with</span><strong>Python (GeoPandas, Matplotlib, Shapely, pyproj), ArcGIS Maps SDK for JavaScript</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-18">November 18, 2026</time></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image">
+          <picture><source type="image/webp" srcset="/assets/images/r/western-reservoir-absences-480.webp 480w, /assets/images/r/western-reservoir-absences-960.webp 960w, /assets/images/r/western-reservoir-absences-1440.webp 1440w, /assets/images/r/western-reservoir-absences-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/western-reservoir-absences.jpg" alt="A map of the five western water regions, from Washington and Montana to California and Arizona. Gray dots mark the 346 large reservoirs that the Western Water Dashboard shows. Hollow rings mark the 151 that it does not show: plain rings for reviewed and kept off, a ring with a bar for a level without a volume, and grainy dotted rings for no reviewed storage series. The smallest rings mark 38 reviewed records outside the 497. Labels name Pinecrest Lake, five mid-Columbia pools, Swift, Yale and Merwin, Bonneville Pool, Lake Washington, Prado Dam, Little Dell and Lower Willow Creek. Below the map, 151 of 497 in large type, and a strip of 497 units sorted by kind." width="2160" height="2700"></picture>
+          <figcaption>Every reservoir of 10,000 acre-feet or more in five western water regions. <a href="/assets/images/western-reservoir-absences.jpg">Open the still</a>. <a href="/notes/western-reservoir-absences/map/">Open the interactive map</a>.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>A sequel to Day 15</h2>
+          <p>Day 15 counted 69 records held back. Here they are, with 122 large reservoirs that have no finding yet.</p>
+          <p>The Western Water Dashboard shows how full the West's reservoirs are. A reservoir gets on its map only when a public source reports its storage and the record passes the dashboard's checks. This map looks at the other side: the large reservoirs that are not on the dashboard, and the reason for each.</p>
+          <h2>151 of 497</h2>
+          <p>The National Inventory of Dams lists 497 reservoirs of 10,000 acre-feet (12.3 million m³) or more in the dashboard's five USGS water regions: the Pacific Northwest, California, the Great Basin, and the Upper and Lower Colorado. The dashboard shows 346 of them. The other 151 fall into three kinds of absence:</p>
+          <ul>
+            <li><strong>Reviewed and kept off: 29.</strong> The dashboard reviewed each record and wrote down why it does not show it. It holds back 23, retired 1 and withdrew 1. For 4 more, the finding is in the dashboard's own audit notes: Priest Lake, Crane Creek, Silver Lake in Montana and Olivenhain.</li>
+            <li><strong>Level, not volume: 8.</strong> A source publishes the water level, but not the volume. Lake Washington, Lake Billy Chinook and C.J. Strike are examples. A volume needs a reviewed table that converts level to storage. The search for level series covered only 13 reservoirs, so there may be more.</li>
+            <li><strong>No reviewed storage series: 114.</strong> For 113, none of six sources that the dashboard already reads lists a storage series. The other is Pinecrest Lake: California's CDEC reports its storage every day, but the dashboard has no finding for it yet.</li>
+          </ul>
+          <p>The 151 reservoirs hold about 10.9 million acre-feet in the dam inventory. The 497 hold about 179.4 million. The inventory lists normal storage for some dams and maximum storage for others, so these totals show rough size, not a share of the West's water.</p>
+          <h2>Where the 69 held-back records are</h2>
+          <p>Day 15's 69 count records, not reservoirs. A record is one station from one source. On this map:</p>
+          <ul>
+            <li>26 records sit on 23 large reservoirs. Success Lake has three records, and Milner Dam has two.</li>
+            <li>34 records fall outside the 497, which count normal storage, the pool a dam usually holds. 16 of them are flood-control basins in California, Arizona and Nevada. The basins are empty by design, so the inventory lists little or no normal storage for them. Others are small reservoirs, river stations, pools with no matching dam, or a second record for a lake. With 4 retired records that also fall outside, the map draws 38 records as the smallest rings, with no size.</li>
+            <li>9 records measure water that the dashboard already shows through another record. Hells Canyon, Flathead Lake and Mann Creek are examples. The interactive map lists them.</li>
+          </ul>
+          <h2>How the marks work</h2>
+          <p>Each kind of absence has one mark. The marks run from crisp to grainy as the certainty drops:</p>
+          <ul>
+            <li>A gray dot is a reservoir on the dashboard.</li>
+            <li>A crisp hollow ring is a reviewed record with a written finding.</li>
+            <li>A ring with a bar is a level without a volume. The bar is a water line.</li>
+            <li>A grainy dotted ring is a reservoir with no reviewed storage series.</li>
+          </ul>
+          <p>The choice follows two studies. In MacEachren and others (2012), readers rated fuzziness and lighter value as the most intuitive signs of uncertainty. Crisp edges read as certain. Afifah and Krisp (2026) propose grain as a texture layer for uncertainty. Ring size follows storage in the dam inventory.</p>
+          <h2>Explore the map</h2>
+          <p>Select any reservoir to see its status. For a reviewed record, the card quotes the dashboard's own finding. Search by the name of a dam or lake, or list the reservoirs off the map by kind. <a href="/notes/western-reservoir-absences/map/">Open the full map</a>.</p>
+          <figure class="post-hero-image post-embed">
+            <iframe src="/notes/western-reservoir-absences/map/?embed" title="Interactive map of the large western reservoirs that the Western Water Dashboard does not show" width="720" height="900" loading="lazy"></iframe>
+            <figcaption>Built on the ArcGIS Maps SDK for JavaScript. <a href="/notes/western-reservoir-absences/map/">Open the map on its own page</a>.</figcaption>
+          </figure>
+          <h2>What "no reviewed storage series" means</h2>
+          <p>For 113 of the 114, it means that no storage series turned up where the search looked. It does not mean that no number exists. The other is Pinecrest Lake, which has a daily series that the dashboard has not reviewed.</p>
+          <ul>
+            <li>The search read the storage catalogs of USGS, California CDEC, the U.S. Army Corps of Engineers, Reclamation, NRCS and Colorado DWR on November 10, 2026.</li>
+            <li>I searched level series and operator websites for only 13 large reservoirs. That search found the eight level-only reservoirs.</li>
+            <li>In the dam inventory, irrigation is the main purpose of 45 of the 113. Water supply is the main purpose of 23, and hydropower of 12.</li>
+          </ul>
+          <h2>Inside the scripts</h2>
+          <p>Four Python scripts build the map from the dashboard's own files at one commit. They read the files with <code>git show</code>, so every count comes from code, not from a note. The scripts pass the default checks of the ruff linter and use its code format. The excerpt below is trimmed. A <code># ...</code> line marks a cut.</p>
+          <p>Each reservoir takes its kind from the first rule that applies. The dashboard's own status comes first, then a finding in the dashboard's own audit notes. A short table of hand searches, each with its source, comes next. Everything left has no reviewed storage series: a current feed from the catalog check with no finding, or no series found at all.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>for u in universe:
+    nid, status = u["nid_id"], u["status"]
+    basis = ""
+    if status in ON_MAP:
+        kind, why = "on the map", u["dashboard_record"]
+    elif status in REVIEWED:
+        kind = "reviewed, held back"
+        # ...
+    elif nid in DOC_REVIEWED:
+        kind, why, status = (
+            "reviewed, held back",
+            DOC_REVIEWED[nid],
+            "audit finding",
+        )
+    elif nid in HAND:
+        kind, why = HAND[nid]
+        basis = "none found" if kind == "no reviewed storage series" else ""
+    elif nid in feeds:
+        # ...
+        kind, why, basis = (
+            "no reviewed storage series",
+            feeds[nid],
+            "feed with no finding",
+        )
+    else:
+        kind, why, basis = (
+            "no reviewed storage series",
+            "None among six providers' storage catalogs (source check).",
+            "none found",
+        )</code></pre>
+          </figure>
+          <h2>Data and credit</h2>
+          <p>The Western Water Dashboard's rosters come from commit 37d7f60, made on November 13, 2026. You can see its code on <a href="https://github.com/buschbrian/western-water-dashboard">GitHub</a>. The U.S. Army Corps of Engineers provides the National Inventory of Dams. The storage catalogs come from USGS, California DWR (CDEC), the Corps of Engineers (CWMS), Reclamation (RISE and Hydromet), NRCS and Colorado DWR. The USGS Watershed Boundary Dataset sets the five water regions. The U.S. Census Bureau provides the state lines.</p>
+          <p class="source-note"><a href="/assets/data/day-18-absences.json">Read the figure values</a>.</p>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/drought-in-western-basins/">Day 3: Polygons</a>
+            <a href="/notes/utah-wildfire-starts-by-cause/">Day 4: Clusters</a>
+            <a href="/notes/canyon-overlook-trail-viewshed/">Day 5: Sight</a>
+            <a href="/notes/holmes-zion-panorama/">Day 6: Vintage</a>
+            <a href="/notes/wasatch-front-walk-to-transit/">Day 7: 10 minute map</a>
+            <a href="/notes/great-salt-lake-at-4198-feet/">Day 8: Utopia</a>
+            <a href="/notes/utah-urban-and-rural/">Day 9: Urban-rural</a>
+            <a href="/notes/beneath-japan-one-prompt/">Day 10: Prompting</a>
+            <a href="/notes/the-mighty-five-by-decibel/">Day 11: Sound</a>
+            <a href="/notes/a-field-guide-to-the-megawatt/">Day 12: Power</a>
+            <a href="/notes/utah-park-drive-times/">Day 13: Interactions</a>
+            <a href="/notes/zion-narrows-lidar/">Day 14: Borgesian map</a>
+            <a href="/notes/western-reservoir-sources/">Day 15: Inside out</a>
+            <a href="/notes/two-years-of-utah/">Day 16: Collaborative map</a>
+            <a href="/notes/left-fork-light-and-dark/">Day 17: Light and dark</a>
+            <a href="/notes/western-reservoir-absences/" aria-current="page">Day 18: NULL</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.instagram.com/brianbusch1/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

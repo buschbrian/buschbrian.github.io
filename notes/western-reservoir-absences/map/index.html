@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Select any of 497 reservoirs of 10,000 acre-feet or more in five western water regions to see whether the Western Water Dashboard shows it, and why not when it does not.">
+    <meta name="theme-color" content="#f1efe9">
+    <title>Day 18 · NULL — The reservoirs the dashboard does not show</title>
+    <script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..800&display=swap">
+    <script type="module" src="https://js.arcgis.com/5.1/"></script>
+    <style>
+      :root {
+        --bg: #f1efe9;
+        --land: #dcd6c8;
+        --card: #fbfaf7;
+        --line: #d8d2c4;
+        --text: #18202a;
+        --muted: #5f6873;
+        --field: #9aa5ad;
+        --focus: #b4530f;
+        --font: "Mona Sans", system-ui, sans-serif;
+        color-scheme: light;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+      a { color: inherit; }
+      button, input { font: inherit; color: inherit; }
+      :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+      [hidden] { display: none !important; }
+      .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .app { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 24px; max-width: 1280px; margin: 0 auto; padding: 24px 16px; }
+      .head { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+      .head h1 { margin: 0; font-size: 28px; font-stretch: 75%; font-weight: 600; line-height: 1.1; }
+      .head p { margin: 0; color: var(--muted); }
+      .stage { position: relative; min-width: 0; align-self: start; height: min(calc(100vh - 120px), 900px); min-height: 480px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+      .map-slot { position: absolute; inset: 0; }
+      arcgis-map { display: block; height: 100%; background: var(--bg); }
+      .loading { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); }
+      .side { display: grid; gap: 16px; align-content: start; min-width: 0; }
+      .card { padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+      .card h2 { margin: 0 0 4px; font-size: 20px; font-stretch: 75%; font-weight: 600; line-height: 1.15; }
+      .card p { margin: 0 0 10px; }
+      .card p:last-child { margin-bottom: 0; }
+      .big { font-size: 40px; line-height: 1; font-weight: 600; font-stretch: 75%; font-variant-numeric: tabular-nums; }
+      .sub { color: var(--muted); font-size: 13px; }
+      .finding { padding: 10px 12px; border-left: 3px solid var(--line); background: var(--bg); font-size: 14px; }
+      .finding-label { margin: 0 0 4px; color: var(--muted); font-size: 13px; font-weight: 600; }
+      .facts { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 0 0 12px; font-size: 14px; }
+      .facts dt { color: var(--muted); }
+      .facts dd { margin: 0; font-variant-numeric: tabular-nums; }
+      .group-title { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--muted); }
+      .kinds { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+      .kind { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 10px; width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); text-align: left; cursor: pointer; }
+      .kind:hover { background: #f4f1ea; }
+      .kind[aria-pressed="false"] { border-style: dashed; background: transparent; color: var(--muted); }
+      .kind[aria-pressed="false"] img { opacity: 0.3; }
+      .kind b { font-weight: 600; font-variant-numeric: tabular-nums; }
+      .kind img { width: 24px; height: 24px; }
+      .search { display: grid; gap: 6px; }
+      .search input { width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+      .browse summary { cursor: pointer; font-weight: 600; }
+      .browse h3 { margin: 12px 0 4px; font-size: 13px; color: var(--muted); }
+      .browse ul { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; max-height: 220px; overflow: auto; }
+      .browse button { width: 100%; padding: 4px 6px; border: 0; border-radius: 4px; background: transparent; text-align: left; cursor: pointer; font-size: 14px; }
+      .browse button:hover { background: #f4f1ea; }
+      .note { margin: 0; color: var(--muted); font-size: 13px; }
+      .embed .head { display: none; }
+      .embed .app { padding: 8px; }
+      @media (max-width: 860px) {
+        .app { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+        .side { display: contents; }
+        .side > * { order: 3; }
+        #card { order: 1; height: 38vh; min-height: 220px; overflow: auto; }
+        .stage { order: 2; height: 55vh; min-height: 380px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="head">
+        <h1>The reservoirs the dashboard does not show</h1>
+        <p>30 Day Map Challenge 2026, Day 18: NULL</p>
+      </header>
+      <div class="stage" id="stage">
+        <div class="map-slot" id="map-slot"></div>
+        <p class="loading" id="loading" aria-live="polite">Loading the map…</p>
+      </div>
+      <div class="side">
+        <div class="card" id="card" aria-live="polite"></div>
+        <div class="search">
+          <label class="group-title" for="find">Find a reservoir</label>
+          <input id="find" type="search" list="names" autocomplete="off" placeholder="Name of a dam or lake">
+          <datalist id="names"></datalist>
+          <p class="note" id="find-msg" aria-live="polite"></p>
+        </div>
+        <div>
+          <h2 class="group-title" id="h-kinds">Show on the map</h2>
+          <ul class="kinds" id="kinds" aria-labelledby="h-kinds"></ul>
+        </div>
+        <details class="browse card" id="browse">
+          <summary>List the reservoirs off the map</summary>
+          <div id="browse-lists"></div>
+        </details>
+        <p class="note">Rings are sized by storage in the National Inventory of Dams. The 497 count normal storage, the pool a dam usually holds. The smallest rings are reviewed records outside the 497: flood basins, and small or unmatched records. <a href="/notes/western-reservoir-absences/">Read the article</a>.</p>
+      </div>
+    </main>
+    <script>
+      (async function () {
+        "use strict";
+        var INK = "#18202a", MUTED = "#5f6873", FIELD = "#9aa5ad", PAPER = "#fbfaf7";
+        var LABELS = ["On the dashboard", "Reviewed and kept off", "Feed, not reviewed", "Level, not volume", "No reviewed storage series", "On the dashboard through another record"];
+        var OUTSIDE = "Outside the 497", ELSEWHERE = "Through another record";
+        var NOTES = [
+          "The dashboard shows this reservoir.",
+          "The dashboard reviewed this record and wrote down why it does not show it.",
+          "A storage series exists, but the dashboard has no finding for it yet.",
+          "A source publishes the water level, but not the volume.",
+          "No storage series turned up in the six sources that were checked, or a daily series exists that the dashboard has not reviewed.",
+          "The dashboard held this record back, but it shows the same water through another record."
+        ];
+
+        function ring(kind, small) {
+          var w = small ? 5 : 8, inner = "";
+          if (kind === 0) return "<circle cx='32' cy='32' r='28' fill='" + FIELD + "' fill-opacity='0.6'/>";
+          if (kind === 5) return "<circle cx='32' cy='32' r='24' fill='none' stroke='" + FIELD + "' stroke-width='5'/>";
+          if (kind === 4) return "<circle cx='32' cy='32' r='26' fill='" + PAPER + "' fill-opacity='0.7' stroke='" + INK + "' stroke-opacity='0.75' stroke-width='7' stroke-linecap='round' stroke-dasharray='0.1 10.2'/>";
+          if (kind === 2) inner = "<circle cx='32' cy='32' r='10' fill='" + INK + "'/>";
+          if (kind === 3) inner = "<line x1='10' y1='32' x2='54' y2='32' stroke='" + INK + "' stroke-width='8'/>";
+          return "<circle cx='32' cy='32' r='" + (28 - w / 2) + "' fill='" + PAPER + "' stroke='" + INK + "' stroke-width='" + w + "'/>" + inner;
+        }
+        function svg(kind, small) {
+          return "data:image/svg+xml;charset=utf-8," + encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>" + ring(kind, small) + "</svg>");
+        }
+        function el(tag, attrs, text) {
+          var node = document.createElement(tag);
+          Object.keys(attrs || {}).forEach(function (k) { node.setAttribute(k, attrs[k]); });
+          if (text !== undefined) node.textContent = text;
+          return node;
+        }
+        function af(n) {
+          var m3 = n * 1233.48;
+          var metric = m3 >= 1e9 ? (m3 / 1e9).toFixed(2) + " km³" : (m3 / 1e6).toFixed(1) + " million m³";
+          return n.toLocaleString("en-US") + " acre-feet (" + metric + ")";
+        }
+
+        var data = await fetch("/assets/data/day-18-absences.json").then(function (r) { if (!r.ok) throw new Error("data"); return r.json(); });
+        var F = {};
+        data.fields.forEach(function (f, i) { F[f] = i; });
+        var rows = data.rows;
+        var byId = {};
+        rows.forEach(function (r) { byId[r[F.id]] = r; });
+        var card = document.getElementById("card");
+
+        function title(r) { return r[F.water] ? r[F.water] + " (" + r[F.name] + ")" : r[F.name]; }
+
+        function overview() {
+          card.replaceChildren(
+            el("h2", {}, "Off the map"),
+            el("div", { "class": "big" }, data.off + " of " + data.universe),
+            el("p", { "class": "sub" }, "reservoirs of 10,000 acre-feet or more in five western water regions"),
+            el("p", {}, "Day 15 counted " + data.held + " records held back. Here they are, with " + data.no_finding + " large reservoirs that have no finding yet. " + data.elsewhere + " of the " + data.held + " reach the map through another record."),
+            el("p", {}, "Select a ring or a dot to see why."));
+        }
+
+        function show(r) {
+          var kind = r[F.kind];
+          var facts = el("dl", { "class": "facts" });
+          function fact(k, v) { facts.append(el("dt", {}, k), el("dd", {}, v)); }
+          if (r[F.water]) fact("Dam", r[F.name]);
+          fact("State", r[F.state] || "–");
+          fact("Storage", r[F.in_universe] ? af(r[F.storage_af]) : "Not in the 497 (normal storage under 10,000 acre-feet, or no matching dam)");
+          fact("Status", r[F.in_universe] || kind === 5 ? LABELS[kind] : LABELS[kind] + ", outside the 497");
+          card.replaceChildren(el("h2", {}, r[F.water] || r[F.name]), facts, el("p", {}, r[F.detail]));
+          if (r[F.finding]) {
+            var box = el("div", { "class": "finding" });
+            box.append(el("p", { "class": "finding-label" }, "The dashboard's finding, quoted from its review notes"), el("p", {}, r[F.finding]));
+            card.append(box);
+          }
+          card.append(el("p", { "class": "sub" }, NOTES[kind]));
+        }
+
+        var names = document.getElementById("names"), labelToId = {};
+        rows.slice().sort(function (a, b) { return title(a).localeCompare(title(b)); }).forEach(function (r) {
+          var label = title(r) + ", " + (r[F.state] || "");
+          labelToId[label] = r[F.id];
+          names.append(el("option", { value: label }));
+        });
+
+        var lists = document.getElementById("browse-lists");
+        // Toggle and list keys: a kind, or "1s" for the reviewed records outside the 497.
+        var GROUPS = [
+          { key: "1", label: LABELS[1], img: svg(1), keep: function (r) { return r[F.kind] === 1 && r[F.in_universe]; } },
+          { key: "3", label: LABELS[3], img: svg(3), keep: function (r) { return r[F.kind] === 3; } },
+          { key: "4", label: LABELS[4], img: svg(4), keep: function (r) { return r[F.kind] === 4; } },
+          { key: "1s", label: OUTSIDE, img: svg(1, true), keep: function (r) { return r[F.kind] === 1 && !r[F.in_universe]; } },
+          { key: "5", label: ELSEWHERE, img: svg(5), keep: function (r) { return r[F.kind] === 5; } },
+          { key: "0", label: LABELS[0], img: svg(0), keep: function (r) { return r[F.kind] === 0; } }
+        ];
+        GROUPS.filter(function (g) { return g.key !== "0"; }).forEach(function (g) {
+          var group = rows.filter(g.keep).sort(function (a, b) { return (b[F.storage_af] || 0) - (a[F.storage_af] || 0) || title(a).localeCompare(title(b)); });
+          lists.append(el("h3", {}, g.label + " (" + group.length + ")"));
+          var ul = el("ul");
+          group.forEach(function (r) {
+            var li = el("li"), b = el("button", { type: "button" }, title(r) + ", " + (r[F.state] || ""));
+            b.addEventListener("click", function () { select(r[F.id], true); });
+            li.append(b);
+            ul.append(li);
+          });
+          lists.append(ul);
+        });
+
+        var visible = {};
+        var kinds = document.getElementById("kinds");
+        GROUPS.forEach(function (g) {
+          visible[g.key] = true;
+          var li = el("li"), b = el("button", { "class": "kind", type: "button", "aria-pressed": "true", "data-kind": g.key });
+          b.append(el("img", { src: g.img, alt: "", width: "24", height: "24" }), el("span", {}, g.label), el("b", {}, String(rows.filter(g.keep).length)));
+          b.addEventListener("click", function () {
+            visible[g.key] = !visible[g.key];
+            b.setAttribute("aria-pressed", String(visible[g.key]));
+            filter();
+          });
+          li.append(b);
+          kinds.append(li);
+        });
+
+        var select = function () {};
+        var filter = function () {};
+        document.getElementById("find").addEventListener("change", function (e) {
+          var id = labelToId[e.target.value];
+          document.getElementById("find-msg").textContent = id || !e.target.value ? "" : "No match. Pick a name from the list as you type.";
+          if (id) select(id, true);
+        });
+        overview();
+
+        await customElements.whenDefined("arcgis-map");
+        var load = function (m) { return $arcgis.import("@arcgis/core/" + m + ".js"); };
+        var mods = await Promise.all(["Map", "layers/FeatureLayer", "layers/GraphicsLayer", "Graphic", "geometry/Extent",
+          "geometry/Polygon", "geometry/SpatialReference"].map(load));
+        var Map = mods[0], FeatureLayer = mods[1], GraphicsLayer = mods[2], Graphic = mods[3], Extent = mods[4], Polygon = mods[5], SpatialReference = mods[6];
+
+        // Albers equal-area for the West, the same projection as the still and Day 15. The data arrive projected.
+        var sr = new SpatialReference({ wkt:
+          'PROJCS["West Albers (NAD83)",GEOGCS["GCS_North_American_1983",DATUM["D_North_American_1983",' +
+          'SPHEROID["GRS_1980",6378137.0,298.257222101]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],' +
+          'PROJECTION["Albers"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],' +
+          'PARAMETER["Central_Meridian",-113.0],PARAMETER["Standard_Parallel_1",33.0],' +
+          'PARAMETER["Standard_Parallel_2",47.0],PARAMETER["Latitude_Of_Origin",40.0],UNIT["Meter",1.0]]' });
+
+        var region = new FeatureLayer({
+          title: "Five water regions", copyright: "USGS WBD, Census Bureau", spatialReference: sr, geometryType: "polygon",
+          objectIdField: "oid", fields: [{ name: "oid", type: "oid" }], popupEnabled: false,
+          source: [new Graphic({ geometry: { type: "polygon", rings: data.region, spatialReference: sr }, attributes: { oid: 1 } })],
+          renderer: { type: "simple", symbol: { type: "simple-fill", color: "#dcd6c8", outline: { color: [0, 0, 0, 0], width: 0 } } }
+        });
+        var lines = new FeatureLayer({
+          title: "State lines", spatialReference: sr, geometryType: "polyline", objectIdField: "oid",
+          fields: [{ name: "oid", type: "oid" }], popupEnabled: false,
+          source: data.lines.map(function (p, i) { return new Graphic({ geometry: { type: "polyline", paths: [p], spatialReference: sr }, attributes: { oid: i + 1 } }); }),
+          renderer: { type: "simple", symbol: { type: "simple-line", color: "#f1efe9", width: 1 } }
+        });
+
+        function sizeOf(r) { return r[F.in_universe] ? r[F.storage_af] : 0; }
+        function layer(title, keep, order) {
+          return new FeatureLayer({
+            title: title, copyright: "National Inventory of Dams (USACE), Western Water Dashboard", spatialReference: sr,
+            geometryType: "point", objectIdField: "oid", popupEnabled: false, outFields: ["*"],
+            fields: [{ name: "oid", type: "oid" }, { name: "rid", type: "string" }, { name: "kind", type: "integer" },
+              { name: "small", type: "integer" }, { name: "size_af", type: "double" }],
+            source: rows.filter(keep).map(function (r, i) {
+              return new Graphic({ geometry: { type: "point", x: r[F.x], y: r[F.y], spatialReference: sr },
+                attributes: { oid: i + 1, rid: r[F.id], kind: r[F.kind], small: r[F.in_universe] ? 0 : 1, size_af: sizeOf(r) } });
+            }),
+            orderBy: order,
+            renderer: {
+              type: "unique-value", valueExpression: "Text($feature.kind) + '-' + Text($feature.small)",
+              uniqueValueInfos: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [1, 1], [5, 1]].map(function (p) {
+                return { value: p[0] + "-" + p[1], label: LABELS[p[0]], symbol: { type: "picture-marker", url: svg(p[0], p[1] === 1), width: 10, height: 10 } };
+              }),
+              visualVariables: [{ type: "size", field: "size_af", valueExpression: null,
+                stops: [{ value: 0, size: 6 }, { value: 9999, size: 6 }, { value: 10000, size: 10 }, { value: 100000, size: 12 }, { value: 1000000, size: 17 }, { value: 3000000, size: 24 }] }]
+            }
+          });
+        }
+        var field = layer("On the dashboard", function (r) { return r[F.kind] === 0 || r[F.kind] === 5; }, [{ field: "size_af", order: "descending" }]);
+        var absent = layer("Off the dashboard", function (r) { return r[F.kind] !== 0 && r[F.kind] !== 5; }, [{ field: "size_af", order: "descending" }]);
+        var picked = new GraphicsLayer({ title: "Selected reservoir" });
+
+        var xs = [], ys = [];
+        data.region.forEach(function (ring) { ring.forEach(function (p) { xs.push(p[0]); ys.push(p[1]); }); });
+        var extent = new Extent({ xmin: Math.min.apply(null, xs), ymin: Math.min.apply(null, ys), xmax: Math.max.apply(null, xs), ymax: Math.max.apply(null, ys), spatialReference: sr });
+
+        var slot = document.getElementById("map-slot");
+        var map = document.createElement("arcgis-map");
+        map.setAttribute("aria-label", "Map of the West's large reservoirs, marked by whether the Western Water Dashboard shows them");
+        map.innerHTML = '<arcgis-zoom slot="top-left"></arcgis-zoom><arcgis-home slot="top-left"></arcgis-home>';
+        map.spatialReference = sr;
+        map.extent = extent.clone().expand(1.1);
+        map.map = new Map({ layers: [region, lines, field, absent, picked] });
+        slot.append(map);
+        await map.viewOnReady();
+        document.getElementById("loading").hidden = true;
+        var view = map.view;
+        view.background = { color: "#f1efe9" };
+        view.constraints = { rotationEnabled: false, minScale: 30e6, maxScale: 50000, geometry: Polygon.fromExtent(extent.clone().expand(1.6)) };
+        map.querySelector("arcgis-home").viewpoint = { targetGeometry: extent.clone().expand(1.1) };
+
+        filter = function () {
+          var parts = [];
+          if (visible["1"]) parts.push("(kind = 1 AND small = 0)");
+          if (visible["1s"]) parts.push("(kind = 1 AND small = 1)");
+          [3, 4].forEach(function (k) { if (visible[String(k)]) parts.push("kind = " + k); });
+          absent.definitionExpression = parts.length ? parts.join(" OR ") : "1=0";
+          var fparts = [0, 5].filter(function (k) { return visible[String(k)]; });
+          field.definitionExpression = fparts.length ? "kind IN (" + fparts.join(",") + ")" : "1=0";
+        };
+
+        select = function (id, zoom) {
+          var r = byId[id];
+          if (!r) return;
+          show(r);
+          picked.removeAll();
+          var at = { type: "point", x: r[F.x], y: r[F.y], spatialReference: sr };
+          picked.add(new Graphic({ geometry: at, symbol: { type: "simple-marker", style: "circle", size: 34, color: [0, 0, 0, 0], outline: { color: "#b4530f", width: 2.5 } } }));
+          if (zoom) view.goTo({ target: at, scale: Math.min(view.scale, 2500000) }).catch(function () {});
+        };
+
+        view.on("click", async function (event) {
+          var hit = await view.hitTest(event, { include: [absent, field] });
+          var g = hit.results.filter(function (x) { return x.graphic && x.graphic.attributes && x.graphic.attributes.rid; });
+          if (!g.length) { picked.removeAll(); overview(); return; }
+          var first = g.find(function (x) { return x.layer === absent; }) || g[0];
+          select(first.graphic.attributes.rid, false);
+        });
+        view.on("pointer-move", async function (event) {
+          var hit = await view.hitTest(event, { include: [absent, field] });
+          slot.style.cursor = hit.results.length ? "pointer" : "";
+        });
+      })().catch(function (e) {
+        var msg = document.getElementById("loading");
+        msg.hidden = false;
+        msg.textContent = "The map did not load. Reload the page to try again.";
+        console.error(e);
+      });
+    </script>
+  </body>
+</html>
