@@ -46,6 +46,7 @@ const ORDER = [
   "grand-staircase-scent-strata",
   "forty-years-of-ground",
   "utah-ski-runs-rated-and-measured",
+  "79-ways-to-flatten-utah",
   "utah-fruit-belts",
   "utah-dark-sky-points",
   "utah-scenic-byways",

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Utah's draft State Plane Coordinate System of 2022 has 79 low-distortion zones, each with its own projection. Two posters map the zones and show how long a mapped mile is against the ground.">
+    <meta name="theme-color" content="#ffffff">
+    <title>79 Ways to Flatten Utah | Brian Busch, GISP</title>
+    <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32x32.png?v=3" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png?v=3" type="image/png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Brian Busch">
+    <meta property="og:url" content="https://buschbrian.github.io/notes/79-ways-to-flatten-utah/">
+    <meta property="og:title" content="79 Ways to Flatten Utah | Brian Busch, GISP">
+    <meta property="og:description" content="Utah's draft State Plane Coordinate System of 2022 has 79 low-distortion zones, each with its own projection. Two posters map the zones and show how long a mapped mile is against the ground.">
+    <meta property="og:image" content="https://buschbrian.github.io/assets/images/79-ways-to-flatten-utah-card.jpg">
+    <meta property="og:image:alt" content="The top of a poster titled 79 ways to flatten Utah, on sand-colored paper. A large teal 79 sits beside the words ways to flatten Utah. A shaded-relief map of northern Utah shows hatched zones in teal and brown, a violet zone in the east and Great Salt Lake in pale blue. A key names 48 Lambert conformal conic zones, 29 Transverse Mercator zones and 2 Oblique Mercator zones.">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:author" content="Brian Busch">
+    <meta property="article:published_time" content="2026-11-22T12:00:00-07:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://buschbrian.github.io/notes/79-ways-to-flatten-utah/">
+    <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "79 Ways to Flatten Utah",
+  "description": "Utah's draft State Plane Coordinate System of 2022 has 79 low-distortion zones, each with its own projection. Two posters map the zones and show how long a mapped mile is against the ground.",
+  "image": "https://buschbrian.github.io/assets/images/79-ways-to-flatten-utah.jpg",
+  "datePublished": "2026-11-22",
+  "dateModified": "2026-11-22",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://buschbrian.github.io/notes/79-ways-to-flatten-utah/"
+  },
+  "author": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "publisher": {
+    "@id": "https://buschbrian.github.io/#brian"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "@id": "https://buschbrian.github.io/notes/",
+    "name": "Notes"
+  }
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span>Brian Busch <em>GISP</em></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation" data-nav-menu><a href="/projects/">Projects</a><a aria-current="page" href="/notes/">Notes</a><a href="/involvement/">Involvement</a><a href="/about/">About</a></nav>
+    </header>
+
+    <main id="main" class="post-page">
+      <article class="post-article">
+        <header class="post-header">
+          <p class="eyebrow">30 Day Map Challenge 2026 | Day 22: Projections</p>
+          <h1>79 Ways to Flatten Utah</h1>
+          <p class="post-deck">Utah's draft State Plane Coordinate System of 2022 (SPCS2022) has 79 low-distortion zones. Each zone has its own map projection. Two posters show the zones and how long a mapped mile is against a mile on the ground.</p>
+          <div class="post-meta-grid">
+            <div><span>Challenge</span><strong>Day 22: Projections</strong></div>
+            <div><span>Subject</span><strong>SPCS2022 zones and map distortion across Utah</strong></div>
+            <div><span>Made with</span><strong>Python (GeoPandas, Shapely, pyproj, Rasterio, NumPy, Matplotlib), Claude for the data, maps and layout</strong></div>
+            <div><span>Challenge date</span><strong><time datetime="2026-11-22">November 22, 2026</time></strong></div>
+          </div>
+        </header>
+        <figure class="post-hero-image">
+          <picture><source type="image/webp" srcset="/assets/images/r/79-ways-to-flatten-utah-480.webp 480w, /assets/images/r/79-ways-to-flatten-utah-960.webp 960w, /assets/images/r/79-ways-to-flatten-utah-1440.webp 1440w, /assets/images/r/79-ways-to-flatten-utah-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/79-ways-to-flatten-utah.jpg" alt="Poster titled 79 ways to flatten Utah, on sand-colored paper. A large teal 79 sits at the top left, with the words beside it squashed flatter line by line. A shaded-relief map of Utah shows the 79 SPCS2022 low-distortion zones. Teal zones with east-west hatching use a Lambert conformal conic projection. Brown zones with north-south hatching use a Transverse Mercator projection. Two violet zones with tilted hatching use an Oblique Mercator projection. Dashed lines mark the 11 regional zones, and Great Salt Lake is pale blue. A chart at the left gives the range of each zone, all within about 1.5 feet per mile. Three inset maps at the bottom show the tilted zones along I-70, around Glen Canyon and in the Escalante Desert, each with a dashed center line." width="2160" height="2700"></picture>
+          <figcaption>79 ways to flatten Utah, in the sandstone colors. <a href="/assets/images/79-ways-to-flatten-utah.jpg">Open the poster</a>.</figcaption>
+        </figure>
+        <div class="post-content">
+          <h2>A flat map changes distance</h2>
+          <p>A map projection puts the curved earth on a flat surface. This step makes some distances longer and some shorter. The amount changes from place to place.</p>
+          <p>Elevation also changes distance. A coordinate system measures distance on the ellipsoid, a smooth model of the earth near sea level. A surveyor measures distance on the ground, which is higher. In Utah, elevation alone makes a mapped mile 0.6 to 3.2 feet shorter than the ground mile.</p>
+          <p>I multiply the projection's scale factor by the elevation factor. The result is the combined factor. The posters give it as feet per mile:</p>
+          <ul>
+            <li>A negative number means that the mapped mile is shorter than the ground mile.</li>
+            <li>A positive number means that the mapped mile is longer.</li>
+            <li>One foot per mile is about 189 parts per million, or 19 cm per km.</li>
+          </ul>
+          <h2>The 79 low-distortion zones</h2>
+          <p>The National Geodetic Survey (NGS) at NOAA published a beta design of SPCS2022. For Utah, the design has 11 regional zones that cover the state. It also has 79 smaller low-distortion zones. The Utah Geospatial Resource Center (UGRC) data names NGS as the designer of the regional zones and the State of Utah as the designer of the 79 zones.</p>
+          <p>The 79 zones use three types of projection:</p>
+          <ul>
+            <li>48 zones use a Lambert conformal conic projection with one standard parallel.</li>
+            <li>29 zones use a Transverse Mercator projection.</li>
+            <li>2 zones use an Oblique Mercator projection. One follows I-70 from Floy to the Colorado line, tilted 51°. The other covers Glen Canyon National Recreation Area, tilted 50°.</li>
+          </ul>
+          <p>The 79 zones cover 39.9% of Utah, and no two zones overlap.</p>
+          <p>The hatch lines show the line that each projection is built along. Lambert zones have lines along a parallel. Transverse Mercator zones have lines along a meridian. Oblique Mercator zones have lines along their tilted center line.</p>
+          <p>The chart at the left gives the range of each zone, map against ground, on a 500 m grid. Every zone stays between −1.5 and +0.6 feet per mile.</p>
+          <p>Three inset maps show the tilted zones. The third, the Escalante Desert, is a regional zone, tilted 20°. In each inset, the dashed line is the center line, where the projection scale is lowest. In these three zones, the projection alone makes a mapped mile 0.9 to 1.8 feet longer. Elevation cancels most of that.</p>
+          <h2>How long is a mile on your map?</h2>
+          <p>The second poster puts several coordinate systems on one color scale. The main map shows the 11 regional zones, with a number and a name for each. A table gives the projection and the range of each zone.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/79-ways-to-flatten-utah-mile-480.webp 480w, /assets/images/r/79-ways-to-flatten-utah-mile-960.webp 960w, /assets/images/r/79-ways-to-flatten-utah-mile-1440.webp 1440w, /assets/images/r/79-ways-to-flatten-utah-mile-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/79-ways-to-flatten-utah-mile.jpg" alt="Poster titled How long is a mile on your map?, on sand-colored paper, over a one-mile ruler marked in feet. A shaded-relief map of Utah shows the 11 SPCS2022 regional zones, each numbered and named. Colors show how many feet a mapped mile gains or loses against the ground, from dark teal for shorter to dark brown for longer. Most of the state falls within a foot. Beside the map, a chart follows 112 degrees west from south to north. It compares UTM zone 12N, State Plane 1983 and the regional zones, with a ground profile at the side. A table lists the 11 regional zones with their projections and ranges. Five small maps show UTM zone 12N, State Plane 1983, the SPCS2022 statewide zone, the low-distortion zones and the Navajo Nation Coordinate System on the same color scale." width="2160" height="2700" loading="lazy"></picture>
+            <figcaption>How long is a mile on your map?, in the sandstone colors. <a href="/assets/images/79-ways-to-flatten-utah-mile.jpg">Open the poster</a>.</figcaption>
+          </figure>
+          <p>On a 1 km grid, each system gives these ranges in feet per mile:</p>
+          <ul>
+            <li>UTM zone 12N: −5.2 to +2.0. It is within 1 foot on 17% of Utah.</li>
+            <li>State Plane 1983, with its North, Central and South zones: −3.5 to −0.1. It is within 1 foot on 9% of Utah.</li>
+            <li>The SPCS2022 statewide zone: −2.9 to +2.3. It is within 1 foot on 51% of Utah.</li>
+            <li>The SPCS2022 regional zones: −1.9 to +0.9. They are within 1 foot on 97% of Utah.</li>
+            <li>The SPCS2022 low-distortion zones, where they exist: −1.4 to +0.5. They are within 1 foot on 99.8% of their area.</li>
+          </ul>
+          <p>The regional zones are scaled a little long. Their projection alone adds 0.6 to 2.1 feet per mile. Elevation removes 0.6 to 3.2 feet per mile, so the two effects mostly cancel.</p>
+          <p>The poster also shows the Navajo Nation Coordinate System, a Lambert projection. In Utah, its range is −0.5 to +1.7 feet per mile.</p>
+          <h2>A line north along 112° W</h2>
+          <p>The chart follows 112° W from the Arizona line to the Idaho line. This meridian is about 5.6 miles (9 km) west of downtown Salt Lake City. The chart has three lines: UTM zone 12N, State Plane 1983 and the SPCS2022 regional zones.</p>
+          <p>The lines jump where they cross a zone boundary:</p>
+          <ul>
+            <li>State Plane 1983 changes zone at 38.50° N and 40.92° N.</li>
+            <li>The regional zones change at 37.53° N, 38.50° N and 39.80° N.</li>
+          </ul>
+          <p>Between the jumps, the changes come from the ground. The largest is just north of 38.5° N. There, the ground rises to about 11,000 feet at 38.61° N. The regional line goes down to −1.44 feet per mile at that point.</p>
+          <p>The tilt of the Glen Canyon zone makes a difference along Lake Powell. On the projection alone, that zone has less than a third of the distortion of the best upright Transverse Mercator that I could fit.</p>
+          <h2>The glacier colors</h2>
+          <p>Each poster also has a dark version on navy. On the zone map, amber is Transverse Mercator, ice blue is Lambert and rose is Oblique Mercator. On the mile map, ice blue is shorter and amber is longer.</p>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/79-ways-to-flatten-utah-glacier-480.webp 480w, /assets/images/r/79-ways-to-flatten-utah-glacier-960.webp 960w, /assets/images/r/79-ways-to-flatten-utah-glacier-1440.webp 1440w, /assets/images/r/79-ways-to-flatten-utah-glacier-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/79-ways-to-flatten-utah-glacier.jpg" alt="The poster 79 ways to flatten Utah in dark colors on navy. A large blue 79 sits at the top left, with the words beside it squashed flatter line by line. A shaded-relief map of Utah shows the 79 SPCS2022 low-distortion zones. Ice-blue zones with east-west hatching use a Lambert conformal conic projection. Amber zones with north-south hatching use a Transverse Mercator projection. Two rose zones with tilted hatching use an Oblique Mercator projection. Dashed lines mark the 11 regional zones, and Great Salt Lake is a navy cutout with a pale outline. A chart at the left gives the range of each zone. Three inset maps show the tilted zones along I-70, around Glen Canyon and in the Escalante Desert." width="2160" height="2700" loading="lazy"></picture>
+            <figcaption>79 ways to flatten Utah, in the glacier colors. <a href="/assets/images/79-ways-to-flatten-utah-glacier.jpg">Open the poster</a>.</figcaption>
+          </figure>
+          <figure class="post-hero-image">
+            <picture><source type="image/webp" srcset="/assets/images/r/79-ways-to-flatten-utah-mile-glacier-480.webp 480w, /assets/images/r/79-ways-to-flatten-utah-mile-glacier-960.webp 960w, /assets/images/r/79-ways-to-flatten-utah-mile-glacier-1440.webp 1440w, /assets/images/r/79-ways-to-flatten-utah-mile-glacier-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/79-ways-to-flatten-utah-mile-glacier.jpg" alt="The poster How long is a mile on your map? in dark colors on navy, over a one-mile ruler marked in feet. A shaded-relief map of Utah shows the 11 SPCS2022 regional zones, each numbered and named. Colors show how many feet a mapped mile gains or loses against the ground, from ice blue for shorter to amber for longer. Beside the map, a chart follows 112 degrees west from south to north and compares UTM zone 12N, State Plane 1983 and the regional zones. A table lists the 11 regional zones. Five small maps compare the other systems on the same color scale." width="2160" height="2700" loading="lazy"></picture>
+            <figcaption>How long is a mile on your map?, in the glacier colors. <a href="/assets/images/79-ways-to-flatten-utah-mile-glacier.jpg">Open the poster</a>.</figcaption>
+          </figure>
+          <h2>Inside the scripts</h2>
+          <p>The final script, <code>day22_v7.py</code>, draws all four posters. It uses functions from earlier scripts in the series. The distortion math is in <code>day22_scale.py</code>.</p>
+          <p>The excerpts below come from <code>day22_scale.py</code>. That script passes the default checks of the ruff linter and uses its code format.</p>
+          <p>This function writes a PROJ definition for one SPCS2022 zone. PROJ is the open-source library that does the map projections. NGS gives three projection types: Transverse Mercator (TM), Lambert with one parallel (LC1) and Oblique Mercator (OMC).</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>def spcs22_proj(z):
+    """PROJ string for an NGS SPCS2022 zone: TM, LC1 (one-parallel Lambert) or OMC."""
+    lat0, lon0, k = z["Lat0_deg"], z["Lon0_W_deg"], z["ProjScale"]
+    tail = f"+k_0={k} +x_0={z['FalseE_m']} +y_0={z['FalseN_m']} +ellps=GRS80 +units=m +no_defs"
+    if z["ProjAbrv"] == "TM":
+        return f"+proj=tmerc +lat_0={lat0} +lon_0={lon0} {tail}"
+    if z["ProjAbrv"] == "LC1":
+        return f"+proj=lcc +lat_1={lat0} +lat_0={lat0} +lon_0={lon0} {tail}"
+    if z["ProjAbrv"] == "OMC":
+        a = z["SkewAz_deg"]
+        return f"+proj=omerc +lat_0={lat0} +lonc={lon0} +alpha={a} +gamma={a} {tail}"
+    raise ValueError(z["ProjAbrv"])</code></pre>
+            <figcaption>From <code>day22_scale.py</code>. The script tests each definition against the example point that NGS publishes for the zone. It stops if a scale factor or a coordinate does not agree.</figcaption>
+          </figure>
+          <p>This function gets the elevation factor at each grid point. It samples the elevation, then divides the radius of the earth by the radius plus the height.</p>
+          <figure class="code-excerpt">
+            <pre tabindex="0"><code>def elevation_factor(lon, lat, gx, gy):
+    to5070 = Transformer.from_crs(ALBERS, 5070, always_xy=True)
+    ex, ey = to5070.transform(gx.ravel(), gy.ravel())
+    with rasterio.open(DEM) as src:
+        h = np.fromiter((v[0] for v in src.sample(zip(ex, ey))), float, count=ex.size)
+    h = h.reshape(gx.shape) + GEOID_M
+    s2 = np.sin(np.radians(lat)) ** 2
+    m = A * (1 - E2) / (1 - E2 * s2) ** 1.5
+    n = A / np.sqrt(1 - E2 * s2)
+    r = np.sqrt(m * n)
+    return r / (r + h), h - GEOID_M</code></pre>
+            <figcaption>From <code>day22_scale.py</code>. <code>r</code> is the mean radius of curvature of the GRS80 ellipsoid at the latitude of the point. <code>GEOID_M</code> is a constant geoid height of −16 m. This simplification changes the result by about 0.01 foot per mile.</figcaption>
+          </figure>
+          <h2>Method</h2>
+          <ul>
+            <li>The regional and low-distortion zones come from the UGRC copies of the NGS layers in the State Geographic Information Database (SGID). The statewide zone comes from the NGS beta site.</li>
+            <li>The PROJ definition of every zone agrees with the NGS example point within 2 × 10⁻⁹ in scale and 0.8 mm in position.</li>
+            <li>For State Plane 1983, each county uses its zone from the UGRC county boundaries.</li>
+            <li>The elevation is USGS 3D Elevation Program (3DEP) data at 400 m. The relief shading is 3DEP data at 250 m.</li>
+            <li>The statewide maps and the chart use a 1 km grid. The range chart and the inset maps use a 500 m grid.</li>
+            <li>The posters are drawn in an Albers equal-area conic projection on NAD83, with standard parallels at 37.5° N and 41.5° N and a central meridian at 111.5° W.</li>
+            <li>The lakes come from Esri USA Water Bodies. The Glen Canyon boundary comes from the National Park Service. I-70 and I-15 come from UGRC roads. The Navajo Nation boundary comes from U.S. Census TIGER data.</li>
+          </ul>
+          <h2>Limits</h2>
+          <ul>
+            <li>SPCS2022 is a beta design. It uses NATRF2022, a new reference frame that is not in use yet. The comparison uses only the projections, so the reference frame does not change the numbers.</li>
+            <li>The 400 m elevation data smooths the peaks. The true range of each zone is a little wider.</li>
+            <li>The Lake Powell comparison uses the lake and 2 km of shore, with my own fitting method. It is not the NGS design method.</li>
+            <li>The Navajo Nation Coordinate System comes from Esri's projection list (ESRI:103592).</li>
+          </ul>
+          <h2>Data and credit</h2>
+          <p>NGS and the State of Utah designed the SPCS2022 zones. UGRC publishes the zones and the county boundaries in the SGID. USGS provides the 3DEP elevation data. The U.S. Census Bureau provides the TIGER boundaries. The National Park Service provides the Glen Canyon boundary.</p>
+          <ul>
+            <li><a href="https://gis.utah.gov/products/sgid/cadastre/spcs2022/">Read about the SPCS2022 zones from UGRC</a>.</li>
+            <li><a href="https://beta.ngs.noaa.gov/SPCS/zone-definitions.shtml">Read the SPCS2022 zone definitions from NGS</a>.</li>
+            <li><a href="https://www.usgs.gov/3d-elevation-program">Read about the USGS 3D Elevation Program</a>.</li>
+          </ul>
+          <nav class="challenge-links" aria-label="Other maps in the 2026 challenge">
+            <a href="/notes/western-reservoir-storage/">Day 1: Points</a>
+            <a href="/notes/two-lakes-two-river-systems/">Day 2: Lines</a>
+            <a href="/notes/drought-in-western-basins/">Day 3: Polygons</a>
+            <a href="/notes/utah-wildfire-starts-by-cause/">Day 4: Clusters</a>
+            <a href="/notes/canyon-overlook-trail-viewshed/">Day 5: Sight</a>
+            <a href="/notes/holmes-zion-panorama/">Day 6: Vintage</a>
+            <a href="/notes/wasatch-front-walk-to-transit/">Day 7: 10 minute map</a>
+            <a href="/notes/great-salt-lake-at-4198-feet/">Day 8: Utopia</a>
+            <a href="/notes/utah-urban-and-rural/">Day 9: Urban-rural</a>
+            <a href="/notes/beneath-japan-one-prompt/">Day 10: Prompting</a>
+            <a href="/notes/the-mighty-five-by-decibel/">Day 11: Sound</a>
+            <a href="/notes/a-field-guide-to-the-megawatt/">Day 12: Power</a>
+            <a href="/notes/utah-park-drive-times/">Day 13: Interactions</a>
+            <a href="/notes/zion-narrows-lidar/">Day 14: Borgesian map</a>
+            <a href="/notes/western-reservoir-sources/">Day 15: Inside out</a>
+            <a href="/notes/two-years-of-utah/">Day 16: Collaborative map</a>
+            <a href="/notes/left-fork-light-and-dark/">Day 17: Light and dark</a>
+            <a href="/notes/western-reservoir-absences/">Day 18: NULL</a>
+            <a href="/notes/grand-staircase-scent-strata/">Day 19: Smell</a>
+            <a href="/notes/forty-years-of-ground/">Day 20: Hexagons</a>
+            <a href="/notes/utah-ski-runs-rated-and-measured/">Day 21: OpenStreetMap</a>
+            <a href="/notes/79-ways-to-flatten-utah/" aria-current="page">Day 22: Projections</a>
+            <a href="/notes/utah-fruit-belts/">Day 23: Taste</a>
+          </nav>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer"><p>Brian Busch | GISP | Geospatial Web Development &amp; GIS Applications</p><div class="footer-right"><nav class="social-links" aria-label="Social links"><a href="https://www.dustandstarlight.com" target="_blank" rel="noreferrer" aria-label="Dust and Starlight photography"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.4 3h5.2l1.3 2.4H20A2 2 0 0 1 22 7.4V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.4a2 2 0 0 1 2-2h4.1zM12 8.4a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 2.1a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a><a href="https://www.linkedin.com/in/brian-busch1/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.5c0-1.3-.02-3-1.9-3-1.9 0-2.2 1.4-2.2 2.9V21H9z"/></svg></a><a href="https://github.com/buschbrian" target="_blank" rel="noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a><a href="https://x.com/brianjbusch" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.instagram.com/brianbusch1/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></nav><a href="/projects/#map-challenge-2026">Back to projects</a></div></footer>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
