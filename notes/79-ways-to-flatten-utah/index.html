@@ -138,21 +138,12 @@
           <h2>Inside the scripts</h2>
           <p>The final script, <code>day22_v7.py</code>, draws all four posters. It uses functions from earlier scripts in the series. The distortion math is in <code>day22_scale.py</code>.</p>
           <p>The excerpts below come from <code>day22_scale.py</code>. That script passes the default checks of the ruff linter and uses its code format.</p>
-          <p>This function writes a PROJ definition for one SPCS2022 zone. PROJ is the open-source library that does the map projections. NGS gives three projection types: Transverse Mercator (TM), Lambert with one parallel (LC1) and Oblique Mercator (OMC).</p>
+          <p>This function gets the projection's scale factor at each grid point. PROJ, the open-source projection library, calculates it through pyproj.</p>
           <figure class="code-excerpt">
-            <pre tabindex="0"><code>def spcs22_proj(z):
-    """PROJ string for an NGS SPCS2022 zone: TM, LC1 (one-parallel Lambert) or OMC."""
-    lat0, lon0, k = z["Lat0_deg"], z["Lon0_W_deg"], z["ProjScale"]
-    tail = f"+k_0={k} +x_0={z['FalseE_m']} +y_0={z['FalseN_m']} +ellps=GRS80 +units=m +no_defs"
-    if z["ProjAbrv"] == "TM":
-        return f"+proj=tmerc +lat_0={lat0} +lon_0={lon0} {tail}"
-    if z["ProjAbrv"] == "LC1":
-        return f"+proj=lcc +lat_1={lat0} +lat_0={lat0} +lon_0={lon0} {tail}"
-    if z["ProjAbrv"] == "OMC":
-        a = z["SkewAz_deg"]
-        return f"+proj=omerc +lat_0={lat0} +lonc={lon0} +alpha={a} +gamma={a} {tail}"
-    raise ValueError(z["ProjAbrv"])</code></pre>
-            <figcaption>From <code>day22_scale.py</code>. The script tests each definition against the example point that NGS publishes for the zone. It stops if a scale factor or a coordinate does not agree.</figcaption>
+            <pre tabindex="0"><code>def scale(epsg, lon, lat):
+    f = Proj(CRS.from_epsg(epsg)).get_factors(lon, lat)
+    return np.asarray(f.meridional_scale)</code></pre>
+            <figcaption>From <code>day22_scale.py</code>. A conformal projection has the same scale in all directions at a point, so the scale along the meridian is the scale factor. The SPCS2022 zones use the same call with a PROJ definition that the script writes from the NGS zone parameters.</figcaption>
           </figure>
           <p>This function gets the elevation factor at each grid point. It samples the elevation, then divides the radius of the earth by the radius plus the height.</p>
           <figure class="code-excerpt">
