@@ -12,6 +12,7 @@ const OUT = "feed.xml";
 // The reading order of the notes index. A note that is not in this list
 // goes after these, in alphabetical order.
 const ORDER = [
+  "salt-lake-county-traffic-flow",
   "white-rim-sunrise-skyline",
   "ugem-hub",
   "utah-water-dashboard-rebuild",
