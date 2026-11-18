@@ -81,7 +81,7 @@
         <div class="post-content">
           <h2>A map from the Esri User Conference</h2>
           <p>GIS Day is on November 18 this year. GIS means geographic information system. For GIS Day, I share a traffic map of Salt Lake County, Utah.</p>
-          <p>At the 2025 Esri User Conference, I saw a traffic flow map of San Diego County by Caltrans, the California Department of Transportation. The map uses one color. The width of each line shows how much traffic the road carries, and a small number beside the line gives the count.</p>
+          <p>At the 2025 Esri User Conference, I saw a traffic flow map of San Diego County by Caltrans, the California Department of Transportation. The width of each line shows how much traffic the road carries. A small number beside the line gives the count.</p>
           <p>I wanted the same kind of map for Salt Lake County, in a desert color. I made a first version in ArcGIS Pro and planned to finish it in Adobe Illustrator.</p>
           <h2>What the map shows</h2>
           <p>Annual average daily traffic (AADT) is the traffic on a road section for one year, divided by 365. The values come from Utah's 2025 submission to the Highway Performance Monitoring System (HPMS) of the Federal Highway Administration. I rounded each value to the nearest hundred.</p>
@@ -99,10 +99,10 @@
           <h2>From Python to Illustrator</h2>
           <p>I did not finish the map in Illustrator as I planned. I built the full sheet in Python. Python placed the labels, the route markers and the place names. It also made the shore of Great Salt Lake at 4,205 feet from a USGS elevation model of the lakebed.</p>
           <p>The route markers are the official public domain artwork on Wikimedia Commons. Commons stopped sending files to my network, so I made 25 of the Utah markers from the digits of the official ones.</p>
-          <p>At the end, Python wrote an Illustrator file with named layers, text that you can edit, and character styles. I will finish the print in both Python and Illustrator.</p>
+          <p>At the end, a script in Illustrator made an Illustrator file from the Python output. The file has named layers, text that you can edit, and character styles. I will finish the print in both Python and Illustrator.</p>
           <h2>Watch the camera move</h2>
           <figure class="post-hero-image post-map-animation">
-            <video controls loop muted playsinline preload="none" width="1080" height="1350" poster="/assets/images/salt-lake-county-traffic-flow-video.jpg" aria-label="A silent video, about 17 seconds long. It opens on the full traffic flow map. Then it moves in to I-15 at the I-80 interchange, where the label reads 342,800. The view follows I-15 south past South Salt Lake, Murray and Midvale to Draper. Then it moves out to the full map again.">
+            <video controls loop muted playsinline preload="none" width="1080" height="1350" poster="/assets/images/salt-lake-county-traffic-flow-video.jpg" aria-label="A silent video, about 21 seconds long. It opens on the full traffic flow map. Then it moves in to I-15 at the I-80 interchange, where the label reads 342,800. The view follows I-15 south past South Salt Lake, Murray and Midvale to Draper. Then it moves out to the full map again.">
               <source src="/assets/video/salt-lake-county-traffic-flow.mp4" type="video/mp4">
               <p><a href="/assets/video/salt-lake-county-traffic-flow.mp4">Download the video</a>.</p>
             </video>
