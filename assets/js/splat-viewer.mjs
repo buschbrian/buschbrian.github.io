@@ -84,10 +84,11 @@ function setup(root) {
 
     renderer.setAnimationLoop((time) => {
       if (walking !== null) {
+        // getPoint follows the camera positions in order, so the walk keeps the video's pace.
+        // The eye stops short of the end, so the view keeps a target ahead of it.
         const t = Math.min((time - walking) / 1000 / walkSeconds, 1);
-        const eye = curve.getPointAt(t);
-        camera.position.copy(eye);
-        controls.target.copy(curve.getPointAt(Math.min(t + 0.04, 1)));
+        camera.position.copy(curve.getPoint(t * 0.96));
+        controls.target.copy(curve.getPoint(t * 0.96 + 0.04));
         if (t >= 1) {
           stopWalk("The walk is over. Drag to look around, or reset the view.");
         }
