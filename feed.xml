@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Sun, 22 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>Traffic Flow on Salt Lake County's State Highways</title>
       <link>https://buschbrian.github.io/notes/salt-lake-county-traffic-flow/</link>
@@ -253,6 +253,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-ski-runs-rated-and-measured/</guid>
       <description>One plate for each of 14 Utah ski resorts, from OpenStreetMap's runs and lifts, with each run measured at its steepest 330 feet on USGS elevation.</description>
       <pubDate>Sat, 21 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>79 Ways to Flatten Utah</title>
+      <link>https://buschbrian.github.io/notes/79-ways-to-flatten-utah/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/79-ways-to-flatten-utah/</guid>
+      <description>Utah's draft State Plane Coordinate System of 2022 has 79 low-distortion zones, each with its own projection. Two posters map the zones and show how long a mapped mile is against the ground.</description>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
