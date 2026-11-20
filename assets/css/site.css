@@ -787,3 +787,20 @@ body.lightbox-open { overflow: hidden; }
   .page-heading h1, .post-header h1 { font-weight: 400; }
   .section-nav a { padding-inline: 12px; }
 }
+
+/* gaussian splat viewer: the poster shows until the reader opens the 3D view */
+.splat-viewer { margin: 0 0 clamp(32px, 5vw, 48px); }
+.splat-viewer [hidden] { display: none; }
+.splat-stage {
+  position: relative; width: 100%; aspect-ratio: 4 / 5; max-height: 82vh; overflow: hidden;
+  border: 1px solid var(--line); border-radius: var(--r); background: #120f0d;
+}
+.splat-stage img, .splat-stage canvas { display: block; width: 100%; height: 100%; object-fit: cover; }
+.splat-stage canvas { touch-action: none; cursor: grab; }
+.splat-stage canvas:active { cursor: grabbing; }
+.splat-viewer .btns { margin-top: 16px; }
+.splat-viewer .btn { cursor: pointer; }
+.splat-viewer .btn[aria-pressed="true"] { border-color: var(--cosmic); color: var(--cosmic); }
+.splat-viewer .btn:disabled { cursor: progress; opacity: .6; }
+.splat-viewer .btn:focus-visible { outline: 2px solid var(--cerulean-text); outline-offset: 2px; }
+.splat-status { margin-top: 12px; font-size: var(--fs-caption); line-height: 1.6; letter-spacing: .04em; color: var(--muted); min-height: 1.6em; }
