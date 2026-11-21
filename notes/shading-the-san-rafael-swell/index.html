@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Eight tests with Eduard Cloud show how the terrain around the San Rafael Swell changes the look of its shaded relief.">
+    <meta name="description" content="Eight tests with Eduard Cloud show how nearby terrain changes the shaded relief of the San Rafael Swell.">
     <meta name="theme-color" content="#ffffff">
     <title>Shading the San Rafael Swell | Brian Busch, GISP</title>
     <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
@@ -15,7 +15,7 @@
     <meta property="og:site_name" content="Brian Busch">
     <meta property="og:url" content="https://buschbrian.github.io/notes/shading-the-san-rafael-swell/">
     <meta property="og:title" content="Shading the San Rafael Swell | Brian Busch, GISP">
-    <meta property="og:description" content="Eight tests with Eduard Cloud show how the terrain around the San Rafael Swell changes the look of its shaded relief.">
+    <meta property="og:description" content="Eight tests with Eduard Cloud show how nearby terrain changes the shaded relief of the San Rafael Swell.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/shading-the-san-rafael-swell-card.jpg">
     <meta property="og:image:alt" content="Tan shaded relief of the south end of the San Rafael Swell, above the map title and elevation key.">
     <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Shading the San Rafael Swell",
-  "description": "Eight tests with Eduard Cloud show how the terrain around the San Rafael Swell changes the look of its shaded relief.",
+  "description": "Eight tests with Eduard Cloud show how nearby terrain changes the shaded relief of the San Rafael Swell.",
   "image": "https://buschbrian.github.io/assets/images/san-rafael-swell-eduard.jpg",
   "datePublished": "2026-11-27",
   "dateModified": "2026-11-27",
@@ -66,7 +66,7 @@
         <header class="post-header">
           <p class="eyebrow">30 Day Map Challenge 2026 | Day 27: New tool</p>
           <h1>Shading the San Rafael Swell</h1>
-          <p class="post-deck">Eight tests with Eduard Cloud show how the terrain around the San Rafael Swell changes the look of its shaded relief.</p>
+          <p class="post-deck">Eight tests with Eduard Cloud show how nearby terrain changes the shaded relief of the San Rafael Swell.</p>
           <div class="post-meta-grid">
             <div><span>Challenge</span><strong>Day 27: New tool</strong></div>
             <div><span>Made with</span><strong>Eduard Cloud, GDAL, Claude for the data, map and layout</strong></div>
@@ -82,8 +82,14 @@
           <p>I used one USGS elevation model for a GDAL multidirectional hillshade and eight tests in Eduard Cloud. The grid has cells about 10 meters across. Eduard learned to shade terrain from examples of hand-drawn relief. The tool credits Monash University and ETH Zurich.</p>
           <p>In this comparison, Eduard kept more of the small canyons and valley floors visible along the San Rafael Reef. I judged this by looking at the two images in the same area.</p>
           <h2>The shading frame changed the contrast</h2>
-          <p>The elevation model reaches 10,578 feet at the edge of the Wasatch Plateau. In the tests with aerial perspective at 75 and 100, much of the Swell faded beside the higher terrain. I kept the plateau in the shading frame. The finished map shows it in the northwest corner.</p>
-          <p>The final map uses aerial perspective 20, contrast 70, light turned 30 degrees west, and the Large shading style.</p>
+          <p>The elevation model reaches 10,578 feet at the edge of the Wasatch Plateau. Aerial perspective in Eduard lowers the contrast of low terrain, so high terrain stands out. In the tests with aerial perspective at 75 and 100, much of the Swell faded beside the higher terrain. I kept the plateau in the shading frame. The finished map shows it in the northwest corner.</p>
+          <p>The final map uses these Eduard settings:</p>
+          <ul>
+            <li>Aerial perspective 20</li>
+            <li>Contrast 70</li>
+            <li>Light turned 30 degrees west</li>
+            <li>The Large shading style</li>
+          </ul>
           <h2>Read the elevations</h2>
           <p>Color shows elevation, from 4,132 feet in the desert to 10,578 feet on the plateau. Three summits show their height:</p>
           <ul>
@@ -91,7 +97,7 @@
             <li>Temple Mountain, 6,759 feet</li>
             <li>Mexican Mountain, 6,389 feet</li>
           </ul>
-          <p>Each height is the highest cell of the elevation grid within 200 meters of the named point in the USGS database.</p>
+          <p>For each summit, I used the highest elevation within 200 meters of the named USGS point.</p>
           <p>Terrain from the <a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program</a>. Place names from the <a href="https://www.usgs.gov/us-board-on-geographic-names/domestic-names">USGS Geographic Names Information System</a>. Relief drawn in <a href="https://eduard.earth/">Eduard</a>. I worked through the data, map and layout with Claude.</p>
         </div>
         <div class="post-content">

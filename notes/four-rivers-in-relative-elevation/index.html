@@ -79,7 +79,7 @@
         </figure>
         <div class="post-content">
           <h2>Use the river as zero</h2>
-          <p>The land beside a river slopes downstream with it. That slope can hide low ground in an ordinary elevation map. A relative elevation model uses the river surface as the local zero. The four maps share a key that runs from river level to 30 feet and higher.</p>
+          <p>The land beside a river slopes downstream with it. That slope can hide low ground in an ordinary elevation map. A relative elevation model uses the river surface as the local zero. The four maps use the same height scale, from river level to 30 feet and higher. Each map has its own colors.</p>
           <p>I sampled the river surface from 1-meter lidar along the USGS channel line. I estimated the surface between those samples, giving more weight to nearby samples, then subtracted it from the terrain. Zero represents the river surface on the day of the lidar survey.</p>
           <h2>Two places where the first method failed</h2>
           <p>Near Mosby, the mapped Musselshell channel crosses sandbars. The first estimated surface was up to about 12 feet above the bed. Using the lowest elevation in a 200-foot window brought the estimate down by about 6 feet.</p>
@@ -89,10 +89,10 @@
         <section class="post-gallery" aria-labelledby="river-method">
           <div class="post-gallery-intro">
             <h2 id="river-method">Build a relative elevation model</h2>
-            <p>This 40-second silent animation starts with lidar terrain from the Musselshell valley. It marks the samples along the river, spreads a surface across the valley, and subtracts that surface from the terrain. Bright colors trace the channel. Blues mark higher ground. The final frame shows all four maps.</p>
+            <p id="river-method-description">This 40-second silent animation starts with lidar terrain from the Musselshell valley. It marks the samples along the river, spreads a surface across the valley, and subtracts that surface from the terrain. Each color band on that surface marks 10 feet of fall. Bright colors trace the channel. Blues mark higher ground. The final frame shows all four maps.</p>
           </div>
-          <figure class="post-hero-image post-map-animation">
-            <video controls muted playsinline preload="none" width="864" height="1080" poster="/assets/images/musselshell-relative-elevation-video.jpg" aria-label="How the Musselshell River relative elevation model was made">
+          <figure class="post-hero-image post-map-animation is-four-five">
+            <video controls muted playsinline preload="none" width="864" height="1080" poster="/assets/images/musselshell-relative-elevation-video.jpg" aria-label="How the Musselshell River relative elevation model was made" aria-describedby="river-method-description">
               <source src="/assets/video/musselshell-relative-elevation.mp4" type="video/mp4">
             </video>
           </figure>
