@@ -51,6 +51,8 @@ const ORDER = [
   "utah-fruit-belts",
   "where-utah-raindrops-end-up",
   "subway-gaussian-splat",
+  "four-rivers-in-relative-elevation",
+  "shading-the-san-rafael-swell",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",

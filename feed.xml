@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>Traffic Flow on Salt Lake County's State Highways</title>
       <link>https://buschbrian.github.io/notes/salt-lake-county-traffic-flow/</link>
@@ -281,6 +281,20 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/subway-gaussian-splat/</guid>
       <description>Eighty seconds of GoPro video from the Subway in Zion National Park, rebuilt as a gaussian splat, mapped from a bird's-eye view, and open to explore in 3D.</description>
       <pubDate>Wed, 25 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Four Rivers in Relative Elevation</title>
+      <link>https://buschbrian.github.io/notes/four-rivers-in-relative-elevation/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/four-rivers-in-relative-elevation/</guid>
+      <description>Four western rivers show how low ground and old channels emerge when height is measured from the river surface.</description>
+      <pubDate>Thu, 26 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Shading the San Rafael Swell</title>
+      <link>https://buschbrian.github.io/notes/shading-the-san-rafael-swell/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/shading-the-san-rafael-swell/</guid>
+      <description>Eight tests with Eduard Cloud show how nearby terrain changes the shaded relief of the San Rafael Swell.</description>
+      <pubDate>Fri, 27 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
