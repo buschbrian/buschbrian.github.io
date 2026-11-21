@@ -17,7 +17,7 @@
     <meta property="og:title" content="Shading the San Rafael Swell | Brian Busch, GISP">
     <meta property="og:description" content="Eight tests with Eduard Cloud show how the terrain around the San Rafael Swell changes the look of its shaded relief.">
     <meta property="og:image" content="https://buschbrian.github.io/assets/images/shading-the-san-rafael-swell-card.jpg">
-    <meta property="og:image:alt" content="Tan shaded relief of the San Rafael Swell, with canyons and ridges along the eastern reef.">
+    <meta property="og:image:alt" content="Tan shaded relief of the south end of the San Rafael Swell, above the map title and elevation key.">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="article:author" content="Brian Busch">
@@ -74,7 +74,7 @@
           </div>
         </header>
         <figure class="post-hero-image">
-          <picture><source type="image/webp" srcset="/assets/images/r/san-rafael-swell-eduard-480.webp 480w, /assets/images/r/san-rafael-swell-eduard-960.webp 960w, /assets/images/r/san-rafael-swell-eduard-1440.webp 1440w, /assets/images/r/san-rafael-swell-eduard-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/san-rafael-swell-eduard.jpg" alt="Shaded relief of the San Rafael Swell. Light tan desert surrounds a darker brown dome cut by narrow canyons. The San Rafael Reef forms its sharp eastern edge. An elevation ladder marks Head of Sinbad, Temple Mountain, Mexican Mountain, and The Wedge." width="2160" height="2700"></picture>
+          <picture><source type="image/webp" srcset="/assets/images/r/san-rafael-swell-eduard-480.webp 480w, /assets/images/r/san-rafael-swell-eduard-960.webp 960w, /assets/images/r/san-rafael-swell-eduard-1440.webp 1440w, /assets/images/r/san-rafael-swell-eduard-2160.webp 2160w" sizes="(max-width: 720px) 90vw, 720px"><img src="/assets/images/san-rafael-swell-eduard.jpg" alt="Shaded relief of the San Rafael Swell. Light tan desert surrounds a darker brown dome cut by narrow canyons. The San Rafael Reef forms its sharp eastern edge. The gray-green Wasatch Plateau rises in the northwest corner. Labels give the height of Head of Sinbad, Temple Mountain, and Mexican Mountain." width="2160" height="2700"></picture>
           <figcaption>San Rafael Swell shaded in Eduard. <a href="/assets/images/san-rafael-swell-eduard.jpg">Open the full map</a>.</figcaption>
         </figure>
         <div class="post-content">
@@ -82,10 +82,16 @@
           <p>I used one USGS elevation model for a GDAL multidirectional hillshade and eight tests in Eduard Cloud. The grid has cells about 10 meters across. Eduard learned to shade terrain from examples of hand-drawn relief. The tool credits Monash University and ETH Zurich.</p>
           <p>In this comparison, Eduard kept more of the small canyons and valley floors visible along the San Rafael Reef. I judged this by looking at the two images in the same area.</p>
           <h2>The shading frame changed the contrast</h2>
-          <p>The elevation model reaches 10,578 feet at the edge of the Wasatch Plateau. In the tests with aerial perspective at 75 and 100, much of the Swell faded beside the higher terrain. I kept the plateau in the shading frame and cropped it out of the finished map.</p>
+          <p>The elevation model reaches 10,578 feet at the edge of the Wasatch Plateau. In the tests with aerial perspective at 75 and 100, much of the Swell faded beside the higher terrain. I kept the plateau in the shading frame. The finished map shows it in the northwest corner.</p>
           <p>The final map uses aerial perspective 20, contrast 70, light turned 30 degrees west, and the Large shading style.</p>
-          <h2>Read the elevation ladder</h2>
-          <p>Color shows elevation. Four places on the left run from Head of Sinbad at 7,127 feet to The Wedge at 5,955 feet. Each value comes from the elevation grid at the named point in the USGS database.</p>
+          <h2>Read the elevations</h2>
+          <p>Color shows elevation, from 4,132 feet in the desert to 10,578 feet on the plateau. Three summits show their height:</p>
+          <ul>
+            <li>Head of Sinbad, 7,129 feet</li>
+            <li>Temple Mountain, 6,759 feet</li>
+            <li>Mexican Mountain, 6,389 feet</li>
+          </ul>
+          <p>Each height is the highest cell of the elevation grid within 200 meters of the named point in the USGS database.</p>
           <p>Terrain from the <a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program</a>. Place names from the <a href="https://www.usgs.gov/us-board-on-geographic-names/domestic-names">USGS Geographic Names Information System</a>. Relief drawn in <a href="https://eduard.earth/">Eduard</a>. I worked through the data, map and layout with Claude.</p>
         </div>
         <div class="post-content">
