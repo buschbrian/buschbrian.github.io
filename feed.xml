@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Sat, 28 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>Traffic Flow on Salt Lake County's State Highways</title>
       <link>https://buschbrian.github.io/notes/salt-lake-county-traffic-flow/</link>
@@ -295,6 +295,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/shading-the-san-rafael-swell/</guid>
       <description>Eight tests with Eduard Cloud show how nearby terrain changes the shaded relief of the San Rafael Swell.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>Exposure Around Moab</title>
+      <link>https://buschbrian.github.io/notes/exposure-around-moab/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/exposure-around-moab/</guid>
+      <description>Five cliff edges near Moab show how far the ground drops within 164 feet of where a person can stand.</description>
+      <pubDate>Sat, 28 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>

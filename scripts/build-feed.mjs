@@ -53,6 +53,7 @@ const ORDER = [
   "subway-gaussian-splat",
   "four-rivers-in-relative-elevation",
   "shading-the-san-rafael-swell",
+  "exposure-around-moab",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",
