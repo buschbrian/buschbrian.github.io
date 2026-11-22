@@ -36,6 +36,7 @@ const ORDER = [
   "great-salt-lake-at-4198-feet",
   "utah-urban-and-rural",
   "beneath-japan-one-prompt",
+  "beneath-japan-seven-more-maps",
   "the-mighty-five-by-decibel",
   "a-field-guide-to-the-megawatt",
   "utah-park-drive-times",
