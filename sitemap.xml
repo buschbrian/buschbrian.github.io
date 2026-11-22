@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://buschbrian.github.io/</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://buschbrian.github.io/projects/</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -164,7 +164,7 @@
   </url>
   <url>
     <loc>https://buschbrian.github.io/notes/</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -293,5 +293,9 @@
   <url>
     <loc>https://buschbrian.github.io/notes/shading-the-san-rafael-swell/</loc>
     <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://buschbrian.github.io/notes/exposure-around-moab/</loc>
+    <lastmod>2026-11-28</lastmod>
   </url>
 </urlset>
