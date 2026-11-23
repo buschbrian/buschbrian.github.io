@@ -12,7 +12,7 @@
     <atom:link href="https://buschbrian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notes on cartography, spatial analysis, and GIS applications by Brian Busch, GISP.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Nov 2026 00:00:00 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 30 Nov 2026 00:00:00 -0600</lastBuildDate>
     <item>
       <title>Traffic Flow on Salt Lake County's State Highways</title>
       <link>https://buschbrian.github.io/notes/salt-lake-county-traffic-flow/</link>
@@ -309,6 +309,13 @@
       <guid isPermaLink="true">https://buschbrian.github.io/notes/exposure-around-moab/</guid>
       <description>Five cliff edges near Moab show how far the ground drops within 164 feet of where a person can stand.</description>
       <pubDate>Sat, 28 Nov 2026 00:00:00 -0600</pubDate>
+    </item>
+    <item>
+      <title>One Brief, Five Maps of Utah’s National Parks</title>
+      <link>https://buschbrian.github.io/notes/utah-five-parks-one-brief/</link>
+      <guid isPermaLink="true">https://buschbrian.github.io/notes/utah-five-parks-one-brief/</guid>
+      <description>One brief, one fixed map of Utah’s five national parks, and five AI models that each drew and signed it. The brief, all five sheets, and what the checks found.</description>
+      <pubDate>Mon, 30 Nov 2026 00:00:00 -0600</pubDate>
     </item>
     <item>
       <title>Utah Dark-Sky Points</title>
