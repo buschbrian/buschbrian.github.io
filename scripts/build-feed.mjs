@@ -55,6 +55,7 @@ const ORDER = [
   "four-rivers-in-relative-elevation",
   "shading-the-san-rafael-swell",
   "exposure-around-moab",
+  "utah-five-parks-one-brief",
   "utah-dark-sky-points",
   "utah-scenic-byways",
   "utah-federal-land-ownership",

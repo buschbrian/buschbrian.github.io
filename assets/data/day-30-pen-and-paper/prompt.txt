@@ -1,0 +1,209 @@
+Make a finished map for Day 30, “Pen & paper,” the last day of the 2026
+#30DayMapChallenge, and sign it as yourself.
+
+This is a one-shot assignment. Make the map autonomously from this brief,
+without clarification questions or human feedback. You may inspect and
+revise your own work within the time limit.
+
+HOW THIS WORKS
+
+Four AI models are receiving this same brief. All four make the same
+map: the same place, the same data, the same scale, the same required
+content. Everything in the sections FIXED DATA, FIXED MAP, and REQUIRED
+CONTENT is identical for all four and is not yours to change.
+
+Everything else is yours. How the map is drawn, in what medium, in what
+colors, with what lettering, ornament, and layout: that is where the
+four sheets should differ, and where you should be ambitious. The
+sheets are posted side by side, each under its own model’s name. Make
+the one that could only be yours.
+
+TIME LIMIT
+
+You have a maximum of 45 minutes of total elapsed time from submission
+of this prompt. Planning, downloads, tool execution, rendering,
+inspection, and delivery all count. Record the start time immediately
+and monitor the deadline.
+
+Use the whole time. Earlier runs of this brief delivered their first
+complete export after about 15 minutes, and it showed. Finishing early
+is not a goal here and earns nothing. Do not deliver before minute 35.
+
+Work in rounds:
+
+- Round 1, to about minute 15: download and verify the data, decide
+  what kind of drawing this is, and export a first complete sheet with
+  all required content in place. This is a draft.
+- Round 2, to about minute 28: open the draft and look at it as a
+  critic would. Write down the three weakest things about it as
+  artwork, not as a checklist. Redraw those parts, not just adjust
+  them, and export again.
+- Round 3, to about minute 38: look again at full size and at 540
+  pixels wide. Name the two weakest things that remain and redraw
+  them. This is the round for the terrain, the lettering, the
+  signature, and anything that still looks like a default.
+- Final check and delivery, minutes 38 to 45.
+
+Save each round’s export (round1.png, round2.png, round3.png) and note
+in the README the time each was made and what you changed after it.
+
+At 45 minutes, stop all work and deliver the best existing result,
+stating any omissions. Do not continue background work beyond the
+deadline.
+
+Use any available tools. Keep the model selected for this session; do
+not switch to or consult another model. Do not use an image-generation
+model for any part of the sheet. Every mark must come from your own
+code or your own vector drawing.
+
+FIXED DATA
+
+Use these five sources and no other geographic data. Download each one
+during this run, save it unchanged, and record the retrieval time.
+
+1. National park boundaries, National Park Service, Land Resources
+   Division:
+   https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query
+   with where = UNIT_CODE IN ('ARCH','BRCA','CANY','CARE','ZION'),
+   outFields = *, outSR = 4326, f = geojson.
+   Expect five features.
+
+2. State boundaries, US Census Bureau cartographic boundary file:
+   https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_state_500k.zip
+
+3. Rivers and lakes, Natural Earth 1:10m:
+   https://naciscdn.org/naturalearth/10m/physical/ne_10m_rivers_lake_centerlines.zip
+   https://naciscdn.org/naturalearth/10m/physical/ne_10m_rivers_north_america.zip
+   https://naciscdn.org/naturalearth/10m/physical/ne_10m_lakes.zip
+
+4. Places, Natural Earth 1:10m:
+   https://naciscdn.org/naturalearth/10m/cultural/ne_10m_populated_places_simple.zip
+
+5. Elevation, USGS 3D Elevation Program, one request:
+   https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?bbox=-114.3,36.8,-108.8,42.2&bboxSR=4326&size=2200,2160&imageSR=4326&format=tiff&pixelType=F32&interpolation=RSP_BilinearInterpolation&f=image
+   Expect a 2200 × 2160 GeoTIFF of elevation in meters, with cells of
+   0.0025 degrees (about 250 m).
+
+If a download fails, retry it. If it still fails, stop and say so. Do
+not substitute another source, and do not draw any geography from
+memory.
+
+FIXED MAP
+
+- Subject: the state of Utah and its five national parks: Arches,
+  Bryce Canyon, Canyonlands, Capitol Reef, and Zion.
+- Sheet: 8 × 10 inches, portrait, exported at 2160 × 2700 pixels.
+- Projection: NAD83 / UTM zone 12N (EPSG:26912). North is up.
+- Scale: 1:2,750,000, the same everywhere on the map. At this scale
+  Utah is about 6.4 inches wide and 8.0 inches tall, and 1 inch is
+  43.4 miles. No insets, enlargements, or second maps.
+- The whole state must be on the sheet, drawn once, in plan view.
+  Where it sits on the sheet is your choice.
+
+REQUIRED CONTENT
+
+Every sheet shows all of the following, taken from the fixed data and
+placed where the data puts it:
+
+- Utah’s outline.
+- The five national parks, each drawn from its NPS boundary and
+  labeled with its name. The parks are the subject of the map and must
+  read as the subject.
+- Terrain across the whole state, derived from the elevation file.
+  How you render it is your choice.
+- Rivers: the Colorado, Green, San Juan, Virgin, and Fremont. Label
+  the Colorado and the Green.
+- Lakes: Great Salt Lake, Utah Lake, and Lake Powell, each labeled.
+- Places: Salt Lake City, Moab, and St. George, each marked and
+  labeled. No other towns.
+- The title “Utah’s Five National Parks”. A subtitle is optional and
+  yours to write.
+- The area of each park in square miles, with square kilometers
+  beside it, computed by you from the NPS polygons with a geodesic or
+  equal-area method. Put the five figures on the sheet.
+- A scale bar in miles with kilometers beside it, correct for
+  1:2,750,000.
+- A credit line naming the four data providers: National Park
+  Service, US Census Bureau, Natural Earth, and USGS 3DEP.
+- “#30DayMapChallenge · Day 30 · Pen & paper”
+- “AI-drawn from a single prompt”
+- Your signature and your note of thanks, described below.
+
+Do not print elevations for individual points; the elevation grid is
+too coarse to support them. Do not add geographic features that are
+not in the fixed data. Neighboring states may be shown or left blank.
+A north indicator is optional.
+
+YOURS TO DECIDE
+
+The theme is pen and paper. The sheet should look as if it was made by
+a hand, on paper, with real drawing materials. Beyond that there are
+no rules of style.
+
+- Medium: pen and ink, pencil, colored pencil, ink wash, watercolor,
+  marker, crayon, woodcut, a field-notebook page, or anything else a
+  person could make at a desk. Mix them if you like.
+- Color: any, or none.
+- Terrain technique: hachures, hatching, stipple, contours, shaded
+  wash, landform drawing, or your own invention.
+- Lettering: a hand style of your own or a sans-serif face. No serif
+  typefaces.
+- Layout, border, ornament, paper, texture, and everything around the
+  map.
+
+Decide what kind of drawing this is before you start, and carry that
+decision through every part of the sheet. A plain default plot with a
+paper texture added is the result to avoid.
+
+SIGNATURE AND THANKS
+
+- Sign the sheet with your own model name, as the session reports it.
+  Design the signature yourself and draw it: a hand, a mark, a
+  monogram, a flourish, whatever you want your name to look like. Do
+  not set it in the lettering used for the rest of the sheet. It
+  should be recognizably yours.
+- This is the last sheet of a thirty-day challenge. Write up to 30
+  words of your own, addressed to the people who make and follow the
+  #30DayMapChallenge, and put them on the sheet. Do not use a stock
+  phrase.
+
+CHECK BEFORE DELIVERY
+
+Inspect the actual exported image at full resolution and at 540 pixels
+wide. Check that:
+
+- The geography is right. Overlay the source data on your export and
+  confirm that the state outline, the five parks, the rivers, the
+  lakes, and the three places sit where the data puts them, at
+  1:2,750,000, with north up.
+- All five parks can be found and read at 540 pixels wide.
+- The terrain reads as land. At 540 pixels wide, the high mountain
+  ranges, the plateaus, and the low basins should be visibly
+  different from one another, not one even texture.
+- Rivers and lakes meet cleanly where they join.
+- Every item under REQUIRED CONTENT is present and spelled correctly,
+  including your own name.
+- The five areas and the scale bar agree with the saved data.
+- Labels do not collide, clip, or disappear into the artwork.
+- Nothing on the sheet came from outside the fixed data.
+
+Correct consequential problems within the remaining time. State any
+unresolved limitations honestly.
+
+DELIVERABLES
+
+Save everything in the current working directory, the folder this
+session was started in. Do not write deliverables anywhere else:
+
+- map.png: 2160 × 2700 pixels.
+- preview.png: 540 × 675 pixels.
+- round1.png, round2.png, round3.png: the export from each round.
+- The script or editable project that made the map.
+- data/: the five downloads, unchanged, and the retrieval time.
+- README.md: your model name, the medium and idea you chose and why,
+  the five computed areas, processing choices, reproduction
+  instructions, actual elapsed time, and any limitations.
+
+Prioritize a complete, accurate, resolved sheet over additional
+features. Finish by displaying the map and linking to the
+deliverables. Keep your final explanation under 150 words.
