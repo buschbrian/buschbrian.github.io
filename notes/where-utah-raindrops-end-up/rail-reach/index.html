@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="#30DayMapChallenge 2026, Day 24 bonus. Travel time by TRAX, FrontRunner and the S-Line from one station, drawn as a surface. Time is the height.">
+<meta name="theme-color" content="#16161a">
+<title>Day 24 bonus · Wasatch Front rail reach</title>
+<link rel="stylesheet" href="https://js.arcgis.com/5.1/esri/themes/dark/main.css">
+<script type="module" src="https://js.arcgis.com/5.1/"></script>
+<style>
+  :root {
+    --ink: #e8e4dc; --dim: #a29c92; --panel: rgba(22, 22, 26, 0.88); --line: #3a3a40; --accent: #f2b35b;
+    --font: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; margin: 0; background: #16161a; color: var(--ink); font: 14px/1.45 var(--font); }
+  #view { position: absolute; inset: 0; }
+  .panel { position: absolute; top: 12px; left: 12px; width: 300px; max-width: calc(100vw - 24px); box-sizing: border-box;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; gap: 10px; }
+  h1 { font-size: 17px; margin: 0; font-weight: 600; letter-spacing: 0.01em; }
+  .sub { color: var(--dim); font-size: 12px; margin: 0; }
+  label, .ctl { display: grid; gap: 3px; font-size: 12px; color: var(--dim); }
+  .ctl label { display: inline; }
+  label output { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; }
+  select, input[type=range] { width: 100%; }
+  select { background: #24242a; color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 4px; font: inherit; }
+  button { background: #24242a; color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 5px 10px; font: inherit; cursor: pointer; }
+  button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .legend { height: 10px; border-radius: 2px; }
+  .ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--dim); font-variant-numeric: tabular-nums; }
+  #trip { font-size: 12px; border-top: 1px solid var(--line); padding-top: 8px; min-height: 3em; }
+  #trip b { color: var(--ink); }
+  #trip ol { margin: 4px 0 0; padding-left: 18px; color: var(--dim); }
+  .attr { position: absolute; right: 0; bottom: 0; padding: 2px 8px; font-size: 11px; color: var(--dim); background: rgba(22,22,26,0.7); }
+  .credit { font-size: 11px; color: var(--dim); }
+  .credit a { color: var(--ink); }
+  @media (max-width: 600px) {
+    .panel { top: auto; bottom: 24px; left: 8px; right: 8px; width: auto; max-width: none; max-height: 42vh; overflow-y: auto; gap: 8px; padding: 10px 12px; }
+    .panel .sub { display: none; }
+  }
+</style>
+</head>
+<body>
+<div id="view"></div>
+<div class="panel">
+  <div>
+    <h1>Wasatch Front Rail Reach</h1>
+    <p class="sub">Travel time by TRAX, FrontRunner and the S-Line, plus a walk from the station. Time is the height. Select a station to start there.</p>
+  </div>
+  <label>From <select id="origin"></select></label>
+  <div class="ctl"><span class="row"><label for="dep">Leave at</label> <output id="depOut" for="dep"></output></span>
+    <input id="dep" type="range" min="300" max="1260" step="15" value="480"></div>
+  <div class="ctl"><span class="row"><label for="max">Up to</label> <output id="maxOut" for="max"></output></span>
+    <input id="max" type="range" min="15" max="180" step="5" value="120"></div>
+  <div class="ctl"><span class="row"><label for="ex">Height (time)</label> <output id="exOut" for="ex"></output></span>
+    <input id="ex" type="range" min="0" max="3" step="0.25" value="1"></div>
+  <div>
+    <div class="legend" id="legend"></div>
+    <div class="ticks" id="ticks"></div>
+  </div>
+  <div class="row"><button id="play" type="button">Play the spread</button><span class="sub" id="day"></span></div>
+  <div id="trip">Point to a station to see the fastest trip there.</div>
+  <p class="credit">Schedule: Utah Transit Authority GTFS. <span id="walkNote">Walking is straight-line distance × 1.3 at 4.8 km/h, up to 30 min.</span> Transfers take 2 min. Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. <a href="/notes/where-utah-raindrops-end-up/">Back to Day 24</a>.</p>
+</div>
+<script type="module">
+const load = (m) => $arcgis.import(`@arcgis/core/${m}.js`);
+const [EsriMap, MapView, Layer, BaseLayerViewGL2D, TileLayer, GraphicsLayer, Graphic, reactiveUtils] = await Promise.all([
+  "Map", "views/MapView", "layers/Layer", "views/2d/layers/BaseLayerViewGL2D", "layers/TileLayer",
+  "layers/GraphicsLayer", "Graphic", "core/reactiveUtils"].map(load));
+
+const data = await (await fetch("/assets/data/day-24-rail.json")).json();
+let walk = null;
+try {
+  const m = await (await fetch("/assets/data/day-24-walk.json")).json();
+  walk = { m, b: new DataView(await (await fetch("/assets/data/day-24-walk.bin")).arrayBuffer()) };
+} catch { walk = null; }
+const R = 6378137, WALK = 1.3333, DETOUR = 1.3, XFER = 120, CAP = 6 * 3600;
+const merc = (lon, lat) => [lon * Math.PI / 180 * R, Math.log(Math.tan(Math.PI / 4 + lat * Math.PI / 360)) * R];
+const st = data.stations.map((s, i) => ({ ...s, i, xy: merc(s.lon, s.lat), k: Math.cos(s.lat * Math.PI / 180) }));
+const N = st.length, conns = data.conns;
+const fmt = (s) => { s = Math.round(s / 60); return `${Math.floor(s / 60) % 24}:${String(s % 60).padStart(2, "0")}`; };
+const mins = (s) => `${Math.round(s / 60)} min`;
+
+// footpaths between nearby stations
+const foot = st.map(() => []);
+if (walk) for (const [a, b, secs] of walk.m.foot) foot[a].push([b, secs]);
+else for (const a of st) for (const b of st) if (a !== b) {
+  const d = Math.hypot(a.xy[0] - b.xy[0], a.xy[1] - b.xy[1]) * a.k;
+  if (d <= 800) foot[a.i].push([b.i, d * DETOUR / WALK]);
+}
+const tripConns = new Map();
+conns.forEach((c, i) => { if (!tripConns.has(c[4])) tripConns.set(c[4], []); tripConns.get(c[4]).push(i); });
+
+// Connection Scan Algorithm: earliest arrival from one station
+function scan(origin, t0, horizon) {
+  const arr = new Float64Array(N).fill(Infinity), via = new Array(N).fill(null);
+  const boarded = new Int32Array(data.trips.length).fill(-1);
+  arr[origin] = t0;
+  const relax = (s) => { for (const [f, w] of foot[s]) if (arr[s] + w < arr[f]) { arr[f] = arr[s] + w; via[f] = { walk: s, secs: w }; } };
+  relax(origin);
+  let lo = 0, hi = conns.length;
+  while (lo < hi) { const m = (lo + hi) >> 1; if (conns[m][2] < t0) lo = m + 1; else hi = m; }
+  for (let i = lo; i < conns.length; i++) {
+    const [a, b, dep, ar, trip] = conns[i];
+    if (dep > t0 + horizon) break;
+    if (boarded[trip] < 0) {
+      const ready = arr[a] + (a === origin && !via[a] ? 0 : XFER);
+      if (ready > dep) continue;
+      boarded[trip] = i;
+    }
+    if (ar < arr[b]) { arr[b] = ar; via[b] = { enter: boarded[trip], exit: i }; relax(b); }
+  }
+  return { arr, via, origin, t0 };
+}
+
+function journey(res, dest) {
+  const legs = []; let s = dest;
+  while (s !== res.origin && res.via[s]) {
+    const v = res.via[s];
+    if (v.walk !== undefined) { legs.unshift({ walk: true, from: v.walk, to: s, secs: v.secs }); s = v.walk; }
+    else {
+      const e = conns[v.enter], x = conns[v.exit];
+      const ids = tripConns.get(e[4]).filter((ci) => ci >= v.enter && ci <= v.exit);
+      legs.unshift({ line: data.trips[e[4]], from: e[0], to: x[1], dep: e[2], arr: x[3], stops: [e[0], ...ids.map((ci) => conns[ci][1])] });
+      s = e[0];
+    }
+  }
+  return legs;
+}
+
+// mesh: a regular grid over the rail corridor, rows north to south so later rows paint over earlier ones
+const CELL = 250;
+let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+for (const s of st) { minX = Math.min(minX, s.xy[0]); maxX = Math.max(maxX, s.xy[0]); minY = Math.min(minY, s.xy[1]); maxY = Math.max(maxY, s.xy[1]); }
+const PAD = 4000; minX -= PAD; minY -= PAD; maxX += PAD; maxY += PAD;
+if (walk) { minX = walk.m.minX; minY = walk.m.minY; }
+const cols = walk ? walk.m.cols : Math.ceil((maxX - minX) / CELL) + 1, rows = walk ? walk.m.rows : Math.ceil((maxY - minY) / CELL) + 1, nv = cols * rows;
+const pos = new Float32Array(nv * 2);
+const K = 4, near = new Int16Array(nv * K).fill(-1), walkT = new Float32Array(nv * K);
+const kLat = st[0].k, walk0 = new Float32Array(nv);
+for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+  const v = r * cols + c, x = c * CELL, y = (rows - 1 - r) * CELL;
+  pos[v * 2] = x; pos[v * 2 + 1] = y;
+  if (walk) {
+    for (let j = 0; j < K; j++) {
+      const o = (v * K + j) * 3, si = walk.b.getUint8(o), w = walk.b.getUint16(o + 1, true);
+      if (si !== 255) { near[v * K + j] = si; walkT[v * K + j] = w; }
+    }
+    walk0[v] = near[v * K] < 0 ? 1e6 : walkT[v * K];
+    continue;
+  }
+  const best = [];
+  for (const s of st) {
+    const d = Math.hypot(minX + x - s.xy[0], minY + y - s.xy[1]) * kLat;
+    const w = d * DETOUR / WALK;
+    best.push([w, s.i]);
+  }
+  best.sort((p, q) => p[0] - q[0]);
+  best.slice(0, K).forEach(([w, i], j) => { near[v * K + j] = i; walkT[v * K + j] = w; });
+  walk0[v] = best[0][0];
+}
+const idx = new Uint32Array((rows - 1) * (cols - 1) * 6);
+let n = 0;
+for (let r = 0; r < rows - 1; r++) for (let c = 0; c < cols - 1; c++) {
+  const a = r * cols + c, b = a + 1, d = a + cols, e = d + 1;
+  idx[n++] = a; idx[n++] = d; idx[n++] = b; idx[n++] = b; idx[n++] = d; idx[n++] = e;
+}
+function surface(res) {
+  const t = new Float32Array(nv);
+  for (let v = 0; v < nv; v++) {
+    let m = CAP;
+    for (let j = 0; j < K; j++) {
+      const s = near[v * K + j]; if (s < 0) break;
+      const a = res.arr[s] - res.t0 + walkT[v * K + j];
+      if (a < m) m = a;
+    }
+    t[v] = Math.min(m, CAP);
+  }
+  return t;
+}
+
+// color ramp shared by shader and legend
+const RAMP = ["#fbf0b4", "#f6c460", "#ea8a4b", "#c8504f", "#8e3566", "#4b2a5e"];
+const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
+
+const VS = `#version 300 es
+in vec2 aPos; in float aPrev; in float aNext; in float aWalk;
+uniform vec2 uOff; uniform vec2 uScale; uniform float uMix; uniform float uLimit; uniform float uExag;
+out float vT; out vec3 vP; out float vW;
+void main() {
+  vW = aWalk;
+  float t = mix(aPrev, aNext, uMix);
+  float h = min(t, 21600.0) * 0.25 * uExag;
+  vT = t; vP = vec3(aPos, h);
+  gl_Position = vec4((aPos.x + uOff.x) * uScale.x, (aPos.y + uOff.y + h) * uScale.y, 0.0, 1.0);
+}`;
+const FS = `#version 300 es
+precision highp float;
+in float vT; in vec3 vP; in float vW;
+uniform float uLimit; uniform float uMaxT; uniform vec3 uRamp[6];
+out vec4 o;
+vec3 ramp(float x) {
+  x = clamp(x, 0.0, 1.0) * 5.0; int i = int(min(floor(x), 4.0));
+  return mix(uRamp[i], uRamp[i + 1], fract(x) + (x >= 5.0 ? 1.0 : 0.0));
+}
+void main() {
+  if (vT > uLimit || vW > 1800.0) discard;
+  vec3 nrm = normalize(cross(dFdx(vP), dFdy(vP)));
+  if (nrm.z < 0.0) nrm = -nrm;
+  float lit = 0.55 + 0.6 * max(dot(nrm, normalize(vec3(-1.0, 1.0, 1.6))), 0.0);
+  vec3 c = ramp(vT / uMaxT) * lit;
+  float band = abs(fract(vT / 900.0 + 0.5) - 0.5) / fwidth(vT / 900.0);
+  c *= mix(0.72, 1.0, clamp(band, 0.0, 1.0));
+  float edge = clamp((uLimit - vT) / max(fwidth(vT) * 1.5, 1.0), 0.0, 1.0) * clamp((1800.0 - vW) / max(fwidth(vW) * 1.5, 1.0), 0.0, 1.0);
+  o = vec4(c, 0.93) * edge;
+}`;
+
+const SurfaceView = BaseLayerViewGL2D.createSubclass({
+  attach() {
+    const gl = this.context;
+    const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+    const p = this.prog = gl.createProgram();
+    gl.attachShader(p, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, FS));
+    gl.bindAttribLocation(p, 0, "aPos"); gl.bindAttribLocation(p, 1, "aPrev"); gl.bindAttribLocation(p, 2, "aNext"); gl.bindAttribLocation(p, 3, "aWalk");
+    gl.linkProgram(p);
+    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+    this.u = {};
+    for (const k of ["uOff", "uScale", "uMix", "uLimit", "uExag", "uMaxT", "uRamp"]) this.u[k] = gl.getUniformLocation(p, k);
+    this.vao = gl.createVertexArray(); gl.bindVertexArray(this.vao);
+    const buf = (arr, loc, size) => { const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, arr, gl.DYNAMIC_DRAW);
+      gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, size, gl.FLOAT, false, 0, 0); return b; };
+    buf(pos, 0, 2); buf(walk0, 3, 1);
+    this.bPrev = buf(this.layer.prev, 1, 1); this.bNext = buf(this.layer.next, 2, 1);
+    const ib = gl.createBuffer(); gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ib); gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, idx, gl.STATIC_DRAW);
+    gl.bindVertexArray(null);
+    this.version = this.layer.version;
+    this.watcher = reactiveUtils.watch(() => this.layer.version, () => this.requestRender());
+  },
+  detach() { this.watcher?.remove(); const gl = this.context; gl.deleteProgram(this.prog); gl.deleteVertexArray(this.vao); },
+  render(rp) {
+    const gl = this.context, L = this.layer, s = rp.state;
+    if (this.version !== L.version) {
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.bPrev); gl.bufferSubData(gl.ARRAY_BUFFER, 0, L.prev);
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.bNext); gl.bufferSubData(gl.ARRAY_BUFFER, 0, L.next);
+      this.version = L.version;
+    }
+    const now = performance.now(), u = Math.min((now - L.t0) / 640, 1), mixv = u < 1 ? 1 - Math.pow(1 - u, 3) : 1;
+    L.mixNow = mixv;
+    gl.useProgram(this.prog); gl.bindVertexArray(this.vao);
+    const [w, h] = s.size, res = s.resolution;
+    gl.uniform2f(this.u.uOff, minX - s.center[0], minY - s.center[1]);
+    gl.uniform2f(this.u.uScale, 2 / (res * w), 2 / (res * h));
+    gl.uniform1f(this.u.uMix, mixv);
+    gl.uniform1f(this.u.uLimit, L.limit);
+    gl.uniform1f(this.u.uExag, L.exag);
+    gl.uniform1f(this.u.uMaxT, L.limit === 0 ? 1 : (L.animating ? L.playEnd : L.limit));
+    gl.uniform3fv(this.u.uRamp, RAMP.flatMap(rgb));
+    gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    gl.drawElements(gl.TRIANGLES, idx.length, gl.UNSIGNED_INT, 0);
+    gl.bindVertexArray(null);
+    if (u < 1 || L.animating) this.requestRender();
+  }
+});
+const Surface = Layer.createSubclass({
+  createLayerView(view) { if (view.type === "2d") return new SurfaceView({ view, layer: this }); }
+});
+const surf = new Surface({ title: "Travel time surface" });
+Object.assign(surf, { prev: new Float32Array(nv).fill(CAP), next: new Float32Array(nv).fill(CAP), version: 0, t0: 0, mixNow: 1, limit: 7200, exag: 1, animating: false });
+
+const lines = new GraphicsLayer(), route = new GraphicsLayer(), stations = new GraphicsLayer();
+for (const l of data.lines) lines.add(new Graphic({
+  geometry: { type: "polyline", paths: [l.path], spatialReference: { wkid: 4326 } },
+  symbol: { type: "simple-line", color: [...rgb(data.colors[l.line]).map((v) => v * 255), 0.55], width: 1.2 } }));
+for (const s of st) stations.add(new Graphic({
+  geometry: { type: "point", longitude: s.lon, latitude: s.lat },
+  attributes: { i: s.i },
+  symbol: { type: "simple-marker", size: 5, color: [20, 20, 24, 1], outline: { color: [232, 228, 220, 0.9], width: 1 } } }));
+
+const base = (path) => new TileLayer({ url: `https://services.arcgisonline.com/arcgis/rest/services/${path}/MapServer` });
+const gray = base("Canvas/World_Dark_Gray_Base");
+const hill = base("Elevation/World_Hillshade_Dark"); hill.opacity = 0.55;
+const map = new EsriMap({ basemap: { baseLayers: [gray, hill] }, layers: [lines, surf, route, stations] });
+const view = new MapView({
+  container: "view", map, center: [-111.9, 40.68], zoom: 9,
+  constraints: { rotationEnabled: false, minZoom: 8, maxZoom: 15 },
+  ui: { components: [] }, padding: innerWidth > 600 ? { left: 320 } : { bottom: Math.round(innerHeight * 0.42) }
+});
+
+// controls
+const $ = (id) => document.getElementById(id);
+const order = [...st].sort((a, b) => a.name.localeCompare(b.name));
+for (const s of order) $("origin").add(new Option(s.name.replace(/ Station$/, ""), s.i));
+$("origin").value = st.find((s) => s.name.startsWith("Salt Lake Central")).i;
+$("day").textContent = `Schedule for ${data.day.slice(4, 6)}/${data.day.slice(6)}/${data.day.slice(0, 4)}`;
+const ticks = (m) => { $("legend").style.background = `linear-gradient(90deg, ${RAMP.join(",")})`;
+  $("ticks").innerHTML = [0, 0.25, 0.5, 0.75, 1].map((f, i) => `<span>${Math.round(m * f)}${i === 4 ? " min" : ""}</span>`).join(""); };
+
+let result = null;
+function recompute(animate = true) {
+  const origin = +$("origin").value, t0 = +$("dep").value * 60;
+  result = scan(origin, t0, CAP);
+  const t = surface(result);
+  const m = surf.mixNow;
+  for (let v = 0; v < nv; v++) surf.prev[v] = surf.prev[v] + (surf.next[v] - surf.prev[v]) * m;
+  surf.next = t; surf.t0 = animate ? performance.now() : 0; surf.mixNow = 0; surf.version++;
+  for (const g of stations.graphics) {
+    const i = g.attributes.i, ok = result.arr[i] - t0 <= surf.limit;
+    g.symbol = { type: "simple-marker", size: i === origin ? 10 : 5, color: i === origin ? [242, 179, 91, 1] : [20, 20, 24, 1],
+      outline: { color: [232, 228, 220, ok ? 0.95 : 0.3], width: 1 } };
+  }
+  showTrip(null);
+}
+function sync() {
+  $("depOut").textContent = fmt(+$("dep").value * 60);
+  $("maxOut").textContent = `${$("max").value} min`;
+  $("exOut").textContent = `× ${$("ex").value}`;
+  surf.limit = +$("max").value * 60; surf.exag = +$("ex").value; surf.version++;
+  ticks(+$("max").value);
+}
+$("origin").addEventListener("change", () => recompute());
+$("dep").addEventListener("input", () => { sync(); recompute(); });
+$("max").addEventListener("input", () => { sync(); recompute(false); });
+$("ex").addEventListener("input", sync);
+$("play").addEventListener("click", () => {
+  const end = +$("max").value * 60, start = performance.now(), dur = 5000;
+  surf.animating = true; surf.playEnd = end; surf.version++;
+  const step = (now) => {
+    const u = Math.min((now - start) / dur, 1);
+    surf.limit = end * u; surf.version++;
+    if (u < 1) requestAnimationFrame(step); else { surf.animating = false; sync(); }
+  };
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  requestAnimationFrame(step);
+});
+
+function showTrip(dest) {
+  route.removeAll();
+  if (dest === null || !result) { $("trip").innerHTML = "Point to a station to see the fastest trip there."; return; }
+  const s = st[dest], o = st[result.origin], a = result.arr[dest];
+  if (dest === result.origin) { $("trip").innerHTML = `<b>${o.name}</b> is the starting station.`; return; }
+  if (!isFinite(a)) { $("trip").innerHTML = `<b>${s.name}</b> can't be reached by rail in the next 6 hours.`; return; }
+  const legs = journey(result, dest);
+  const items = legs.map((l) => l.walk
+    ? `<li>Walk to ${st[l.to].name} (${mins(l.secs)})</li>`
+    : `<li>${l.line} ${fmt(l.dep)} → ${st[l.to].name.replace(/ Station$/, "")} ${fmt(l.arr)}</li>`).join("");
+  $("trip").innerHTML = `<b>${s.name}</b>: arrive ${fmt(a)}, ${mins(a - result.t0)} after leaving ${o.name.replace(/ Station$/, "")}<ol>${items}</ol>`;
+  for (const l of legs) {
+    const path = (l.walk ? [l.from, l.to] : l.stops).map((i) => [st[i].lon, st[i].lat]);
+    route.add(new Graphic({ geometry: { type: "polyline", paths: [path], spatialReference: { wkid: 4326 } },
+      symbol: { type: "simple-line", color: l.walk ? [232, 228, 220, 0.9] : [...rgb(data.colors[l.line]).map((v) => v * 255), 1], width: 3.5, style: l.walk ? "short-dot" : "solid" } }));
+  }
+}
+
+let hoverToken = 0;
+view.on("pointer-move", async (e) => {
+  const tok = ++hoverToken;
+  const hit = await view.hitTest(e, { include: [stations] });
+  if (tok !== hoverToken) return;
+  const g = hit.results[0]?.graphic;
+  showTrip(g ? g.attributes.i : null);
+  view.container.style.cursor = g ? "pointer" : "";
+});
+view.on("click", async (e) => {
+  const g = (await view.hitTest(e, { include: [stations] })).results[0]?.graphic;
+  if (g) { $("origin").value = g.attributes.i; recompute(); }
+});
+
+if (walk) $("walkNote").textContent = "Walking follows OpenStreetMap streets and paths (the Day 7 network rules) at 4.8 km/h, up to 30 min.";
+sync(); recompute();
+</script>
+</body>
+</html>
